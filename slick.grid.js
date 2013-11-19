@@ -62,6 +62,7 @@ if (typeof Slick === "undefined") {
       leaveSpaceForNewRows: false,
       editable: false,
       autoEdit: true,
+      autoEditAddRow: false, 
       enableCellNavigation: true,
       enableColumnReorder: true,
       asyncEditorLoading: false,
@@ -808,6 +809,8 @@ if (typeof Slick === "undefined") {
                       }
                     }
                   }
+                } else if (options.syncColumnCellResize) {
+                    setCanvasWidth(originalCanvasWidth + d);
                 }
               } else { // stretch column
                 x = d;
@@ -839,6 +842,8 @@ if (typeof Slick === "undefined") {
                       }
                     }
                   }
+                } else if (options.syncColumnCellResize) {
+                  setCanvasWidth(originalCanvasWidth + d);
                 }
               }
               applyColumnHeaderWidths();
@@ -1022,15 +1027,27 @@ if (typeof Slick === "undefined") {
           shrinkLeeway = 0,
           total = 0,
           prevTotal,
-          availWidth = viewportHasVScroll ? viewportW - scrollbarDimensions.width : viewportW;
-
+          availWidth = viewportHasVScroll ? viewportW - scrollbarDimensions.width : viewportW,
+	      autoWidthColIndex;
+	
       for (i = 0; i < columns.length; i++) {
         c = columns[i];
         widths.push(c.width);
-        total += c.width;
         if (c.resizable) {
           shrinkLeeway += c.width - Math.max(c.minWidth, absoluteColumnMinWidth);
         }
+        if (c.autoWidth){
+          if (autoWidthColIndex) throw "Only 1 column can use autoWidth";
+            autoWidthColIndex = i;
+          }
+          else {
+            total += c.width;
+          }
+      }
+
+      if (autoWidthColIndex) {
+        widths[autoWidthColIndex] = Math.max(columns[autoWidthColIndex].minWidth || 0, Math.floor(availWidth - total));
+        total = availWidth;
       }
 
       // shrink
@@ -2190,7 +2207,7 @@ if (typeof Slick === "undefined") {
             handled = navigateDown();
           } else if (e.which == 9) {
             handled = navigateNext();
-          } else if (e.which == 13) {
+          } else if (e.which == 13 || e.which == 113) { 
             if (options.editable) {
               if (currentEditor) {
                 // adding new row
@@ -2449,7 +2466,7 @@ if (typeof Slick === "undefined") {
         activeCell = activePosX = getCellFromNode(activeCellNode);
 
         if (opt_editMode == null) {
-          opt_editMode = (activeRow == getDataLength()) || options.autoEdit;
+          opt_editMode = (activeRow == getDataLength() && options.autoEditAddRow) || options.autoEdit;
         }
 
         $(activeCellNode).addClass("active");
@@ -3106,7 +3123,7 @@ if (typeof Slick === "undefined") {
       var newCell = getCellNode(row, cell);
 
       // if selecting the 'add new' row, start editing right away
-      setActiveCellInternal(newCell, forceEdit || (row === getDataLength()) || options.autoEdit);
+      setActiveCellInternal(newCell, forceEdit || (row === getDataLength() && options.autoEditAddRow) || options.autoEdit);
 
       // if no editor was created, set the focus back on the grid
       if (!currentEditor) {
