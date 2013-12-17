@@ -24,6 +24,9 @@
         clipboardCommandHandler : option to specify a custom handler for paste actions
         includeHeaderWhenCopying : set to true and the plugin will take the name property from each column (which is usually what appears in your header) and put that as the first row of the text that's copied to the clipboard
         bodyElement: option to specify a custom DOM element which to will be added the hidden textbox. It's useful if the grid is inside a modal dialog.
+        onCopyInit: optional handler to run when copy action initializes
+        onCopySuccess: optional handler to run when copy action is complete
+        ingoreFormatting: optional array to specify fields of columns that ignore all formatters on paste
     */
     var _grid;
     var _self = this;
@@ -33,6 +36,9 @@
     var _copiedCellStyle = _options.copiedCellStyle || "copied";
     var _clearCopyTI = 0;
     var _bodyElement = _options.bodyElement || document.body;
+    var _onCopyInit = _options.onCopyInit || null;
+    var _onCopySuccess = _options.onCopySuccess || null;
+    var _ignoreFormatting = _options.ignoreFormatting || [];
     
     var keyCodes = {
       'C':67,
@@ -61,6 +67,13 @@
     }
     
     function getDataItemValueForColumn(item, columnDef) {
+      // If we initialized this with an ignoreFormatting option, don't do fancy formatting
+      // on the specified fields (just return the plain JS value)
+      for (var i=0; i<_options.ignoreFormatting.length; i++) {
+        if (_ignoreFormatting[i] === columnDef.field) {
+          return item[columnDef.field];
+        }
+      }
       if (_options.dataItemColumnValueExtractor) {
         return _options.dataItemColumnValueExtractor(item, columnDef);
       }
@@ -289,6 +302,9 @@
         }
         
         if (e.which == keyCodes.C && (e.ctrlKey || e.metaKey)) {    // CTRL + C
+          if (_onCopyInit) {
+            _onCopyInit.call();
+          }
           ranges = _grid.getSelectionModel().getSelectedRanges();
           if (ranges.length != 0) {
             _copiedRanges = ranges;
@@ -297,7 +313,7 @@
             
             var columns = _grid.getColumns();
             var clipText = "";
-            
+
             for (var rg = 0; rg < ranges.length; rg++){
                 var range = ranges[rg];
                 var clipTextRows = [];
@@ -336,6 +352,18 @@
                     $focus.removeAttr('tabIndex');
                 }
             }, 100);
+
+            if (_onCopySuccess) {
+                var rowCount = 0;
+                // If it's cell selection, use the toRow/fromRow fields
+                if (ranges.length === 1) {
+                    rowCount = (ranges[0].toRow + 1) - ranges[0].fromRow;
+                }
+                else {
+                    rowCount = ranges.length;
+                }
+                _onCopySuccess.call(this, rowCount);
+            }
 
             return false;
           }
