@@ -69,7 +69,7 @@
     function getDataItemValueForColumn(item, columnDef) {
       // If we initialized this with an ignoreFormatting option, don't do fancy formatting
       // on the specified fields (just return the plain JS value)
-      for (var i=0; i<_options.ignoreFormatting.length; i++) {
+      for (var i=0; i<_ignoreFormatting.length; i++) {
         if (_ignoreFormatting[i] === columnDef.field) {
           return item[columnDef.field];
         }
