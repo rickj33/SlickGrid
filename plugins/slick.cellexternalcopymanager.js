@@ -338,34 +338,40 @@
                 clipText += clipTextRows.join("\r\n") + "\r\n";
             }
             
-            var $focus = $(_grid.getActiveCellNode());
-            var ta = _createTextBox(clipText);
-
-            ta.focus();
-            
-            setTimeout(function(){
-                 _bodyElement.removeChild(ta);
-                // restore focus
-                if ($focus && $focus.length>0) {
-                    $focus.attr('tabIndex', '-1');
-                    $focus.focus();
-                    $focus.removeAttr('tabIndex');
-                }
-            }, 100);
-
-            if (_onCopySuccess) {
-                var rowCount = 0;
-                // If it's cell selection, use the toRow/fromRow fields
-                if (ranges.length === 1) {
-                    rowCount = (ranges[0].toRow + 1) - ranges[0].fromRow;
-                }
-                else {
-                    rowCount = ranges.length;
-                }
-                _onCopySuccess.call(this, rowCount);
+            if(windows.clipboardData) {
+                windows.clipboardData.Set("Text", clipText);
+                return true;
             }
+            else {
+                var $focus = $(_grid.getActiveCellNode());
+                var ta = _createTextBox(clipText);
 
-            return false;
+                ta.focus();
+                
+                setTimeout(function(){
+                     _bodyElement.removeChild(ta);
+                    // restore focus
+                    if ($focus && $focus.length>0) {
+                        $focus.attr('tabIndex', '-1');
+                        $focus.focus();
+                        $focus.removeAttr('tabIndex');
+                    }
+                }, 100);
+
+                if (_onCopySuccess) {
+                    var rowCount = 0;
+                    // If it's cell selection, use the toRow/fromRow fields
+                    if (ranges.length === 1) {
+                        rowCount = (ranges[0].toRow + 1) - ranges[0].fromRow;
+                    }
+                    else {
+                        rowCount = ranges.length;
+                    }
+                    _onCopySuccess.call(this, rowCount);
+                }
+
+                return false;
+            }
           }
         }
 
