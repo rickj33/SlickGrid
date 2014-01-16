@@ -338,8 +338,8 @@
                 clipText += clipTextRows.join("\r\n") + "\r\n";
             }
             
-            if(windows.clipboardData) {
-                windows.clipboardData.Set("Text", clipText);
+            if(typeof window !== 'undefined' && window.clipboardData) {
+                window.clipboardData.setData("Text", clipText);
                 return true;
             }
             else {
