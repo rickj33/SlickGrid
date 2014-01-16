@@ -338,7 +338,7 @@
                 clipText += clipTextRows.join("\r\n") + "\r\n";
             }
             
-            if(typeof window !== 'undefined' && window.clipboardData) {
+            if(window.clipboardData) {
                 window.clipboardData.setData("Text", clipText);
                 return true;
             }
