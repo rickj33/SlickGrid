@@ -321,7 +321,7 @@
                     var clipTextCells = [];
                     var dt = _grid.getDataItem(i);
                     
-                    if (clipText == "" && _options.includeHeaderWhenCopying) {
+                    if (clipTextRows == "" && _options.includeHeaderWhenCopying) {
                         var clipTextHeaders = [];
                         for (var j = range.fromCell; j < range.toCell + 1 ; j++) {
                             if (columns[j].name.length > 0)
