@@ -7,7 +7,7 @@
   ],
   "description": "SlickGrid with external copy paste usig dataview",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
