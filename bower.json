@@ -1,5 +1,5 @@
 {
-  "name": "SlickGrid",
+  "name": "FactlookSlickGrid",
   "version": "2.0.2",
   "homepage": "https://github.com/FactLook/SlickGrid",
   "authors": [
@@ -19,8 +19,6 @@
   ],
   "dependencies": {
     "jquery" : ">=2.1",
-    "jquery.event.drag-drop" : ">=2.2",
+    "jquery.event.drag-drop" : ">=2.2"
   }
-  
-
 }
