@@ -146,7 +146,9 @@
 
       for (var i=0; i<clipRows.length; i++) {
         if (clipRows[i]!="")
-          clippedRange[i] = clipRows[i].split("\t");
+        {
+            clippedRange[i] = clipRows[i].split("\t");
+        }
       }
 
       var selectedCell = _grid.getActiveCell();
@@ -174,18 +176,46 @@
         destH = selectedRange.toRow - selectedRange.fromRow +1;
         destW = selectedRange.toCell - selectedRange.fromCell +1;
       }
-	  var availableRows = _grid.getData().length - activeRow;
-	  var addRows = 0;
-	  if(availableRows < destH)
-	  {
-		var d = _grid.getData();
-		for(addRows = 1; addRows <= destH - availableRows; addRows++)
-			d.push({});
-		_grid.setData(d);
-		_grid.render();
-	  }  
-      var clipCommand = {
 
+        var addRows = 0;
+        var availableRows =0;
+        var gridData = _grid.getData();
+        var d = gridData;
+
+        if(gridData.constructor.name === "DataView"){
+            availableRows = gridData.getLength() - activeRow;
+            d = gridData.getItems();
+            if(availableRows < destH)
+            {
+                gridData.beginUpdate();
+                //var d = _grid.getData();
+                for(addRows = 1; addRows <= destH - availableRows; addRows++)
+                {
+                    gridData.addItem({id:activeRow+addRows});
+                }
+                gridData.endUpdate();
+
+             //   _grid.setData(d);
+                _grid.render();
+            }
+        }else{
+            availableRows = gridData.length - activeRow;
+            if(availableRows < destH)
+            {
+                //var d = _grid.getData();
+                for(addRows = 1; addRows <= destH - availableRows; addRows++)
+                {
+                   d.push({});
+                }
+                _grid.setData(d);
+                _grid.render();
+            }
+        }
+
+
+
+
+      var clipCommand = {
         isClipboardCommand: true,
         clippedRange: clippedRange,
         oldValues: [],
