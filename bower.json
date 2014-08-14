@@ -1,0 +1,26 @@
+{
+  "name": "SlickGrid",
+  "version": "2.0.2",
+  "homepage": "https://github.com/FactLook/SlickGrid",
+  "authors": [
+    "Rick <rick.rjones@gmail.com>"
+  ],
+  "description": "SlickGrid with external copy paste usig dataview",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "examples",
+    "lib"
+  ],
+  "dependencies": {
+    "jquery" : ">=2.1",
+    "jquery.event.drag-drop" : ">=2.2",
+  }
+  }
+
+}
