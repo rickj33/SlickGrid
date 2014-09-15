@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
+  <link rel="stylesheet" href="../slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="examples.css" type="text/css"/>
+  <link rel="stylesheet" href="Factlook-0.0.1.css" type="text/css"/>
+  <style>
+    .totals {
+      font-weight: bold;
+      color: gray;
+      font-style: italic;
+    }
+.slick-row.odd {
+  background:   #E6E6E6;
+}
+
+  
+  </style>
+</head>
+<body>
+  <div style="position:relative">
+    <div style="width:600px;">
+      <div id="myGrid" style="width:100%;height:500px;"></div>
+    </div>
+
+    <div class="options-panel">
+      <h2>Demonstrates:</h2>
+      <ul>
+        <li>Implementing a data provider to create a totals row at the end of the grid.</li>
+        <li>This is a simplification of what the DataView does. </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="../lib/firebugx.js"></script>
+
+  <script src="../lib/jquery-1.7.min.js"></script>
+  <script src="../lib/jquery-ui-1.8.16.custom.min.js"></script>
+  <script src="../lib/jquery.event.drag-2.2.js"></script>
+
+  <script src="../slick.core.js"></script>
+  <script src="../slick.editors.js"></script>
+  <script src="../slick.grid.js"></script>
+  <script src="transposeBreakData.js"></script>
+  <script>
+    var grid;
+    var data = [];
+    var options = {
+      enableCellNavigation: true,
+      headerRowHeight: 30,
+      editable: true
+    };
+
+
+
+    var RegionBreakFieldNames = [
+  //  {name: 'id', row: 0, display: 'Id', visible : false},
+ {name: 'legendText', row: 1, display: 'Legend Text', visible : true , fromStyle: false, editor: Slick.Editors.TransposedText, readonly : false},
+ {name: 'minValue', row: 2, display: 'Min Value', visible : true, fromStyle: false, editor: Slick.Editors.TransposedFloat, readonly : true},
+ {name: 'maxValue', row: 3, display: 'Max Value', visible : true, fromStyle: false, editor: Slick.Editors.TransposedFloat, readonly : true},
+
+ {name: 'fillColor', row: 4, display: 'Fill Color', visible : true, fromStyle: true, editor: Slick.Editors.TransposedText, readonly : false},
+ {name: 'fillOpacity', row: 5, display: 'Fill Opacity', visible : true, fromStyle: true,editor: Slick.Editors.TransposedInteger, readonly : false },
+ {name: 'borderColor', row: 6, display: 'Border Color', visible : true, fromStyle: true, editor: Slick.Editors.TransposedText, readonly : false},
+ {name: 'borderWidth', row: 7, display: 'Border Width', visible : true, fromStyle: true,editor: Slick.Editors.TransposedInteger, readonly : false },
+ {name: 'borderOpacity', row: 8, display: 'Border Opacity', visible : true, fromStyle: true,editor: Slick.Editors.TransposedInteger, readonly : false },
+ {name: 'showBorder', row: 9, display: 'Show Border', visible : true, fromStyle: true, editor: Slick.Editors.TransposedCheckbox, readonly : false},
+
+
+];
+
+
+
+
+
+function buildColumns(breaks){
+ var columns = [];
+
+    columns.push({
+                          id       : 0,
+                         name     : '',
+                         field    : 'property',
+                         minWidth : 100,
+                         sortable : false,
+                         resizable: true,
+                         editor   : null,
+                         breakValue : null
+      }
+      )
+   for (var i = 0; i < breaks.length; i++)
+   {
+    var column = {
+                         id       : i +1,
+                         name     : 'Break ' + i,
+                         field    : 'break' +i,
+                         minWidth : 100,
+                         sortable : false,
+                         resizable: true,
+                          breakValue : breaks[i] ,
+                         editor   : Slick.Editors.TransposedEditor
+
+                     };
+      columns.push(column);
+   }
+   return columns;
+}
+
+
+var columns = buildColumns(testStyle.breaks);
+
+function TotalsDataProvider(breaks, columns) {
+
+
+ var breakFieldNames = RegionBreakFieldNames;
+    var rows = [];
+
+  
+
+ //  if(geographyType !== GeographyTypeCodes.SpecificAddressDropPin){
+
+//    }else{
+
+//    }
+
+
+
+    this.buildData = function(breaks, columns)
+    {
+      
+        for (var i = breakFieldNames.length - 1; i >= 0; i--) 
+        {
+             var field = breakFieldNames[i];
+
+             var rowNode = (rows[i] = {});
+
+             rowNode['property'] = field.display;
+             rowNode.field = field;
+             for (var x = 1; x < columns.length; x++)  //start with 1, since 0 is the property name column.
+             {
+                var column = columns[x];
+              if(field.fromStyle){
+                 rowNode[column.field] = breaks[x-1].style[field.name];
+              }else{
+                 rowNode[column.field] = breaks[x-1][field.name];
+              }
+
+             }
+
+
+        }
+    }
+
+
+    this.getLength = function() {
+      return rows.length ;
+    };
+
+    this.getItem = function(index) {
+      return (index < rows.length) ? rows[index] : null;
+    };
+
+  
+  this.buildData(breaks,columns);
+  
+
+   
+  }
+
+
+
+ 
+
+    var dataProvider = new TotalsDataProvider(testStyle.breaks, columns);
+
+    grid = new Slick.Grid("#myGrid", dataProvider, columns, options);
+
+    grid.onCellChange.subscribe(function(e, args) {
+      //determine if the map display needs updating.
+      grid.invalidateRow(dataProvider.getLength() - 1);
+      grid.render();
+    });
+
+
+
+
+
+
+</script>
+</body>
+</html>
