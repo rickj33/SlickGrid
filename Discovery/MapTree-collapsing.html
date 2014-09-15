@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>SlickGrid example 5: Collapsing</title>
+  <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
+
+<!--  
+  <link rel="stylesheet" href="MapTree-slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="MapTree.css" type="text/css"/>
+-->
+
+  <link rel="stylesheet" href="../slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="../slick-default-theme.css" type="text/css"/>
+
+  <link rel="stylesheet" href="MapTree.css" type="text/css"/>
+
+
+
+  <style>
+    .cell-title {
+      font-weight: bold;
+    }
+
+    .cell-effort-driven {
+      text-align: center;
+    }
+
+    .toggle {
+      height: 9px;
+      width: 9px;
+      display: inline-block;
+    }
+
+    .toggle.expand {
+      background: url(../images/expand.gif) no-repeat center center;
+    }
+
+    .toggle.collapse {
+      background: url(../images/collapse.gif) no-repeat center center;
+    }
+
+  </style>
+</head>
+<body>
+<table width="300px">
+  <tr>
+    <td valign="top" width="50%">
+      <div id="myGrid" class= "no-lines-grid" style="width:100%;height:500px;"></div>
+    </td>
+  
+  </tr>
+</table>
+
+<script src="../lib/firebugx.js"></script>
+
+<script src="../lib/jquery-1.7.min.js"></script>
+<script src="../lib/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="../lib/jquery.event.drag-2.2.js"></script>
+
+<script src="../slick.core.js"></script>
+<script src="../slick.formatters.js"></script>
+<script src="../slick.editors.js"></script>
+<script src="../slick.grid.js"></script>
+<script src="../slick.dataview.js"></script>
+<script src="MapTree-JsonContent.js"></script>
+
+<script>
+function requiredFieldValidator(value) {
+  if (value == null || value == undefined || !value.length) {
+    return {valid: false, msg: "This is a required field"};
+  } else {
+    return {valid: true, msg: null};
+  }
+}
+
+
+var TaskNameFormatter = function (row, cell, value, columnDef, dataContext) {
+  value = value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  var spacer = "<span style='display:inline-block;height:1px;width:" + (15 * dataContext["indent"]) + "px'></span>";
+  var idx = dataView.getIdxById(dataContext.id);
+  if (data[idx + 1] && data[idx + 1].indent > data[idx].indent) {
+    if (dataContext._collapsed) {
+      return spacer + " <span class='toggle expand'></span>&nbsp;" + value;
+    } else {
+      return spacer + " <span class='toggle collapse'></span>&nbsp;" + value;
+    }
+  } else {
+    return spacer + " <span class='toggle'></span>&nbsp;" + value;
+  }
+};
+
+var dataView;
+var grid;
+var data = [];
+var columns = [
+  {id: "title", name: "Layers", field: "title", width: 220, cssClass: "cell-title", formatter: TaskNameFormatter, editor: Slick.Editors.Text, validator: requiredFieldValidator},
+  
+];
+
+var options = {
+  editable: false,
+  enableAddRow: false,
+  enableCellNavigation: true,
+  asyncEditorLoading: false,
+   forceFitColumns       : true
+};
+
+var percentCompleteThreshold = 0;
+var searchString = "";
+
+function myFilter(item) {
+  
+  if (item.parent != null) {
+    var parent = data[item.parent];
+
+    while (parent) {
+      if (parent._collapsed || (parent["percentComplete"] < percentCompleteThreshold) || (searchString != "" && parent["title"].indexOf(searchString) == -1)) {
+        return false;
+      }
+
+      parent = data[parent.parent];
+    }
+  }
+
+  return true;
+}
+
+
+$(function () {
+  var indent = 0;
+  var parents = [];
+
+ 
+  // prepare the data
+    var id = 0;
+ //   var rootNode = (data[0] = {});
+    var parent;
+  
+  //set the root node which is map
+//      rootNode["id"] =  id;
+//      rootNode["indent"] = 0;
+//      rootNode["parent"] = null;
+ //     rootNode["title"] = mapTreeStructure.name;
+    
+//   for (var i = 0; i < mapTreeStructure.layers.length;  i++) 
+//   {
+//     indent = 1;
+//     id ++;
+//     var layer = mapTreeStructure.layers[i];
+//     layerNode = (data[id] = {});
+//     layerNode["id"] =  id;
+//     layerNode["indent"] = rootNode["indent"] + 1;
+//     layerNode["parent"] = rootNode["id"];
+//     layerNode["title"] = layer.name;
+
+//    
+
+//     //add databreak
+//      id++;
+//     dataSetNode = (data[id] = {});
+//     dataSetNode["id"] = id;
+//     dataSetNode["indent"] = layerNode["indent"] + 1;
+//     dataSetNode["parent"] = layerNode["id"];
+//     dataSetNode["title"] = "DataSet";
+
+//
+
+//     //add layerstyle
+//      id++;
+//     layerStyleNode = (data[id] = {});
+//     layerStyleNode["id"] = "id_" + id;
+//     layerStyleNode["indent"] = layerNode["indent"] + 1;
+//     layerStyleNode["parent"] = layerNode["id"];
+//     layerStyleNode["title"] = "Style";
+//     
+
+//   };
+
+var layerIndent = 0;
+var dataSetIndent =1;
+var styleIndent = 1;
+
+for (var i = 0; i < mapTreeStructure.layers.length;  i++) 
+    {
+      indent = 0;
+      id = i;
+      //id ++;
+      var layer = mapTreeStructure.layers[i];
+      layerNode = (data[id] = {});
+      layerNode["id"] =  id;
+      layerNode["indent"] = layerIndent;
+      layerNode["parent"] =null;
+      layerNode["title"] = layer.name;
+      layerNode["type"] = "layer";
+
+
+     
+
+      //add databreak
+       id++;
+      dataSetNode = (data[id] = {});
+      dataSetNode["id"] = id;
+      dataSetNode["indent"] = dataSetIndent;
+      dataSetNode["parent"] = layerNode["id"];
+      dataSetNode["title"] = "DataSet";
+      dataSetNode["type"] = "dataSet";
+
+ 
+
+      //add layerstyle
+       id++;
+      layerStyleNode = (data[id] = {});
+      layerStyleNode["id"] = "id_" + id;
+      layerStyleNode["indent"] = styleIndent;
+      layerStyleNode["parent"] = layerNode["id"];
+      layerStyleNode["title"] = "Style";
+      layerStyleNode["type"] = "layerStyle";
+      
+
+    };
+
+
+
+  // initialize the model
+  dataView = new Slick.Data.DataView({ inlineFilters: true });
+  dataView.beginUpdate();
+  dataView.setItems(data);
+  dataView.setFilter(myFilter);
+  dataView.endUpdate();
+
+
+  // initialize the grid
+  grid = new Slick.Grid("#myGrid", dataView, columns, options);
+
+  grid.onCellChange.subscribe(function (e, args) {
+    dataView.updateItem(args.item.id, args.item);
+  });
+
+ 
+
+  grid.onClick.subscribe(function (e, args) {
+    var item = dataView.getItem(args.row);
+       console.log("grid click with name" + item.title + " type: " + item.type + " Id: " + item.id + " parent: " + item.parent  + " Indent: " + item.indent );
+
+    if ($(e.target).hasClass("toggle")) {
+      
+
+    
+      if (item) {
+        if (!item._collapsed) {
+          item._collapsed = true;
+        } else {
+          item._collapsed = false;
+        }
+
+        dataView.updateItem(item.id, item);
+      }
+      e.stopImmediatePropagation();
+    }
+  });
+
+
+  // wire up model events to drive the grid
+  dataView.onRowCountChanged.subscribe(function (e, args) {
+    grid.updateRowCount();
+    grid.render();
+  });
+
+  dataView.onRowsChanged.subscribe(function (e, args) {
+    grid.invalidateRows(args.rows);
+    grid.render();
+  });
+
+
+  var h_runfilters = null;
+
+  // wire up the slider to apply the filter to the model
+  $("#pcSlider").slider({
+    "range": "min",
+    "slide": function (event, ui) {
+      Slick.GlobalEditorLock.cancelCurrentEdit();
+
+      if (percentCompleteThreshold != ui.value) {
+        window.clearTimeout(h_runfilters);
+        h_runfilters = window.setTimeout(dataView.refresh, 10);
+        percentCompleteThreshold = ui.value;
+      }
+    }
+  });
+
+
+  // wire up the search textbox to apply the filter to the model
+  $("#txtSearch").keyup(function (e) {
+    Slick.GlobalEditorLock.cancelCurrentEdit();
+
+    // clear on Esc
+    if (e.which == 27) {
+      this.value = "";
+    }
+
+    searchString = this.value;
+    dataView.refresh();
+  })
+})
+</script>
+</body>
+</html>
