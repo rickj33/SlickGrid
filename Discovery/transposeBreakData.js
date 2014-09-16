@@ -43,7 +43,157 @@
                                       "numberOfDataPoints": 904,
                                       "roundingDigits"    : 0,
                                       "legendText"        : "0 - 0"
+                                  },
+
+                                  {
+                                      "id"                : 2,
+                                      "dataPointKeys"     : [
+                                          "48201221400",
+                                          "48201221300"
+
+                                      ],
+                                      "style"             : {
+                                          "id"           : 0,
+                                          "fillColor"    : "#FFFFFF",
+                                          "fillOpacity"  : 1.0,
+                                          "borderWidth"  : 1,
+                                          "borderColor"  : "black",
+                                          "borderOpacity": 1.0,
+                                           "showBorder"    : false
+                                      },
+                                      "minValue"          :100.3,
+                                      "maxValue"          :1000,
+                                      "numberOfDataPoints": 904,
+                                      "roundingDigits"    : 0,
+                                      "legendText"        : "0 - 0"
                                   }
+                                  ,
+
+                                  {
+                                      "id"                : 3,
+                                      "dataPointKeys"     : [
+                                          "48201221400",
+                                          "48201221300"
+
+                                      ],
+                                      "style"             : {
+                                          "id"           : 0,
+                                          "fillColor"    : "#FFFFFF",
+                                          "fillOpacity"  : 1.0,
+                                          "borderWidth"  : 1,
+                                          "borderColor"  : "black",
+                                          "borderOpacity": 1.0,
+                                           "showBorder"    : false
+                                      },
+                                      "minValue"          :100.3,
+                                      "maxValue"          :1000,
+                                      "numberOfDataPoints": 904,
+                                      "roundingDigits"    : 0,
+                                      "legendText"        : "0 - 0"
+                                  }
+
+                                  ,
+
+                                  {
+                                      "id"                : 4,
+                                      "dataPointKeys"     : [
+                                          "48201221400",
+                                          "48201221300"
+
+                                      ],
+                                      "style"             : {
+                                          "id"           : 0,
+                                          "fillColor"    : "#FFFFFF",
+                                          "fillOpacity"  : 1.0,
+                                          "borderWidth"  : 1,
+                                          "borderColor"  : "black",
+                                          "borderOpacity": 1.0,
+                                           "showBorder"    : false
+                                      },
+                                      "minValue"          :100.3,
+                                      "maxValue"          :1000,
+                                      "numberOfDataPoints": 904,
+                                      "roundingDigits"    : 0,
+                                      "legendText"        : "0 - 0"
+                                  }
+
+                                  ,
+
+                                  {
+                                      "id"                : 5,
+                                      "dataPointKeys"     : [
+                                          "48201221400",
+                                          "48201221300"
+
+                                      ],
+                                      "style"             : {
+                                          "id"           : 0,
+                                          "fillColor"    : "#FFFFFF",
+                                          "fillOpacity"  : 1.0,
+                                          "borderWidth"  : 1,
+                                          "borderColor"  : "black",
+                                          "borderOpacity": 1.0,
+                                           "showBorder"    : false
+                                      },
+                                      "minValue"          :100.3,
+                                      "maxValue"          :1000,
+                                      "numberOfDataPoints": 904,
+                                      "roundingDigits"    : 0,
+                                      "legendText"        : "0 - 0"
+                                  }
+
+                                  ,
+
+                                  {
+                                      "id"                : 6,
+                                      "dataPointKeys"     : [
+                                          "48201221400",
+                                          "48201221300"
+
+                                      ],
+                                      "style"             : {
+                                          "id"           : 0,
+                                          "fillColor"    : "#FFFFFF",
+                                          "fillOpacity"  : 1.0,
+                                          "borderWidth"  : 1,
+                                          "borderColor"  : "black",
+                                          "borderOpacity": 1.0,
+                                           "showBorder"    : false
+                                      },
+                                      "minValue"          :100.3,
+                                      "maxValue"          :1000,
+                                      "numberOfDataPoints": 904,
+                                      "roundingDigits"    : 0,
+                                      "legendText"        : "0 - 0"
+                                  }
+
+                                  ,
+
+                                  {
+                                      "id"                : 7,
+                                      "dataPointKeys"     : [
+                                          "48201221400",
+                                          "48201221300"
+
+                                      ],
+                                      "style"             : {
+                                          "id"           : 0,
+                                          "fillColor"    : "#FFFFFF",
+                                          "fillOpacity"  : 1.0,
+                                          "borderWidth"  : 1,
+                                          "borderColor"  : "black",
+                                          "borderOpacity": 1.0,
+                                           "showBorder"    : false
+                                      },
+                                      "minValue"          :100.3,
+                                      "maxValue"          :1000,
+                                      "numberOfDataPoints": 904,
+                                      "roundingDigits"    : 0,
+                                      "legendText"        : "0 - 0"
+                                  }
+
+
+
                               ],
     "defaultRoundingDigits"    : 0,
     "defaultNumberOfDataPoints": 0,

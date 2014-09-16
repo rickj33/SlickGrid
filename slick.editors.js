@@ -583,6 +583,77 @@
 
 
 
+
+
+ function TransposedEditor(args) {
+    var $input;
+    var defaultValue;
+    var scope = this;
+    var calendarOpen = false;
+    scope.realEditor = args.item.field.editor;
+
+
+    this.init = function () {
+       // scope.realEditor = args.item.field.editor;
+       scope.realEditor(args);
+        //scope.realEditor.init();
+      };
+
+      this.destroy = function () {
+        scope.realEditor.destroy();
+        scope.realEditor = null;
+      };
+
+      
+
+      this.focus = function () {
+        scope.realEditor.focus();
+        
+      };
+
+      this.loadValue = function (item) {
+        scope.realEditor.loadValue(item);
+        
+      };
+
+      this.serializeValue = function () {
+        return scope.realEditor.serializeValue();
+        
+      };
+
+      this.applyValue = function (item, state) {
+        scope.realEditor.applyValue(item, state);
+        
+        item[args.column.field] = state;
+      //update the object providing the transposed value.
+      if(item.field.fromStyle){
+       args.column.breakValue.breakStyle[item.field.name] = state;
+       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
+     }else{
+       args.column.breakValue[item.field.name] = state;
+       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
+     }
+
+   };
+
+   this.isValueChanged = function () {
+
+     return scope.realEditor.isValueChanged();
+     
+   };
+
+   this.validate = function () {
+    return scope.realEditor.validate();
+  };
+
+  this.init();
+}
+
+
+
+
+
+
  function TransposedTextEditor(args) {
     var $input;
     var defaultValue;
@@ -631,8 +702,8 @@
       item[args.column.field] = state;
        //update the object providing the transposed value.
       if(item.field.fromStyle){
-       args.column.breakValue.style[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.style[item.field.name]);
+       args.column.breakValue.breakStyle[item.field.name] = state;
+       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
      }else{
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
@@ -701,8 +772,8 @@
       item[args.column.field] = state;
        //update the object providing the transposed value.
       if(item.field.fromStyle){
-       args.column.breakValue.style[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.style[item.field.name]);
+       args.column.breakValue.breakStyle[item.field.name] = state;
+       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
      }else{
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
@@ -772,8 +843,8 @@
 
       //update the object providing the transposed value.
       if(item.field.fromStyle){
-       args.column.breakValue.style[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.style[item.field.name]);
+       args.column.breakValue.breakStyle[item.field.name] = state;
+       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
      }else{
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
@@ -837,8 +908,8 @@
     this.applyValue = function (item, state) {
       item[args.column.field] = state;
        if(item.field.fromStyle){
-       args.column.breakValue.style[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.style[item.field.name]);
+       args.column.breakValue.breakStyle[item.field.name] = state;
+       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
      }else{
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
@@ -862,72 +933,7 @@
 
 
 
-  function TransposedEditor(args) {
-    var $input;
-    var defaultValue;
-    var scope = this;
-    var calendarOpen = false;
-    scope.realEditor = args.item.field.editor;
-
-
-    this.init = function () {
-       // scope.realEditor = args.item.field.editor;
-       scope.realEditor(args);
-        //scope.realEditor.init();
-      };
-
-      this.destroy = function () {
-        scope.realEditor.destroy();
-        scope.realEditor = null;
-      };
-
-      
-
-      
-
-      this.focus = function () {
-        scope.realEditor.focus();
-        
-      };
-
-      this.loadValue = function (item) {
-        scope.realEditor.loadValue(item);
-        
-      };
-
-      this.serializeValue = function () {
-        return scope.realEditor.serializeValue();
-        
-      };
-
-      this.applyValue = function (item, state) {
-        scope.realEditor.applyValue(item, state);
-        
-        item[args.column.field] = state;
-      //update the object providing the transposed value.
-      if(item.field.fromStyle){
-       args.column.breakValue.style[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.style[item.field.name]);
-     }else{
-       args.column.breakValue[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
-     }
-
-   };
-
-   this.isValueChanged = function () {
-
-     return scope.realEditor.isValueChanged();
-     
-   };
-
-   this.validate = function () {
-    return scope.realEditor.validate();
-  };
-
-  this.init();
-}
-
+ 
 
 function OrgTransposedEditor(args) {
   var $input;
@@ -990,8 +996,8 @@ function OrgTransposedEditor(args) {
     item[args.column.field] = state;
       //update the object providing the transposed value.
       if(item.field.fromStyle){
-       args.column.breakValue.style[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.style[item.field.name]);
+       args.column.breakValue.breakStyle[item.field.name] = state;
+       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
      }else{
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);

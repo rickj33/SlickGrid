@@ -24,13 +24,7 @@
       <div id="myGrid" style="width:100%;height:500px;"></div>
     </div>
 
-    <div class="options-panel">
-      <h2>Demonstrates:</h2>
-      <ul>
-        <li>Implementing a data provider to create a totals row at the end of the grid.</li>
-        <li>This is a simplification of what the DataView does. </li>
-      </ul>
-    </div>
+   
   </div>
 
   <script src="../lib/firebugx.js"></script>
@@ -136,14 +130,16 @@ function TotalsDataProvider(breaks, columns) {
 
              rowNode['property'] = field.display;
              rowNode.field = field;
+
              for (var x = 1; x < columns.length; x++)  //start with 1, since 0 is the property name column.
              {
                 var column = columns[x];
-              if(field.fromStyle){
-                 rowNode[column.field] = breaks[x-1].style[field.name];
-              }else{
-                 rowNode[column.field] = breaks[x-1][field.name];
-              }
+             
+                if(field.fromStyle){
+                   rowNode[column.field] = breaks[x-1].style[field.name];
+                }else{
+                   rowNode[column.field] = breaks[x-1][field.name];
+                }
 
              }
 
