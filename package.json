@@ -1,6 +1,6 @@
 {
-  "name": "Factlook",
-  "version": "0.0.1",
+  "name": "FactlookSlickGrid",
+  "version": "2.0.4.1",
   "author": "Factlook Inc",
   "devDependencies": {
     "grunt": "^0.4.5",

@@ -120,6 +120,23 @@
       }
     }
 
+
+    function  check(){
+       var rows = [];
+          for (var i = 0; i < _grid.getDataLength(); i++) {
+            rows.push(i);
+          }
+          _grid.setSelectedRows(rows);
+          _grid.updateColumnHeader(_options.columnId, "<input type='checkbox' checked='checked'>", _options.toolTip);
+    }
+
+    function  uncheck(){
+      
+        _grid.setSelectedRows([]);
+         _grid.updateColumnHeader(_options.columnId, "<input type='checkbox'>", _options.toolTip);
+    }
+               
+
     function getColumnDefinition() {
       return {
         id: _options.columnId,
@@ -146,6 +163,8 @@
     $.extend(this, {
       "init": init,
       "destroy": destroy,
+      "check" : check,
+      "uncheck" : uncheck,
 
       "getColumnDefinition": getColumnDefinition
     });
