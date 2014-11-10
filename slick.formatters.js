@@ -8,7 +8,8 @@
  * @namespace Slick
  */
 
-(function ($) {
+(function ($)
+{
   // register namespace
   $.extend(true, window, {
     "Slick": {
@@ -16,44 +17,132 @@
         "PercentComplete": PercentCompleteFormatter,
         "PercentCompleteBar": PercentCompleteBarFormatter,
         "YesNo": YesNoFormatter,
-        "Checkmark": CheckmarkFormatter
+                "Checkmark"          : CheckmarkFormatter,
+                "Checkbox"          : CheckboxFormatter,
+                "Date"                 : DateFormatter,
+                "TransposedColor"    : TransposedColorFormatter,
+                "TransposedFormatter": TransposedFormatter,
+                "TransposedCheckbox" : TransposedCheckboxFormatter
+
       }
     }
   });
 
-  function PercentCompleteFormatter(row, cell, value, columnDef, dataContext) {
-    if (value == null || value === "") {
+    /**
+     * @return string
+     */
+    function PercentCompleteFormatter(row, cell, value, columnDef, dataContext)
+    {
+        if (value === null || value === "")
+        {
       return "-";
-    } else if (value < 50) {
+        } else if (value < 50)
+        {
       return "<span style='color:red;font-weight:bold;'>" + value + "%</span>";
-    } else {
+        } else
+        {
       return "<span style='color:green'>" + value + "%</span>";
     }
   }
 
-  function PercentCompleteBarFormatter(row, cell, value, columnDef, dataContext) {
-    if (value == null || value === "") {
+    /**
+     * @return string
+     */
+    function CheckboxFormatter(row, cell, value, columnDef, dataContext)
+    {
+        return value ?  "<input type='checkbox' checked='checked'>": "<input type='checkbox'>";
+    }
+
+    /**
+     * @return string
+     */
+    function DateFormatter(row, cell, value, columnDef, dataContext)
+    {
+        if (value === null || value === "")
+        {
+            return "";
+        }
+        var result = moment(value).format('MM-DD-YYYY hh:mm a');
+        return result;
+
+    }
+
+    /**
+     * @return string
+     */
+    function PercentCompleteBarFormatter(row, cell, value, columnDef, dataContext)
+    {
+        if (value === null || value === "")
+        {
       return "";
     }
 
     var color;
 
-    if (value < 30) {
+        if (value < 30)
+        {
       color = "red";
-    } else if (value < 70) {
+        } else if (value < 70)
+        {
       color = "silver";
-    } else {
+        } else
+        {
       color = "green";
     }
 
     return "<span class='percent-complete-bar' style='background:" + color + ";width:" + value + "%'></span>";
   }
 
-  function YesNoFormatter(row, cell, value, columnDef, dataContext) {
+    function TransposedFormatter(row, cell, value, columnDef, dataContext)
+    {
+        if (value === null || value === "")
+        {
+            return "";
+        }
+
+        if (dataContext.field.formatter)
+        {
+            return dataContext.field.formatter(row, cell, value, columnDef, dataContext);
+        }
+
+        return value;
+    }
+
+    /**
+     * @return string
+     */
+    function TransposedColorFormatter(row, cell, value, columnDef, dataContext)
+    {
+        if (value === null || value === "")
+        {
+            return "";
+        }
+
+        return "<span  style='color:" + value + "'>" + value + "</span>";
+    }
+
+    /**
+     * @return string
+     */
+    function TransposedCheckboxFormatter(row, cell, value, columnDef, dataContext)
+    {
+        return value ? "<input type='checkbox' checked='checked'>": "<input type='checkbox'>";
+
+    }
+
+    /**
+     * @return string
+     */
+    function YesNoFormatter(row, cell, value, columnDef, dataContext)
+    {
     return value ? "Yes" : "No";
   }
 
-  function CheckmarkFormatter(row, cell, value, columnDef, dataContext) {
+    /**
+     * @return string
+     */
+    function CheckmarkFormatter(row, cell, value, columnDef, dataContext)
+    {
     return value ? "<img src='../images/tick.png'>" : "";
   }
 })(jQuery);

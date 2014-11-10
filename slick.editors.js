@@ -4,7 +4,8 @@
  * @namespace Slick
  */
 
- (function ($) {
+(function ($)
+{
   // register namespace
   $.extend(true, window, {
     "Slick": {
@@ -22,66 +23,81 @@
         "TransposedInteger": TransposedIntegerEditor,
         "TransposedFloat": TransposedFloatEditor,
          "TransposedCheckbox": TransposedCheckboxEditor,
+                "TransposedColor"   : TransposedColorEditor
       }
     }
   });
 
-  function TextEditor(args) {
+    function TextEditor(args)
+    {
     var $input;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
-      $input = $("<INPUT type=text class='editor-text' />")
-      .appendTo(args.container)
-      .bind("keydown.nav", function (e) {
-        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
+        this.init = function ()
+        {
+            $input = $("<INPUT type=text class='editor-text' />").appendTo(args.container).bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    if (!((e.target.selectionStart === e.target.value.length) && (e.keyCode === $.ui.keyCode.RIGHT) || (e.target.selectionStart === 0) && (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
           e.stopImmediatePropagation();
         }
-      })
-      .focus()
-      .select();
+                }
+            }).focus().select();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $input.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.getValue = function () {
+        this.getValue = function ()
+        {
       return $input.val();
     };
 
-    this.setValue = function (val) {
+        this.setValue = function (val)
+        {
       $input.val(val);
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = item[args.column.field] || "";
       $input.val(defaultValue);
       $input[0].defaultValue = defaultValue;
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return $input.val();
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
-      if (args.column.validator) {
+        this.validate = function ()
+        {
+            if (args.column.validator)
+            {
         var validationResults = args.column.validator($input.val());
-        if (!validationResults.valid) {
+                if (!validationResults.valid)
+                {
           return validationResults;
         }
       }
@@ -95,53 +111,68 @@
     this.init();
   }
 
-  function IntegerEditor(args) {
+    function IntegerEditor(args)
+    {
     var $input;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $input = $("<INPUT type=text class='editor-text' />");
 
-      $input.bind("keydown.nav", function (e) {
-        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
+            $input.bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    if (!((e.target.selectionStart === e.target.value.length) && (e.keyCode === $.ui.keyCode.RIGHT) || (e.target.selectionStart === 0) && (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
           e.stopImmediatePropagation();
         }
+                }
       });
 
       $input.appendTo(args.container);
       $input.focus().select();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $input.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = item[args.column.field];
       $input.val(defaultValue);
       $input[0].defaultValue = defaultValue;
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return parseInt($input.val(), 10) || 0;
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
-      if (isNaN($input.val())) {
+        this.validate = function ()
+        {
+            if (isNaN($input.val()))
+            {
         return {
           valid: false,
           msg: "Please enter a valid integer"
@@ -157,53 +188,68 @@
     this.init();
   }
 
-  function FloatEditor(args) {
+    function FloatEditor(args)
+    {
     var $input;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $input = $("<INPUT type=text class='editor-text' />");
 
-      $input.bind("keydown.nav", function (e) {
-        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
+            $input.bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    if (!((e.target.selectionStart === e.target.value.length) && (e.keyCode === $.ui.keyCode.RIGHT) || (e.target.selectionStart === 0) && (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
           e.stopImmediatePropagation();
         }
+                }
       });
 
       $input.appendTo(args.container);
       $input.focus().select();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $input.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = item[args.column.field];
       $input.val(defaultValue);
       $input[0].defaultValue = defaultValue;
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return parseFloat($input.val(), 10) || 0;
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
-      if (isNaN($input.val())) {
+        this.validate = function ()
+        {
+            if (isNaN($input.val()))
+            {
         return {
           valid: false,
           msg: "Please enter a valid decimal number"
@@ -227,7 +273,8 @@
     var scope = this;
     var calendarOpen = false;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $input = $("<INPUT type=text class='editor-text' />");
       $input.appendTo(args.container);
       $input.focus().select();
@@ -235,68 +282,81 @@
         showOn: "button",
         buttonImageOnly: true,
         buttonImage: "../images/calendar.gif",
-        beforeShow: function () {
+                beforeShow     : function ()
+                {
           calendarOpen = true
         },
-        onClose: function () {
+                onClose        : function ()
+                {
           calendarOpen = false
         }
       });
       $input.width($input.width() - 18);
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $.datepicker.dpDiv.stop(true, true);
       $input.datepicker("hide");
       $input.datepicker("destroy");
       $input.remove();
     };
 
-    this.show = function () {
-      if (calendarOpen) {
+        this.show = function ()
+        {
+            if (calendarOpen)
+            {
         $.datepicker.dpDiv.stop(true, true).show();
       }
     };
 
-    this.hide = function () {
-      if (calendarOpen) {
+        this.hide = function ()
+        {
+            if (calendarOpen)
+            {
         $.datepicker.dpDiv.stop(true, true).hide();
       }
     };
 
-    this.position = function (position) {
-      if (!calendarOpen) {
+        this.position = function (position)
+        {
+            if (!calendarOpen)
+            {
         return;
       }
-      $.datepicker.dpDiv
-      .css("top", position.top + 30)
-      .css("left", position.left);
+            $.datepicker.dpDiv.css("top", position.top + 30).css("left", position.left);
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = item[args.column.field];
       $input.val(defaultValue);
       $input[0].defaultValue = defaultValue;
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return $input.val();
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
+        this.validate = function ()
+        {
       return {
         valid: true,
         msg: null
@@ -306,43 +366,52 @@
     this.init();
   }
 
-  function YesNoSelectEditor(args) {
+    function YesNoSelectEditor(args)
+    {
     var $select;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $select = $("<SELECT tabIndex='0' class='editor-yesno'><OPTION value='yes'>Yes</OPTION><OPTION value='no'>No</OPTION></SELECT>");
       $select.appendTo(args.container);
       $select.focus();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $select.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $select.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       $select.val((defaultValue = item[args.column.field]) ? "yes" : "no");
       $select.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return ($select.val() == "yes");
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return ($select.val() != defaultValue);
     };
 
-    this.validate = function () {
+        this.validate = function ()
+        {
       return {
         valid: true,
         msg: null
@@ -352,47 +421,58 @@
     this.init();
   }
 
-  function CheckboxEditor(args) {
+    function CheckboxEditor(args)
+    {
     var $select;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $select = $("<INPUT type=checkbox value='true' class='editor-checkbox' hideFocus>");
       $select.appendTo(args.container);
       $select.focus();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $select.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $select.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = !!item[args.column.field];
-      if (defaultValue) {
+            if (defaultValue)
+            {
         $select.prop('checked', true);
-      } else {
+            } else
+            {
         $select.prop('checked', false);
       }
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return $select.prop('checked');
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (this.serializeValue() !== defaultValue);
     };
 
-    this.validate = function () {
+        this.validate = function ()
+        {
       return {
         valid: true,
         msg: null
@@ -402,12 +482,14 @@
     this.init();
   }
 
-  function PercentCompleteEditor(args) {
+    function PercentCompleteEditor(args)
+    {
     var $input, $picker;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $input = $("<INPUT type=text class='editor-percentcomplete' />");
       $input.width($(args.container).innerWidth() - 25);
       $input.appendTo(args.container);
@@ -423,45 +505,55 @@
         orientation: "vertical",
         range: "min",
         value: defaultValue,
-        slide: function (event, ui) {
+                slide      : function (event, ui)
+                {
           $input.val(ui.value)
         }
       });
 
-      $picker.find(".editor-percentcomplete-buttons button").bind("click", function (e) {
+            $picker.find(".editor-percentcomplete-buttons button").bind("click", function (e)
+            {
         $input.val($(this).attr("val"));
         $picker.find(".editor-percentcomplete-slider").slider("value", $(this).attr("val"));
       })
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $input.remove();
       $picker.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       $input.val(defaultValue = item[args.column.field]);
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return parseInt($input.val(), 10) || 0;
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ((parseInt($input.val(), 10) || 0) != defaultValue);
     };
 
-    this.validate = function () {
-      if (isNaN(parseInt($input.val(), 10))) {
+        this.validate = function ()
+        {
+            if (isNaN(parseInt($input.val(), 10)))
+            {
         return {
           valid: false,
           msg: "Please enter a valid positive number"
@@ -482,22 +574,21 @@
    * The UI is added onto document BODY and .position(), .show() and .hide() are implemented.
    * KeyDown events are also handled to provide handling for Tab, Shift-Tab, Esc and Ctrl-Enter.
    */
-   function LongTextEditor(args) {
+    function LongTextEditor(args)
+    {
     var $input, $wrapper;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       var $container = $("body");
 
-      $wrapper = $("<DIV style='z-index:10000;position:absolute;background:white;padding:5px;border:3px solid gray; -moz-border-radius:10px; border-radius:10px;'/>")
-      .appendTo($container);
+            $wrapper = $("<DIV style='z-index:10000;position:absolute;background:white;padding:5px;border:3px solid gray; -moz-border-radius:10px; border-radius:10px;'/>").appendTo($container);
 
-      $input = $("<TEXTAREA hidefocus rows=5 style='backround:white;width:250px;height:80px;border:0;outline:0'>")
-      .appendTo($wrapper);
+            $input = $("<TEXTAREA hidefocus rows=5 style='backround:white;width:250px;height:80px;border:0;outline:0'>").appendTo($wrapper);
 
-      $("<DIV style='text-align:right'><BUTTON>Save</BUTTON><BUTTON>Cancel</BUTTON></DIV>")
-      .appendTo($wrapper);
+            $("<DIV style='text-align:right'><BUTTON>Save</BUTTON><BUTTON>Cancel</BUTTON></DIV>").appendTo($wrapper);
 
       $wrapper.find("button:first").bind("click", this.save);
       $wrapper.find("button:last").bind("click", this.cancel);
@@ -507,70 +598,85 @@
       $input.focus().select();
     };
 
-    this.handleKeyDown = function (e) {
-      if (e.which == $.ui.keyCode.ENTER && e.ctrlKey) {
+        this.handleKeyDown = function (e)
+        {
+            if (e.which == $.ui.keyCode.ENTER && e.ctrlKey)
+            {
         scope.save();
-      } else if (e.which == $.ui.keyCode.ESCAPE) {
+            } else if (e.which == $.ui.keyCode.ESCAPE)
+            {
         e.preventDefault();
         scope.cancel();
-      } else if (e.which == $.ui.keyCode.TAB && e.shiftKey) {
+            } else if (e.which == $.ui.keyCode.TAB && e.shiftKey)
+            {
         e.preventDefault();
         args.grid.navigatePrev();
-      } else if (e.which == $.ui.keyCode.TAB) {
+            } else if (e.which == $.ui.keyCode.TAB)
+            {
         e.preventDefault();
         args.grid.navigateNext();
       }
     };
 
-    this.save = function () {
+        this.save = function ()
+        {
       args.commitChanges();
     };
 
-    this.cancel = function () {
+        this.cancel = function ()
+        {
       $input.val(defaultValue);
       args.cancelChanges();
     };
 
-    this.hide = function () {
+        this.hide = function ()
+        {
       $wrapper.hide();
     };
 
-    this.show = function () {
+        this.show = function ()
+        {
       $wrapper.show();
     };
 
-    this.position = function (position) {
-      $wrapper
-      .css("top", position.top - 5)
-      .css("left", position.left - 5)
+        this.position = function (position)
+        {
+            $wrapper.css("top", position.top - 5).css("left", position.left - 5)
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $wrapper.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       $input.val(defaultValue = item[args.column.field]);
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return $input.val();
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
+        this.validate = function ()
+        {
       return {
         valid: true,
         msg: null
@@ -580,144 +686,255 @@
     this.init();
   }
 
-
-
-
-
-
- function TransposedEditor(args) {
+    function TransposedEditor(args)
+    {
     var $input;
     var defaultValue;
     var scope = this;
     var calendarOpen = false;
     scope.realEditor = args.item.field.editor;
 
-
-    this.init = function () {
+        this.init = function ()
+        {
        // scope.realEditor = args.item.field.editor;
        scope.realEditor(args);
         //scope.realEditor.init();
       };
 
-      this.destroy = function () {
+        this.destroy = function ()
+        {
         scope.realEditor.destroy();
         scope.realEditor = null;
       };
 
-      
-
-      this.focus = function () {
+        this.focus = function ()
+        {
         scope.realEditor.focus();
         
       };
 
-      this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
         scope.realEditor.loadValue(item);
         
       };
 
-      this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
         return scope.realEditor.serializeValue();
         
       };
 
-      this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
         scope.realEditor.applyValue(item, state);
         
         item[args.column.field] = state;
       //update the object providing the transposed value.
-      if(item.field.fromStyle){
+            if (item.field.fromStyle)
+            {
        args.column.breakValue.breakStyle[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
-     }else{
+            } else
+            {
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
      }
 
    };
 
-   this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
 
      return scope.realEditor.isValueChanged();
      
    };
 
-   this.validate = function () {
+        this.validate = function ()
+        {
     return scope.realEditor.validate();
   };
 
   this.init();
 }
 
+    function TransposedColorEditor(args)
+    {
 
+        this.init = function ()
+        {
+            $input = $("<INPUT type=text class='editor-text' id='colorEditor'  />")
 
+            $input.bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    e.stopImmediatePropagation();
+                }
+            });
 
+            $input.appendTo(args.container);
+            $input.focus().select();
+        };
 
+        this.destroy = function ()
+        {
+            $input.remove();
+        };
 
- function TransposedTextEditor(args) {
+        this.focus = function ()
+        {
+            $input.focus();
+        };
+
+        this.getValue = function ()
+        {
+            return $input.val();
+        };
+
+        this.setValue = function (val)
+        {
+            $input.val(val);
+        };
+
+        this.loadValue = function (item)
+        {
+            defaultValue = item[args.column.field] || "";
+            $input.val(defaultValue);
+            $input[0].defaultValue = defaultValue;
+            $input.spectrum({
+                color          : defaultValue,
+                showInitial    : true,
+                showInput      : true,
+                preferredFormat: "hex",
+            });
+            $input.select();
+        };
+
+        this.serializeValue = function ()
+        {
+            return $input.val();
+        };
+
+        this.applyValue = function (item, state)
+        {
+            item[args.column.field] = state;
+            //args.container.style.backgroundColor = state
+            args.container.style.color = state
+            //update the object providing the transposed value.
+            if (item.field.fromStyle)
+            {
+                args.column.breakValue.breakStyle[item.field.name] = state;
+                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
+            } else
+            {
+                args.column.breakValue[item.field.name] = state;
+                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue[item.field.name]);
+            }
+        };
+
+        this.isValueChanged = function ()
+        {
+            return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
+        };
+
+        this.validate = function ()
+        {
+            if (args.column.validator)
+            {
+                var validationResults = args.column.validator($input.val());
+                if (!validationResults.valid)
+                {
+                    return validationResults;
+                }
+            }
+
+            return {
+                valid: true,
+                msg  : null
+            };
+        };
+
+        this.init();
+    }
+
+    function TransposedTextEditor(args)
+    {
     var $input;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
-      $input = $("<INPUT type=text class='editor-text' />")
-      .appendTo(args.container)
-      .bind("keydown.nav", function (e) {
-        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
+        this.init = function ()
+        {
+            $input = $("<INPUT type=text class='editor-text' />").appendTo(args.container).bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
           e.stopImmediatePropagation();
         }
-      })
-      .focus()
-      .select();
+            }).focus().select();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $input.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.getValue = function () {
+        this.getValue = function ()
+        {
       return $input.val();
     };
 
-    this.setValue = function (val) {
+        this.setValue = function (val)
+        {
       $input.val(val);
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = item[args.column.field] || "";
       $input.val(defaultValue);
       $input[0].defaultValue = defaultValue;
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return $input.val();
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
        //update the object providing the transposed value.
-      if(item.field.fromStyle){
+            if (item.field.fromStyle)
+            {
        args.column.breakValue.breakStyle[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
-     }else{
+            } else
+            {
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
      }
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
-      if (args.column.validator) {
+        this.validate = function ()
+        {
+            if (args.column.validator)
+            {
         var validationResults = args.column.validator($input.val());
-        if (!validationResults.valid) {
+                if (!validationResults.valid)
+                {
           return validationResults;
         }
       }
@@ -731,16 +948,20 @@
     this.init();
   }
 
-  function TransposedIntegerEditor(args) {
+    function TransposedIntegerEditor(args)
+    {
     var $input;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $input = $("<INPUT type=text class='editor-text' />");
 
-      $input.bind("keydown.nav", function (e) {
-        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
+            $input.bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
           e.stopImmediatePropagation();
         }
       });
@@ -749,43 +970,53 @@
       $input.focus().select();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $input.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = item[args.column.field];
       $input.val(defaultValue);
       $input[0].defaultValue = defaultValue;
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return parseInt($input.val(), 10) || 0;
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
        //update the object providing the transposed value.
-      if(item.field.fromStyle){
+            if (item.field.fromStyle)
+            {
        args.column.breakValue.breakStyle[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
-     }else{
+            } else
+            {
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
      }
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
-      if (isNaN($input.val())) {
+        this.validate = function ()
+        {
+            if (isNaN($input.val()))
+            {
         return {
           valid: false,
           msg: "Please enter a valid integer"
@@ -801,16 +1032,20 @@
     this.init();
   }
 
-  function TransposedFloatEditor(args) {
+    function TransposedFloatEditor(args)
+    {
     var $input;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $input = $("<INPUT type=text class='editor-text' />");
 
-      $input.bind("keydown.nav", function (e) {
-        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
+            $input.bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
           e.stopImmediatePropagation();
         }
       });
@@ -819,45 +1054,55 @@
       $input.focus().select();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $input.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $input.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = item[args.column.field];
       $input.val(defaultValue);
       $input[0].defaultValue = defaultValue;
       $input.select();
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return parseFloat($input.val(), 10) || 0;
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
 
       //update the object providing the transposed value.
-      if(item.field.fromStyle){
+            if (item.field.fromStyle)
+            {
        args.column.breakValue.breakStyle[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
-     }else{
+            } else
+            {
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
      }
 
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
     };
 
-    this.validate = function () {
-      if (isNaN($input.val())) {
+        this.validate = function ()
+        {
+            if (isNaN($input.val()))
+            {
         return {
           valid: false,
           msg: "Please enter a valid decimal number"
@@ -873,54 +1118,67 @@
     this.init();
   }
 
-  function TransposedCheckboxEditor(args) {
+    function TransposedCheckboxEditor(args)
+    {
     var $select;
     var defaultValue;
     var scope = this;
 
-    this.init = function () {
+        this.init = function ()
+        {
       $select = $("<INPUT type=checkbox value='true' class='editor-checkbox' hideFocus>");
       $select.appendTo(args.container);
       $select.focus();
     };
 
-    this.destroy = function () {
+        this.destroy = function ()
+        {
       $select.remove();
     };
 
-    this.focus = function () {
+        this.focus = function ()
+        {
       $select.focus();
     };
 
-    this.loadValue = function (item) {
+        this.loadValue = function (item)
+        {
       defaultValue = !!item[args.column.field];
-      if (defaultValue) {
+            if (defaultValue)
+            {
         $select.prop('checked', true);
-      } else {
+            } else
+            {
         $select.prop('checked', false);
       }
     };
 
-    this.serializeValue = function () {
+        this.serializeValue = function ()
+        {
       return $select.prop('checked');
     };
 
-    this.applyValue = function (item, state) {
+        this.applyValue = function (item, state)
+        {
       item[args.column.field] = state;
-       if(item.field.fromStyle){
+            if (item.field.fromStyle)
+            {
        args.column.breakValue.breakStyle[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
-     }else{
+            } else
+            {
        args.column.breakValue[item.field.name] = state;
        console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
      }
     };
 
-    this.isValueChanged = function () {
+        this.isValueChanged = function ()
+        {
       return (this.serializeValue() !== defaultValue);
     };
 
-    this.validate = function () {
+        this.validate = function ()
+        {
       return {
         valid: true,
         msg: null
@@ -929,96 +1187,5 @@
 
     this.init();
   }
-
-
-
-
- 
-
-function OrgTransposedEditor(args) {
-  var $input;
-  var defaultValue;
-  var scope = this;
-  var calendarOpen = false;
-
-  this.init = function () {
-    $input = $(" <INPUT type=text class='editor-text'  /> <i class='glyphicon glyphicon-edit'></i> ");
-    $input.appendTo(args.container);
-    $input.focus().select();
-
-    $input.width($input.width() - 18);
-  };
-
-  this.destroy = function () {
-    $.datepicker.dpDiv.stop(true, true);
-    $input.datepicker("hide");
-    $input.datepicker("destroy");
-    $input.remove();
-  };
-
-  this.show = function () {
-    if (calendarOpen) {
-      $.datepicker.dpDiv.stop(true, true).show();
-    }
-  };
-
-  this.hide = function () {
-    if (calendarOpen) {
-      $.datepicker.dpDiv.stop(true, true).hide();
-    }
-  };
-
-  this.position = function (position) {
-    if (!calendarOpen) {
-      return;
-    }
-    $.datepicker.dpDiv
-    .css("top", position.top + 30)
-    .css("left", position.left);
-  };
-
-  this.focus = function () {
-    $input.focus();
-  };
-
-  this.loadValue = function (item) {
-    defaultValue = item[args.column.field];
-    $input.val(defaultValue);
-    $input[0].defaultValue = defaultValue;
-    $input.select();
-  };
-
-  this.serializeValue = function () {
-    return $input.val();
-  };
-
-  this.applyValue = function (item, state) {
-    item[args.column.field] = state;
-      //update the object providing the transposed value.
-      if(item.field.fromStyle){
-       args.column.breakValue.breakStyle[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue.breakStyle[item.field.name]);
-     }else{
-       args.column.breakValue[item.field.name] = state;
-       console.log('the value for '+ item.field.name + ' is ' + args.column.breakValue[item.field.name]);
-     }
-
-   };
-
-   this.isValueChanged = function () {
-    return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
-  };
-
-  this.validate = function () {
-    return {
-      valid: true,
-      msg: null
-    };
-  };
-
-  this.init();
-}
-
-
 
 })(jQuery);
