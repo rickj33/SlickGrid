@@ -1,107 +1,79 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>SlickGrid example 3: Editing</title>
-  <link rel="stylesheet" href="../slick.grid.css" type="text/css"/>
-  <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
-  <link rel="stylesheet" href="examples.css" type="text/css"/>
-    <link rel="stylesheet" href="../plugins-common.css" type="text/css" />
-        <link rel="stylesheet" href="../plugins-excel-style.css" type="text/css" />
-  <style>
-    .slick-cell.copied {
-      background: blue;
-      background: rgba(0, 0, 255, 0.2);
-      -webkit-transition: 0.5s background;
-    }
-    
-    
-    /*
-        weekcalendareditor
-    */
-    .wkclEdCont {
-        width:210px;
-        height:23px;
-        overflow:hidden;
-        margin-top:-1px;
-        border:1px solid #DDD;
-    }
-    .wkclEdContNotEditing{
-        width:210px;
-        height:23px;
-        overflow:hidden;
-        margin-top:-1px;
-        border-right:1px solid #DDD;
-    }
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SlickGrid example 3: Editing</title>
+    <link rel="stylesheet" href="../slick.grid.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
+    <link rel="stylesheet" href="examples.css" type="text/css"/>
+    <link rel="stylesheet" href="../plugins-common.css" type="text/css"/>
+    <link rel="stylesheet" href="../plugins-excel-style.css" type="text/css"/>
+    <style>
+        .slick-cell.copied {
+            background: blue;
+            background: rgba(0, 0, 255, 0.2);
+            -webkit-transition: 0.5s background;
+        }
 
-    .wkclEdHalfDay{
-        width:14px;
-        height:100%;
-        cursor:pointer;
-        float:left;
-    }
-    .wkclEdDay{
-        width:29px;
-        height:100%;
-        border-left:1px solid #DDD;
-        float:left;
-    }
+        /*
+            weekcalendareditor
+        */
+        .wkclEdCont {
+            width: 210px;
+            height: 23px;
+            overflow: hidden;
+            margin-top: -1px;
+            border: 1px solid #DDD;
+        }
 
-    .wkclEdHeadCont{
-        width:210px;
-        height:23px;
-        overflow:hidden;
-        border:1px solid #FFF;
-        border-bottom:none;
-        margin-top:5px;
-    }
+        .wkclEdContNotEditing {
+            width: 210px;
+            height: 23px;
+            overflow: hidden;
+            margin-top: -1px;
+            border-right: 1px solid #DDD;
+        }
 
-    .wkclEdHeadDay{
-        width:29px;
-        height:100%;
-        border-left:1px solid #DDD;
-        float:left;
-        text-align:center;
-        margin-top:5px;
-    }
-    
-  </style>
+        .wkclEdHalfDay {
+            width: 14px;
+            height: 100%;
+            cursor: pointer;
+            float: left;
+        }
+
+        .wkclEdDay {
+            width: 29px;
+            height: 100%;
+            border-left: 1px solid #DDD;
+            float: left;
+        }
+
+        .wkclEdHeadCont {
+            width: 210px;
+            height: 23px;
+            overflow: hidden;
+            border: 1px solid #FFF;
+            border-bottom: none;
+            margin-top: 5px;
+        }
+
+        .wkclEdHeadDay {
+            width: 29px;
+            height: 100%;
+            border-left: 1px solid #DDD;
+            float: left;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+    </style>
 </head>
 <body>
 <div style="position:relative">
-  <div style="width:600px;">
-    <div id="myGrid" style="width:100%;height:500px;"></div>
-  </div>
-  <div style="width:600px;">
-    <div id="myGrid2" style="width:100%;height:500px;"></div>
-  </div>
-
-  <div class="options-panel">
-    <h2>Excel compatible copy/paste manager</h2>
-        <div>
-          This is basically the same example than <a href="example-spreadsheet.html">example-spreadsheet.html</a>, with the support of external excel-compatible software clipboard<br />
-          
-        </div>
-    <h2>Paste from Excel-compatible:</h2>
-    <ul>
-      <li>Copy a range of cells to clipboard in Excel</li>
-      <li>Select a cell on slickgrid</li> 
-      <li>Use Ctrl-V keyboard shortcut to paste from the clipboard</li> 
-    </ul>
-    <h2>Copy for Excel-compatible:</h2>
-    <ul>
-        <li>Select a range of cells with a mouse</li>
-        <li>Use Ctrl-C shortcut to copy cells</li>
-        <li>You can paste the tabular data into Excel</li>
-    </ul>
-
-    <h2>Undo/redo support :</h2>
-    <ul>
-      <li>Use buttons to undo/redo copy/paste</li>
-    </ul>
-    <button onclick="undoRedoBuffer.undo()"><img src="../images/arrow_undo.png" align="absmiddle"> Undo</button>
-    <button onclick="undoRedoBuffer.redo()"><img src="../images/arrow_redo.png" align="absmiddle"> Redo</button>
-  </div>
+    <div style="width:800px;">
+        <div id="myGrid" style="width:100%;height:600px;"></div>
+    </div>
+   
 </div>
 
 <script src="../lib/firebugx.js"></script>
@@ -109,136 +81,297 @@
 <script src="../lib/jquery-ui-1.8.16.custom.min.js"></script>
 <script src="../lib/jquery.event.drag-2.2.js"></script>
 <script src="../lib/lodash.min.js"></script>
-<script src="../lib/lodash.underscore.min.js"></script>
 <script src="../slick.core.js"></script>
 <script src="../plugins/slick.autotooltips.js"></script>
 <script src="../plugins/slick.cellrangedecorator.js"></script>
 <script src="../plugins/slick.cellrangeselector.js"></script>
 <script src="../plugins/slick.cellexternalcopymanager.js"></script>
 <script src="../plugins/slick.cellselectionmodel.js"></script>
+<script type="text/javascript" src="../slick.dataview.js"></script>
 <script src="../slick.editors.js"></script>
 <script src="../slick.formatters.js"></script>
 <script src="../slick.grid.js"></script>
-    <script type="text/javascript" src="../ext.headerfilter.js"></script>
-    <script type="text/javascript" src="../ext.overlays.js"></script>
+<script type="text/javascript" src="../Plugins/slick.cellrangeselector.js"></script>
+<script type="text/javascript" src="../Plugins/slick.cellselectionmodel.js"></script>
+<script type="text/javascript" src="../Plugins/slick.cellrangedecorator.js"></script>
+<script type="text/javascript" src="../ext.headerfilter.js"></script>
+<script type="text/javascript" src="../ext.overlays.js"></script>
+
 
 <script>
-  var grid;
-  var grid2;
-  var data = [];
-  var data2 = [];
-  
-  var options = {
-    editable: true,
-    enableAddRow: true,
-    enableCellNavigation: true,
-    asyncEditorLoading: false,
-    autoEdit: false
-  };
+    var grid;
+    var grid2;
+    var data = [];
+    var data2 = [];
 
+    var options = {
+        editable            : true,
+        enableAddRow        : true,
+        enableCellNavigation: true,
+        asyncEditorLoading  : false,
+        autoEdit            : false,
+           explicitInitialization: true,
+    };
 
+    var undoRedoBuffer = {
+        commandQueue: [],
+        commandCtr  : 0,
 
-  var undoRedoBuffer = {
-      commandQueue : [],
-      commandCtr : 0,
+        queueAndExecuteCommand: function (editCommand)
+        {
+            this.commandQueue[this.commandCtr] = editCommand;
+            this.commandCtr++;
+            editCommand.execute();
+        },
 
-      queueAndExecuteCommand : function(editCommand) {
-        this.commandQueue[this.commandCtr] = editCommand;
-        this.commandCtr++;
-        editCommand.execute();
-      },
+        undo: function ()
+        {
+            if (this.commandCtr == 0)
+            {
+                return;
+            }
 
-      undo : function() {
-        if (this.commandCtr == 0)
-          return;
+            this.commandCtr--;
+            var command = this.commandQueue[this.commandCtr];
 
-        this.commandCtr--;
-        var command = this.commandQueue[this.commandCtr];
-
-        if (command && Slick.GlobalEditorLock.cancelCurrentEdit()) {
-          command.undo();
+            if (command && Slick.GlobalEditorLock.cancelCurrentEdit())
+            {
+                command.undo();
+            }
+        },
+        redo: function ()
+        {
+            if (this.commandCtr >= this.commandQueue.length)
+            {
+                return;
+            }
+            var command = this.commandQueue[this.commandCtr];
+            this.commandCtr++;
+            if (command && Slick.GlobalEditorLock.cancelCurrentEdit())
+            {
+                command.execute();
+            }
         }
-      },
-      redo : function() {
-        if (this.commandCtr >= this.commandQueue.length)
-          return;
-        var command = this.commandQueue[this.commandCtr];
-        this.commandCtr++;
-        if (command && Slick.GlobalEditorLock.cancelCurrentEdit()) {
-          command.execute();
-        }
-      }
-  }
-
-  // undo shortcut
-  $(document).keydown(function(e)
-  {
-    if (e.which == 90 && (e.ctrlKey || e.metaKey)) {    // CTRL + (shift) + Z
-      if (e.shiftKey){
-        undoRedoBuffer.redo();
-      } else {
-        undoRedoBuffer.undo();
-      }
     }
-  });
 
-  var pluginOptions = {
-    clipboardCommandHandler: function(editCommand){ undoRedoBuffer.queueAndExecuteCommand.call(undoRedoBuffer,editCommand); },
-    includeHeaderWhenCopying : true
-  };
-
-  var columns = [
+    // undo shortcut
+    $(document).keydown(function (e)
     {
-      id: "selector",
-      name: "",
-      field: "num",
-      width: 30
-    }
-  ];
-
-  for (var i = 0; i < 3; i++) {
-    columns.push({
-      id: i,
-      name: String.fromCharCode("A".charCodeAt(0) + i),
-      field: i,
-      width: 60,
-      editor: Slick.Editors.Text
+        if (e.which == 90 && (e.ctrlKey || e.metaKey))
+        {    // CTRL + (shift) + Z
+            if (e.shiftKey)
+            {
+                undoRedoBuffer.redo();
+            } else
+            {
+                undoRedoBuffer.undo();
+            }
+        }
     });
-  }
-  
- 
 
-  $(function () {
-    for (var i = 0; i < 100; i++) {
-      var d = (data[i] = {});
-      d["num"] = i;
-   
-    
+    var pluginOptions = {
+        clipboardCommandHandler : function (editCommand)
+        {
+            undoRedoBuffer.queueAndExecuteCommand.call(undoRedoBuffer, editCommand);
+        },
+        includeHeaderWhenCopying: true
+    };
+
+    var columns = [{
+                       id   : "selector",
+                       name : "",
+                       field: "id",
+                       width: 30
+                   }];
+
+    for (var i = 0; i < 3; i++)
+    {
+        columns.push({
+            id    : i,
+            name  : String.fromCharCode("A".charCodeAt(0) + i),
+            field : i,
+            width : 120,
+            editor: Slick.Editors.Text
+        });
     }
-    
-    grid = new Slick.Grid("#myGrid", data, columns, options);
-    grid.setSelectionModel(new Slick.CellSelectionModel());
-    grid.registerPlugin(new Slick.AutoTooltips());
-     grid.registerPlugin(new Slick.CellExternalCopyManager(pluginOptions));
 
-    // set keyboard focus on the grid
-    grid.getCanvasNode().focus();
+    $(function ()
+    {
+        for (var i = 0; i < 1; i++)
+        {
+            var d = (data[i] = {});
 
-    grid.registerPlugin(new Slick.CellExternalCopyManager(pluginOptions));
-    
+            d["id"] = i;
 
-    grid.onAddNewRow.subscribe(function (e, args) {
-      var item = args.item;
-      var column = args.column;
-      grid.invalidateRow(data.length);
-      data.push(item);
-      grid.updateRowCount();
-      grid.render();
-    });
-    
- 
-   
-  })
+        }
+
+        var filterPlugin = new Ext.Plugins.HeaderFilter({});
+        var overlayPlugin = new Ext.Plugins.Overlays({});
+        var dataView = new Slick.Data.DataView();
+        dataView.setItems(data);
+        dataView.setFilter(testfilter);
+        grid = new Slick.Grid("#myGrid", dataView, columns, options);
+        grid.setSelectionModel(new Slick.CellSelectionModel());
+        grid.registerPlugin(new Slick.AutoTooltips());
+        grid.registerPlugin(new Slick.CellExternalCopyManager(pluginOptions));
+
+        // set keyboard focus on the grid
+        grid.getCanvasNode().focus();
+
+        filterPlugin.onCommand.subscribe(function (e, args)
+        {
+            dataView.fastSort(args.column.field, args.command === "sort-asc");
+        });
+
+        grid.registerPlugin(filterPlugin);
+
+        grid.onAddNewRow.subscribe(function (e, args)
+        {
+            var item = args.item;
+            var column = args.column;
+            grid.invalidateRow(data.length);
+            data.push(item);
+            grid.updateRowCount();
+            grid.render();
+        });
+
+        filterPlugin.onFilterApplied.subscribe(function (e, args)
+        {
+
+            //need to check the args to see if the filter has been cleared and if so,
+            //remove the field from the current filter.
+
+            var currentFilter = dataView.getFilterArgs();
+            var newFilter = [];
+            newFilter.push(args);
+            if (currentFilter)
+            {
+                var field = args.column.field;
+                var filterValues = args.column.filterValues;
+                var addFilter = true;
+                if (filterValues.length === 0)
+                {
+
+                    for (var i = 0; i < currentFilter.length; i++)
+                    {
+                        if(currentFilter[i].column.field === field){
+                            currentFilter[i] = null;
+                        }
+                    }
+                    currentFilter = _.compact(currentFilter);
+                    //remove the field
+                }else{
+                    for (var i = 0; i < currentFilter.length; i++)
+                    {
+                        if(currentFilter[i].column.field === field){
+                            currentFilter[i].column.filterValues = filterValues;
+                            addFilter = false;
+                        }
+                    }
+                    if (addFilter)
+                    {
+                        currentFilter.push(args);
+                    }
+                }
+
+
+               // newFilter = _.union(newFilter, currentFilter);
+              //  newFilter.push(currentFilter);
+            }else
+            {
+
+                    currentFilter = [];
+                    currentFilter.push(args);
+
+            }
+            dataView.setFilterArgs(currentFilter);
+            dataView.refresh();
+            grid.resetActiveCell();
+
+            // Excel like status bar at the bottom
+            var status;
+
+            if (dataView.getLength() === dataView.getItems().length)
+            {
+                status = "";
+            } else
+            {
+                status = dataView.getLength() + ' OF ' + dataView.getItems().length + ' RECORDS FOUND';
+            }
+            $('#status-label').text(status);
+        });
+
+        overlayPlugin.onFillUpDown.subscribe(function (e, args)
+        {
+            var column = grid.getColumns()[args.range.fromCell];
+
+            // Ensure the column is editable
+            if (!column.editor)
+            {
+                return;
+            }
+
+            // Find the initial value
+            var value = dataView.getItem(args.range.fromRow)[column.field];
+
+            dataView.beginUpdate();
+
+            // Copy the value down
+            for (var i = args.range.fromRow + 1; i <= args.range.toRow; i++)
+            {
+                dataView.getItem(i)[column.field] = value;
+                grid.invalidateRow(i);
+            }
+
+            dataView.endUpdate();
+            grid.render();
+        });
+
+
+     grid.init();
+
+        // Filter the data (using userscore's _.contains)
+        function filter(item) {
+            var columns = grid.getColumns();
+
+            var value = true;
+
+            for (var i = 0; i < columns.length; i++) {
+                var col = columns[i];
+                var filterValues = col.filterValues;
+
+                if (filterValues && filterValues.length > 0) {
+                    value = value & _.contains(filterValues, item[col.field]);
+                }
+            }
+            return value;
+        }
+
+
+        function testfilter(item, args)
+        {
+            var value = true;
+
+            //if no filter.
+            if (!args)
+            {
+                return value;
+            }
+            //  var columns = grid.getColumns();
+            for (var i = 0; i < args.length; i++)
+            {
+                var filterValues = args[i].column.filterValues;
+                var field = args[i].column.field;
+
+                if (filterValues && filterValues.length > 0)
+                {
+                    value = value & _.contains(filterValues, item[field]);
+                }
+            }
+            return value;
+        }
+
+    })
 </script>
 </body>
 </html>
