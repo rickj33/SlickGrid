@@ -138,11 +138,11 @@
 
             var columns = grid.getColumns();
             var selectedCell = _grid.getActiveCell();
-            var newColumnTotal = newColumnArray.length + selectedCell.cell;
+        //    var newColumnTotal = newColumnArray.length + selectedCell.cell;
 
             var newColumnIndex = 0;
 
-            for (var i = 0; i < newColumnTotal; i++) {
+            for (var i = 0; i < newColumnArray.length; i++) {
                 var existingColumnIndex = selectedCell.cell + i;
                 var column = null;
                 if (existingColumnIndex < columns.length) {
@@ -156,7 +156,10 @@
                 if (column) {
                     column.id = existingColumnIndex;
                     column.field = existingColumnIndex;
-
+                    column.sortable = true;
+                    column.resizable = true;
+                    column.rerenderOnResize = true;
+                    column.width = 120;
                     column.editor = Slick.Editors.Text;
                     if(_options.includeHeaderWhenCopying){
                         column.name = newColumnArray[newColumnIndex];
@@ -205,7 +208,9 @@
             }
 
             var oneCellToMultiple = false;
-            var destH = clippedRange.length;
+
+
+            var destH = _options.includeHeaderWhenCopying  ? clippedRange.length -1 : clippedRange.length ;
             var destW = clippedRange.length ? clippedRange[0].length : 0;
             if (clippedRange.length == 1 && clippedRange[0].length == 1 && selectedRange) {
                 oneCellToMultiple = true;
@@ -265,11 +270,11 @@
                 maxDestX: _grid.getColumns().length,
                 h: 0,
                 w: 0,
-              
+
 
                 execute: function () {
                     this.h = 0;
-                  
+
                  var totalClipRows = clippedRange.length;
                     for ( var y = 0; y < destH; y++) {
                         this.oldValues[y] = [];
@@ -289,18 +294,18 @@
                                      else{
                                           if(_options.includeHeaderWhenCopying)
                                           {
-                          
+
                                               var clippedRowAdjusted = y + 1;
                                               if(clippedRowAdjusted < totalClipRows)
                                               {
-                                                  this.setDataItemValueForColumn(dt, columns[destx], clippedRange[clippedRowAdjusted] ? clippedRange[clippedRowAdjusted][x] : '');  
+                                                  this.setDataItemValueForColumn(dt, columns[destx], clippedRange[clippedRowAdjusted] ? clippedRange[clippedRowAdjusted][x] : '');
                                               }
 
                                           }else
                                           {
-                                            this.setDataItemValueForColumn(dt, columns[destx], clippedRange[y] ? clippedRange[y][x] : '');        
+                                            this.setDataItemValueForColumn(dt, columns[destx], clippedRange[y] ? clippedRange[y][x] : '');
                                           }
-                                    
+
                                   }
                                 _grid.updateCell(desty, destx);
                             }

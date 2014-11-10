@@ -73,7 +73,7 @@
     <div style="width:800px;">
         <div id="myGrid" style="width:100%;height:600px;"></div>
     </div>
-   
+
 </div>
 
 <script src="../lib/firebugx.js"></script>
@@ -100,133 +100,204 @@
 
 <script>
     var grid;
-    var grid2;
+
     var data = [];
-    var data2 = [];
+
 
     var options = {
-        editable            : true,
-        enableAddRow        : true,
+        editable: true,
+        enableAddRow: true,
         enableCellNavigation: true,
-        asyncEditorLoading  : false,
-        autoEdit            : false,
-           explicitInitialization: true,
+        asyncEditorLoading: false,
+        autoEdit: false,
+        explicitInitialization: true
+        //forceFitColumns : true
     };
 
     var undoRedoBuffer = {
         commandQueue: [],
-        commandCtr  : 0,
+        commandCtr: 0,
 
-        queueAndExecuteCommand: function (editCommand)
-        {
+        queueAndExecuteCommand: function (editCommand) {
             this.commandQueue[this.commandCtr] = editCommand;
             this.commandCtr++;
             editCommand.execute();
         },
 
-        undo: function ()
-        {
-            if (this.commandCtr == 0)
-            {
+        undo: function () {
+            if (this.commandCtr == 0) {
                 return;
             }
 
             this.commandCtr--;
             var command = this.commandQueue[this.commandCtr];
 
-            if (command && Slick.GlobalEditorLock.cancelCurrentEdit())
-            {
+            if (command && Slick.GlobalEditorLock.cancelCurrentEdit()) {
                 command.undo();
             }
         },
-        redo: function ()
-        {
-            if (this.commandCtr >= this.commandQueue.length)
-            {
+        redo: function () {
+            if (this.commandCtr >= this.commandQueue.length) {
                 return;
             }
             var command = this.commandQueue[this.commandCtr];
             this.commandCtr++;
-            if (command && Slick.GlobalEditorLock.cancelCurrentEdit())
-            {
+            if (command && Slick.GlobalEditorLock.cancelCurrentEdit()) {
                 command.execute();
             }
         }
     }
 
     // undo shortcut
-    $(document).keydown(function (e)
-    {
-        if (e.which == 90 && (e.ctrlKey || e.metaKey))
-        {    // CTRL + (shift) + Z
-            if (e.shiftKey)
-            {
+    $(document).keydown(function (e) {
+        if (e.which == 90 && (e.ctrlKey || e.metaKey)) {    // CTRL + (shift) + Z
+            if (e.shiftKey) {
                 undoRedoBuffer.redo();
-            } else
-            {
+            } else {
                 undoRedoBuffer.undo();
             }
         }
     });
 
+
+
+
     var pluginOptions = {
-        clipboardCommandHandler : function (editCommand)
-        {
+        clipboardCommandHandler: function (editCommand) {
             undoRedoBuffer.queueAndExecuteCommand.call(undoRedoBuffer, editCommand);
         },
         includeHeaderWhenCopying: true
     };
 
     var columns = [{
-                       id   : "selector",
-                       name : "",
-                       field: "id",
-                       width: 30
-                   }];
+        id: "selector",
+        name: "",
+        field: "id",
+        width: 30
+    }];
 
-    for (var i = 0; i < 3; i++)
-    {
+    for (var i = 0; i < 3; i++) {
         columns.push({
-            id    : i,
-            name  : String.fromCharCode("A".charCodeAt(0) + i),
-            field : i,
-            width : 120,
+            id: i,
+            name: String.fromCharCode("A".charCodeAt(0) + i),
+            field: i,
+            width: 120,
             editor: Slick.Editors.Text
         });
     }
 
-    $(function ()
-    {
-        for (var i = 0; i < 1; i++)
-        {
+    $(function () {
+
+
+
+        for (var i = 0; i < 1; i++) {
             var d = (data[i] = {});
 
             d["id"] = i;
 
         }
-
-        var filterPlugin = new Ext.Plugins.HeaderFilter({});
-        var overlayPlugin = new Ext.Plugins.Overlays({});
         var dataView = new Slick.Data.DataView();
-        dataView.setItems(data);
-        dataView.setFilter(testfilter);
         grid = new Slick.Grid("#myGrid", dataView, columns, options);
         grid.setSelectionModel(new Slick.CellSelectionModel());
         grid.registerPlugin(new Slick.AutoTooltips());
-        grid.registerPlugin(new Slick.CellExternalCopyManager(pluginOptions));
 
-        // set keyboard focus on the grid
-        grid.getCanvasNode().focus();
+        var externalCopyManager = new Slick.CellExternalCopyManager(pluginOptions)
+        externalCopyManager.onPasteCells.subscribe( function()
+                {
+                    grid.render();
+                }
+        );
 
-        filterPlugin.onCommand.subscribe(function (e, args)
-        {
+
+        grid.registerPlugin(externalCopyManager);
+
+        dataView.onRowCountChanged.subscribe(function (e, args) {
+            grid.updateRowCount();
+            grid.render();
+        });
+
+        dataView.onRowsChanged.subscribe(function (e, args) {
+            grid.invalidateRows(args.rows);
+            grid.render();
+        });
+
+
+        dataView.beginUpdate();
+        dataView.setItems(data);
+        dataView.setFilter(testfilter);
+        dataView.endUpdate();
+
+        var filterPlugin = new Ext.Plugins.HeaderFilter({});
+
+        filterPlugin.onCommand.subscribe(function (e, args) {
             dataView.fastSort(args.column.field, args.command === "sort-asc");
+            grid.render();
+        });
+
+
+        filterPlugin.onFilterApplied.subscribe(function (e, args) {
+
+            //need to check the args to see if the filter has been cleared and if so,
+            //remove the field from the current filter.
+
+            var currentFilter = dataView.getFilterArgs();
+            var newFilter = [];
+            newFilter.push(args);
+            if (currentFilter) {
+                var field = args.column.field;
+                var filterValues = args.column.filterValues;
+                var addFilter = true;
+                if (filterValues.length === 0) {
+
+                    for (var i = 0; i < currentFilter.length; i++) {
+                        if (currentFilter[i].column.field === field) {
+                            currentFilter[i] = null;
+                        }
+                    }
+                    currentFilter = _.compact(currentFilter);
+                    //remove the field
+                } else {
+                    for (var i = 0; i < currentFilter.length; i++) {
+                        if (currentFilter[i].column.field === field) {
+                            currentFilter[i].column.filterValues = filterValues;
+                            addFilter = false;
+                        }
+                    }
+                    if (addFilter) {
+                        currentFilter.push(args);
+                    }
+                }
+
+
+                // newFilter = _.union(newFilter, currentFilter);
+                //  newFilter.push(currentFilter);
+            } else {
+
+                currentFilter = [];
+                currentFilter.push(args);
+
+            }
+            dataView.setFilterArgs(currentFilter);
+            dataView.refresh();
+            grid.resetActiveCell();
+            grid.render();
+
         });
 
         grid.registerPlugin(filterPlugin);
 
-        grid.onAddNewRow.subscribe(function (e, args)
-        {
+
+
+
+        // set keyboard focus on the grid
+        grid.getCanvasNode().focus();
+
+
+
+
+
+
+        grid.onAddNewRow.subscribe(function (e, args) {
             var item = args.item;
             var column = args.column;
             grid.invalidateRow(data.length);
@@ -235,136 +306,26 @@
             grid.render();
         });
 
-        filterPlugin.onFilterApplied.subscribe(function (e, args)
-        {
-
-            //need to check the args to see if the filter has been cleared and if so,
-            //remove the field from the current filter.
-
-            var currentFilter = dataView.getFilterArgs();
-            var newFilter = [];
-            newFilter.push(args);
-            if (currentFilter)
-            {
-                var field = args.column.field;
-                var filterValues = args.column.filterValues;
-                var addFilter = true;
-                if (filterValues.length === 0)
-                {
-
-                    for (var i = 0; i < currentFilter.length; i++)
-                    {
-                        if(currentFilter[i].column.field === field){
-                            currentFilter[i] = null;
-                        }
-                    }
-                    currentFilter = _.compact(currentFilter);
-                    //remove the field
-                }else{
-                    for (var i = 0; i < currentFilter.length; i++)
-                    {
-                        if(currentFilter[i].column.field === field){
-                            currentFilter[i].column.filterValues = filterValues;
-                            addFilter = false;
-                        }
-                    }
-                    if (addFilter)
-                    {
-                        currentFilter.push(args);
-                    }
-                }
 
 
-               // newFilter = _.union(newFilter, currentFilter);
-              //  newFilter.push(currentFilter);
-            }else
-            {
-
-                    currentFilter = [];
-                    currentFilter.push(args);
-
-            }
-            dataView.setFilterArgs(currentFilter);
-            dataView.refresh();
-            grid.resetActiveCell();
-
-            // Excel like status bar at the bottom
-            var status;
-
-            if (dataView.getLength() === dataView.getItems().length)
-            {
-                status = "";
-            } else
-            {
-                status = dataView.getLength() + ' OF ' + dataView.getItems().length + ' RECORDS FOUND';
-            }
-            $('#status-label').text(status);
-        });
-
-        overlayPlugin.onFillUpDown.subscribe(function (e, args)
-        {
-            var column = grid.getColumns()[args.range.fromCell];
-
-            // Ensure the column is editable
-            if (!column.editor)
-            {
-                return;
-            }
-
-            // Find the initial value
-            var value = dataView.getItem(args.range.fromRow)[column.field];
-
-            dataView.beginUpdate();
-
-            // Copy the value down
-            for (var i = args.range.fromRow + 1; i <= args.range.toRow; i++)
-            {
-                dataView.getItem(i)[column.field] = value;
-                grid.invalidateRow(i);
-            }
-
-            dataView.endUpdate();
-            grid.render();
-        });
+        grid.init();
 
 
-     grid.init();
-
-        // Filter the data (using userscore's _.contains)
-        function filter(item) {
-            var columns = grid.getColumns();
-
-            var value = true;
-
-            for (var i = 0; i < columns.length; i++) {
-                var col = columns[i];
-                var filterValues = col.filterValues;
-
-                if (filterValues && filterValues.length > 0) {
-                    value = value & _.contains(filterValues, item[col.field]);
-                }
-            }
-            return value;
-        }
 
 
-        function testfilter(item, args)
-        {
+        function testfilter(item, args) {
             var value = true;
 
             //if no filter.
-            if (!args)
-            {
+            if (!args) {
                 return value;
             }
             //  var columns = grid.getColumns();
-            for (var i = 0; i < args.length; i++)
-            {
+            for (var i = 0; i < args.length; i++) {
                 var filterValues = args[i].column.filterValues;
                 var field = args[i].column.field;
 
-                if (filterValues && filterValues.length > 0)
-                {
+                if (filterValues && filterValues.length > 0) {
                     value = value & _.contains(filterValues, item[field]);
                 }
             }
