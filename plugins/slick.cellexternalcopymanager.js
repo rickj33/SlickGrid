@@ -137,6 +137,8 @@
       for (var i=0; i<clipRows.length; i++) {
         if (clipRows[i]!="")
           clippedRange[i] = clipRows[i].split("\t");
+        else
+          clippedRange[i] = [""];
       }
 
       var selectedCell = _grid.getActiveCell();
