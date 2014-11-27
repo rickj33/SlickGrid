@@ -26,7 +26,6 @@
         bodyElement: option to specify a custom DOM element which to will be added the hidden textbox. It's useful if the grid is inside a modal dialog.
         onCopyInit: optional handler to run when copy action initializes
         onCopySuccess: optional handler to run when copy action is complete
-        ingoreFormatting: optional array to specify fields of columns that ignore all formatters on paste
     */
     var _grid;
     var _self = this;
@@ -38,7 +37,6 @@
     var _bodyElement = _options.bodyElement || document.body;
     var _onCopyInit = _options.onCopyInit || null;
     var _onCopySuccess = _options.onCopySuccess || null;
-    var _ignoreFormatting = _options.ignoreFormatting || [];
     
     var keyCodes = {
       'C': 67,
@@ -68,23 +66,14 @@
     }
     
     function getDataItemValueForColumn(item, columnDef) {
-      // If we initialized this with an ignoreFormatting option, don't do fancy formatting
-      // on the specified fields (just return the plain JS value)
-      for (var i=0; i<_ignoreFormatting.length; i++) {
-        if (_ignoreFormatting[i] === columnDef.field) {
-          return item[columnDef.field];
-        }
-      }
       if (_options.dataItemColumnValueExtractor) {
-        return _options.dataItemColumnValueExtractor(item, columnDef);
+        var dataItemColumnValueExtractorValue = _options.dataItemColumnValueExtractor(item, columnDef);
+
+        if (dataItemColumnValueExtractorValue)
+          return dataItemColumnValueExtractorValue;
       }
 
       var retVal = '';
-
-      // use formatter if available; much faster than editor
-      if (columnDef.formatter) {
-          return columnDef.formatter(0, 0, item[columnDef.field], columnDef, item);
-      }
 
       // if a custom getter is not defined, we call serializeValue of the editor to serialize
       if (columnDef.editor){
@@ -175,16 +164,16 @@
         destH = selectedRange.toRow - selectedRange.fromRow +1;
         destW = selectedRange.toCell - selectedRange.fromCell +1;
       }
-	  var availableRows = _grid.getData().length - activeRow;
-	  var addRows = 0;
-	  if(availableRows < destH)
-	  {
-		var d = _grid.getData();
-		for(addRows = 1; addRows <= destH - availableRows; addRows++)
-			d.push({});
-		_grid.setData(d);
-		_grid.render();
-	  }  
+      var availableRows = _grid.getData().length - activeRow;
+      var addRows = 0;
+      if(availableRows < destH)
+      {
+        var d = _grid.getData();
+        for(addRows = 1; addRows <= destH - availableRows; addRows++)
+          d.push({});
+        _grid.setData(d);
+        _grid.render();
+      }  
       var clipCommand = {
 
         isClipboardCommand: true,
@@ -226,6 +215,13 @@
                 else
                   this.setDataItemValueForColumn(dt, columns[destx], clippedRange[y] ? clippedRange[y][x] : '');
                 _grid.updateCell(desty, destx);
+                _grid.onCellChange.notify({
+                    row: desty,
+                    cell: destx,
+                    item: dt,
+                    grid: _grid
+                });
+
               }
             }
           }
@@ -256,6 +252,12 @@
                 else
                   this.setDataItemValueForColumn(dt, columns[destx], this.oldValues[y][x]);
                 _grid.updateCell(desty, destx);
+                _grid.onCellChange.notify({
+                    row: desty,
+                    cell: destx,
+                    item: dt,
+                    grid: _grid
+                });
               }
             }
           }
