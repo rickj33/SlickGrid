@@ -133,8 +133,8 @@
       var clippedRange = [];
       
       _bodyElement.removeChild(ta);
-
-      for (var i=0; i<clipRows.length; i++) {
+      
+      for (var i=0; i<clipRows.length-1; i++) {
         if (clipRows[i]!="")
           clippedRange[i] = clipRows[i].split("\t");
         else
