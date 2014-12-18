@@ -80,7 +80,8 @@
         var editorArgs = {
           'container':$("<p>"),  // a dummy container
           'column':columnDef,
-          'position':{'top':0, 'left':0}  // a dummy position required by some editors
+          'position':{'top':0, 'left':0},  // a dummy position required by some editors
+          'grid':_grid
         };
         var editor = new columnDef.editor(editorArgs);
         editor.loadValue(item);
@@ -104,7 +105,8 @@
         var editorArgs = {
           'container':$("body"),  // a dummy container
           'column':columnDef,
-          'position':{'top':0, 'left':0}  // a dummy position required by some editors
+          'position':{'top':0, 'left':0},  // a dummy position required by some editors
+          'grid':_grid
         };
         var editor = new columnDef.editor(editorArgs);
         editor.loadValue(item);
@@ -133,14 +135,12 @@
       var clippedRange = [];
       
       _bodyElement.removeChild(ta);
-      
-      for (var i=0; i<clipRows.length-1; i++) {
+      for (var i=0; i<clipRows.length; i++) {
         if (clipRows[i]!="")
           clippedRange[i] = clipRows[i].split("\t");
         else
           clippedRange[i] = [""];
       }
-
       var selectedCell = _grid.getActiveCell();
       var ranges = _grid.getSelectionModel().getSelectedRanges();
       var selectedRange = ranges && ranges.length ? ranges[0] : null;   // pick only one selection
