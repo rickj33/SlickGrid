@@ -20,10 +20,10 @@
         var self = this;
         var handler = new Slick.EventHandler();
         var defaults = {
-            buttonImage: "../images/down.png",
-            filterImage: "../images/filter.png",
-            sortAscImage: "../images/sort-asc.png",
-            sortDescImage: "../images/sort-desc.png"
+            buttonImage: "custom_vendor/factlook-slickgrid/images/down.png",
+            filterImage: "custom_vendor/factlook-slickgrid/images/filter.png",
+            sortAscImage: "custom_vendor/factlook-slickgrid/images/sort-asc.png",
+            sortDescImage: "custom_vendor/factlook-slickgrid/images/sort-desc.png"
         };
         var $menu;
 

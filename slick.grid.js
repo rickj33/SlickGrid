@@ -433,7 +433,7 @@ if (typeof Slick === "undefined")
                 $headers.width(getHeadersWidth());
              //   viewportHasHScroll = (canvasWidth > viewportW - scrollbarDimensions.width);
             }
-                viewportHasHScroll = (canvasWidth > viewportW - scrollbarDimensions.width);
+            viewportHasHScroll = (canvasWidth > viewportW - scrollbarDimensions.width);
             $headerRowSpacer.width(canvasWidth + (viewportHasVScroll ? scrollbarDimensions.width : 0));
 
             if (canvasWidth != oldCanvasWidth || forceColumnWidthsUpdate)
@@ -1756,7 +1756,7 @@ if (typeof Slick === "undefined")
                 zombieRowNodeFromLastMouseWheelEvent = rowNodeFromLastMouseWheelEvent;
             } else
             {
-                $canvas[0].removeChild(cacheEntry.rowNode);
+            $canvas[0].removeChild(cacheEntry.rowNode);
             }
 
             delete rowsCache[row];

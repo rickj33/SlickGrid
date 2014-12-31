@@ -23,7 +23,8 @@
                 "TransposedInteger" : TransposedIntegerEditor,
                 "TransposedFloat"   : TransposedFloatEditor,
                 "TransposedCheckbox": TransposedCheckboxEditor,
-                "TransposedColor"   : TransposedColorEditor
+                "TransposedColor"   : TransposedColorEditor,
+                 "TransposedPercent"   : TransposedPercentEditor
             }
         }
     });
@@ -692,7 +693,7 @@
         var scope = this;
         var calendarOpen = false;
         scope.realEditor = args.item.field.editor;
-
+     
         this.init = function ()
         {
             // scope.realEditor = args.item.field.editor;
@@ -728,17 +729,12 @@
         {
             scope.realEditor.applyValue(item, state);
 
+            if(item.field.setBackingStoreValue){
+               item.field.setBackingStoreValue(args.column,item,state);
+            }
             item[args.column.field] = state;
             //update the object providing the transposed value.
-            if (item.field.fromStyle)
-            {
-                args.column.breakValue.styleProperties[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue.styleProperties[item.field.name]);
-            } else
-            {
-                args.column.breakValue[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue[item.field.name]);
-            }
+       
 
         };
 
@@ -759,7 +755,9 @@
 
     function TransposedColorEditor(args)
     {
+        var scope = this;
 
+      
         this.init = function ()
         {
             $input = $("<INPUT type=text class='editor-text' id='colorEditor'  />")
@@ -821,16 +819,13 @@
             item[args.column.field] = state;
             //args.container.style.backgroundColor = state
             args.container.style.color = state
-            //update the object providing the transposed value.
-            if (item.field.fromStyle)
-            {
-                args.column.breakValue.styleProperties[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue.styleProperties[item.field.name]);
-            } else
-            {
-                args.column.breakValue[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue[item.field.name]);
+
+            if(item.field.setBackingStoreValue){
+                item.field.setBackingStoreValue(args.column,item,state);
             }
+
+            //update the object providing the transposed value.
+        
         };
 
         this.isValueChanged = function ()
@@ -911,16 +906,12 @@
         this.applyValue = function (item, state)
         {
             item[args.column.field] = state;
-            //update the object providing the transposed value.
-            if (item.field.fromStyle)
-            {
-                args.column.breakValue.styleProperties[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue.styleProperties[item.field.name]);
-            } else
-            {
-                args.column.breakValue[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue[item.field.name]);
+
+               if(item.field.setBackingStoreValue){
+                item.field.setBackingStoreValue(args.column,item,state);
             }
+
+           
         };
 
         this.isValueChanged = function ()
@@ -996,16 +987,13 @@
         this.applyValue = function (item, state)
         {
             item[args.column.field] = state;
-            //update the object providing the transposed value.
-            if (item.field.fromStyle)
-            {
-                args.column.breakValue.styleProperties[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue.styleProperties[item.field.name]);
-            } else
-            {
-                args.column.breakValue[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue[item.field.name]);
+
+               if(item.field.setBackingStoreValue){
+                item.field.setBackingStoreValue(args.column,item,state);
             }
+
+            //update the object providing the transposed value.
+           
         };
 
         this.isValueChanged = function ()
@@ -1081,16 +1069,12 @@
         {
             item[args.column.field] = state;
 
-            //update the object providing the transposed value.
-            if (item.field.fromStyle)
-            {
-                args.column.breakValue.styleProperties[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue.styleProperties[item.field.name]);
-            } else
-            {
-                args.column.breakValue[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue[item.field.name]);
+   if(item.field.setBackingStoreValue){
+                item.field.setBackingStoreValue(args.column,item,state);
             }
+
+            //update the object providing the transposed value.
+          
 
         };
 
@@ -1106,6 +1090,103 @@
                 return {
                     valid: false,
                     msg  : "Please enter a valid decimal number"
+                };
+            }
+
+            return {
+                valid: true,
+                msg  : null
+            };
+        };
+
+        this.init();
+    }
+
+
+
+ function TransposedPercentEditor(args)
+    {
+       var $input;
+        var defaultValue;
+        var scope = this;
+
+        this.init = function ()
+        {
+            $input = $("<INPUT type=text class='editor-text' />");
+
+            $input.bind("keydown.nav", function (e)
+            {
+                if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    e.stopImmediatePropagation();
+                }
+            });
+
+            $input.appendTo(args.container);
+            $input.focus().select();
+        };
+
+        this.destroy = function ()
+        {
+            $input.remove();
+        };
+
+        this.focus = function ()
+        {
+            $input.focus();
+        };
+
+        this.loadValue = function (item)
+        {
+
+            defaultValue = item[args.column.field];
+            
+             var decimalValue = parseFloat(defaultValue, 10) || 0;
+             var percentValue =  Math.round(decimalValue * 100);
+
+            if(percentValue === 0){
+                return 0;
+            }
+            if(percentValue > 100)
+            {
+                percentValue = 100;
+            }
+            $input.val(percentValue);
+            $input[0].defaultValue = percentValue;
+            $input.select();
+        };
+
+        this.serializeValue = function ()
+        {
+            var intValue = parseInt($input.val(), 10) || 0;
+            var decimalValue = intValue / 100;
+            return decimalValue;
+        };
+
+        this.applyValue = function (item, state)
+        {
+            item[args.column.field] = state;
+
+               if(item.field.setBackingStoreValue){
+                item.field.setBackingStoreValue(args.column,item,state);
+            }
+
+            //update the object providing the transposed value.
+           
+        };
+
+        this.isValueChanged = function ()
+        {
+            return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
+        };
+
+        this.validate = function ()
+        {
+            if (isNaN($input.val()))
+            {
+                return {
+                    valid: false,
+                    msg  : "Please enter a valid integer"
                 };
             }
 
@@ -1161,15 +1242,11 @@
         this.applyValue = function (item, state)
         {
             item[args.column.field] = state;
-            if (item.field.fromStyle)
-            {
-                args.column.breakValue.styleProperties[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue.styleProperties[item.field.name]);
-            } else
-            {
-                args.column.breakValue[item.field.name] = state;
-                console.log('the value for ' + item.field.name + ' is ' + args.column.breakValue[item.field.name]);
+               if(item.field.setBackingStoreValue){
+                item.field.setBackingStoreValue(args.column,item,state);
             }
+
+         
         };
 
         this.isValueChanged = function ()

@@ -21,7 +21,7 @@
 
         var defaults = {
             buttonCssClass: null,
-            buttonImage: "../images/down.gif",
+            buttonImage: "custom_vendor/factlook-slickgrid/images/down.gif",
             decoratorWidth: 2
         };
 

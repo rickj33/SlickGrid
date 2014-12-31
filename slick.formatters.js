@@ -1,32 +1,33 @@
 /***
  * Contains basic SlickGrid formatters.
- * 
+ *
  * NOTE:  These are merely examples.  You will most likely need to implement something more
  *        robust/extensible/localizable/etc. for your use!
- * 
+ *
  * @module Formatters
  * @namespace Slick
  */
 
 (function ($)
 {
-  // register namespace
-  $.extend(true, window, {
-    "Slick": {
-      "Formatters": {
-        "PercentComplete": PercentCompleteFormatter,
-        "PercentCompleteBar": PercentCompleteBarFormatter,
-        "YesNo": YesNoFormatter,
+    // register namespace
+    $.extend(true, window, {
+        "Slick": {
+            "Formatters": {
+                "PercentComplete"    : PercentCompleteFormatter,
+                "PercentCompleteBar" : PercentCompleteBarFormatter,
+                "YesNo"              : YesNoFormatter,
                 "Checkmark"          : CheckmarkFormatter,
                 "Checkbox"          : CheckboxFormatter,
                 "Date"                 : DateFormatter,
                 "TransposedColor"    : TransposedColorFormatter,
                 "TransposedFormatter": TransposedFormatter,
-                "TransposedCheckbox" : TransposedCheckboxFormatter
+                "TransposedCheckbox" : TransposedCheckboxFormatter,
+                 "TransposedPercent"   : TransposedPercentFormatter
 
-      }
-    }
-  });
+            }
+        }
+    });
 
     /**
      * @return string
@@ -35,15 +36,15 @@
     {
         if (value === null || value === "")
         {
-      return "-";
+            return "-";
         } else if (value < 50)
         {
-      return "<span style='color:red;font-weight:bold;'>" + value + "%</span>";
+            return "<span style='color:red;font-weight:bold;'>" + value + "%</span>";
         } else
         {
-      return "<span style='color:green'>" + value + "%</span>";
+            return "<span style='color:green'>" + value + "%</span>";
+        }
     }
-  }
 
     /**
      * @return string
@@ -74,24 +75,24 @@
     {
         if (value === null || value === "")
         {
-      return "";
-    }
+            return "";
+        }
 
-    var color;
+        var color;
 
         if (value < 30)
         {
-      color = "red";
+            color = "red";
         } else if (value < 70)
         {
-      color = "silver";
+            color = "silver";
         } else
         {
-      color = "green";
-    }
+            color = "green";
+        }
 
-    return "<span class='percent-complete-bar' style='background:" + color + ";width:" + value + "%'></span>";
-  }
+        return "<span class='percent-complete-bar' style='background:" + color + ";width:" + value + "%'></span>";
+    }
 
     function TransposedFormatter(row, cell, value, columnDef, dataContext)
     {
@@ -108,6 +109,27 @@
         return value;
     }
 
+     function TransposedPercentFormatter(row, cell, value, columnDef, dataContext)
+    {
+        if (value === null || value === "")
+        {
+            return "";
+        }
+
+
+        return convertToPercent(value);
+    }
+ 
+  function   convertToPercent(value)
+    {
+
+        var percentValue = value;
+
+       
+
+        return  percentValue * 100;
+    }
+
     /**
      * @return string
      */
@@ -121,6 +143,8 @@
         return "<span  style='color:" + value + "'>" + value + "</span>";
     }
 
+
+
     /**
      * @return string
      */
@@ -130,19 +154,21 @@
 
     }
 
+
+
     /**
      * @return string
      */
     function YesNoFormatter(row, cell, value, columnDef, dataContext)
     {
-    return value ? "Yes" : "No";
-  }
+        return value ? "Yes" : "No";
+    }
 
     /**
      * @return string
      */
     function CheckmarkFormatter(row, cell, value, columnDef, dataContext)
     {
-    return value ? "<img src='../images/tick.png'>" : "";
-  }
+        return value ? "<img src='custom_vendor/factlook-slickgrid/images/tick.png'>" : "";
+    }
 })(jQuery);
