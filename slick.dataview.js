@@ -97,6 +97,11 @@
       filterArgs = args;
     }
 
+  function getFilterArgs() {
+      return filterArgs;
+    }
+
+
     function updateIdxById(startingIndex) {
       startingIndex = startingIndex || 0;
       var id;
@@ -1002,6 +1007,7 @@
       "mapIdsToRows": mapIdsToRows,
       "setRefreshHints": setRefreshHints,
       "setFilterArgs": setFilterArgs,
+      "getFilterArgs" : getFilterArgs,
       "refresh": refresh,
       "updateItem": updateItem,
       "insertItem": insertItem,

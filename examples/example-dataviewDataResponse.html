@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>SlickGrid example 3: Editing</title>
+  <link rel="stylesheet" href="../slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
+  <link rel="stylesheet" href="examples.css" type="text/css"/>
+    <link rel="stylesheet" href="../plugins-common.css" type="text/css" />
+        <link rel="stylesheet" href="../plugins-excel-style.css" type="text/css" />
+  <style>
+    .slick-cell.copied {
+      background: blue;
+      background: rgba(0, 0, 255, 0.2);
+      -webkit-transition: 0.5s background;
+    }
+    
+    
+    /*
+        weekcalendareditor
+    */
+    .wkclEdCont {
+        width:210px;
+        height:23px;
+        overflow:hidden;
+        margin-top:-1px;
+        border:1px solid #DDD;
+    }
+    .wkclEdContNotEditing{
+        width:210px;
+        height:23px;
+        overflow:hidden;
+        margin-top:-1px;
+        border-right:1px solid #DDD;
+    }
+
+    .wkclEdHalfDay{
+        width:14px;
+        height:100%;
+        cursor:pointer;
+        float:left;
+    }
+    .wkclEdDay{
+        width:29px;
+        height:100%;
+        border-left:1px solid #DDD;
+        float:left;
+    }
+
+    .wkclEdHeadCont{
+        width:210px;
+        height:23px;
+        overflow:hidden;
+        border:1px solid #FFF;
+        border-bottom:none;
+        margin-top:5px;
+    }
+
+    .wkclEdHeadDay{
+        width:29px;
+        height:100%;
+        border-left:1px solid #DDD;
+        float:left;
+        text-align:center;
+        margin-top:5px;
+    }
+    
+  </style>
+</head>
+<body>
+<div style="position:relative">
+  <div style="width:600px;">
+    <div id="myGrid" style="width:100%;height:500px;"></div>
+  </div>
+  <div style="width:600px;">
+    <div id="myGrid2" style="width:100%;height:500px;"></div>
+  </div>
+
+  <div class="options-panel">
+    <h2>Excel compatible copy/paste manager</h2>
+        <div>
+          This is basically the same example than <a href="example-spreadsheet.html">example-spreadsheet.html</a>, with the support of external excel-compatible software clipboard<br />
+          
+        </div>
+    <h2>Paste from Excel-compatible:</h2>
+    <ul>
+      <li>Copy a range of cells to clipboard in Excel</li>
+      <li>Select a cell on slickgrid</li> 
+      <li>Use Ctrl-V keyboard shortcut to paste from the clipboard</li> 
+    </ul>
+    <h2>Copy for Excel-compatible:</h2>
+    <ul>
+        <li>Select a range of cells with a mouse</li>
+        <li>Use Ctrl-C shortcut to copy cells</li>
+        <li>You can paste the tabular data into Excel</li>
+    </ul>
+
+    <h2>Undo/redo support :</h2>
+    <ul>
+      <li>Use buttons to undo/redo copy/paste</li>
+    </ul>
+    <button onclick="undoRedoBuffer.undo()"><img src="../images/arrow_undo.png" align="absmiddle"> Undo</button>
+    <button onclick="undoRedoBuffer.redo()"><img src="../images/arrow_redo.png" align="absmiddle"> Redo</button>
+  </div>
+</div>
+
+<script src="../lib/firebugx.js"></script>
+<script src="../lib/jquery-1.7.min.js"></script>
+<script src="../lib/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="../lib/jquery.event.drag-2.2.js"></script>
+<script src="../lib/lodash.min.js"></script>
+<script src="../lib/lodash.underscore.min.js"></script>
+<script src="../slick.core.js"></script>
+<script src="../plugins/slick.autotooltips.js"></script>
+<script src="../plugins/slick.cellrangedecorator.js"></script>
+<script src="../plugins/slick.cellrangeselector.js"></script>
+<script src="../plugins/slick.cellexternalcopymanager.js"></script>
+<script src="../plugins/slick.cellselectionmodel.js"></script>
+<script src="../slick.editors.js"></script>
+<script src="../slick.formatters.js"></script>
+   <script type="text/javascript" src="../slick.dataview.js"></script>
+<script src="../slick.grid.js"></script>
+    <script type="text/javascript" src="../ext.headerfilter.js"></script>
+    <script type="text/javascript" src="../ext.overlays.js"></script>
+
+<script>
+  var grid;
+  var grid2;
+  var data = [];
+  var data2 = [];
+  
+  var options = {
+    editable: true,
+    enableAddRow: true,
+    enableCellNavigation: true,
+    asyncEditorLoading: false,
+    autoEdit: false
+  };
+
+ var editor =   "Slick.Editors.Text";
+ var dog = editor.replace (/\"/g,'');
+
+var gridData = {
+
+               "ColumnHeadings": 
+              [
+                {'name' :"MsgID", 'editor' :dog },
+                {'name' :"Last Name", 'editor' :dog},
+                {'name' :"First Name",'editor' : dog},
+               
+
+              ],
+
+                "RowData": [      ["1", "Smith", "Bob"],
+
+                                                ["2", "Jones", "Sally"] ]
+
+};
+
+ 
+
+  // undo shortcut
+    var gridQMsgs;
+
+                var gridQMsgsColumns = [];                                          
+
+       
+
+                var gridQMsgsDataView = new Slick.Data.DataView(); 
+
+                var gridQMsgsData = [];
+
+      var iCnt = 0;       
+
+                //push all the column definitions.
+
+                jQuery.each(gridData.ColumnHeadings, function () {
+
+                                var colSpec = { id: this.name, name: this.name,editor:this.editor, field: iCnt, sortable: true};
+
+                                gridQMsgsColumns.push(colSpec)
+
+                                iCnt += 1;             // Next column index
+
+                                return (true); // returning false halts iteration
+
+                });
+ 
+
+  $(function () {
+
+       gridQMsgsData = gridData["RowData"];
+
+ 
+
+                // Get the data on-screen/populate the DataView
+
+                gridQMsgsDataView.setItems(gridQMsgsData, 0);
+
+    grid = new Slick.Grid("#myGrid", gridQMsgsDataView, gridQMsgsColumns, options);
+    grid.setSelectionModel(new Slick.CellSelectionModel());
+ 
+  
+ 
+   
+  })
+</script>
+</body>
+</html>
