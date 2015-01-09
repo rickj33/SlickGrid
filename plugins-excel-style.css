@@ -1,71 +1,96 @@
 ﻿
 
-body {
+body
+{
     margin: 0;
 }
 
-body, BUTTON {
+body,
+button
+{
     font-family: 'Segoe UI';
     font-size: 8.25pt;
 }
 
-.slick-cell {
-    border-color: transparent #D4D4D4 #D4D4D4 transparent;
+.slick-cell
+{
+    font: 11pt Calibri, 'Segoe UI',Arial,Verdana,Sans-Serif;
+
+    padding: 1px 1px 0 2px;
+
+    border-width: 0 1px 1px 0;
     border-style: solid solid solid solid;
-    border-width: 0px 1px 1px 0px;
-    padding: 1px 1px 0px 2px;
+    border-color: transparent #d4d4d4 #d4d4d4 transparent;
     background-color: White;
-    font: 11pt Calibri, 'Segoe UI',Arial,Verdana,Sans-Serif;
 }
 
-.slick-header-columns {
-    border-bottom: 1px solid #BBBBBB;
+.slick-header-columns
+{
     font: 10pt Calibri,'Segoe UI',Arial,Verdana,Sans-Serif;
-    color: #5E5E5E;
+
+    color: #5e5e5e;
+    border-bottom: 1px solid #bbb;
 }
 
-.selected-header {
-    background-color: #E2E2E2;
-    color: #217346;
+.selected-header
+{
     font-weight: bold;
+
+    color: #217346;
+    background-color: #e2e2e2;
 }
 
-.slick-column-name {
-    text-transform: uppercase;
-    margin-right: 14px;
+.slick-column-name
+{
     display: block;
+
+    margin-right: 14px;
+
     text-align: center;
+    text-transform: uppercase;
 }
 
-.header-overlay {
+.header-overlay
+{
     background-color: #217346;
 }
 
-.cell-overlay, .selection-cell-overlay {
+.cell-overlay,
+.selection-cell-overlay
+{
     background-color: #217346;
 }
 
-input.editor-text {
+input.editor-text
+{
     font: 11pt Calibri, 'Segoe UI',Arial,Verdana,Sans-Serif;
-    background: none;
-    border: 0 none;
-    margin: 0;
-    outline: 0 none;
-    padding: 0;
+
     width: 100%;
+    margin: 0;
+    padding: 0;
+
+    border: 0 none;
+    outline: 0 none;
+    background: none;
 }
 
-.handle-overlay {
-    border: 1px solid white;
-    padding: 2px;
-    background-color: #217346;
+.handle-overlay
+{
     position: absolute;
-    width: 1px;
     z-index: 1000;
+
+    width: 1px;
+    padding: 2px;
+
     cursor: crosshair;
+
+    border: 1px solid white;
+    background-color: #217346;
 }
 
-.overlay-handle-decorator {
-    border: 2px solid #217346;
+.overlay-handle-decorator
+{
     z-index: 1000;
+
+    border: 2px solid #217346;
 }

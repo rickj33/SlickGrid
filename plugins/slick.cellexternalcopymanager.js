@@ -138,12 +138,14 @@
 
             var columns = grid.getColumns();
             var selectedCell = _grid.getActiveCell();
-        //    var newColumnTotal = newColumnArray.length + selectedCell.cell;
 
-            //if the selected cell is not greater than the current column count, then we are not adding any columns.
-            if(selectedCell.cell < columns.length){
-              return;
-            }
+            //determine if we are just pasting / replacing a column.
+            //if we are not pasting more columns than already exist and the selected cell/columns is less then the columns
+               //than the current column count, then we are not adding any columns.
+             if( (newColumnArray.length <  columns.length) && (selectedCell.cell < columns.length) )
+             {
+                 return;      
+             }
 
             var newColumnIndex = 0;
             var fieldNameStartValue = 0
@@ -162,14 +164,17 @@
                     columns.push(column);
                 }
 
+
                 if (column) {
                     column.id = existingColumnIndex;
                     column.field = fieldNameStartValue;
                     column.sortable = true;
                     column.resizable = true;
                     column.rerenderOnResize = true;
-                    column.width = 120;
+                    column.width = 100;
+                    column.minWidth = 100;
                     column.editor = Slick.Editors.Text;
+
                     if(_options.includeHeaderWhenCopying){
                         column.name = newColumnArray[newColumnIndex];
                     }

@@ -1,97 +1,125 @@
 ﻿
 
-body {
+body
+{
     margin: 0;
 }
 
-body, BUTTON {
+body,
+button
+{
     font-family: arial, sans-serif;
     font-size: 8.25pt;
 }
 
-.slick-cell {
-    border-color: transparent #CCCCCC #CCCCCC transparent;
+.slick-cell
+{
+    font: 9pt arial, sans-serif;
+
+    padding: 4px 4px 0 6px;
+
+    border-width: 0 1px 1px 0;
     border-style: solid solid solid solid;
-    border-width: 0px 1px 1px 0px;
-    padding: 4px 4px 0px 6px;
+    border-color: transparent #ccc #ccc transparent;
     background-color: White;
-    font: 9pt arial, sans-serif;
 }
 
-.slick-header-column {
-    border-color: transparent #CCCCCC #CCCCCC transparent;
+.slick-header-column
+{
+    border-width: 1px 1px 0 0;
     border-style: solid solid solid solid;
-    border-width: 1px 1px 0 0px;
+    border-color: transparent #ccc #ccc transparent;
 }
 
-.slick-header-columns {
+.slick-header-columns
+{
     font: 9pt arial, sans-serif;
+
     color: black;
-    background-color: #F3F3F3;
-    border-top: 1px solid #CCCCCC;
-    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background-color: #f3f3f3;
 }
 
-.selected-header {
-    background-color: #C8C8C8;
+.selected-header
+{
+    background-color: #c8c8c8;
 }
 
-.slick-column-name {
-    margin-right: 14px;
+.slick-column-name
+{
     display: block;
+
+    margin-right: 14px;
+
     text-align: center;
 }
 
-.header-overlay {
+.header-overlay
+{
     background-color: transparent;
 }
 
-.cell-overlay {
-    background-color: #5292F7;
+.cell-overlay
+{
+    background-color: #5292f7;
 }
 
-.selection-cell-overlay {
+.selection-cell-overlay
+{
     z-index: 998;
-   
 }
 
-.selection-cell-overlay.left {
+.selection-cell-overlay.left
+{
     border-right: 1px dashed #808080;
 }
 
-.selection-cell-overlay.right {
+.selection-cell-overlay.right
+{
     border-left: 1px dashed #808080;
 }
 
-.selection-cell-overlay.bottom {
+.selection-cell-overlay.bottom
+{
     border-bottom: 1px dashed #808080;
 }
 
-.selection-cell-overlay.top {
+.selection-cell-overlay.top
+{
     border-bottom: 1px dashed #808080;
 }
-input.editor-text {
+input.editor-text
+{
     font: 9pt arial, sans-serif;
-    background: none;
-    border: 0 none;
-    margin: 0;
-    outline: 0 none;
-    padding: 0;
+
     width: 100%;
+    margin: 0;
+    padding: 0;
+
+    border: 0 none;
+    outline: 0 none;
+    background: none;
 }
 
 
-.handle-overlay {
-    border: 1px solid white;
-    padding: 2px;
-    background-color: #5292F7;
+.handle-overlay
+{
     position: absolute;
-    width: 1px;
     z-index: 1000;
+
+    width: 1px;
+    padding: 2px;
+
     cursor: crosshair;
+
+    border: 1px solid white;
+    background-color: #5292f7;
 }
 
-.overlay-handle-decorator {
-    border: 2px solid #5292F7;
+.overlay-handle-decorator
+{
     z-index: 1000;
+
+    border: 2px solid #5292f7;
 }
