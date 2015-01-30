@@ -223,7 +223,10 @@
         function getFilterValues(dataView, column) {
             var seen = [];
             for (var i = 0; i < dataView.getLength() ; i++) {
-                var value = dataView.getItem(i)[column.field];
+
+              var value =  getDataItemValueForColumn(dataView.getItem(i), column);
+
+               // var value = dataView.getItem(i)[column.field];
 
                 if (!_.contains(seen, value)) {
                     seen.push(value);
@@ -232,11 +235,14 @@
 
             return _.sortBy(seen, function (v) { return v; });
         }
+
+    
 
         function getAllFilterValues(data, column) {
             var seen = [];
             for (var i = 0; i < data.length; i++) {
-                var value = data[i][column.field];
+                   var value =  getDataItemValueForColumn(data[i], column);
+               // var value = data[i][column.field];
 
                 if (!_.contains(seen, value)) {
                     seen.push(value);
@@ -245,6 +251,16 @@
 
             return _.sortBy(seen, function (v) { return v; });
         }
+
+        function getDataItemValueForColumn(item, columnDef)
+        {
+            if (options.dataItemColumnValueExtractor)
+            {
+                return options.dataItemColumnValueExtractor(item, columnDef);
+            }
+            return item[columnDef.field];
+        }
+
 
         function handleMenuItemClick(e) {
             var command = $(this).data("command");
