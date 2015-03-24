@@ -42,6 +42,10 @@
 
         function destroy() {
             handler.unsubscribeAll();
+             if ($menu) {
+                $menu.remove();
+                $menu = null;
+            }
             $(document.body).unbind("mousedown", handleBodyMouseDown);
         }
 

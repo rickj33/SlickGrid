@@ -412,11 +412,16 @@
                     var bRange = {
                         'fromCell': activeCell,
                         'fromRow' : activeRow,
-                        'toCell'  : activeCell + this.maxDestColumns - 1,
-                        'toRow'   : activeRow + this.maxDestRows - 1
+                        'toCell'  : activeCell + clippedColumns -1,
+                        'toRow'   : activeRow + clippedRows -1,
+                     /*   'toCell'  : activeCell + this.maxDestColumns - 1,
+                        'toRow'   : activeRow + this.maxDestRows - 1,*/
+                        'totalRows' : clippedRows,
+                        'totalColumns' : clippedColumns
                         //'toCell'  : activeCell + this.w - 1,
                         //'toRow'   : activeRow + this.h - 1
-                    }
+                    };
+
 
                     this.markCopySelection( [bRange] );
                     _grid.getSelectionModel().setSelectedRanges( [bRange] );
