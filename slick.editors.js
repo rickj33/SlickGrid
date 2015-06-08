@@ -794,6 +794,7 @@
         //noinspection LocalVariableNamingConventionJS
         var $input;
 		var scope = this;
+        var defaultValue;
 
         this.init = function ()
         {
@@ -834,7 +835,7 @@
 
         this.loadValue = function ( item )
         {
-            var defaultValue = item[args.column.field] || "";
+            defaultValue = item[args.column.field] || "";
             $input.val( defaultValue );
             $input[0].defaultValue = defaultValue;
             $input.spectrum( {

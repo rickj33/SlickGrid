@@ -97,6 +97,36 @@
       filterArgs = args;
     }
 
+
+  function destroy()
+        {
+   //  items.length =0
+     rows.length = 0;          // data by row
+     filterCache.length = 0;
+     filteredItems.length = 0;
+     
+     deleteObject(idxById);
+     deleteObject(rowsById);
+     deleteObject(filter);
+     deleteObject(updated);
+     deleteObject(refreshHints);
+     deleteObject(prevRefreshHints);
+     sortComparer = null;     
+     
+     //fastSortField;
+
+   //  filterArgs;
+     compiledFilter = null;
+     compiledFilterWithCaching = null;
+        }
+
+        function deleteObject(objectToDelete){
+             for ( var key in objectToDelete )
+                    {
+                        delete objectToDelete[key];
+                     }
+        }
+
   function getFilterArgs() {
       return filterArgs;
     }
@@ -126,6 +156,10 @@
 
     function getItems() {
       return items;
+    }
+
+    function getFilterdItems(){
+      return rows;
     }
 
     function setItems(data, objectIdProperty) {
@@ -517,7 +551,7 @@
           group = groups[i];
           group.groups = extractGroups(group.rows, group);
         }
-      }      
+      }
 
       groups.sort(groupingInfos[level].comparer);
 
@@ -567,7 +601,7 @@
       level = level || 0;
       var gi = groupingInfos[level];
       var groupCollapsed = gi.collapsed;
-      var toggledGroups = toggledGroupsByLevel[level];      
+      var toggledGroups = toggledGroupsByLevel[level];
       var idx = groups.length, g;
       while (idx--) {
         g = groups[idx];
@@ -906,7 +940,7 @@
           inHandler = true;
           var selectedRows = self.mapIdsToRows(selectedRowIds);
           if (!preserveHidden) {
-            setSelectedRowIds(self.mapRowsToIds(selectedRows));       
+            setSelectedRowIds(self.mapRowsToIds(selectedRows));
           }
           grid.setSelectedRows(selectedRows);
           inHandler = false;
@@ -987,6 +1021,7 @@
       "getItems": getItems,
       "setItems": setItems,
       "setFilter": setFilter,
+      "getFilterdItems": getFilterdItems,
       "sort": sort,
       "fastSort": fastSort,
       "reSort": reSort,
@@ -1024,7 +1059,8 @@
       // events
       "onRowCountChanged": onRowCountChanged,
       "onRowsChanged": onRowsChanged,
-      "onPagingInfoChanged": onPagingInfoChanged
+      "onPagingInfoChanged": onPagingInfoChanged,
+          "destroy"          : destroy,
     });
   }
 

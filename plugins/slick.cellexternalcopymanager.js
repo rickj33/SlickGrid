@@ -165,8 +165,16 @@
                 return;
             }
 
+            var minPasteColumnStart = _options.startPasteColumn;
             var columns = grid.getColumns();
             var selectedCell = _grid.getActiveCell();
+
+            //if the selected cell is less then the min cell number for pasting columns
+            // then set the selected cell.cell property to the min coulumn number.
+            if(selectedCell.cell < minPasteColumnStart){
+                selectedCell.cell = minPasteColumnStart;
+            }
+
 
             //determine if we are just pasting / replacing a column.
             //if we are not pasting more columns than already exist and the selected cell/columns is less then the columns
