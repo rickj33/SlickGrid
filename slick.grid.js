@@ -1129,6 +1129,16 @@ if (typeof Slick === "undefined")
 
             trigger(self.onBeforeDestroy, {});
 
+            if (selectionModel)
+            {
+                selectionModel.onSelectedRangesChanged.unsubscribe(handleSelectedRangesChanged);
+                if (selectionModel.destroy)
+                {
+                    selectionModel.destroy();
+                }
+                selectionModel = null;
+            }
+
             var i = plugins.length;
             while (i--)
             {
@@ -1146,6 +1156,8 @@ if (typeof Slick === "undefined")
 
             $canvas.unbind("draginit dragstart dragend drag");
             $container.empty().removeClass(uid);
+          
+
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////
