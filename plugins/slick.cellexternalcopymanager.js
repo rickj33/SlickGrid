@@ -43,8 +43,9 @@
         var keyCodes = {
             'C'   : 67,
             'V'   : 86,
-            'ESC' : 27
-        }
+      'ESC': 27,
+      'INSERT': 45
+    };
 
         function init(grid) {
             _grid = grid;
@@ -320,9 +321,13 @@
                 oneCellToMultiple         : oneCellToMultiple,
                 activeRow                 : activeRow,
                 activeCell                : activeCell,
+				//destH renamed to clippedRows
+				//destW renamed to clippedColumns
+				//destx  not used anylonger so can support dataview.
+				//maxDestY: renamed to maxDestRows
+				//maxDestX: renamed to maxDestColumns
                 clippedRows               : clippedRows,
                 clippedColumns            : clippedColumns, //   desty                    : activeRow,
-                //  destx                    : activeCell,
                 maxDestRows               : _grid.getDataLength(),
                 maxDestColumns            : _grid.getColumns().length,
                 h                         : 0,
@@ -444,7 +449,7 @@
                     }
                 }
 
-                if (e.which == keyCodes.C && (e.ctrlKey || e.metaKey)) {    // CTRL + C
+        if ((e.which === keyCodes.C || e.which === keyCodes.INSERT) && (e.ctrlKey || e.metaKey) && !e.shiftKey) {    // CTRL+C or CTRL+INS
                     if (_onCopyInit) {
                         _onCopyInit.call();
                     }
@@ -517,7 +522,7 @@
                     }
                 }
 
-                if (e.which == keyCodes.V && (e.ctrlKey || e.metaKey)) {    // CTRL + V
+        if ((e.which === keyCodes.V && (e.ctrlKey || e.metaKey) && !e.shiftKey || (e.which === keyCodes.INSERT && e.shiftKey && !e.ctrlKey))) {    // CTRL+V or Shift+INS
                     var ta = _createTextBox('');
 
                     setTimeout(function() {
