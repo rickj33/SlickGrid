@@ -329,10 +329,7 @@
                         gridData.addItem( dataItem );
                     }
                     gridData.endUpdate();
-
-                    //   _grid.setData(d);
                     _grid.render();
-                  //  return;
                 }
             } else
             {

@@ -938,6 +938,7 @@
                 item.field.setBackingStoreValue( args.column, item, state );
             }
 
+            args.commitChanges();
             //update the object providing the transposed value.
 
         };
