@@ -3,8 +3,9 @@
 <head>
   <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
   <link rel="stylesheet" href="../slick.grid.css" type="text/css"/>
+  <link rel="stylesheet" href="../slick-editors.css" type="text/css">
   <link rel="stylesheet" href="examples.css" type="text/css"/>
-  <link rel="stylesheet" href="Factlook-0.0.1.css" type="text/css"/>
+<!--   <link rel="stylesheet" href="Factlook-0.0.1.css" type="text/css"/> -->
   <style>
     .totals {
       font-weight: bold;
@@ -32,10 +33,13 @@
   <script src="../lib/jquery-1.7.min.js"></script>
   <script src="../lib/jquery-ui-1.8.16.custom.min.js"></script>
   <script src="../lib/jquery.event.drag-2.2.js"></script>
-
-  <script src="../slick.core.js"></script>
-  <script src="../slick.editors.js"></script>
+    <script src="../lib/jquery-fixclick/jquery-fixclick.js"></script>
+    <script src="../lib/detect_browser.js"></script>
+      <script src="../lib/assert.js"></script>
+ <script src="../slick.core.js"></script>
   <script src="../slick.grid.js"></script>
+  <script src="../slick.editors.js"></script>
+ 
   <script src="transposeBreakData.js"></script>
   <script>
     var grid;
@@ -43,6 +47,7 @@
     var options = {
       enableCellNavigation: true,
       headerRowHeight: 30,
+      asyncEditorLoading : false,
       editable: true
     };
 
@@ -54,7 +59,7 @@
  {name: 'minValue', row: 2, display: 'Min Value', visible : true, fromStyle: false, editor: Slick.Editors.TransposedFloat, readonly : true},
  {name: 'maxValue', row: 3, display: 'Max Value', visible : true, fromStyle: false, editor: Slick.Editors.TransposedFloat, readonly : true},
 
- {name: 'fillColor', row: 4, display: 'Fill Color', visible : true, fromStyle: true, editor: Slick.Editors.TransposedText, readonly : false},
+ {name: 'fillColor', row: 4, display: 'Fill Color', visible : true, fromStyle: true, editor: Slick.Editors.TransposedColor, readonly : false},
  {name: 'fillOpacity', row: 5, display: 'Fill Opacity', visible : true, fromStyle: true,editor: Slick.Editors.TransposedInteger, readonly : false },
  {name: 'borderColor', row: 6, display: 'Border Color', visible : true, fromStyle: true, editor: Slick.Editors.TransposedText, readonly : false},
  {name: 'borderWidth', row: 7, display: 'Border Width', visible : true, fromStyle: true,editor: Slick.Editors.TransposedInteger, readonly : false },
