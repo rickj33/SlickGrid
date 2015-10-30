@@ -173,9 +173,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,       // `mkdir -p` equivalent
-            cwd: 'lib/', 
+            cwd: 'bower_components/', 
             src: [
-              'threedubmedia/event.drag/jquery.event.drag*.js', 'threedubmedia/event.drop/jquery.event.drop*.js', 
+              'jquery.dragdrop/event.drag/jquery.event.drag*.js', 'jquery.dragdrop/event.drop/jquery.event.drop*.js', 
               'spectrum/spectrum.*', '!spectrum/spectrum.*.json', 
               'TinyColor/tinycolor.js',
               'verge-screendimensions/verge.js',

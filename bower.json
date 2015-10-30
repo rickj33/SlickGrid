@@ -70,17 +70,18 @@
     "plugins/slick.validators.js"
   ],
   "dependencies": {
-    "jquery": ">=2.1",
-     "spectrum": "~1.7.1",
+   "jquery": "*",
+    "spectrum": "~1.7.1",
     "lodash": "~3.10.1",
-     "jquery-ui": "~1.11.0",
+    "jquery-ui": "~1.11.0",
+    "jquery.dragdrop" : "git@github.com:FactLook/jquery.threedubmedia.git",
     "hammer": "https://github.com/eightmedia/hammer.js.git",
-    "SlickGrid.CheckboxSelectAllColumn": "git://github.com/FactLook/SlickGrid.CheckboxSelectAllColumn.git",
-    "SlickGrid.EnhancementPager": "git://github.com/FactLook/SlickGridEnhancementPager.git",
-    "SlickGrid.FrozenColumns": "git://github.com/FactLook/guriddo.git",
-    "SlickGrid.spreadsheet-plugins": "git://github.com/FactLook/slickgrid-spreadsheet-plugins.git",
-    "SlickGrid.totals-plugins": "git://github.com/FactLook/slickgrid-totals-plugin.git",
-    "jQuery-ui-multiSelect": "git://github.com/FactLook/jquery-multiselect.git"
+    "SlickGrid.CheckboxSelectAllColumn": "git://github.com/FactLook/SlickGrid.CheckboxSelectAllColumn.git#master",
+    "SlickGrid.EnhancementPager": "git://github.com/FactLook/SlickGridEnhancementPager.git#master",
+    "SlickGrid.FrozenColumns": "git://github.com/FactLook/SlickGrid.FrozenColumns.git#master",
+    "SlickGrid.spreadsheet-plugins": "git://github.com/FactLook/slickgrid-spreadsheet-plugins.git#master",
+    "SlickGrid.totals-plugins": "git://github.com/FactLook/slickgrid-totals-plugin.git#master",
+    "jQuery-ui-multiSelect": "git://github.com/FactLook/jquery-multiselect.git#master"
   },
   "devDependencies": {
     "jquery-simulate-ext": "jquery.simulate#~1.3.0",
