@@ -15,6 +15,8 @@ module.exports = function (grunt) {
 
   var fs = require('fs');
   var path = require('path');
+    var _ = require('lodash');
+    var semver = require('semver');
 
   // Project configuration.
   grunt.initConfig({
@@ -38,6 +40,7 @@ module.exports = function (grunt) {
     clean: {
       dist: 'dist'
     },
+
 
     jshint: {
       options: {

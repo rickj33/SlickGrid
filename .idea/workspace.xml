@@ -1,7 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="" />
+    <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="">
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\controls\slick.columnpicker.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\controls\slick.columnpicker.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\controls\slick.pager.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\controls\slick.pager.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-icons_222222_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-icons_2e83ff_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-icons_454545_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-icons_888888_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\images\ui-icons_cd0a0a_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\jquery-ui-1.8.16.custom.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\css\smoothness\jquery-ui-slickgrid.custom.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-1-everything.htm" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-autotooltips.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-checkbox-row-select.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-colspan.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-composite-editor-item-details.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-custom-column-value-extractor.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-dataviewDataResponse.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-excel-clipboard-paste.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-excel-compatible-spreadsheet.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-explicit-initialization.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-grouping.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-header-row.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-multi-column-sort.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-optimizing-dataview.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-plugin-headerbuttons.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-plugin-headermenu.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-spreadsheet.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example-totals-via-data-provider.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example1-simple.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example10-async-post-render.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example11-autoheight.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example12-fillbrowser.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example13-getItem-sorting.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example14-highlighting.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example2-formatters.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example3-editing.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example3a-compound-editors.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example3b-editing-with-undo.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example4-model.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example5-collapsing.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example6-ajax-loading.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example7-events.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example8-alternative-display.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\example9-row-reordering.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\examples.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\index.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\examples\slick.compositeeditor.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\actions.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\ajax-loader-small.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\arrow_redo.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\arrow_right_peppermint.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\arrow_right_spearmint.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\arrow_undo.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\bullet_blue.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\bullet_star.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\bullet_toggle_minus.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\bullet_toggle_plus.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\calendar.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\collapse.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\comment_yellow.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\down.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\down.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\drag-handle.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\editor-helper-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\expand.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\filter.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\header-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\header-columns-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\header-columns-over-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\help.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\info.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\listview.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\pencil.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\row-over-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\sort-asc.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\sort-asc.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\sort-desc.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\sort-desc.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\stripes.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\tag_red.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\tick.png" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\user_identity.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\images\user_identity_plus.gif" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\lib\assert.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\lib\detect_browser.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\lib\firebugx.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\ext.README.md" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\ext.headerfilter.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\ext.overlays.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-checkboxselectcolumn.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-checkboxselectcolumn.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-headerbuttons.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-headerbuttons.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-headermenu.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-headermenu.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-validationtooltips.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick-validationtooltips.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.autosizer.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.autotooltips.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellcopymanager.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellexternalcopymanager.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellexternalcopymanager.js.suggestion" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellexternalcopymanager.todo.txt" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellrangedecorator.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellrangeselector.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellrowcolselectionmodel.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.cellselectionmodel.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.checkboxselectcolumn.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.columnmovemanager.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.composite.editor.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.formula.editor.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.formulacalculator.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.headerbuttons.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.headerbuttons.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.headermenu.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.headermenu.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.masterdetail.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.preloader.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.rowmovemanager.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.rowselectionmodel.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.selectiontracker.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.state.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.validationtooltips.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\plugins\slick.validators.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\resharper.DotSettings" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick-default-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick-default-theme.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick-editors.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick-editors.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.config.default-theme.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.config.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.core.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.dataview.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.editors.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.extensions.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.formatters.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.grid.css" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.grid.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.grid.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.grid.scss" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.groupitemmetadataprovider.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.less.macros.less" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\slick.remotemodel.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\dataview\dataview.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\dataview\index.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\grid\grid.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\grid\index.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\index.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\model benchmarks.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\plugins\autotooltips.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\plugins\autotooltips.js" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\tests\scrolling benchmarks.html" afterPath="" />
+      <change type="DELETED" beforePath="E:\code\Factlook\SlickGrid\wrappers\slick.grid.table.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
+    </list>
     <ignored path="SlickGrid.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,9 +178,6 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DaemonCodeAnalyzer">
-    <disable_hints />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -36,6 +197,9 @@
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true">
+    <gruntfile path="$PROJECT_DIR$/Gruntfile.js" />
+  </component>
   <component name="JsGruntFileManager">
     <gruntfiles>
       <GruntfileState>
@@ -47,9 +211,12 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1592" />
-    <option name="y" value="-8" />
+    <option name="x" value="-10" />
+    <option name="y" value="-2" />
     <option name="width" value="1616" />
     <option name="height" value="1216" />
   </component>
@@ -76,7 +243,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -95,23 +261,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlickGrid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlickGrid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" value="" />
-      <option name="executablePath" />
-      <option name="filePath" />
-      <method />
-    </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -120,29 +298,15 @@
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <method />
-    </configuration>
-    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
-      <setting name="configLocationType" value="CONFIG_FILE" />
-      <setting name="settingsFile" value="" />
-      <setting name="serverType" value="INTERNAL" />
-      <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
+      <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
     </configuration>
-    <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
@@ -155,24 +319,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1592" y="-8" width="1616" height="1216" extended-state="6" />
+    <frame x="-10" y="-2" width="1616" height="1216" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24952501" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -190,50 +355,8 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
-    </option>
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/plugins/slick.cellexternalcopymanager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8500">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/slick.cellcopymanager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/slick.grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34937438" vertical-offset="14291" max-vertical-offset="69173">
-          <caret line="862" column="53" selection-start-line="862" selection-start-column="53" selection-end-line="862" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/slick.cellexternalcopymanager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16361886" vertical-offset="2244" max-vertical-offset="8585">
-          <caret line="142" column="35" selection-start-line="142" selection-start-column="35" selection-end-line="142" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/example-excel-clipboard-paste.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69307923" vertical-offset="1740" max-vertical-offset="4879">
-          <caret line="183" column="23" selection-start-line="183" selection-start-column="9" selection-end-line="183" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
