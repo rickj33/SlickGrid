@@ -37,6 +37,7 @@
       _handler.unsubscribeAll();
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleDragInit(e, dd) {
       _dragging = false;
       // prevent the grid from cancelling drag'n'drop by default
@@ -67,7 +68,7 @@
       assert(start);
 
       dd.range = {
-        start: start, 
+        start: start,
         end: {}
       };
       dd.currentCell = cell;

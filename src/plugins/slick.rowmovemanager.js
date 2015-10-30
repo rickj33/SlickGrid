@@ -31,6 +31,7 @@
       _handler.unsubscribeAll();
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleDragInit(e, dd) {
       var cell = _grid.getCellFromEvent(e);
       if (!cell) {

@@ -48,6 +48,7 @@
         function wrapHandler(handler) {
             return function () {
                 if (!_inHandler) {
+                    //noinspection JSUnusedAssignment
                     _inHandler = true;
                     handler.apply(this, arguments);
                     _inHandler = false;
@@ -120,6 +121,7 @@
             return _ranges;
         }
 
+        //noinspection JSUnusedLocalSymbols
         function handleBeforeCellRangeSelected(e, args) {
             if (_grid.getEditorLock().isActive()) {
                 e.stopPropagation();
@@ -127,10 +129,12 @@
             }
         }
 
+        //noinspection JSUnusedLocalSymbols
         function handleCellRangeSelected(e, args) {
             setSelectedRanges([args.range]);
         }
 
+        //noinspection JSUnusedLocalSymbols
         function handleActiveCellChange(e, data) {
             if (data.cell === 0) {
                 // we are in row select mode
@@ -145,6 +149,7 @@
             }
         }
 
+        //noinspection JSUnusedLocalSymbols
         function handleOnHeaderClick(e, data) {
             if (data.column) {
                 if (typeof data.column.id != "undefined") {

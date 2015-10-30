@@ -135,6 +135,7 @@
     }
 
     function getSortColumns() {
+      //noinspection UnnecessaryLocalVariableJS
       var sortCols = _grid.getSortColumns();
       return sortCols;
     }

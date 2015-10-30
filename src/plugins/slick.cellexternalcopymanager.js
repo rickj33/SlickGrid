@@ -61,6 +61,7 @@
             }
             // we give focus on the grid when a selection is done on it.
             // without this, if the user selects a range of cell without giving focus on a particular cell, the grid doesn't get the focus and key stroke handles (ctrl+c) don't work
+            //noinspection JSUnusedLocalSymbols,JSUnusedLocalSymbols
             cellSelectionModel.onSelectedRangesChanged.subscribe( function ( e, args )
             {
                 _grid.focus();
@@ -311,7 +312,7 @@
             if (gridData.constructor.name === "DataView")
             {
                 availableRows = gridData.getLength() - activeRow;
-                d = gridData.getItems();
+                //d = gridData.getItems();
                 var gridColumns = _grid.getColumns();
                 if (availableRows < clippedRows)
                 {
@@ -492,6 +493,7 @@
         }
 
 
+        //noinspection JSUnusedLocalSymbols
         function handleKeyDown( e, args )
         {
             var ranges;

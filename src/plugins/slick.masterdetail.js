@@ -31,6 +31,7 @@
             });
         }
 
+        //noinspection JSUnusedLocalSymbols
         function defaultDetailsPaneProcessor(row, dataContext) {
             if (dataContext.detailsPane === undefined) {
                 throw new Error("Each data element must implement a 'detailsPane' property");

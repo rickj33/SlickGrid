@@ -29,6 +29,7 @@
             options = $.extend(true, {}, defaults, options);
             grid = g;
 
+            //noinspection JSPotentiallyInvalidConstructorUsage
             dragDecorator = new overlayRangeDecorator(grid);
 
             $headerOverlay = createRowHeaderOverlay(1200);
@@ -84,6 +85,7 @@
             moveSelectionOverlay(e, args);
         }
 
+        //noinspection JSUnusedLocalSymbols
         function moveHeaderRowOverlays(e, args) {
             if (typeof args.cell != "undefined") {
                 currentColumn = args.cell;
@@ -133,6 +135,7 @@
             });
         }
 
+        //noinspection JSUnusedLocalSymbols
         function moveSelectionOverlay(e, args) {
             var activeCell = grid.getActiveCell();
 
@@ -242,6 +245,7 @@
                                                dd.range.start.cell));
         }
 
+        //noinspection JSUnusedLocalSymbols
         function handleOverlayDragEnd(e, dd) {
             if (!handleDragging) {
                 return;
@@ -328,6 +332,7 @@
                     width: options.decoratorWidth
                 });
 
+                //noinspection JSSuspiciousNameCombination,JSSuspiciousNameCombination
                 decorator.$top.css({
                     top: from.top - 2,
                     left: to.left - 1,
@@ -335,6 +340,7 @@
                     width: to.right - from.left + 2
                 });
 
+                //noinspection JSSuspiciousNameCombination
                 decorator.$bottom.css({
                     top: to.bottom - 1,
                     left: from.left - 2,

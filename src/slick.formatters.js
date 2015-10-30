@@ -29,6 +29,7 @@
         }
     });
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
@@ -46,6 +47,7 @@
         }
     }
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
@@ -54,6 +56,7 @@
         return value ?  "<input type='checkbox' checked='checked'>": "<input type='checkbox'>";
     }
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
@@ -63,11 +66,13 @@
         {
             return "";
         }
+        //noinspection UnnecessaryLocalVariableJS
         var result = moment(value).format('MM-DD-YYYY hh:mm a');
         return result;
 
     }
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
@@ -109,27 +114,30 @@
         return value;
     }
 
-     function TransposedPercentFormatter(row, cell, value, columnDef, dataContext)
+     //noinspection JSUnusedLocalSymbols
+    function TransposedPercentFormatter(row, cell, value, columnDef, dataContext)
     {
         if (value === null || value === "")
         {
-            return "";
+            return 0;
         }
 
 
         return convertToPercent(value);
     }
- 
+
   function   convertToPercent(value)
     {
 
+        //noinspection UnnecessaryLocalVariableJS
         var percentValue = value;
 
-       
+
 
         return  percentValue * 100;
     }
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
@@ -145,6 +153,7 @@
 
 
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
@@ -156,6 +165,7 @@
 
 
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
@@ -164,11 +174,12 @@
         return value ? "Yes" : "No";
     }
 
+    //noinspection JSUnusedLocalSymbols
     /**
      * @return string
      */
     function CheckmarkFormatter(row, cell, value, columnDef, dataContext)
     {
-        return value ? "<img src='custom_vendor/factlook-slickgrid/images/tick.png'>" : "";
+        return value ? "<img src='images/tick.png'>" : "";
     }
 })(jQuery);

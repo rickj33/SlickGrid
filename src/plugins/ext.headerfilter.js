@@ -74,6 +74,7 @@
             }
         }
 
+        //noinspection JSUnusedLocalSymbols
         function handleHeaderCellRendered(e, args) {
             var column = args.column;
             if (column.nofilter) return;
@@ -89,6 +90,7 @@
             $el.bind("click", showFilter).appendTo(args.node);
         }
 
+        //noinspection JSUnusedLocalSymbols
         function handleBeforeHeaderCellDestroy(e, args) {
             $(args.node)
                 .find(".slick-header-menubutton")

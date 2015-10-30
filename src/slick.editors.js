@@ -41,7 +41,7 @@
     function RowEditor(args)
     {
         var theEditor;
-        var scope = this;
+
 
         this.init = function()
         {
@@ -843,7 +843,7 @@
 
         function parseDateStringAndDetectFormat(s)
         {
-            dateFormat = 0;
+
             if (s instanceof Date)
             {
                 return s;
@@ -1221,6 +1221,7 @@
                 }
             });
 
+            //noinspection JSUnusedLocalSymbols
             $picker.click(function(e)
             {
                 //$helper.toggle();
@@ -1239,6 +1240,7 @@
             //  $helper.hide();
             //});
 
+            //noinspection JSUnusedLocalSymbols
             $helper.find(".editor-percentcomplete-buttons button").bind("click", function(e)
             {
                 $input.val($(this).attr("val"));
@@ -1380,6 +1382,7 @@
             $wrapped_input.bind("keydown", scope.handleKeyDown);
 
             assert(args.container);
+            //noinspection JSUnusedLocalSymbols
             $picker.click(function(e)
             {
                 if (!$wrapper.is(":visible"))
@@ -1816,7 +1819,7 @@
         var $input;
         var defaultValue;
         var scope = this;
-        var calendarOpen = false;
+
         scope.realEditor = args.item.field.editor;
 
         this.init = function()
@@ -2733,6 +2736,7 @@
         this.serializeValue = function()
         {
             var intValue = parseInt($input.val(), 10) || 0;
+            //noinspection UnnecessaryLocalVariableJS
             var decimalValue = intValue / 100;
             return decimalValue;
         };

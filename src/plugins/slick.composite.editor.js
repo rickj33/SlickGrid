@@ -220,6 +220,7 @@
     }
 
     // so we can do "editor instanceof Slick.CompositeEditor
+    //noinspection JSPotentiallyInvalidConstructorUsage
     editor.prototype = this;
 
     return editor;

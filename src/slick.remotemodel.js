@@ -34,6 +34,7 @@
     };
   }
 
+  //noinspection JSUnusedLocalSymbols
   function ArrayAdapter(options) {
     return {
       dataLoaded: function(req, res) {
@@ -49,7 +50,7 @@
   }
 
 
-
+  /*
     data; provider; api: {
       getItem,
       getLength / length; if array
@@ -282,6 +283,7 @@
       _grid.onViewportChanged.unsubscribe(onGridViewportChanged);
     }
 
+    //noinspection JSUnusedLocalSymbols
     function onGridSort(e, args) {
       var
         result = [], column,
@@ -310,6 +312,7 @@
       refresh();
     }
 
+    //noinspection JSUnusedLocalSymbols
     function updatreGridOnDataLoaded(e,args) {
       for (var i = args.from; i <= args.to; i++) {
         _grid.invalidateRow(i);

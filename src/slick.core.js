@@ -672,6 +672,7 @@
         // ... and hold
         start_time[id] = begin_time;
       }
+      //noinspection UnnecessaryLocalVariableJS
       var rv = end_time - begin_time;
       return rv;
     };
@@ -803,6 +804,7 @@
    */
   function Keyboard() {
     // for now, base the keyboard code set off of jQueryUI, if it is present
+    //noinspection UnnecessaryLocalVariableJS
     var keycodes = $.extend({},  $.ui && $.ui.keyCode, {
       BACKSPACE: 8,
       COMMA: 188,

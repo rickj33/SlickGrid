@@ -27,6 +27,7 @@
           .appendTo($grid);
       }
 
+      //noinspection JSUnusedLocalSymbols
       var pos = $grid.offset();
       var height = $grid.height();
       var width = $grid.width();
@@ -65,6 +66,7 @@
       if (!isDataLoading.length) hide();
     }
 
+    //noinspection JSUnusedLocalSymbols
     function onLoaderDataLoadError(e, args) {
       isDataLoading.pop();
       if (!isDataLoading.length) hide();

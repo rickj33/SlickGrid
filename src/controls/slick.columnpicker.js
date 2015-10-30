@@ -25,6 +25,7 @@
 
       $menu = $("<span class='slick-columnpicker' style='display:none;position:absolute;z-index:20;' />").appendTo(document.body);
 
+      //noinspection JSUnusedLocalSymbols
       $menu.bind("mouseleave", function (e) {
         $(this).fadeOut(options.fadeSpeed);
       });
@@ -37,6 +38,7 @@
       $menu.remove();
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleHeaderContextMenu(e, args) {
       e.preventDefault();
       $menu.empty();

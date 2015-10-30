@@ -45,6 +45,7 @@
       _handler.unsubscribeAll();
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleSelectedRowsChanged(e, args) {
       if (!_options.rowselector) return;
 
@@ -188,6 +189,7 @@
       return output;
     }
 
+    //noinspection JSUnusedLocalSymbols
     function checkboxSelectionFormatter(row, cell, value, columnDef, rowDataItem, cellMetaInfo) {
       if (cellMetaInfo.outputPlainText) {
         if (_selectedRowsLookup[row]) {

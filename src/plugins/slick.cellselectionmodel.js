@@ -75,6 +75,7 @@
       }
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleCellRangeSelected(e, args) {
       setSelectedRanges([args.range]);
     }
@@ -84,46 +85,46 @@
         setSelectedRanges([new Slick.Range(args.row, args.cell)]);
       }
     }
-    
+
     function handleKeyDown(e) {
       assert(!(e instanceof Slick.EventData));
 
       var ranges, last;
-      var active = _grid.getActiveCell(); 
+      var active = _grid.getActiveCell();
 
-      if ( active && e.shiftKey && !e.ctrlKey && !e.altKey && 
+      if ( active && e.shiftKey && !e.ctrlKey && !e.altKey &&
           (e.which === Slick.Keyboard.LEFT || e.which === Slick.Keyboard.RIGHT || e.which === Slick.Keyboard.UP || e.which === Slick.Keyboard.DOWN) ) {
-      
+
         ranges = getSelectedRanges();
         if (!ranges.length) {
          ranges.push(new Slick.Range(active.row, active.cell));
         }
-         
-        // keyboard can work with last range only          
+
+        // keyboard can work with last range only
         last = ranges.pop();
-        
+
         // can't handle selection which is outside the active cell
         if (!last.contains(active.row, active.cell)) {
           last = new Slick.Range(active.row, active.cell);
         }
-        
+
         var dRow = last.toRow - last.fromRow,
             dCell = last.toCell - last.fromCell,
             // walking direction
             dirRow = active.row == last.fromRow ? 1 : -1,
             dirCell = active.cell == last.fromCell ? 1 : -1;
-                 
+
         if (e.which === Slick.Keyboard.LEFT) {
-          dCell -= dirCell; 
+          dCell -= dirCell;
         } else if (e.which === Slick.Keyboard.RIGHT) {
-          dCell += dirCell ; 
+          dCell += dirCell ;
         } else if (e.which === Slick.Keyboard.UP) {
-          dRow -= dirRow; 
+          dRow -= dirRow;
         } else if (e.which === Slick.Keyboard.DOWN) {
-          dRow += dirRow; 
+          dRow += dirRow;
         }
-        
-        // define new selection range 
+
+        // define new selection range
         var new_last = new Slick.Range(active.row, active.cell, active.row + dirRow*dRow, active.cell + dirCell*dCell);
         if (removeInvalidRanges([new_last]).length) {
           ranges.push(new_last);
@@ -136,11 +137,11 @@
           ranges.push(last);
         }
 
-        setSelectedRanges(ranges);  
-       
+        setSelectedRanges(ranges);
+
         e.preventDefault();
-        e.stopPropagation();        
-      }           
+        e.stopPropagation();
+      }
       else if (!e.shiftKey && !e.ctrlKey && !e.altKey && e.which == Slick.Keyboard.ESC) {
         setSelectedRanges([]);
         e.preventDefault();

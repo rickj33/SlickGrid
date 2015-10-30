@@ -264,7 +264,7 @@
       }
 
       dd.range = {
-        start: start, 
+        start: start,
         end: {}
       };
       dd.alreadySelectedRows = rangesToRows(_ranges);
@@ -303,6 +303,7 @@
       return true;
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleDragEnd(e, dd) {
       if (!_dragging) {
         return;

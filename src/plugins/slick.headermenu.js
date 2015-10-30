@@ -126,6 +126,7 @@
       }
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleHeaderCellRendered(e, args) {
       var column = args.column;
       var menu = column.header && column.header.menu;
@@ -155,6 +156,7 @@
     }
 
 
+    //noinspection JSUnusedLocalSymbols
     function handleBeforeHeaderCellDestroy(e, args) {
       var column = args.column;
 

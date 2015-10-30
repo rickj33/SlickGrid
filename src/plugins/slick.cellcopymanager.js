@@ -21,6 +21,7 @@
       _grid.onKeyDown.unsubscribe(handleKeyDown);
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleKeyDown(e, args) {
       var ranges;
       if (!_grid.getEditorLock().isActive()) {

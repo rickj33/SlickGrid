@@ -46,6 +46,7 @@
     options = $.extend(true, {}, _defaults, options);
 
 
+    //noinspection JSUnusedLocalSymbols
     function defaultGroupCellFormatter(row, cell, value, columnDef, rowDataItem, info) {
       if (!options.enableExpandCollapse) {
         return rowDataItem.title;
@@ -62,19 +63,24 @@
           "</span>";
     }
 
+    //noinspection JSUnusedLocalSymbols
     function defaultTotalsCellFormatter(row, cell, value, columnDef, rowDataItem, info) {
       return (columnDef.groupTotalsFormatter && columnDef.groupTotalsFormatter(rowDataItem, columnDef)) || "";
     }
 
+    //noinspection JSUnusedLocalSymbols
     function defaultGroupRowFormatter(row, rowDataItem, info) {
       assert(info.rowData.__group === true);
+      //noinspection UnnecessaryLocalVariableJS
       var level = info.rowData.level;
       info.attributes["data-group-level"] = level;
     }
 
+    //noinspection JSUnusedLocalSymbols
     function defaultTotalsRowFormatter(row, rowDataItem, info) {
       assert(info.rowData.__groupTotals === true);
       assert(info.rowData.group.__group === true);
+      //noinspection UnnecessaryLocalVariableJS
       var level = info.rowData.group.level;
       info.attributes["data-group-level"] = level;
     }
@@ -108,10 +114,10 @@
 
         var range = _grid.getCachedRowRangeInfo();
         this.getData().setRefreshHints({
-          // WARING: do NOT simply use `range.top/bottom` here as the span cache 
+          // WARING: do NOT simply use `range.top/bottom` here as the span cache
           // can be much larger and needs to be cleared entirely too:
           ignoreDiffsBefore: Math.max(range.spanCacheTop, range.top),
-          ignoreDiffsAfter: Math.max(range.spanCacheBottom, range.bottom),   
+          ignoreDiffsAfter: Math.max(range.spanCacheBottom, range.bottom),
           isFilterNarrowing: !item.collapsed,
           isFilterExpanding: !!item.collapsed
         }); // tell DataView we'll take the diff till `ignoreDiffsAfter` and don't care about anything at or below that row.
@@ -139,12 +145,12 @@
             }
             var range = _grid.getCachedRowRangeInfo();
             this.getData().setRefreshHints({
-              // WARING: do NOT simply use `range.top/bottom` here as the span cache 
+              // WARING: do NOT simply use `range.top/bottom` here as the span cache
               // can be much larger and needs to be cleared entirely too:
               ignoreDiffsBefore: Math.max(range.spanCacheTop, range.top),
-              ignoreDiffsAfter: Math.max(range.spanCacheBottom, range.bottom),   
+              ignoreDiffsAfter: Math.max(range.spanCacheBottom, range.bottom),
               isFilterNarrowing: !item.collapsed,
-              isFilterExpanding: !!item.collapsed   
+              isFilterExpanding: !!item.collapsed
             }); // tell DataView we'll take the diff till `ignoreDiffsAfter` and don't care about anything at or below that row.
 
             if (item.collapsed) {
@@ -160,6 +166,7 @@
       }
     }
 
+    //noinspection JSUnusedLocalSymbols
     function getGroupRowMetadata(item, row, cell, rows) {
       return {
         selectable: options.groupSelectable,
@@ -176,6 +183,7 @@
       };
     }
 
+    //noinspection JSUnusedLocalSymbols
     function getTotalsRowMetadata(item, row, cell, rows) {
       return {
         selectable: options.totalsSelectable,

@@ -21,6 +21,7 @@
       throw new Error('missing argument: container');
     }
 
+    //noinspection JSUnusedLocalSymbols
     function init(grid) {
       pollSizeChanged();
     }

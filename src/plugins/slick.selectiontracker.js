@@ -6,6 +6,7 @@
   });
 
   function SelectionTracker(options) {
+    //noinspection JSUnusedLocalSymbols
     var
       self = this,
       _grid,
@@ -42,6 +43,7 @@
       _handler.unsubscribeAll();
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleSelectionChanged(e, args) {
       var
         PAGE_SIZE = 50,
@@ -113,6 +115,7 @@
       });
     }
 
+    //noinspection JSUnusedLocalSymbols
     function handleLoaderDataLoaded(e, args) {
       var
       _identities = args[options.identitiesAttribute];
