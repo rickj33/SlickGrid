@@ -92,7 +92,7 @@
             editors[idx] = new (columns[idx].editor)(newArgs);
           }
         }
-      }
+      };
 
       this.destroy = function () {
         var idx = editors.length;

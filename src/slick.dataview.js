@@ -67,11 +67,11 @@
         var groupingInfoDefaults = {
             getter                : null,
             formatter             : null,
-      comparer: function(a, b) { 
-        return (a.value === b.value ? 
-                0 : 
+      comparer: function(a, b) {
+        return (a.value === b.value ?
+                0 :
                 (a.value > b.value ? 1 : -1)
-               ); 
+               );
       },
             predefinedValues      : [],
             aggregators           : [],
@@ -117,7 +117,7 @@
 
 
 
-   
+
 
         function destroy()
         {
@@ -302,10 +302,10 @@
                 case 'object':                      // this is equivalent to y === NULL thanks to the valueExtractor above
                     return 1;
                 }
-                // This next statement, and all its brethren below, are here merely to appease 
-                // the JSHint/JSCS Gods and other less-than-truly-intelligent JIT engines; 
-                // *we*, on the other hand, know we'll never get here!               
-                break;                              
+                // This next statement, and all its brethren below, are here merely to appease
+                // the JSHint/JSCS Gods and other less-than-truly-intelligent JIT engines;
+                // *we*, on the other hand, know we'll never get here!
+                break;
             case 'number':
                 if (isNaN(xv)) {
                     switch (typeof yv) {
@@ -482,7 +482,7 @@
 
     function sort(comparer, ascending, unstable) {
       sortAsc = (ascending == null ? true : ascending);
-      sortUnstable = unstable || false;
+      var sortUnstable = unstable || false;
       if (typeof comparer === 'function') {
         sortComparer = {
             valueExtractor: function (node) {
@@ -513,9 +513,9 @@
       assert(typeof sortComparer.comparator === 'function');
 
       if (!sortAsc) {
-         * Provides a workaround for the extremely slow sorting in IE.
-         * Does a [lexicographic] sort on a give column by temporarily overriding Object.prototype.toString
-         * to return the value of that field and then doing a native Array.sort().
+         * Provides; a; workaround; for the extremely slow; sorting in IE.
+         * Does; a [lexicographic]; sort; on; a; give; column; by; temporarily; overriding; Object.prototype.toString
+         * to; return the; value; of; that; field; and; then; doing; a; native; Array.sort().
          */
                 items.reverse();
             }
@@ -538,7 +538,7 @@
       //
       // Extra notes:
       //
-      // We also use the mapper phase to turn sort into a stable sort by initializing 
+      // We also use the mapper phase to turn sort into a stable sort by initializing
       // the stableSortIdProperty for each data item:
       // by including that one in the comparer check we create a stable sort.
 
@@ -738,16 +738,16 @@
       if (item && item.__group && item.totals && !item.totals.initialized) {
         gi = groupingInfos[item.level];
         // We'll always have to calculate the totals once we get here as those totals
-        // may not just be used in the totals row only: see the 'grouping' example for a 
-        // situation where aggregated data is used as part of the group line itself, in 
+        // may not just be used in the totals row only: see the 'grouping' example for a
+        // situation where aggregated data is used as part of the group line itself, in
         // a userland custom formatter.
-        // 
+        //
         // Hence we do NOT check for `!gi.displayTotalsRow` here.
-        // 
+        //
         // Also note that a side effect of the totals calculation here is the proper
-        // initialization of the group title when lazy calculation for the group has 
+        // initialization of the group title when lazy calculation for the group has
         // been enabled: this is the quickest and overall cleanest way to ensure that
-        // the optional title userland formatter always is guaranteed to receive 
+        // the optional title userland formatter always is guaranteed to receive
         // properly initialized group/totals data on invocation.
         // (The 'grouping' example, for instance, would crash without this 'delayed'
         // rendering of the group title.)
@@ -961,7 +961,7 @@
 
       // And when we have lazy initialization enabled, we'll also have to set the title
       // now, because we wouldn't have been able to do that one before!
-      
+
       //if (gi.lazyTotalsCalculation) {
       group.title = gi.formatter ? gi.formatter(group) : group.value;
       //}
@@ -1189,7 +1189,7 @@
             }
 
       return {
-        totalRows: filteredItems.length, 
+        totalRows: filteredItems.length,
         rows: paged
       };
         }
@@ -1287,7 +1287,7 @@
             }
       if (countBefore !== rows.length) {
         onRowCountChanged.notify({
-          previous: countBefore, 
+          previous: countBefore,
           current: rows.length
         }, null, self);
             }
@@ -1355,8 +1355,8 @@
                     setSelectedRowIds(newSelectedRowIds);
         } else {
                     // keep the ones that are hidden
-          var existing = $.grep(selectedRowIds, function (id) { 
-            return self.getRowById(id) === undefined; 
+          var existing = $.grep(selectedRowIds, function (id) {
+            return self.getRowById(id) === undefined;
           });
                     // add the newly selected ones
                     setSelectedRowIds(existing.concat(newSelectedRowIds));
@@ -1471,7 +1471,7 @@
             "onRowCountChanged"   : onRowCountChanged,
             "onRowsChanged"       : onRowsChanged,
             "onPagingInfoChanged" : onPagingInfoChanged,
-            "destroy"             : destroy,
+            "destroy"             : destroy
         });
     }
 
@@ -1597,7 +1597,7 @@
         }
         if (!found) {
           this.pairs_.push({
-            value: val, 
+            value: val,
             count: 1
           });
         }

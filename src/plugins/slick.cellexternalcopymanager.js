@@ -46,7 +46,7 @@
             'C'  : 67,
             'V'  : 86,
             'ESC': 27
-        }
+        };
 
         function init( grid )
         {
@@ -185,7 +185,7 @@
             }
 
             var newColumnIndex = 0;
-            var fieldNameStartValue = 0
+            var fieldNameStartValue = 0;
             if (_options.fieldNameStartValue)
             {
                 fieldNameStartValue = _options.fieldNameStartValue;
@@ -463,7 +463,7 @@
                         'fromRow' : activeRow,
                         'toCell'  : activeCell + this.w - 1,
                         'toRow'   : activeRow + this.h - 1
-                    }
+                    };
 
                     this.markCopySelection( [bRange] );
                     _grid.getSelectionModel().setSelectedRanges( [bRange] );

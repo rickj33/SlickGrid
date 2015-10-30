@@ -40,7 +40,7 @@
         }
 
         function renderExt(rows, rowNodes) {
-            for (i = 0; i < rows.length; i++) {
+            for (var i = 0; i < rows.length; i++) {
                 var rowIndex = rows[i];
                 var parentRow = $(rowNodes[i]);
                 var childRowDetails = parentRow.children('.slick-row-details');
@@ -124,7 +124,7 @@
 
         function setExpandedRows(rows) {
             var expandedRows = {};
-            for (i = 0; i < rows.length; i++) {
+            for (var i = 0; i < rows.length; i++) {
                 expandedRows[i] = i;
             }
             _expandedRows = expandedRows;
@@ -217,7 +217,7 @@
             function adjustHeight(heightOffset) {
                 parentRow.nextAll().each(function() {
                     var siblingRow = $(this);
-                    var top = parseInt(siblingRow.css('top'))
+                    var top = parseInt(siblingRow.css('top'));
                     siblingRow.css("top", top + heightOffset);
                 });
                 gridCanvas.height(heightOffset + gridCanvas.height());
@@ -253,7 +253,7 @@
                 }, e, _self);
 
                 childRowDetails.css({
-                    "margin-top" : gridRowHeight,
+                    "margin-top" : gridRowHeight
                 });
 
                 height = childRowDetails.outerHeight();

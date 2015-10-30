@@ -202,8 +202,8 @@ if (typeof Slick === "undefined")
         var $focusSink, $focusSink2;
         var $headerScroller;
         var $headers;
-        var $headerRow, $headerRowScroller;
-        var $footerRow, $footerRowScroller;
+        var $headerRow, $headerRowScroller, $headerRowSpacer;
+        var $footerRow, $footerRowScroller, $footerRowSpacer;
         var $topPanelScroller;
         var $topPanel;
         var $viewport;
@@ -996,7 +996,7 @@ if (typeof Slick === "undefined")
 
         function mkSaneId(columnDef, cell, row)
         {
-            s = "" + uid + "_c" + cell + "_r" + row + "_" + columnDef.id;
+            var s = "" + uid + "_c" + cell + "_r" + row + "_" + columnDef.id;
             s = s.replace(/[^a-zA-Z0-9]+/g, "_");
             //assert($("[aria-describedby=" + s + "]").length === 0);
             return s;
@@ -1263,14 +1263,14 @@ if (typeof Slick === "undefined")
 
             if (hasNestedColumns)
             {
-                for (i = 0, len = nestedColumns.length; i < len; i++)
+                for (var i = 0, len = nestedColumns.length; i < len; i++)
                 {
                     var cell;
                     var layer = nestedColumns[i];
-
-                    for (j = 0, llen = layer.length; j < llen; j++)
+                    var llen = layer.length;
+                    for (var j = 0; j < llen; j++)
                     {
-                        column = layer[j];
+                        var column = layer[j];
                         if (column.children)
                         {
                             cell = column.childrenFirstIndex;
@@ -1549,7 +1549,7 @@ if (typeof Slick === "undefined")
                     c.__columnResizeInfo = {
                         // lock each column's width option to current width
                         previousWidth : c.width, // previousWidth should NOT be measured from the UI as this will b0rk the system depending on boxmodel. // $(e).outerWidth();
-                        absMinWidth   : Math.max(c.minWidth || 0, absoluteColumnMinWidth),
+                        absMinWidth   : Math.max(c.minWidth || 0, absoluteColumnMinWidth)
                     };
                 }
 
@@ -2268,7 +2268,7 @@ if (typeof Slick === "undefined")
                 left        : columnCssRulesL[idx],
                 right       : columnCssRulesR[idx],
                 headerLeft  : columnCssRulesHL[idx],
-                headerRight : columnCssRulesHR[idx],
+                headerRight : columnCssRulesHR[idx]
             };
         }
 
@@ -7992,7 +7992,7 @@ if (typeof Slick === "undefined")
                 trigger(self.onActiveCellChanging, {
                     activeCell     : newCellNode,
                     prevActiveCell : activeCellNode,
-                    editMode       : cfg.forceEditMode,
+                    editMode       : cfg.forceEditMode
                 }, e);
                 if (e.isHandled())
                 {
@@ -8065,7 +8065,7 @@ if (typeof Slick === "undefined")
                     trigger(self.onActiveCellChanged, {
                         activeCell     : newCellNode,
                         prevActiveCell : prevActiveCell,
-                        editMode       : cfg.forceEditMode,
+                        editMode       : cfg.forceEditMode
                     }, e);
                     if (e.isHandled())
                     {
@@ -8327,7 +8327,7 @@ if (typeof Slick === "undefined")
                 item           : item,
                 column         : columnDef,
                 rowMetadata    : rowMetadata,
-                columnMetadata : columnMetadata,
+                columnMetadata : columnMetadata
             }, e);
             if (e.isHandled())
             {

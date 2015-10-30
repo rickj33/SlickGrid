@@ -180,7 +180,7 @@ if (!Array.prototype.filter) {
     getRefFromString: function (str) {
       var coords = str.split(',').map(parseInt10);
       return {
-        row: coords[0], 
+        row: coords[0],
         col: coords[1]
       };
     },
@@ -211,7 +211,7 @@ if (!Array.prototype.filter) {
         if (from.col == to.col) {
           for (var r = 0; r <= to.row - from.row; r += 1) {
             refs.push({
-              row: from.row + r, 
+              row: from.row + r,
               col: from.col
             });
           }
@@ -219,7 +219,7 @@ if (!Array.prototype.filter) {
           var c;
           for (c = from.col; c <= to.col; c += 1) {
             refs.push({
-              row: from.row, 
+              row: from.row,
               col: c
             });
           }
@@ -227,14 +227,14 @@ if (!Array.prototype.filter) {
             for (var r = from.row + 1; r < to.row; r += 1) {
               for (c = 0; c <= to.col; c += 1) {
                 refs.push({
-                  row: r, 
+                  row: r,
                   col: c
                 });
               }
             }
             for (c = 0; c <= to.col; c += 1) {
               refs.push({
-                row: to.row, 
+                row: to.row,
                 col: c
               });
             }
@@ -327,7 +327,7 @@ if (!Array.prototype.filter) {
   function lex(str) {
     var pos = 0, length = str.length, tokens = [];
     return (function () {
-      var type, name, startPos;
+      var type, name, startPos,value;
       while (!ended()) {
         ignoreSpaces();
         startPos = pos;
@@ -367,15 +367,15 @@ if (!Array.prototype.filter) {
           step();
         }
         tokens.push({
-          type: type, 
-          value: value, 
+          type: type,
+          value: value,
           pos: startPos
         });
         ignoreSpaces();
       }
       tokens.push({
-        type: 'eof', 
-        value: 'eof', 
+        type: 'eof',
+        value: 'eof',
         pos: length
       });
       return tokens;
@@ -457,7 +457,7 @@ if (!Array.prototype.filter) {
 
     function syntaxError(msg) {
       return {
-        name: 'syntax error', 
+        name: 'syntax error',
         message: msg
       };
     }
@@ -482,12 +482,12 @@ if (!Array.prototype.filter) {
     function expr() {
       var t = term();
       while (next.value === '+' || next.value === '-') {
-        op = next.value;
+        var op = next.value;
         consume();
         t = {
-          type: 'binary', 
-          op: op, 
-          left: t, 
+          type: 'binary',
+          op: op,
+          left: t,
           right: term()
         };
       }
@@ -497,12 +497,12 @@ if (!Array.prototype.filter) {
     function term() {
       var t = factor();
       while (next.value === '*' || next.value === '/') {
-        op = next.value;
+        var op = next.value;
         consume();
         t = {
-          type: 'binary', 
-          op: op, 
-          left: t, 
+          type: 'binary',
+          op: op,
+          left: t,
           right: factor()
         };
       }
@@ -514,9 +514,9 @@ if (!Array.prototype.filter) {
       if (next.value === '^') {
         consume();
         return {
-          type: 'binary', 
-          op: '^', 
-          left: t, 
+          type: 'binary',
+          op: '^',
+          left: t,
           right: factor()
         };
       } else {
@@ -528,7 +528,7 @@ if (!Array.prototype.filter) {
       var t;
       if (next.type === 'number') {
         t = {
-          type: 'numeric', 
+          type: 'numeric',
           value: next.value
         };
         consume();
@@ -543,8 +543,8 @@ if (!Array.prototype.filter) {
       } else if (next.value === '-') {
         consume();
         return {
-          type: 'unary', 
-          op: '-', 
+          type: 'unary',
+          op: '-',
           right: factor()
         };
       } else {
@@ -555,7 +555,7 @@ if (!Array.prototype.filter) {
     function name() {
       if (next.value.charAt(0) === '_') {
         var t = {
-          type: 'variable', 
+          type: 'variable',
           value: next.value
         };
         consume();
@@ -569,7 +569,7 @@ if (!Array.prototype.filter) {
           value += ':' + cellRef();
         }
         return {
-          type: 'ref', 
+          type: 'ref',
           value: value
         };
       } else {
@@ -579,8 +579,8 @@ if (!Array.prototype.filter) {
 
     function func() {
       var t = {
-        type: 'func', 
-        value: next.value, 
+        type: 'func',
+        value: next.value,
         args: []
       };
       consume();
@@ -712,7 +712,7 @@ if (!Array.prototype.filter) {
 
   function evaluationError(msg) {
     return {
-      name: 'evaluation error', 
+      name: 'evaluation error',
       message: msg
     };
   }
@@ -783,7 +783,7 @@ if (!Array.prototype.filter) {
     this.loadValue = function (item) {
       var cell = args.grid.getActiveCell();
       var ref = {
-        row: cell.row, 
+        row: cell.row,
         col: cell.cell - 1
       };
       var f = getFormulaCalculator(args.grid).formulaManager.get(ref);
@@ -797,7 +797,7 @@ if (!Array.prototype.filter) {
     this.serializeValue = function () {
       var ref, val = $input.val(), cell = args.grid.getActiveCell();
       ref = {
-        row: cell.row, 
+        row: cell.row,
         col: cell.cell - 1
       };
       if (val.charAt(0) === '=' && val.length > 1) {

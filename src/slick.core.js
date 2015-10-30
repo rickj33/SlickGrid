@@ -48,7 +48,7 @@
      */
     this.preventDefault = function (propagateSignalsOverride) {
       isDefaultPrevented = true;
-      if ((propagateSignalsOverride == null ? propagateSignals : propagateSignalsOverride) && 
+      if ((propagateSignalsOverride == null ? propagateSignals : propagateSignalsOverride) &&
           this.sourceEvent && typeof this.sourceEvent.preventDefault === 'function') {
         this.sourceEvent.preventDefault();
       }
@@ -69,7 +69,7 @@
      */
     this.stopPropagation = function (propagateSignalsOverride) {
       isPropagationStopped = true;
-      if ((propagateSignalsOverride == null ? propagateSignals : propagateSignalsOverride) && 
+      if ((propagateSignalsOverride == null ? propagateSignals : propagateSignalsOverride) &&
           this.sourceEvent && typeof this.sourceEvent.stopPropagation === 'function') {
         this.sourceEvent.stopPropagation();
       }
@@ -90,7 +90,7 @@
      */
     this.stopImmediatePropagation = function (propagateSignalsOverride) {
       isImmediatePropagationStopped = true;
-      if ((propagateSignalsOverride == null ? propagateSignals : propagateSignalsOverride) && 
+      if ((propagateSignalsOverride == null ? propagateSignals : propagateSignalsOverride) &&
           this.sourceEvent && typeof this.sourceEvent.stopImmediatePropagation === 'function') {
         this.sourceEvent.stopImmediatePropagation();
       }
@@ -103,7 +103,7 @@
      */
     this.isImmediatePropagationStopped = function () {
       return isImmediatePropagationStopped;
-    }
+    };
 
     /**
      * Returns TRUE when any of these methods of this event has been called:
@@ -312,7 +312,7 @@
       return range.fromRow === this.fromRow && range.toRow === this.toRow &&
           range.fromCell === this.fromCell && range.toCell === this.toCell;
     };
-    
+
     /***
      * Returns a readable representation of a range.
      * @method toString
@@ -547,45 +547,45 @@
 
   /***
    * Provide a generic performance timer, which strives to produce highest possible accuracy time measurements.
-   * 
+   *
    * methods:
-   * 
-   * - `start()` (re)starts the timer and 'marks' the current time for ID="start". 
+   *
+   * - `start()` (re)starts the timer and 'marks' the current time for ID="start".
    *   `.start()` also CLEARS ALL .mark_delta() timers!
    *
-   * - `mark(ID)` calculates the elapsed time for the current timer in MILLISECONDS (floating point) 
+   * - `mark(ID)` calculates the elapsed time for the current timer in MILLISECONDS (floating point)
    *   since `.start()`. `.mark_delta()` then updates the 'start/mark time' for the given ID.
    *
    *   ID *may* be NULL, in which case `.mark()` will not update any 'start/mark time'.
-   *    
-   * - `mark_delta(ID, START_ID)` calculates the elapsed time for the current timer in MILLISECONDS (floating point) since 
-   *   the last call to `.mark_delta()` or `.mark()` with the same ID. `.mark_delta()` then updates the 
+   *
+   * - `mark_delta(ID, START_ID)` calculates the elapsed time for the current timer in MILLISECONDS (floating point) since
+   *   the last call to `.mark_delta()` or `.mark()` with the same ID. `.mark_delta()` then updates the
    *   'start/mark time' for the given ID.
    *
-   *   When the optional START_ID is specified, the delta is calculated against the last marked time 
+   *   When the optional START_ID is specified, the delta is calculated against the last marked time
    *   for that START_ID.
    *
    *   When the ID is NULL or not specified, then the default ID of "start" will be assumed.
-   *   
-   *   This results in consecutive calls to `.mark_delta()` with the same ID to produce 
+   *
+   *   This results in consecutive calls to `.mark_delta()` with the same ID to produce
    *   each of the time intervals between the calls, while consecutive calls to
-   *   `.mark()` with he same ID would produce an increase each time instead as the time 
+   *   `.mark()` with he same ID would produce an increase each time instead as the time
    *   between the `.mark()` call and the original `.start()` increases.
-   * 
+   *
    * Notes:
-   * 
-   * - when you invoke `.mark()` or `.mark_delta()` without having called .start() before, 
+   *
+   * - when you invoke `.mark()` or `.mark_delta()` without having called .start() before,
    *   then the timer is started at the mark.
-   * 
+   *
    * - `.start()` will erase all stored 'start/mark times' which may have been
    *   set by `.mark()` or `.mark_delta()` before -- you may call `.start()` multiple times for
    *   the same timer instance, after all.
-   * 
-   * - you are responsible to manage the IDs for `.mark()` and `.mark_delta()`. The ID MUST NOT be "start" 
+   *
+   * - you are responsible to manage the IDs for `.mark()` and `.mark_delta()`. The ID MUST NOT be "start"
    *   as ID = "start" identifies the .start() timer.
-   * 
+   *
    * References for the internal implementation:
-   * 
+   *
    *    - http://updates.html5rocks.com/2012/08/When-milliseconds-are-not-enough-performance-now
    *    - http://ejohn.org/blog/accuracy-of-javascript-time/
    */
@@ -622,7 +622,7 @@
         start: f()
       };
     };
-    
+
     obj.mark = function (id, start_id) {
       if (start_time === false) this.start();
       var end_time = f();
@@ -636,7 +636,7 @@
       }
       return rv;
     };
-    
+
     obj.mark_delta = function (id) {
       if (start_time === false) this.start();
       id = id || "start";
@@ -649,7 +649,7 @@
       start_time[id] = end_time;
       return rv;
     };
-    
+
     obj.reset_mark = function (id) {
       id = id || "start";
       start_time[id] = null;
@@ -720,8 +720,8 @@
     };
   }
 
-  // similar to jQuery .offset() but provides more info and guaranteed to match its numbers with getGridPosition() and  getActiveCellPosition()      
-  // 
+  // similar to jQuery .offset() but provides more info and guaranteed to match its numbers with getGridPosition() and  getActiveCellPosition()
+  //
   // @param elem may be a DOM Element or a jQuery selector object.
   function BoxInfo(elem) {
     if (!elem) {
@@ -827,7 +827,7 @@
       CONTROL: 17,
       COMMAND: 91,
 
-      F2: 113,
+      F2: 113
     });
 
     return keycodes;

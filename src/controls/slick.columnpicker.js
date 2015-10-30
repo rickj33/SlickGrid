@@ -8,7 +8,7 @@
 
     var defaults = {
       fadeSpeed: 250,
-      forceFitColumnsText: "Force fit columns",
+      forceFitColumnsText: "Force fit columns"
     };
 
     function updateColumnLookupTable(list) {
@@ -48,7 +48,7 @@
         // Do not show columns (a.k.a. 'protected columns') in the pick list which either:
         // - have an empty 'name' field in their column definition (they would show up as a checkbox for 'nothing' anyway)
         // - are marked as hidden by having an ID which starts with an underscore, e.g. "_checkbox_selector"
-        var colName = columns[i].name; 
+        var colName = columns[i].name;
         if (typeof colName !== "string" && !colName) continue;
         if (colName === '') continue;
         if (/^_./.test(columns[i].id)) continue;
@@ -105,7 +105,7 @@
         }
       }
       // Now we MAY arrive at a situation where other (userland) code has added columns
-      // while we weren't looking: if there are any, then those will linger in the 
+      // while we weren't looking: if there are any, then those will linger in the
       // `current` array right now and we can simply append them.
       columns = ordered.concat(current);
       updateColumnLookupTable(columns);
@@ -152,7 +152,7 @@
         });
 
         grid.setColumns(newColumnSet);
-        
+
         if (grid.getSelectedRows().length > 0) {
           grid.setSelectedRows(grid.getSelectedRows());
         }

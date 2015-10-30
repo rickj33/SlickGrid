@@ -50,9 +50,9 @@
 
 
 
-    data provider api: {
+    data; provider; api: {
       getItem,
-      getLength / length if array
+      getLength / length; if array
       getItemMetadata
     }
 
@@ -189,7 +189,7 @@
       _lastQueryParams = queryParams;
       // ------------------------------
 
-      url = _url + '?' + $.param(queryParams).replace(/\%24/g, '$');
+      var url = _url + '?' + $.param(queryParams).replace(/\%24/g, '$');
 
       if (h_request !== null) {
         clearTimeout(h_request);

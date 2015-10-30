@@ -1732,7 +1732,7 @@
                             "#4B0049",
                             "#7B0046",
                             "#7A0026"
-                        ],
+                        ]
                     ]
                 });
                 isOpen = true;
@@ -2183,10 +2183,10 @@
             opt = typeof opt === 'function' ? opt.call(args.column) : opt;
             assert(opt);
 
-            option_str = [];
+            var option_str = [];
             for (i in opt)
             {
-                v = opt[i];
+                var v = opt[i];
                 option_str.push("<OPTION value='" + (v.key == null ? v.id : v.key) + "'>" + (v.value == null ? v.label : v.value) + "</OPTION>");
             }
             $select = $("<SELECT tabIndex='0' class='editor-select'>" + option_str.join('') + "</SELECT>").appendTo(args.container).focus().select();
@@ -2707,12 +2707,14 @@
 
         this.loadValue = function(item)
         {
-
+            var percentValue = 0;
+            var decimalValue = 0;
             defaultValue = item[args.column.field];
-
-            var decimalValue = parseFloat(defaultValue, 10) || 0;
-            var percentValue = Math.round(decimalValue * 100);
-
+            if(_.isNumber(defaultValue))
+            {
+                 decimalValue = parseFloat(defaultValue);
+                 percentValue = Math.round(decimalValue * 100);
+            }
             if (percentValue === 0)
             {
                 return 0;
