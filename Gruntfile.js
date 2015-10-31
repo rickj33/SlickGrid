@@ -171,23 +171,26 @@ module.exports = function (grunt) {
     },
 
     copy: {
+      lessFiles :{
+
+      },
       // synchronize library files in submodules to lib/_/
       libsync: {
         files: [
           {
             expand: true,       // `mkdir -p` equivalent
-            cwd: 'bower_components/', 
+            cwd: 'bower_components/',
             src: [
-              'jquery.dragdrop/event.drag/jquery.event.drag*.js', 'jquery.dragdrop/event.drop/jquery.event.drop*.js', 
-              'spectrum/spectrum.*', '!spectrum/spectrum.*.json', 
+              'jquery.dragdrop/event.drag/jquery.event.drag*.js', 'jquery.dragdrop/event.drop/jquery.event.drop*.js',
+              'spectrum/spectrum.*', '!spectrum/spectrum.*.json',
               'TinyColor/tinycolor.js',
               'verge-screendimensions/verge.js',
               'jquery-sparkline/dist/jquery.sparkline.js',
               'jquery-simulate/jquery.simulate.js',
               'jquery-multiselect/jquery.multiselect.*', 'jquery-multiselect/src/jquery.multiselect.js', 'jquery-multiselect/src/jquery.multiselect.filter.js'
-            ], 
-            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory* 
-            dest: 'lib/_/', 
+            ],
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'lib/_/',
             filter: 'isFile'
           }
         ]

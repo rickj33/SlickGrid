@@ -11,11 +11,11 @@
 @import (less) "slick.less.macros.less";
 
 
-.slickgrid-container 
+.slickgrid-container
 {
-  .slick-header-columns, 
+  .slick-header-columns,
   .slick-header-column {
-    background: url('images/header-columns-bg.gif') repeat-x center bottom;
+    background: url('@{images}/header-columns-bg.gif') repeat-x center bottom;
     // background-color: #EBECEE;
   }
 
@@ -24,9 +24,9 @@
     border-bottom: 1px solid silver;
   }
 
-  .slick-header-column:hover, 
+  .slick-header-column:hover,
   .slick-header-column-active {
-    background: white url('images/header-columns-over-bg.gif') repeat-x center bottom;
+    background: white url('@{images}/header-columns-over-bg.gif') repeat-x center bottom;
   }
 
   .slick-headerrow {
@@ -72,7 +72,7 @@
         border-style: solid;
         border-width: 1px;
 
-        // We compensate for the all-around border (now 1px at top and left too!) by reducing the padding: 
+        // We compensate for the all-around border (now 1px at top and left too!) by reducing the padding:
         padding-top: 2px;
         padding-left: 3px;
       }
@@ -118,13 +118,13 @@
     width: 9px;
     height: 9px;
     margin-right: 5px;
-    
+
     &.expanded {
-      background: url('images/collapse.gif') no-repeat center center;
+      background: url('@{images}/collapse.gif') no-repeat center center;
     }
 
     &.collapsed {
-      background: url('images/expand.gif') no-repeat center center;
+      background: url('@{images}/expand.gif') no-repeat center center;
     }
   }
 
@@ -171,7 +171,7 @@
     display: inline-block;
     position: absolute;
 
-    // The next few items are already defined in the slick-headermenu.less file and it should stay that way, *unless* you also replace the button image included there. 
+    // The next few items are already defined in the slick-headermenu.less file and it should stay that way, *unless* you also replace the button image included there.
     //bottom: 0;
     //right: 0;
     //top: 0;
@@ -264,8 +264,8 @@
     border-color: #BFBDBD;
   }
 
-  .header-overlay, 
-  .cell-overlay, 
+  .header-overlay,
+  .cell-overlay,
   .selection-cell-overlay
   {
     display: block;

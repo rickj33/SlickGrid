@@ -4,11 +4,13 @@
  * No built-in (selected, editable, highlight, flashing, invalid, loading, :focus) or user-specified CSS
  * classes should alter those!
  */
-
-@import (less) "slick.config.less";
-
-@import (less) "slick.less.macros.less";
-
+@import (less) "../bower_components/bootstrap/less/bootstrap.less";
+@import (less) "../bower_components/jquery-ui-less/less/jquery.ui.less";
+@import (less) "less/slick.less.macros.less";
+@import (less) "less/slick.config.less";
+@import (less) "less/jqueryuiOverrides.less";
+/*overide the bootstrap font path*/
+@icon-font-path:          "fonts/";
 
 .slickgrid-container
 {
@@ -23,8 +25,8 @@
 
     .slick-viewport,
     .slick-top-panel-scroller,
-    .slick-header, 
-    .slick-headerrow, 
+    .slick-header,
+    .slick-headerrow,
     .slick-footerrow {
       position: relative;
       width: 100%;
@@ -39,8 +41,8 @@
     .slick-viewport {
       overflow: auto;
     }
-    .slick-header, 
-    .slick-headerrow, 
+    .slick-header,
+    .slick-headerrow,
     .slick-footerrow {
       overflow: hidden;
     }
@@ -50,8 +52,8 @@
     }
 
     .slick-top-panel,
-    .slick-header-columns, 
-    .slick-headerrow-columns, 
+    .slick-header-columns,
+    .slick-headerrow-columns,
     .slick-footerrow-columns {
       position: relative;
       white-space: nowrap;
@@ -63,9 +65,9 @@
       outline: 0;
     }
 
-    .slick-cell, 
-    .slick-header-column, 
-    .slick-headerrow-column, 
+    .slick-cell,
+    .slick-header-column,
+    .slick-headerrow-column,
     .slick-footerrow-column {
       position: absolute;
       top: 0;
@@ -97,7 +99,7 @@
     .slick-cell {
       border-style: dotted;
       padding: 1px 2px 1px 2px;
-    } 
+    }
 
     .slick-header-column {
       padding: @cell-padding-top @cell-padding-right @cell-padding-bottom @cell-padding-left;
@@ -126,15 +128,15 @@
       margin-top: 6px;
       position: absolute;
       left: 0;
-      background: url('images/sort-undetermined.png');
+      background: url('@{images}/sort-undetermined.png');
     }
 
     .slick-sort-indicator-desc {
-      background: url('images/sort-desc.png');
+      background: url('@{images}/sort-desc.png');
     }
 
     .slick-sort-indicator-asc {
-      background: url('images/sort-asc.png');
+      background: url('@{images}/sort-asc.png');
     }
 
     .slick-header-sortable .slick-column-name {

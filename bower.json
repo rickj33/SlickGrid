@@ -81,10 +81,12 @@
     "SlickGrid.FrozenColumns": "git://github.com/FactLook/SlickGrid.FrozenColumns.git#master",
     "SlickGrid.spreadsheet-plugins": "git://github.com/FactLook/slickgrid-spreadsheet-plugins.git#master",
     "SlickGrid.totals-plugins": "git://github.com/FactLook/slickgrid-totals-plugin.git#master",
-    "jQuery-ui-multiSelect": "git://github.com/FactLook/jquery-multiselect.git#master"
+    "jQuery-ui-multiSelect": "git://github.com/FactLook/jquery-multiselect.git#master",
+    "jquery-ui-less": "git://github.com/FactLook/jquery-ui-less.git#master"
   },
   "devDependencies": {
     "jquery-simulate-ext": "jquery.simulate#~1.3.0",
-    "qunit": "~1.20.0"
+    "qunit": "~1.20.0",
+    "bootstrap": "~3.3.1"
   }
 }
