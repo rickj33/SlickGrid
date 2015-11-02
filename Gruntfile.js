@@ -16,7 +16,7 @@ module.exports = function (grunt) {
   var fs = require('fs');
   var path = require('path');
     var _ = require('lodash');
-    var semver = require('semver');
+
 
   // Project configuration.
   grunt.initConfig({
@@ -42,6 +42,8 @@ module.exports = function (grunt) {
     },
 
 
+
+
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -65,36 +67,7 @@ module.exports = function (grunt) {
       }
     },
 
-    jscs: {
-      options: {
-        config: '.jscs.json',
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      src: {
-        src: ['slick.*.js', 'controls/*.js', 'plugins/*.js']
-      },
-      /*
-      lib: {
-        src: 'lib/*.js'
-      },
-      */
-      test: {
-        src: 'tests/**/*.js'
-      },
-      examples: {
-        src: 'examples/*.js'
-      }
-    },
 
-    csslint: {
-      options: {
-        csslintrc: '.csslintrc'
-      },
-      src: '*.css',
-      examples: 'examples/*.css'
-    },
 
     less: {
       components: {
@@ -108,9 +81,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: '',
+            cwd: 'src',
             src: ['*.less', 'controls/*.less', 'plugins/*.less', 'examples/*.less', '!slick.grid.less', '!slick.config.less', '!slick.config.*.less', '!slick.less.macros.less'],
-            dest: '',
+            dest: 'src',
             ext: '.css'
           }
         ]
@@ -125,8 +98,10 @@ module.exports = function (grunt) {
         },
         files: [
           {
-            src: 'slick.grid.less',
-            dest: 'slick.grid.css'
+            cwd: '',
+            expand: false,
+            src: 'src/slick.grid.less',
+            dest: 'src/slick.grid.css'
           }
         ]
       }
@@ -171,7 +146,37 @@ module.exports = function (grunt) {
     },
 
     copy: {
-      lessFiles :{
+      app_files : {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+
+            src: [
+              'slick*.js',
+              'plugins/*.js',
+              'plugins/*.css'
+            ],
+            flatten: false,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/',
+            filter: 'isFile'
+          }]
+
+      },
+      cssFiles :{
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+
+            src: [
+              'slick.grid.css',
+              'slick-default-theme.css'
+            ],
+            flatten: true,
+            dest: 'dist/',
+            filter: 'isFile'
+          }]
 
       },
       // synchronize library files in submodules to lib/_/
@@ -179,18 +184,55 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+            src: [
+              'lib/*.js'
+            ],
+
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/lib/',
+            filter: 'isFile'
+          }
+        ]
+      },
+      bowerlib: {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
             cwd: 'bower_components/',
             src: [
-              'jquery.dragdrop/event.drag/jquery.event.drag*.js', 'jquery.dragdrop/event.drop/jquery.event.drop*.js',
+              'jquery/dist/jquery*.js',
+              'jquery-ui/jquery*.js',
+              'jquery.dragdrop/event.drag/jquery.event.drag*.js',
+              'jquery.dragdrop/event.drop/jquery.event.drop*.js',
               'spectrum/spectrum.*', '!spectrum/spectrum.*.json',
-              'TinyColor/tinycolor.js',
-              'verge-screendimensions/verge.js',
-              'jquery-sparkline/dist/jquery.sparkline.js',
-              'jquery-simulate/jquery.simulate.js',
-              'jquery-multiselect/jquery.multiselect.*', 'jquery-multiselect/src/jquery.multiselect.js', 'jquery-multiselect/src/jquery.multiselect.filter.js'
+              //'TinyColor/tinycolor.js',
+              //'verge-screendimensions/verge.js',
+              //'jquery-sparkline/dist/jquery.sparkline.js',
+              //'jquery-simulate/jquery.simulate.js',
+              'jquery-multiselect/jquery.multiselect.*',
+              'jquery-multiselect/src/jquery.multiselect.js',
+              'jquery-multiselect/src/jquery.multiselect.filter.js',
+              'lodash/lodash.js',
             ],
             flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
-            dest: 'lib/_/',
+            dest: 'dist/lib/',
+            filter: 'isFile'
+          }
+        ]
+      },
+
+      images: {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+            src: [
+              'images/*.*'
+            ],
+
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/images/',
             filter: 'isFile'
           }
         ]
@@ -229,7 +271,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Preparation task: synchronize the libraries (lib/*) from the submodules.
-  grunt.registerTask('libsync', ['copy:libsync']);
+  grunt.registerTask('deploy', ['compile','copy:app_files', 'copy:cssFiles', 'copy:images']);
+
+  grunt.registerTask('libsync', ['copy:libsync','copy:bowerlib']);
 
   // Preparation (compile) task.
   grunt.registerTask('compile', ['clean', 'libsync', 'less']);
