@@ -1,147 +1,312 @@
+/* jshint node: true */
+/*!
+ * slickGrid's Gruntfile
+ */
+
+module.exports = function (grunt) {
+  'use strict';
+
+  // Force use of Unix newlines
+  grunt.util.linefeed = '\n';
+
+  RegExp.quote = function (string) {
+    return string.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
+  };
+
+  var fs = require('fs');
+  var path = require('path');
+    var _ = require('lodash');
 
 
-module.exports = function(grunt) {
+  // Project configuration.
+  grunt.initConfig({
 
-    // Load the plugin that provides the "uglify" task.
-   var _ = require('lodash');
-    require('load-grunt-tasks')(grunt);
-    // Load required Grunt tasks. These are installed based on the versions listed
-    // * in 'package.json' when you do 'npm install' in this directory.
-    grunt.loadNpmTasks('grunt-text-replace');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-coffee');
-    grunt.loadNpmTasks('grunt-coffeelint');
+    // Metadata.
+    pkg: grunt.file.readJSON('package.json'),
+    banner: '/*!\n' +
+              ' * slickGrid v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+              ' * Copyright 2011-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+              ' * <%= _.pluck(pkg.licenses, "type") %> (<%= _.pluck(pkg.licenses, "url") %>)\n' +
+              ' */\n',
+    bannerDocs: '/*!\n' +
+              ' * slickGrid Docs (<%= pkg.homepage %>)\n' +
+              ' * Copyright 2011-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+              ' * <%= _.pluck(pkg.licenses, "type") %> (<%= _.pluck(pkg.licenses, "url") %>)\n' +
+              ' * NDA applies, etc.etc.etc.\n' +
+              ' */\n',
+    jqueryCheck: 'if (typeof jQuery === \'undefined\') { throw new Error(\'slickGrid requires jQuery\') }\n\n',
 
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-ngmin');
-    grunt.loadNpmTasks('grunt-html2js');
-    grunt.loadNpmTasks('grunt-express');
+    // Task configuration.
+    clean: {
+      dist: 'dist'
+    },
 
-    var app_files = {
-       
-           'lib/jquery.event.drag-2.2.js',
-            'lib/jquery.event.drop-2.2.js',
-            'slick.core.js',
-            'slick.dataview.js',
-            'plugins/slick.autotooltips.js',
-            'plugins/slick.cellcopymanager.js',
-            'plugins/slick.cellexternalcopymanager.js',
-            'plugins/slick.cellrangedecorator.js',
-            'plugins/slick.cellrangeselector.js',
-            'plugins/slick.cellselectionmodel.js',
-            'plugins/slick.checkboxselectcolumn.js',
 
-            'slick.editors.js',
-            'slick.formatters.js',
-            'slick.grid.js'
-       
-    };
-    var cssFiles = {
-        css: [
-              'slick.grid.css',
-    'css/smoothness/jquery-ui-1.8.16.custom.css'
 
+
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      gruntfile: {
+        src: 'Gruntfile.js'
+      },
+      src: {
+        src: ['slick.*.js', 'controls/*.js', 'plugins/*.js']
+      },
+      /*
+      lib: {
+        src: 'lib/*.js'
+      },
+      */
+      test: {
+        src: 'tests/**/*.js'
+      },
+      examples: {
+        src: 'examples/*.js'
+      }
+    },
+
+
+
+    less: {
+      components: {
+        options: {
+          ieCompat: false,
+          strictMath: true,
+          strictUnits: true,
+          outputSourceFiles: true,
+          sourceMap: true
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'src',
+            src: ['*.less', 'controls/*.less', 'plugins/*.less', 'examples/*.less', '!slick.grid.less', '!slick.config.less', '!slick.config.*.less', '!slick.less.macros.less'],
+            dest: 'src',
+            ext: '.css'
+          }
         ]
-    };
-  
+      },
+      main: {
+        options: {
+          ieCompat: false,
+          strictMath: true,
+          strictUnits: true,
+          outputSourceFiles: true,
+          sourceMap: true
+        },
+        files: [
+          {
+            cwd: '',
+            expand: false,
+            src: 'src/slick.grid.less',
+            dest: 'src/slick.grid.css'
+          }
+        ]
+      }
+    },
 
-  
-    var allFiles = [];
-    for(var prop in app_files) {
-        if (app_files.hasOwnProperty(prop)) {
-            allFiles = allFiles.concat(app_files[prop]);
+    autoprefixer: {
+        options: {
+            browsers: ['last 2 versions']
+        },
+        dist: {
+            files: {
+                '*.css': ['tmp/*.css']
+            }
         }
+    },
+
+    usebanner: {
+      dist: {
+        options: {
+          position: 'top',
+          banner: '<%= banner %>'
+        },
+        files: {
+          src: [
+            'slick.grid.css',
+            'slick-default-theme.css'
+          ]
+        }
+      }
+    },
+
+    csscomb: {
+      sort: {
+        options: {
+          config: '.csscomb.json'
+        },
+        files: {
+          'slick.grid.css': 'slick.grid.css',
+          'slick-default-theme.css': 'slick-default-theme.css'
+        }
+      }
+    },
+
+    copy: {
+      app_files : {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+
+            src: [
+              'slick*.js',
+               'controls/*.js',
+               'controls/*.css',
+              'plugins/*.js',
+              'plugins/*.css'
+            ],
+            flatten: false,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/',
+            filter: 'isFile'
+          }]
+
+      },
+      cssFiles :{
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+
+            src: [
+              'slick.grid.css',
+              'slick-default-theme.css'
+            ],
+            flatten: true,
+            dest: 'dist/',
+            filter: 'isFile'
+          }]
+
+      },
+      // synchronize library files in submodules to lib/_/
+      libsync: {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+            src: [
+              'lib/*.js'
+            ],
+
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/lib/',
+            filter: 'isFile'
+          }
+        ]
+      },
+       bowerlibPlugins: {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'bower_components/',
+            src: [
+                 'SlickGrid.spreadsheet-plugins/*.js',
+                  'SlickGrid.spreadsheet-plugins/*.css',
+            ],
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/plugins/',
+            filter: 'isFile'
+          }
+        ]
+      },
+      bowerlib: {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'bower_components/',
+            src: [
+              'jquery/dist/jquery*.js',
+              'jquery-ui/jquery*.js',
+              'jquery.dragdrop/event.drag/jquery.event.drag*.js',
+              'jquery.dragdrop/event.drop/jquery.event.drop*.js',
+              'spectrum/spectrum.*', '!spectrum/spectrum.*.json',
+              //'TinyColor/tinycolor.js',
+              //'verge-screendimensions/verge.js',
+              //'jquery-sparkline/dist/jquery.sparkline.js',
+              //'jquery-simulate/jquery.simulate.js',
+              'jquery-multiselect/jquery.multiselect.*',
+              'jquery-multiselect/src/jquery.multiselect.js',
+              'jquery-multiselect/src/jquery.multiselect.filter.js',
+              'lodash/lodash.js'
+            ],
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/lib/',
+            filter: 'isFile'
+          }
+        ]
+      },
+
+      images: {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+            src: [
+              'images/*.*'
+            ],
+
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/images/',
+            filter: 'isFile'
+          }
+        ]
+      },
+      // ---
+      // copy fonts, etc. to the `dist/` output directory
+      fonts: {
+        expand: true,
+        src: 'fonts/*',
+        dest: 'dist/'
+      },
+      docs: {
+        expand: true,
+        cwd: './dist',
+        src: [
+          '{css,js}/*.min.*',
+          'css/*.map',
+          'fonts/*'
+        ],
+        dest: 'docs/dist'
+      }
+    },
+
+    qunit: {
+      options: {
+        inject: 'js/tests/unit/phantom.js'
+      },
+      files: 'tests/**/*.html'
     }
-    for(prop in cssFiles) {
-        if (cssFiles.hasOwnProperty(prop)) {
-            allFiles = allFiles.concat(cssFiles[prop]);
-        }
-    }
-   
-    
-    // Project configuration.
-    grunt.initConfig({
-           build_dir  : 'build',
-            compile_dir: 'bin',
-        pkg: grunt.file.readJSON('package.json'),
-      
-       
-        uglify: {
-            options: {
-                banner: '<%= concat.options.banner %>'
-            },
-            js: {
-                files: app_files
-            }
-        },
-       
-         clean: {
-            files : [
-            '<%= build_dir %>',
-            '<%= compile_dir %>'
-        ]},
-
-        watch: {
-            options: {
-                debounceDelay: 250
-            },
-            'default': {
-                files: allFiles,
-                tasks: [/*'concat:js', 'concat:css',*/ 'less:default']
-            },
-            minify: {
-                files: allFiles,
-                tasks: ['uglify:js', /*'concat:css',*/ 'less:minify']
-            }
-        },
-
-          concat: {
-            // The 'build_css' target concatenates compiled CSS and vendor CSS together.
-            build_css : {
-                src : [
-                    '<%= vendor_files.css %>',
-                    '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
-                ],
-                dest: '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
-            },
-            // The 'compile_js' target concatenates app and vendor js code together.
-            compile_js: {
-                
-                src    : [
-                    '<%= app_files %>',
-                   
-                ],
-                dest   : '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
-            }
-        },
-        /*
-        jam: {
-            'default': {
-                dest: 'compiled.js',
-                options: {
-                    //package_dir: 'jam_modules',
-                    verbose: true,
-                    nominify: true,
-                    wrap: true
-                }
-            }
-        }
-        */
-    });
+  });
 
 
+  // Load all files starting with `grunt-`
+  require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
+  grunt.loadNpmTasks('assemble-less');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-    // Default task(s).
-    grunt.registerTask('default', ['concat:compile_js']);
-    grunt.registerTask('minify', ['uglify:js', /*'concat:css',*/ 'less:minify']);
+  // Preparation task: synchronize the libraries (lib/*) from the submodules.
+  grunt.registerTask('deploy', ['compile','copy:app_files', 'copy:cssFiles', 'copy:images']);
 
-    grunt.registerTask('watch-default', ['watch:default']);
-    grunt.registerTask('watch-minify', ['watch:minify']);
+  grunt.registerTask('libsync', ['copy:libsync','copy:bowerlib','copy:bowerlibPlugins']);
 
+  // Preparation (compile) task.
+  grunt.registerTask('compile', ['clean', 'libsync', 'less']);
+
+  // Lint task.
+  grunt.registerTask('lint', ['csslint', 'jshint', 'jscs']);
+
+  // Test task.
+  grunt.registerTask('test', ['compile', 'lint', 'qunit']);
+
+  // CSS distribution task.
+  grunt.registerTask('dist-css', ['compile', /*'cssmin',*/ 'csscomb', 'usebanner']);
+
+  // Full distribution task.
+  grunt.registerTask('dist', ['dist-css']);
+
+  // Default task.
+  grunt.registerTask('default', ['test', 'dist']);
 };

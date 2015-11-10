@@ -1,0 +1,78 @@
+/* Menu button */
+.slick-header-menubutton
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    display: none;
+
+    width: 14px;
+
+    cursor: pointer;
+
+    border-left: thin ridge silver;
+    background-image: url(../images/down.gif);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+.slick-header-column:hover > .slick-header-menubutton,
+.slick-header-column-active .slick-header-menubutton
+{
+    display: inline-block;
+}
+
+/* Menu */
+.slick-header-menu
+{
+    position: absolute;
+
+    display: inline-block;
+
+    margin: 0;
+    padding: 2px;
+
+    cursor: default;
+}
+
+
+/* Menu items */
+.slick-header-menuitem
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    cursor: pointer;
+}
+
+.slick-header-menuicon
+{
+    display: inline-block;
+
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+
+    vertical-align: middle;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.slick-header-menucontent
+{
+    display: inline-block;
+
+    vertical-align: middle;
+}
+
+
+/* Disabled */
+.slick-header-menuitem-disabled
+{
+    color: silver;
+}
