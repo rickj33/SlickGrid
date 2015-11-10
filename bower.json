@@ -79,15 +79,14 @@
     "lib/jquery.mousewheel.js",
     "images/*.gif",
     "images/*.png",
-    "fonts/*.*",
+    "fonts/*.*"
   ],
   "dependencies": {
    "jquery": "*",
     "spectrum": "~1.7.1",
     "lodash": "~3.10.1",
     "jquery-ui": "~1.11.0",
-    "jquery.event.drag-drop": "https://github.com/rickj33/jquery.threedubmedia.git",
-  
+    "jquery.event.drag-drop": "https://github.com/rickj33/jquery.threedubmedia.git"
   },
   "devDependencies": {
     "jquery-simulate-ext": "jquery.simulate#~1.3.0",
