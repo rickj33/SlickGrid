@@ -53,7 +53,6 @@
         var updated = null;     // updated item ids
         var suspendCount = 0;   // suspends the recalculation
         var sortAsc = true;
-        var fastSortField;
         var sortComparer;
         var refreshHints = {};
         var prevRefreshHints = {};
@@ -813,7 +812,11 @@
         }
 
         /**
-         * @param varArgs Either a Slick.Group's "groupingKey" property, or a
+     * @param varArgs Either a Slick.Group's "groupingKey" property, or a
+     *     variable argument list of grouping values denoting a unique path to the row.
+     *     For example, calling isGroupCollapsed('high', '10%') will return whether the
+     *     '10%' subgroup of the 'high' setGrouping is collapsed.
+     */
          function isGroupCollapsed(groupingValue) {
       var args = Array.prototype.slice.call(arguments);
       var arg0 = args[0];
@@ -1431,7 +1434,6 @@
             "getOptions": getOptions,
             "getFilterdItems": getFilterdItems,
             "sort": sort,
-            "fastSort": fastSort,
             "reSort": reSort,
             "setGrouping": setGrouping,
             "getGrouping": getGrouping,

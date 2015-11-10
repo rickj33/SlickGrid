@@ -154,6 +154,8 @@ module.exports = function (grunt) {
 
             src: [
               'slick*.js',
+               'controls/*.js',
+               'controls/*.css',
               'plugins/*.js',
               'plugins/*.css'
             ],
@@ -195,6 +197,21 @@ module.exports = function (grunt) {
           }
         ]
       },
+       bowerlibPlugins: {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'bower_components/',
+            src: [
+                 'SlickGrid.spreadsheet-plugins/*.js',
+                  'SlickGrid.spreadsheet-plugins/*.css',
+            ],
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/plugins/',
+            filter: 'isFile'
+          }
+        ]
+      },
       bowerlib: {
         files: [
           {
@@ -213,7 +230,7 @@ module.exports = function (grunt) {
               'jquery-multiselect/jquery.multiselect.*',
               'jquery-multiselect/src/jquery.multiselect.js',
               'jquery-multiselect/src/jquery.multiselect.filter.js',
-              'lodash/lodash.js',
+              'lodash/lodash.js'
             ],
             flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
             dest: 'dist/lib/',
@@ -273,7 +290,7 @@ module.exports = function (grunt) {
   // Preparation task: synchronize the libraries (lib/*) from the submodules.
   grunt.registerTask('deploy', ['compile','copy:app_files', 'copy:cssFiles', 'copy:images']);
 
-  grunt.registerTask('libsync', ['copy:libsync','copy:bowerlib']);
+  grunt.registerTask('libsync', ['copy:libsync','copy:bowerlib','copy:bowerlibPlugins']);
 
   // Preparation (compile) task.
   grunt.registerTask('compile', ['clean', 'libsync', 'less']);
@@ -285,7 +302,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', ['compile', 'lint', 'qunit']);
 
   // CSS distribution task.
-  grunt.registerTask('dist-css', ['compile', 'cssmin', 'csscomb', 'usebanner']);
+  grunt.registerTask('dist-css', ['compile', /*'cssmin',*/ 'csscomb', 'usebanner']);
 
   // Full distribution task.
   grunt.registerTask('dist', ['dist-css']);
