@@ -596,7 +596,7 @@
     // feature detect:
     /* @private */ var f;
     /* @private */ var p = window.performance;
-    if (p && p.timing.navigationStart && p.now) {
+    if (p && p.timing && p.timing.navigationStart && p.now) {
       f = function () {
         return p.now();
       };

@@ -23,6 +23,7 @@
                 "TransposedColor"    : TransposedColorFormatter,
                 "TransposedFormatter": TransposedFormatter,
                 "TransposedCheckbox" : TransposedCheckboxFormatter,
+                 "TransposedCheckmark" : TransposedCheckmarkFormatter,
                  "TransposedPercent"   : TransposedPercentFormatter
 
             }
@@ -163,7 +164,11 @@
 
     }
 
+  function TransposedCheckmarkFormatter(row, cell, value, columnDef, dataContext)
+    {
+         return value ? "<img src='images/tick.png'>" : "";
 
+    }
 
     //noinspection JSUnusedLocalSymbols
     /**
