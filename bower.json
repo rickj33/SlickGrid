@@ -25,8 +25,7 @@
     "documentation",
     "test",
     "tests",
-    "examples",
-    "lib"
+    "examples"
   ],
   "main": [
     "less/slick-default-theme.less",
