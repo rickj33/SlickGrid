@@ -6341,7 +6341,7 @@ if (typeof Slick === "undefined") {
             __handleClick(e);
         }
 
-        function __handleClick(e) {
+        function __handleClickOrg(e) {
             assert(!(e instanceof Slick.EventData));
 
             var cell = getCellFromEvent(e, {
@@ -6391,6 +6391,44 @@ if (typeof Slick === "undefined") {
             }
         }
 
+  function __handleClick(e)
+        {
+            if (!currentEditor)
+            {
+                // if this click resulted in some cell child node getting focus,
+                // don't steal it back - keyboard events will still bubble up
+                // IE9+ seems to default DIVs to tabIndex=0 instead of -1, so check for cell clicks directly.
+                if (e.target != document.activeElement || $(e.target).hasClass("slick-cell"))
+                {
+                    setFocus();
+                }
+            }
+
+            var cell = getCellFromEvent(e);
+            if (!cell || (currentEditor !== null && activeRow == cell.row && activeCell == cell.cell))
+            {
+                return;
+            }
+
+            trigger(self.onClick, {
+                row : cell.row,
+                cell: cell.cell
+            }, e);
+            if (e.isImmediatePropagationStopped())
+            {
+                return;
+            }
+
+            if ((activeCell != cell.cell || activeRow != cell.row) && canCellBeActive(cell.row, cell.cell))
+            {
+                if (!getEditorLock().isActive() || getEditorLock().commitCurrentEdit())
+                {
+                    scrollRowIntoView(cell.row, false);
+                    setActiveCellInternal(getCellNode(cell.row, cell.cell));
+                }
+            }
+        }
+
         function handleContextMenu(e) {
             assert(!(e instanceof Slick.EventData));
             if (signalEventObserved(e)) {
@@ -6427,7 +6465,7 @@ if (typeof Slick === "undefined") {
             __handleDblClick(e);
         }
 
-        function __handleDblClick(e) {
+        function __handleDblClickOrg(e) {
             assert(!(e instanceof Slick.EventData));
 
             var cell = getCellFromEvent(e, {
@@ -6485,6 +6523,29 @@ if (typeof Slick === "undefined") {
             }
         }
 
+
+  function __handleDblClick(e)
+        {
+            var cell = getCellFromEvent(e);
+            if (!cell || (currentEditor !== null && activeRow == cell.row && activeCell == cell.cell))
+            {
+                return;
+            }
+
+            trigger(self.onDblClick, {
+                row : cell.row,
+                cell: cell.cell
+            }, e);
+            if (e.isImmediatePropagationStopped())
+            {
+                return;
+            }
+
+            if (options.editable)
+            {
+                gotoCell(cell.row, cell.cell, true);
+            }
+        }
         function handleHeaderMouseEnter(e) {
             var headerInfo = getHeaderColumnFromElement(e.target);
             if (!headerInfo) {
@@ -6658,7 +6719,7 @@ if (typeof Slick === "undefined") {
         // `returnValue.cellFraction === 0.0` would identify the left-most pixel within the cell.
         //
         // When the coordinate points outside the grid, out-of-range row/cell coordinates will be produced.
-        function getCellFromPoint(x, y, cfg) {
+        function getCellFromPointOrg(x, y, cfg) {
             assert(!isNaN(x));
             assert(!isNaN(y));
             cfg = cfg || {};
@@ -6753,6 +6814,57 @@ if (typeof Slick === "undefined") {
             };
         }
 
+
+ function getCellFromPoint(x, y)
+        {
+            var row = getRowFromPosition(y);
+            var cell = 0;
+
+            var w = 0;
+            for (var i = 0; i < columns.length && w < x; i++)
+            {
+                w += columns[i].width;
+                cell++;
+            }
+
+            if (cell < 0)
+            {
+                cell = 0;
+            }
+            
+            var spans = getSpans(row, cell);
+            if (spans) {
+                // assert(row === spans.row);
+                // assert(cell === spans.cell);
+
+                // **NOTE**:
+                //
+                // getCellFromPoint() & getCellFromEvent() are special in that we decode the row and column individually and in the
+                // fundamental return values do NOT care about actual rowspan/colspan issues at the intersection point.
+                //
+                // When the caller of this function/API is interested in the actual 'live cell' they can go
+                // and look at the `.spanInfo` info that we're including further below.
+            } else {
+                spans = {
+                    row: row,
+                    cell: cell,
+                    rowspan: 1,
+                    colspan: 1
+                };
+            }
+
+            return {
+                row : row,
+                cell: cell - 1,
+                 spanInfo: spans
+            };
+        }
+
+  function getRowFromPosition(y)
+        {
+            return Math.floor((y + pageOffset) / options.rowHeight);
+        }
+
         function getCellFromNode(cellNode) {
             // read column number from .l<columnNumber> CSS class
             var cls = / l(\d+) /.exec(" " + cellNode.className + " ");
@@ -6822,7 +6934,7 @@ if (typeof Slick === "undefined") {
             }
         }
 
-        function getCellFromEvent(e, cfg) {
+        function getCellFromEventOrg(e, cfg) {
             cfg = cfg || {};
 
             // dive up the original browser event from the depths of the (optional) Slick.EventData
@@ -6952,6 +7064,29 @@ if (typeof Slick === "undefined") {
                 }
             }
             return cell;
+        }
+
+   function getCellFromEvent(e)
+        {
+            var $cell = $(e.target).closest(".slick-cell", $canvas);
+            if (!$cell.length)
+            {
+                return null;
+            }
+
+            var row = getRowFromNode($cell[0].parentNode);
+            var cell = getCellFromNode($cell[0]);
+
+            if (row == null || cell == null)
+            {
+                return null;
+            } else
+            {
+                return {
+                    "row" : row,
+                    "cell": cell
+                };
+            }
         }
 
         function getRowFromEvent(e) {
@@ -7100,7 +7235,7 @@ if (typeof Slick === "undefined") {
             }
         }
 
-        function setActiveCellInternal(newCellNode, cfg) {
+        function setActiveCellInternalOrg(newCellNode, cfg) {
             // Also check which node currently has focus *before* we send events and thus give userland
             // code opportunity to revert/modify/move the focus.
             //
@@ -7295,6 +7430,60 @@ if (typeof Slick === "undefined") {
                 }
             }
             return true;
+        }
+
+  function setActiveCellInternal(newCell, opt_editMode)
+        {
+            if (activeCellNode !== null)
+            {
+                makeActiveCellNormal();
+                $(activeCellNode).removeClass("active");
+                if (rowsCache[activeRow])
+                {
+                    $(rowsCache[activeRow].rowNode).removeClass("active");
+                }
+            }
+
+            var activeCellChanged = (activeCellNode !== newCell);
+            activeCellNode = newCell;
+
+            if (activeCellNode != null)
+            {
+                activeRow = getRowFromNode(activeCellNode.parentNode);
+                activeCell = activePosX = getCellFromNode(activeCellNode);
+
+                if (opt_editMode == null)
+                {
+                    opt_editMode = (activeRow == getDataLength() && options.autoEditAddRow) || options.autoEdit;
+                }
+
+                $(activeCellNode).addClass("active");
+                $(rowsCache[activeRow].rowNode).addClass("active");
+
+                if (options.editable && opt_editMode && isCellPotentiallyEditable(activeRow, activeCell))
+                {
+                    clearTimeout(h_editorLoader);
+
+                    if (options.asyncEditorLoading)
+                    {
+                        h_editorLoader = setTimeout(function ()
+                        {
+                            makeActiveCellEditable();
+                        }, options.asyncEditorLoadDelay);
+                    } else
+                    {
+                        makeActiveCellEditable();
+                    }
+                }
+            } else
+            {
+                activeRow = activeCell = null;
+            }
+
+            if (activeCellChanged)
+            {
+                trigger(self.onActiveCellChanged, getActiveCell());
+            }
         }
 
         function clearTextSelection() {
@@ -8339,7 +8528,7 @@ if (typeof Slick === "undefined") {
          *
          * @return {Element}          The DOM Element which represents the grid node at coordinates (row, cell). NULL when the given coordinate has not been rendered yet or does not exist for other reasons (e.g. when the given coordinate is located outside the data range or when the given coordinate sits inside a row/colspanning cell and isn't its top/left corner coordinate).
          */
-        function getCellNode(row, cell, mandatory) {
+        function getCellNodeOrg(row, cell, mandatory) {
             callCount++;
             assert(callCount === 1);
             var cacheEntry = rowsCache[row];
@@ -8375,6 +8564,16 @@ if (typeof Slick === "undefined") {
             }
             assert(!mandatory);
             callCount--;
+            return null;
+        }
+
+   function getCellNode(row, cell)
+        {
+            if (rowsCache[row])
+            {
+                ensureCellNodesInRowsCache(row);
+                return rowsCache[row].cellNodesByColumnIdx[cell];
+            }
             return null;
         }
 
