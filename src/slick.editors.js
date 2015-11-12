@@ -2866,11 +2866,12 @@
         //noinspection LocalVariableNamingConventionJS
         var $input;
         var defaultValue;
-
+   var scope = this;
 
         this.init = function()
         {
-            $input = $("<INPUT type=text class='editor-text' />").appendTo(args.container).bind("keydown.nav", function(e)
+            $input = $("<INPUT type=text class='editor-text' />");
+            $input.bind("keydown.nav", function(e)
             {
                 if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
                 {
@@ -2882,8 +2883,11 @@
                         e.stopImmediatePropagation();
                     }
                 }
-            }).focus().select();
+            });
+            $input.appendTo(args.container).focus().select();
+              defaultValue = 0;
         };
+
 
         this.destroy = function()
         {
@@ -2895,17 +2899,44 @@
             $input.focus();
         };
 
-        this.getValue = function()
+        this.save = function()
         {
-            return $input.val();
+            args.commitChanges();
         };
 
-        this.setValue = function(val)
+        this.cancel = function()
         {
+            this.setDirectValue(defaultValue);
+            args.cancelChanges();
+        };
+
+        this.hide = function()
+        {
+            $input.hide();
+        };
+
+        this.show = function()
+        {
+            $input.show();
+        };
+
+        this.position = function(position)
+        {
+            // nada
+        };
+
+        this.setDirectValue = function(val)
+        {
+            if (val === null)
+            {
+                val = "";
+            }
+            defaultValue = val;
             $input.val(val);
+            $input[0].defaultValue = val;
         };
 
-        this.loadValue = function(item)
+  this.loadValue = function(item)
         {
             defaultValue = "";
             if (item.hasOwnProperty(args.column.field))
@@ -2918,15 +2949,32 @@
 
             $input.val(defaultValue);
             $input[0].defaultValue = defaultValue;
+             scope.setDirectValue(defaultValue);
             $input.select();
         };
 
-        this.serializeValue = function()
+     
+
+
+           this.serializeValue = function()
         {
             return $input.val();
         };
-
+        
         this.applyValue = function(item, state)
+        {
+            args.grid.setDataItemValueForColumn(item, args.column, state);
+
+        };
+
+
+        this.isValueChanged = function()
+        {
+            return (!($input.val() === "" && defaultValue === null)) && ($input.val() !== defaultValue);
+        };
+
+
+       /* this.applyValue = function(item, state)
         {
             if (item.hasOwnProperty(args.column.field))
             {
@@ -2935,13 +2983,9 @@
             {
                 item.properties[args.column.field] = state;
             }
-        };
+        };*/
 
-        this.isValueChanged = function()
-        {
-            return (!($input.val() == "" && defaultValue === null)) && ($input.val() != defaultValue);
-        };
-
+      
         this.validate = function()
         {
             if (args.column.validator)
