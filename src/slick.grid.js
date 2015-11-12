@@ -2124,7 +2124,7 @@ if (typeof Slick === "undefined") {
             if (!stylesheet) {
                 stylesheet = getStyleSheet();
                 if (!stylesheet) {
-                    console.log("########### Cannot find stylesheet.");
+                    //console.log("########### Cannot find stylesheet.");
                     return false;
                     //throw new Error("Cannot find stylesheet.");
                 }
@@ -6109,7 +6109,7 @@ if (typeof Slick === "undefined") {
             // move focus back into slickgrid when it's not already there?
             //
             // N.B. keep in mind that we have those special copy/paste tricks which employ root-level temporary DOM nodes which must catch the keyboard event!
-            console.log("container keyboard event: ", e);
+            //console.log("container keyboard event: ", e);
             __handleKeyDown(e);
         }
 
@@ -6253,7 +6253,7 @@ if (typeof Slick === "undefined") {
 
         function handleContainerContextMenu(e) {
             assert(!(e instanceof Slick.EventData));
-            console.log("container CONTEXTMENU: ", this, arguments, document.activeElement);
+            //console.log("container CONTEXTMENU: ", this, arguments, document.activeElement);
             if (signalEventObserved(e)) {
                 return;
             }
@@ -6268,7 +6268,7 @@ if (typeof Slick === "undefined") {
             var cell = getCellFromEvent(e, {
                 clipToValidRange: true
             });
-            console.log("container event: ", cell);
+            //console.log("container event: ", cell);
             if (cell && cell.sourceInfo && cell.sourceInfo.source === "headers") {
                 if (cell.sourceInfo.subSource === "header") {
                     __handleHeaderContextMenu(e);
@@ -6280,7 +6280,7 @@ if (typeof Slick === "undefined") {
 
         function handleContainerClickEvent(e) {
             assert(!(e instanceof Slick.EventData));
-            console.log("container CLICK: ", this, arguments, document.activeElement);
+            //console.log("container CLICK: ", this, arguments, document.activeElement);
             if (signalEventObserved(e)) {
                 return;
             }
@@ -6295,7 +6295,7 @@ if (typeof Slick === "undefined") {
             var cell = getCellFromEvent(e, {
                 clipToValidRange: true
             });
-            console.log("container event: ", cell);
+            //console.log("container event: ", cell);
             if (cell && cell.sourceInfo && cell.sourceInfo.source === "headers") {
                 if (cell.sourceInfo.subSource === "header") {
                     __handleHeaderClick(e);
@@ -6307,7 +6307,7 @@ if (typeof Slick === "undefined") {
 
         function handleContainerDblClickEvent(e) {
             assert(!(e instanceof Slick.EventData));
-            console.log("container DOUBLE CLICK: ", this, arguments, document.activeElement);
+            //console.log("container DOUBLE CLICK: ", this, arguments, document.activeElement);
             if (signalEventObserved(e)) {
                 return;
             }
@@ -6322,7 +6322,7 @@ if (typeof Slick === "undefined") {
             var cell = getCellFromEvent(e, {
                 clipToValidRange: true
             });
-            console.log("container event: ", cell);
+            //console.log("container event: ", cell);
             if (cell && cell.sourceInfo && cell.sourceInfo.source === "headers") {
                 if (cell.sourceInfo.subSource === "header") {
                     __handleHeaderDblClick(e);
@@ -6635,12 +6635,15 @@ if (typeof Slick === "undefined") {
             var cell = getCellFromEvent(e, {
                 clipToValidRange: true
             });
-            assert(cell && cell.sourceInfo && cell.sourceInfo.source === "headers");
-            assert(cell && cell.sourceInfo && cell.sourceInfo.subSource === "header");
 
+            //check the cell before calling assert.
             if (!cell) {
                 return;
             }
+            assert(cell && cell.sourceInfo && cell.sourceInfo.source === "headers");
+            assert(cell && cell.sourceInfo && cell.sourceInfo.subSource === "header");
+
+          
 
             var columnDef = columns[cell.cell];
             assert(columnDef);
@@ -6989,7 +6992,7 @@ if (typeof Slick === "undefined") {
                             relX: x,
                             relY: y
                         };
-                        console.log("event inside viewport: ", x, y, cell);
+                        //console.log("event inside viewport: ", x, y, cell);
                     } else {
                         // The event originates from outside the viewport, so we go and check if we got an event from inside the headers/footers:
                         // if it is, we're column-only picking.
@@ -7050,7 +7053,7 @@ if (typeof Slick === "undefined") {
                                     }
                                 }
                             }
-                            console.log("event inside headers/footers: ", x, y, cell);
+                            //console.log("event inside headers/footers: ", x, y, cell);
                         } else {
                             // The event originates from the outside world: clip to legal coordinate
                             cell.sourceInfo = {
@@ -7058,7 +7061,7 @@ if (typeof Slick === "undefined") {
                                 relX: x,    // x < 0 --> left of viewport, x > 0: right of viewport
                                 relY: y     // y < 0 --> above viewport, y > 0 --> below viewport
                             };
-                            console.log("event from outside grid container: ", x, y, cell);
+                            //console.log("event from outside grid container: ", x, y, cell);
                         }
                     }
                 }

@@ -124,7 +124,8 @@
         }
 
 
-        return convertToPercent(value);
+        var percentValue = convertToPercent(value);
+        return percentValue.toString() +'%';
     }
 
   function   convertToPercent(value)
@@ -148,8 +149,8 @@
         {
             return "";
         }
-
-        return "<span  style='color:" + value + "'>" + value + "</span>";
+        return '<div class="color-formatter">' +  value + '</div> <div class="color-box" style="background-color :' + value + ';"> </div>';
+       // return "<span  style='color:" + value + "'>" + value + "</span>";
     }
 
 
@@ -166,7 +167,7 @@
 
   function TransposedCheckmarkFormatter(row, cell, value, columnDef, dataContext)
     {
-         return value ? "<img src='images/tick.png'>" : "";
+         return value ? "<img src='../assets/images/tick.png'>" : "";
 
     }
 
@@ -185,6 +186,6 @@
      */
     function CheckmarkFormatter(row, cell, value, columnDef, dataContext)
     {
-        return value ? "<img src='images/tick.png'>" : "";
+        return value ? "<img src='../assets/images/tick.png'>" : "";
     }
 })(jQuery);
