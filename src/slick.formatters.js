@@ -167,7 +167,7 @@
 
   function TransposedCheckmarkFormatter(row, cell, value, columnDef, dataContext)
     {
-         return value ? "<img src='../assets/images/tick.png'>" : "";
+         return value ? "<img src='../assets/images/tick-16x16.png'>" :  "<img src='../assets/images/cross_small.png'>";
 
     }
 
@@ -186,6 +186,6 @@
      */
     function CheckmarkFormatter(row, cell, value, columnDef, dataContext)
     {
-        return value ? "<img src='../assets/images/tick.png'>" : "";
+        return value ? "<img src='../assets/images/tick-16x16.png'>" : "<img src='../assets/images/cross_small.png'>";
     }
 })(jQuery);

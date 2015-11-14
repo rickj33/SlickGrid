@@ -6937,7 +6937,7 @@ if (typeof Slick === "undefined") {
             }
         }
 
-        function getCellFromEventOrg(e, cfg) {
+        function getCellFromEvent(e, cfg) {
             cfg = cfg || {};
 
             // dive up the original browser event from the depths of the (optional) Slick.EventData
@@ -7069,7 +7069,7 @@ if (typeof Slick === "undefined") {
             return cell;
         }
 
-   function getCellFromEvent(e)
+   function getCellFromEventOld(e)
         {
             var $cell = $(e.target).closest(".slick-cell", $canvas);
             if (!$cell.length)
@@ -7452,7 +7452,7 @@ if (typeof Slick === "undefined") {
 
             if (activeCellNode != null)
             {
-                activeRow = getRowFromNode(activeCellNode.parentNode);
+                activeRow = activePosY = getRowFromNode(activeCellNode.parentNode);
                 activeCell = activePosX = getCellFromNode(activeCellNode);
 
                 if (opt_editMode == null)

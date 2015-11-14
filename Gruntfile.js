@@ -76,7 +76,7 @@ module.exports = function (grunt) {
           strictMath: true,
           strictUnits: true,
           outputSourceFiles: true,
-          sourceMap: true
+          sourceMap: false
         },
         files: [
           {
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
           strictMath: true,
           strictUnits: true,
           outputSourceFiles: true,
-          sourceMap: true
+          sourceMap: false
         },
         files: [
           {
