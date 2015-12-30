@@ -1,8 +1,8 @@
 (function ($) {
   // register namespace
   $.extend(true, window, {
-    Slick: {
-      CheckboxSelectColumn: CheckboxSelectColumn
+    "Slick": {
+      "CheckboxSelectColumn": CheckboxSelectColumn
     }
   });
 
@@ -14,23 +14,12 @@
     var _selectedRowsLookup = {};
     var _defaults = {
       columnId: "_checkbox_selector",
-      columnName: "checkbox",
       cssClass: null,
-      headerCssClass: null,
-      selectable: true,
       toolTip: "Select/Deselect All",
-      field: "sel",
-      width: 30,
-      minWidth: 26,
-      maxWidth: 40,
-      resizable: true,
-      sortable: false,
-      rowselector: true   // is it a column for grid row selection
+      width: 30
     };
 
     var _options = $.extend(true, {}, _defaults, options);
-
-    var selectionChanged = new Slick.Event();
 
     function init(grid) {
       _grid = grid;
@@ -45,55 +34,32 @@
       _handler.unsubscribeAll();
     }
 
-    //noinspection JSUnusedLocalSymbols
     function handleSelectedRowsChanged(e, args) {
-      if (!_options.rowselector) return;
-
       var selectedRows = _grid.getSelectedRows();
-      var data = _grid.getData();
-      var selectableRowCount = 0;
-      var lookup = {};
-      var row, i, rowSelectable;
-      var tx_args = {
-        added: [],
-        removed: []
-      };  // eventargs to transmit
-
-      for (i = 0; i < _grid.getDataLength(); i++) {
-        rowSelectable = isRowSelectable(data, i);
-        if (rowSelectable) {
-          selectableRowCount += 1;
-        }
-      }
+      var lookup = {}, row, i;
       for (i = 0; i < selectedRows.length; i++) {
         row = selectedRows[i];
         lookup[row] = true;
         if (lookup[row] !== _selectedRowsLookup[row]) {
-          tx_args.added.push(row);
-
           _grid.invalidateRow(row);
           delete _selectedRowsLookup[row];
         }
       }
       for (i in _selectedRowsLookup) {
-        tx_args.removed.push(_selectedRowsLookup[i]);
-
         _grid.invalidateRow(i);
       }
       _selectedRowsLookup = lookup;
       _grid.render();
 
-      if (selectedRows.length === selectableRowCount) {
+      if (selectedRows.length && selectedRows.length == _grid.getDataLength()) {
         _grid.updateColumnHeader(_options.columnId, "<input type='checkbox' checked='checked'>", _options.toolTip);
       } else {
         _grid.updateColumnHeader(_options.columnId, "<input type='checkbox'>", _options.toolTip);
       }
-
-      selectionChanged.notify(tx_args);
     }
 
     function handleKeyDown(e, args) {
-      if (e.which === 32) {
+      if (e.which == 32) {
         if (_grid.getColumns()[args.cell].id === _options.columnId) {
           // if editing, try to commit
           if (!_grid.getEditorLock().isActive() || _grid.getEditorLock().commitCurrentEdit()) {
@@ -122,18 +88,17 @@
     }
 
     function toggleRowSelection(row) {
-      var data = _grid.getData();
       if (_selectedRowsLookup[row]) {
         _grid.setSelectedRows($.grep(_grid.getSelectedRows(), function (n) {
-          return n != row;
+          return n != row
         }));
-      } else if (isRowSelectable(data, row)) {
+      } else {
         _grid.setSelectedRows(_grid.getSelectedRows().concat(row));
       }
     }
 
     function handleHeaderClick(e, args) {
-      if (args.column.id === _options.columnId && $(e.target).is(":checkbox")) {
+      if (args.column.id == _options.columnId && $(e.target).is(":checkbox")) {
         // if editing, try to commit
         if (_grid.getEditorLock().isActive() && !_grid.getEditorLock().commitCurrentEdit()) {
           e.preventDefault();
@@ -142,14 +107,9 @@
         }
 
         if ($(e.target).is(":checked")) {
-          var rows = [],
-              data = _grid.getData(),
-              rowSelectable;
+          var rows = [];
           for (var i = 0; i < _grid.getDataLength(); i++) {
-            rowSelectable = isRowSelectable(data, i);
-            if (rowSelectable) {
             rows.push(i);
-          }
           }
           _grid.setSelectedRows(rows);
         } else {
@@ -163,68 +123,31 @@
     function getColumnDefinition() {
       return {
         id: _options.columnId,
-        name: _options.columnName,
+        name: "<input type='checkbox'>",
         toolTip: _options.toolTip,
-        field: _options.field,
+        field: "sel",
         width: _options.width,
-        minWidth: _options.minWidth,
-        maxWidth: _options.maxWidth,
-        resizable: _options.resizable,
-        sortable: _options.sortable,
-        nofilter: true,
-        hideable: false,
+        resizable: false,
+        sortable: false,
         cssClass: _options.cssClass,
-        headerCssClass: _options.headerCssClass,
-        selectable: _options.selectable,
-        formatter: checkboxSelectionFormatter,
-        headerFormatter: checkboxSelectionHeaderFormatter
+        formatter: checkboxSelectionFormatter
       };
     }
 
-    function checkboxSelectionHeaderFormatter(row, cell, value, columnDef, rowDataItem, cellMetaInfo) {
-      var output = columnDef.formatter(row, cell, value, columnDef, rowDataItem, cellMetaInfo);
-      if (!cellMetaInfo.outputPlainText) {
-        output = "<span class='slick-column-name'>" + output + "</span>";
-      }
-      return output;
-    }
-
-    //noinspection JSUnusedLocalSymbols
-    function checkboxSelectionFormatter(row, cell, value, columnDef, rowDataItem, cellMetaInfo) {
-      if (cellMetaInfo.outputPlainText) {
-        if (_selectedRowsLookup[row]) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        if (columnDef.selectable) {
+    function checkboxSelectionFormatter(row, cell, value, columnDef, dataContext) {
+      if (dataContext) {
         return _selectedRowsLookup[row]
             ? "<input type='checkbox' checked='checked'>"
             : "<input type='checkbox'>";
-        } else {
-          return _selectedRowsLookup[row]
-                 ? "<input type='checkbox' checked='checked' disabled>"
-                 : "<input type='checkbox' disabled>";
-        }
       }
-    }
-
-    function isRowSelectable(data, row) {
-      var rowMetadata = data.getItemMetadata && data.getItemMetadata(row, false);
-      if (rowMetadata) {
-        return rowMetadata.selectable;
-      }
-      // when your data[] is not a DataView (or at least does not provide the getItemMetaData API method) then assume answer 'YES' for this question
-      return true;
+      return null;
     }
 
     $.extend(this, {
       "init": init,
       "destroy": destroy,
 
-      "getColumnDefinition": getColumnDefinition,
-      "selectionChanged": selectionChanged
+      "getColumnDefinition": getColumnDefinition
     });
   }
 })(jQuery);

@@ -130,12 +130,8 @@
 
   function   convertToPercent(value)
     {
-
         //noinspection UnnecessaryLocalVariableJS
         var percentValue = value;
-
-
-
         return  percentValue * 100;
     }
 

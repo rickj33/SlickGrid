@@ -1,9 +1,9 @@
 (function ($) {
   // register namespace
   $.extend(true, window, {
-    Slick: {
-      Plugins: {
-        HeaderButtons: HeaderButtons
+    "Slick": {
+      "Plugins": {
+        "HeaderButtons": HeaderButtons
       }
     }
   });
@@ -96,9 +96,10 @@
         var i = column.header.buttons.length;
         while (i--) {
           var button = column.header.buttons[i];
-          if (button.hide === true) continue;
           var btn = $("<div></div>")
-            .addClass(options.buttonCssClass);
+            .addClass(options.buttonCssClass)
+            .data("column", column)
+            .data("button", button);
 
           if (button.showOnHover) {
             btn.addClass("slick-header-button-hidden");
@@ -116,27 +117,20 @@
             btn.attr("title", button.tooltip);
           }
 
+          if (button.command) {
+            btn.data("command", button.command);
+          }
+
           if (button.handler) {
             btn.bind("click", button.handler);
           }
 
           btn
-            .bind("click", getHeaderCellClickHandler(column, button))
+            .bind("click", handleButtonClick)
             .appendTo(args.node);
         }
       }
     }
-
-
-    // Return a function so that this call serves as a closure.
-    //
-    // See http://bonsaiden.github.io/JavaScript-Garden/#function.closures ('Closures inside loops') why this function factory is required.
-    function getHeaderCellClickHandler(column, button) {
-      return function (e) {
-        handleButtonClick.call(this, e, column, button);
-      }
-    }
-
 
 
     function handleBeforeHeaderCellDestroy(e, args) {
@@ -151,13 +145,17 @@
     }
 
 
-    function handleButtonClick(e, columnDef, button) {
-      if (button.command != null) {
+    function handleButtonClick(e) {
+      var command = $(this).data("command");
+      var columnDef = $(this).data("column");
+      var button = $(this).data("button");
+
+      if (command != null) {
         _self.onCommand.notify({
-            grid: _grid,
-            column: columnDef,
-            command: button.command,
-            button: button
+            "grid": _grid,
+            "column": columnDef,
+            "command": command,
+            "button": button
           }, e, _self);
 
         // Update the header in case the user updated the button definition in the handler.

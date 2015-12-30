@@ -1,13 +1,10 @@
-/*jshint -W041*/  // Use '===' to compare with 'null'. (W041)
-
 /***
  * Contains basic SlickGrid editors.
  * @module Editors
  * @namespace Slick
  */
 
-(function($)
-{
+(function($){
     // register namespace
     $.extend(true, window, {
         Slick : {
@@ -21,7 +18,7 @@
                 LongText           : LongTextEditor,
                 Float              : FloatEditor,
                 Percentage         : PercentageEditor,
-                RowMulti           : RowEditor,
+                //RowMulti           : RowEditor,
                 ReadOnly           : ReadOnlyEditor,
                 Combo              : SelectCellEditor,
                 Color              : ColorEditor,
@@ -37,120 +34,27 @@
             }
         }
     });
-
-    function RowEditor(args)
-    {
-        var theEditor;
-
-
-        this.init = function()
-        {
-            //var data = args.grid.getData();
-            if (args.item.editor === undefined)
-            {
-                theEditor = new ReadOnlyEditor(args);
-            } else
-            {
-                theEditor = new (args.item.editor)(args);
-            }
-        };
-
-        this.destroy = function()
-        {
-            theEditor.destroy();
-        };
-
-        this.save = function()
-        {
-            theEditor.save();
-        };
-
-        this.cancel = function()
-        {
-            theEditor.cancel();
-        };
-
-        this.hide = function()
-        {
-            theEditor.hide();
-        };
-
-        this.show = function()
-        {
-            theEditor.show();
-        };
-
-        this.position = function(position)
-        {
-            theEditor.position(position);
-        };
-
-        this.focus = function()
-        {
-            theEditor.focus();
-        };
-
-        this.setDirectValue = function(val)
-        {
-            theEditor.setDirectValue(val);
-        };
-
-        this.loadValue = function(item)
-        {
-            theEditor.loadValue(item);
-        };
-
-        this.serializeValue = function()
-        {
-            return theEditor.serializeValue();
-        };
-
-        this.applyValue = function(item, state)
-        {
-            theEditor.applyValue(item, state);
-        };
-
-        this.isValueChanged = function()
-        {
-            return theEditor.isValueChanged();
-        };
-
-        this.validate = function()
-        {
-            return theEditor.validate();
-        };
-
-        this.init();
-    }
-
-
-    //noinspection FunctionNamingConventionJS
+    
+//noinspection FunctionNamingConventionJS
     function TextEditor(args)
-    {
+{
 
         //noinspection LocalVariableNamingConventionJS
         var $input;
         var defaultValue;
         var scope = this;
 
-        this.init = function()
-        {
-            $input = $("<INPUT type='text' class='editor-text' />").appendTo(args.container).bind("keydown.nav", function(e)
-            {
-                if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
-                {
-
-                    //noinspection OverlyComplexBooleanExpressionJS
-                    if (!((e.target.selectionStart === e.target.value.length) &&
-                        (e.keyCode === $.ui.keyCode.RIGHT) ||
-                        (e.target.selectionStart === 0) &&
-                        (e.keyCode === $.ui.keyCode.LEFT)))
-                    {
+    this.init = function () 
+{
+      $input = $("<INPUT type=text class='editor-text' />")
+          .appendTo(args.container)
+          .bind("keydown.nav", function (e) {
+            if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
                         e.stopImmediatePropagation();
                     }
-                }
-            }).focus().select();
-            defaultValue = '';
+          })
+          .focus()
+          .select();
         };
 
         this.destroy = function()
@@ -158,51 +62,26 @@
             $input.remove();
         };
 
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.hide = function()
-        {
-            $input.hide();
-        };
-
-        this.show = function()
-        {
-            $input.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
         this.focus = function()
         {
             $input.focus();
         };
 
-        this.setDirectValue = function(val)
+    this.getValue = function () 
         {
-            if (val == null)
+      return $input.val();
+    };
+
+    this.setValue = function (val) 
             {
-                val = "";
-            }
-            defaultValue = val;
             $input.val(val);
-            $input[0].defaultValue = val;
         };
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+      defaultValue = item[args.column.field] || "";
+      $input.val(defaultValue);
+      $input[0].defaultValue = defaultValue;
             $input.select();
         };
 
@@ -211,22 +90,20 @@
             return $input.val();
         };
 
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+    this.applyValue = function (item, state) {
+      item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
-        {
-            assert(defaultValue != null);
-            return $input.val() !== (defaultValue + "");
+    this.isValueChanged = function () {
+      return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
         };
 
-        this.validate = function()
-        {
-            if (args.column.validator)
-            {
-                return args.column.validator($input.val());
+    this.validate = function () {
+      if (args.column.validator) {
+        var validationResults = args.column.validator($input.val());
+        if (!validationResults.valid) {
+          return validationResults;
+        }
             }
 
             return {
@@ -238,7 +115,8 @@
         this.init();
     }
 
-    function ReadOnlyEditor(args)
+
+ function IntegerEditor(args)
     {
         var $input;
         var defaultValue;
@@ -246,273 +124,53 @@
 
         this.init = function()
         {
-            $input = $("<span class='editor-text-readonly' />").appendTo(args.container);
-            defaultValue = '';
-        };
+      $input = $("<INPUT type=text class='editor-text' />");
 
-        this.destroy = function()
-        {
-            $input.remove();
-        };
-
-        this.save = function()
-        {
-            // nada
-        };
-
-        this.cancel = function()
-        {
-            // nada
-        };
-
-        this.hide = function()
-        {
-            $input.hide();
-        };
-
-        this.show = function()
-        {
-            $input.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
-        this.focus = function() { };
-
-        this.setDirectValue = function(val)
-        {
-            defaultValue = val;
-            if (val == null)
-            {
-                val = "";
-            }
-            $input.text(val);
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
-            $input.select();
-        };
-
-        this.serializeValue = function()
-        {
-            return defaultValue; // $input.text(); -- make sure the value is NEVER changed, which might happen when it goes 'through the DOM'
-        };
-
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
-        };
-
-        this.isValueChanged = function()
-        {
-            return false;
-        };
-
-        this.validate = function()
-        {
-            return {
-                valid : true,
-                msg   : null
-            };
-        };
-
-        this.init();
-    }
-
-    function applyModifier(val, mod)
-    {
-        var m = isValidModifier(mod);
-        if (!m)
-        {
-            return mod;
-        }
-        var dv = parseFloat(val);
-        switch ( m.operator )
-        {
-            case "+":
-                return m.isPercent ? dv * (1 + m.value) : dv + m.value;
-
-            case "-":
-                return m.isPercent ? dv * (1 - m.value) : dv - m.value;
-
-            case "*":
-                return dv * m.value;
-
-            case "/":
-                return dv / m.value;
-        }
-        assert(0); // should never get here
-    }
-
-    function isValidModifier(v)
-    {
-        var sv = v.toString().trim();
-        var ope = sv.charAt(0);
-        if ("+-*/".indexOf(ope) < 0)
-        {
-            return false;
-        }  // no good if it does not start with an operation
-        sv = sv.substr(1);    //remove first char
-        if (sv.indexOf('+') >= 0 || sv.indexOf('-') >= 0 || sv.indexOf('*') >= 0 || sv.indexOf('/') >= 0)
-        {
-            return false;
-        }  // no more signs please.
-        var pct = false;
-        if (sv.charAt(sv.length - 1) === '%')
-        {
-            pct = true;
-            sv = sv.slice(0, -1);    // remove also the % char if it is there
-        }
-        // what remains must be a number
-        if (isNaN(sv))
-        {
-            return false;
-        }
-        return {
-            operator  : ope,
-            isPercent : pct,
-            value     : parseFloat(sv) / (pct ? 1 : 100)         // when it is a percentage, produce the equivalent perunage
-        };
-    }
-
-    //noinspection FunctionNamingConventionJS
-    function IntegerEditor(args)
-    {
-
-        //noinspection LocalVariableNamingConventionJS
-        var $input;
-        var defaultValue;
-        var scope = this;
-
-        this.init = function()
-        {
-
-            $input = $("<INPUT type='number' class='editor-integer' />").appendTo(args.container).bind("keydown.nav", function(e)
-            {
-                if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
-                {
-                    {
-                        //noinspection OverlyComplexBooleanExpressionJS
-                        if (!((e.target.selectionStart === e.target.value.length) &&
-                            (e.keyCode === $.ui.keyCode.RIGHT) ||
-                            (e.target.selectionStart === 0) &&
-                            (e.keyCode === $.ui.keyCode.LEFT)))
-                        {
+      $input.bind("keydown.nav", function (e) {
+        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
                             e.stopImmediatePropagation();
                         }
-                    }
-                }
-            }).focus().select();
-            defaultValue = 0;
+      });
+
+      $input.appendTo(args.container);
+      $input.focus().select();
         };
 
-        this.destroy = function()
-        {
-            $input.remove();
+    this.destroy = function () {
+      $input.remove();
         };
 
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.hide = function()
-        {
-            $input.hide();
-        };
-
-        this.show = function()
-        {
-            $input.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
-        this.focus = function()
-        {
+    this.focus = function () {
             $input.focus();
         };
 
-        this.setDirectValue = function(val)
-        {
-            val = parseInt(val);
-            if (isNaN(val))
-            {
-                val = 0;
-            }
-            defaultValue = val;
-            $input.val(val);
-            $input[0].defaultValue = val;
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+    this.loadValue = function (item) {
+      defaultValue = item[args.column.field];
+      $input.val(defaultValue);
+      $input[0].defaultValue = defaultValue;
             $input.select();
         };
 
-        this.serializeValue = function()
-        {
-            var v = $input.val();
-            if (v === '')
-            {
-                return 0;
-            }
-            return parseInt(applyModifier(defaultValue, v), 10) || 0;
+    this.serializeValue = function () {
+      return parseInt($input.val(), 10) || 0;
         };
 
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+    this.applyValue = function (item, state) {
+      item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
-        {
-            assert(defaultValue !== null);
-            return $input.val() !== (defaultValue + "");
+    this.isValueChanged = function () {
+      return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
         };
 
-        this.validate = function()
-        {
-            var val = this.serializeValue();
-            if (isNaN(val) && !isValidModifier(val))
-            {
+    this.validate = function () {
+      if (isNaN($input.val())) {
                 return {
                     valid : false,
                     msg   : "Please enter a valid integer"
                 };
             }
 
-            if (args.editorConfig && !isNaN(args.editorConfig.minValue) && val < args.editorConfig.minValue)
-            {
-                return {
-                    valid : false,
-                    msg   : 'Please enter a value no less than ' + args.editorConfig.minValue
-                };
-            }
-
-            if (args.editorConfig && !isNaN(args.editorConfig.maxValue) && val > args.editorConfig.maxValue)
-            {
-                return {
-                    valid : false,
-                    msg   : 'Please enter a value no greater than ' + args.editorConfig.maxValue
-                };
-            }
-
             return {
                 valid : true,
                 msg   : null
@@ -522,271 +180,7 @@
         this.init();
     }
 
-    //noinspection FunctionNamingConventionJS
-    function FloatEditor(args)
-    {
-
-        //noinspection LocalVariableNamingConventionJS
-        var $input;
-        var defaultValue;
-        var scope = this;
-
-        this.init = function()
-        {
-            $input = $("<INPUT type='text' class='editor-float' />").appendTo(args.container).bind("keydown.nav", function(e)
-            {
-                if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
-                {
-                    //noinspection OverlyComplexBooleanExpressionJS
-                    if (!((e.target.selectionStart === e.target.value.length) &&
-                        (e.keyCode === $.ui.keyCode.RIGHT) ||
-                        (e.target.selectionStart === 0) &&
-                        (e.keyCode === $.ui.keyCode.LEFT)))
-                    {
-                        e.stopImmediatePropagation();
-                    }
-
-                }
-            }).focus().select();
-            defaultValue = 0;
-        };
-
-        this.destroy = function()
-        {
-            $input.remove();
-        };
-
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.hide = function()
-        {
-            $input.hide();
-        };
-
-        this.show = function()
-        {
-            $input.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
-        this.focus = function()
-        {
-            $input.focus();
-        };
-
-        this.setDirectValue = function(val)
-        {
-            val = parseFloat(val);
-            if (isNaN(val))
-            {
-                val = 0;
-            }
-            defaultValue = val;
-            $input.val(val);
-            $input[0].defaultValue = val;
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
-            $input.select();
-        };
-
-        this.serializeValue = function()
-        {
-            var v = $input.val();
-            if (v === '')
-            {
-                return 0.0;
-            }
-            return parseFloat(applyModifier(defaultValue, v)) || 0.0;
-        };
-
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
-        };
-
-        this.isValueChanged = function()
-        {
-            assert(defaultValue !== null);
-            return $input.val() !== (defaultValue + "");
-        };
-
-        this.validate = function()
-        {
-            var val = $input.val();
-            if (isNaN(val) && !isValidModifier(val))
-            {
-                return {
-                    valid : false,
-                    msg   : "Please enter a valid numeric value"
-                };
-            }
-
-            return {
-                valid : true,
-                msg   : null
-            };
-        };
-
-        this.init();
-    }
-
-
-    function PercentageEditor(args)
-    {
-        var $input;
-        var defaultValue;
-        var scope = this;
-
-        function roundPerunage(v)
-        {
-            return Math.round(v * 1E6) / 1E6;
-        }
-
-        function stringToPerunage(val)
-        {
-            var multiplier = 1;
-            val += "";
-            if (val.charAt(val.length - 1) === '%')
-            {
-                val = val.slice(0, -1);    // remove also the % char if it is there
-                multiplier = 100;
-            }
-            // what remains must be a number
-            val = roundPerunage(parseFloat(val) / multiplier);
-            if (isNaN(val))
-            {
-                val = 0;
-            }
-            return val;
-        }
-
-        this.init = function()
-        {
-            $input = $("<INPUT type='text' class='editor-percentage' />").appendTo(args.container).bind("keydown.nav", function(e)
-            {
-                if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
-                {
-                    e.stopImmediatePropagation();
-                }
-            }).focus().select();
-            defaultValue = '';
-        };
-
-        this.destroy = function()
-        {
-            $input.remove();
-        };
-
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.hide = function()
-        {
-            $input.hide();
-        };
-
-        this.show = function()
-        {
-            $input.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
-        this.focus = function()
-        {
-            $input.focus();
-        };
-
-        this.setDirectValue = function(val)
-        {
-            val = stringToPerunage(val);
-            val = (val * 100) + " %";
-            defaultValue = val;
-            $input.val(val);
-            $input[0].defaultValue = val;
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
-            $input.select();
-        };
-
-        this.serializeValue = function()
-        {
-            var v = $input.val();
-            if (v === '')
-            {
-                return 0;
-            }
-            var sv = stringToPerunage(defaultValue) * 100;
-            return stringToPerunage(applyModifier(sv, v) / 100) || 0;
-        };
-
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
-        };
-
-        this.isValueChanged = function()
-        {
-            assert(defaultValue !== null);
-            return $input.val() !== defaultValue;
-        };
-
-        this.validate = function()
-        {
-            var val = $input.val();
-            if (val.charAt(val.length - 1) === '%')
-            {
-                val = val.slice(0, -1);    // remove also the % char if it is there
-            }
-            if (isNaN(val) && !isValidModifier(val))
-            {
-                return {
-                    valid : false,
-                    msg   : "Please enter a valid percentage"
-                };
-            }
-
-            return {
-                valid : true,
-                msg   : null
-            };
-        };
-
-        this.init();
-    }
-
-
-    function DateEditor(args)
+  function DateEditor(args)
     {
         var $input;
         var defaultValue;
@@ -897,21 +291,17 @@
             args.cancelChanges();
         };
 
-        this.show = function()
-        {
-            if (calendarOpen)
-            {
-                $.datepicker.dpDiv.stop(true, true).show();
-            }
-        };
+         this.show = function () {
+      if (calendarOpen) {
+        $.datepicker.dpDiv.stop(true, true).show();
+      }
+    };
 
-        this.hide = function()
-        {
-            if (calendarOpen)
-            {
-                $.datepicker.dpDiv.stop(true, true).hide();
-            }
-        };
+    this.hide = function () {
+      if (calendarOpen) {
+        $.datepicker.dpDiv.stop(true, true).hide();
+      }
+    };
 
         /*
          * info: {
@@ -920,16 +310,15 @@
          *         container: activeCellNode
          *       }
          */
-        this.position = function(info)
+        this.position = function(position)
         {
             if (!calendarOpen)
             {
                 return;
             }
-            if (info.position.visible)
-            {
-                $.datepicker.dpDiv.css("top", info.position.top + 30).css("left", info.position.left);
-            }
+           
+                $.datepicker.dpDiv.css("top", position.top + 30).css("left", position.left);
+           
         };
 
         this.focus = function()
@@ -949,12 +338,12 @@
             $input.datepicker("setDate", val);
         };
 
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
-            $input.select();
-        };
-
+       this.loadValue = function (item) {
+      defaultValue = item[args.column.field];
+      $input.val(defaultValue);
+      $input[0].defaultValue = defaultValue;
+      $input.select();
+    };
         this.serializeValue = function()
         {
             return $input.datepicker("getDate");
@@ -964,7 +353,7 @@
         {
             var fmt = detectableDateFormats[dateFormat] || detectableDateFormats[0];
             state = $.datepicker.formatDate(fmt, state); // state.format('isoDate');
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+              item[args.column.field] = state;
         };
 
         this.isValueChanged = function()
@@ -993,84 +382,44 @@
         this.init();
     }
 
-    //noinspection FunctionNamingConventionJS
-    function YesNoSelectEditor(args)
+  function YesNoSelectEditor(args)
     {
         var $select;
         var defaultValue;
         var scope = this;
 
-        this.init = function()
-        {
-            $select = $("<SELECT tabIndex='0' class='editor-yesno'><OPTION value='yes'>Yes</OPTION><OPTION value='no'>No</OPTION></SELECT>").appendTo(args.container).focus().select();
+    this.init = function () {
+      $select = $("<SELECT tabIndex='0' class='editor-yesno'><OPTION value='yes'>Yes</OPTION><OPTION value='no'>No</OPTION></SELECT>");
+      $select.appendTo(args.container);
+      $select.focus();
         };
 
-        this.destroy = function()
-        {
+    this.destroy = function () {
             $select.remove();
         };
 
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.hide = function()
-        {
-            $select.hide();
-        };
-
-        this.show = function()
-        {
-            $select.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
-        this.focus = function()
-        {
+    this.focus = function () {
             $select.focus();
         };
 
-        this.setDirectValue = function(val)
-        {
-            val = !!val;
-            defaultValue = val;
-            $select.val(val ? "yes" : "no");
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+    this.loadValue = function (item) {
+      $select.val((defaultValue = item[args.column.field]) ? "yes" : "no");
             $select.select();
         };
 
-        this.serializeValue = function()
-        {
-            return ($select.val() === "yes");
+    this.serializeValue = function () {
+      return ($select.val() == "yes");
         };
 
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+    this.applyValue = function (item, state) {
+      item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
-        {
-            return scope.serializeValue() !== defaultValue;
+    this.isValueChanged = function () {
+      return ($select.val() != defaultValue);
         };
 
-        this.validate = function()
-        {
+    this.validate = function () {
             return {
                 valid : true,
                 msg   : null
@@ -1081,86 +430,48 @@
     }
 
 
-    //noinspection FunctionNamingConventionJS
-    function CheckboxEditor(args)
+ function CheckboxEditor(args)
     {
         var $select;
         var defaultValue;
         var scope = this;
 
-        this.init = function()
-        {
-            $select = $("<INPUT type='checkbox' value='true' class='editor-checkbox' hideFocus='true'>").appendTo(args.container).focus().select();
-            defaultValue = false;
+    this.init = function () {
+      $select = $("<INPUT type=checkbox value='true' class='editor-checkbox' hideFocus>");
+      $select.appendTo(args.container);
+      $select.focus();
         };
 
-        this.destroy = function()
-        {
+    this.destroy = function () {
             $select.remove();
         };
 
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.hide = function()
-        {
-            $select.hide();
-        };
-
-        this.show = function()
-        {
-            $select.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
-        this.focus = function()
-        {
+    this.focus = function () {
             $select.focus();
         };
 
-        this.setDirectValue = function(val)
-        {
-            val = !!val;
-            defaultValue = val;
-            $select.prop('checked', val);
+    this.loadValue = function (item) {
+      defaultValue = !!item[args.column.field];
+      if (defaultValue) {
+        $select.prop('checked', true);
+      } else {
+        $select.prop('checked', false);
+      }
         };
 
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
-            $select.select();
-        };
-
-        this.serializeValue = function()
-        {
+    this.serializeValue = function () {
             return $select.prop('checked');
         };
 
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+    this.applyValue = function (item, state) {
+      item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
-        {
-            assert(defaultValue != null);
-            return this.serializeValue() !== defaultValue;
+    this.isValueChanged = function () {
+      return (this.serializeValue() !== defaultValue);
         };
 
-        this.validate = function()
-        {
+    this.validate = function () {
             return {
                 valid : true,
                 msg   : null
@@ -1170,164 +481,67 @@
         this.init();
     }
 
-    //noinspection FunctionNamingConventionJS
-    function PercentCompleteEditor(args)
+ function PercentCompleteEditor(args)
     {
-        var $input, $picker, $helper;
+    var $input, $picker;
         var defaultValue;
         var scope = this;
 
-        this.init = function()
-        {
-            defaultValue = 0;
-
-            $input = $("<INPUT type='text' class='editor-percentcomplete' />").appendTo(args.container).bind("keydown.nav", function(e)
-            {
-                if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
-                {
-                    e.stopImmediatePropagation();
-                }
-            }).focus().select();
-
-            $input.outerWidth($(args.container).innerWidth() - 25);
+    this.init = function () {
+      $input = $("<INPUT type=text class='editor-percentcomplete' />");
+      $input.width($(args.container).innerWidth() - 25);
+      $input.appendTo(args.container);
 
             $picker = $("<div class='editor-percentcomplete-picker' />").appendTo(args.container);
+      $picker.append("<div class='editor-percentcomplete-helper'><div class='editor-percentcomplete-wrapper'><div class='editor-percentcomplete-slider' /><div class='editor-percentcomplete-buttons' /></div></div>");
 
-            var $body = $("body");
+      $picker.find(".editor-percentcomplete-buttons").append("<button val=0>Not started</button><br/><button val=50>In Progress</button><br/><button val=100>Complete</button>");
 
-            $helper = $("\
-               <div class='editor-percentcomplete-helper'>\
-               <div class='editor-percentcomplete-wrapper'>\
-               <div class='editor-percentcomplete-slider'>\
-               </div>\
-               <div class='editor-percentcomplete-buttons'>\
-               </div>\
-               </div>\
-               </div>").appendTo($body);
+      $input.focus().select();
 
-            $helper.find(".editor-percentcomplete-buttons").append("<button val='0'>Not started</button>\
-               <br/>\
-               <button val='50'>In Progress</button>\
-               <br/>\
-               <button val='100'>Complete</button>");
-
-            $helper.find(".editor-percentcomplete-slider").slider({
+      $picker.find(".editor-percentcomplete-slider").slider({
                 orientation : "vertical",
                 range       : "min",
                 value       : defaultValue,
-                slide       : function(event, ui)
-                {
-                    $input.val(ui.value);
+        slide: function (event, ui) {
+          $input.val(ui.value)
                 }
             });
 
-            //noinspection JSUnusedLocalSymbols
-            $picker.click(function(e)
-            {
-                //$helper.toggle();
-                $helper.show();
-                if ($helper.is(":visible"))
-                {
-                    $helper.position({
-                        my        : "left top",
-                        at        : "right top",
-                        of        : $picker,
-                        collision : "flipfit"
-                    });
-                }
-            });
-            //$helper.blur(function (e) {
-            //  $helper.hide();
-            //});
-
-            //noinspection JSUnusedLocalSymbols
-            $helper.find(".editor-percentcomplete-buttons button").bind("click", function(e)
-            {
+      $picker.find(".editor-percentcomplete-buttons button").bind("click", function (e) {
                 $input.val($(this).attr("val"));
-                $helper.find(".editor-percentcomplete-slider").slider("value", $(this).attr("val"));
-            });
+        $picker.find(".editor-percentcomplete-slider").slider("value", $(this).attr("val"));
+      })
         };
 
-        this.destroy = function()
-        {
+    this.destroy = function () {
             $input.remove();
             $picker.remove();
-            $helper.remove();
         };
 
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.hide = function()
-        {
-            $input.hide();
-            $picker.hide();
-            $helper.hide();
-        };
-
-        this.show = function()
-        {
-            $input.show();
-            $picker.show();
-            $helper.show();
-        };
-
-        this.position = function(position)
-        {
-            // nada
-        };
-
-        this.focus = function()
-        {
+    this.focus = function () {
             $input.focus();
         };
 
-        this.setDirectValue = function(val)
-        {
-            val = parseFloat(val);
-            if (isNaN(val))
-            {
-                val = 0;
-            }
-            defaultValue = val;
-            $input.val(val);
-            $helper.find(".editor-percentcomplete-slider").slider("value", val);
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+    this.loadValue = function (item) {
+      $input.val(defaultValue = item[args.column.field]);
             $input.select();
         };
 
-        this.serializeValue = function()
-        {
+    this.serializeValue = function () {
             return parseInt($input.val(), 10) || 0;
         };
 
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+    this.applyValue = function (item, state) {
+      item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
-        {
-            assert(defaultValue !== null);
-            return (parseInt($input.val(), 10) || 0) !== defaultValue;
+    this.isValueChanged = function () {
+      return (!($input.val() == "" && defaultValue == null)) && ((parseInt($input.val(), 10) || 0) != defaultValue);
         };
 
-        this.validate = function()
-        {
-            if (isNaN(parseInt($input.val(), 10)))
-            {
+    this.validate = function () {
+      if (isNaN(parseInt($input.val(), 10))) {
                 return {
                     valid : false,
                     msg   : "Please enter a valid positive number"
@@ -1343,7 +557,7 @@
         this.init();
     }
 
-    /*
+ /*
      * An example of a "detached" editor.
      * The UI is added onto document BODY and .position(), .show() and .hide() are implemented.
      * KeyDown events are also handled to provide handling for Tab, Shift-Tab, Esc and Ctrl-Enter.
@@ -1351,456 +565,94 @@
     //noinspection FunctionNamingConventionJS
     function LongTextEditor(args)
     {
-        var $input, $wrapper, $picker, $wrapped_input;
+    var $input, $wrapper;
         var defaultValue;
         var scope = this;
 
-        this.init = function()
-        {
-            $input = $("<TEXTAREA type='text' class='editor-longtext-basic-input' rows='1' />").appendTo(args.container).bind("keydown.nav", function(e)
-            {
-                if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
-                {
-                    e.stopImmediatePropagation();
-                }
-            });
-
-            $input.width($(args.container).innerWidth() - 6);   // textarea with 'resize:none' keeps space at right; we move the edit icon over it...
-
-            $picker = $("<div class='editor-longtext-icon' />").appendTo(args.container);
-
+    this.init = function () {
             var $container = $("body");
 
-            $wrapper = $("<DIV class='slick-editor-longtext' />").appendTo($container);
+      $wrapper = $("<DIV style='z-index:10000;position:absolute;background:white;padding:5px;border:3px solid gray; -moz-border-radius:10px; border-radius:10px;'/>")
+          .appendTo($container);
 
-            $wrapped_input = $("<TEXTAREA rows='5'>").appendTo($wrapper);
+      $input = $("<TEXTAREA hidefocus rows=5 style='backround:white;width:250px;height:80px;border:0;outline:0'>")
+          .appendTo($wrapper);
 
-            $("<DIV class='buttons-container'><BUTTON class='save-button'>Save</BUTTON><BUTTON class='cancel-button'>Cancel</BUTTON></DIV>").appendTo($wrapper);
+      $("<DIV style='text-align:right'><BUTTON>Save</BUTTON><BUTTON>Cancel</BUTTON></DIV>")
+          .appendTo($wrapper);
 
-            $wrapper.find("button.save-button").bind("click", scope.save);
-            $wrapper.find("button.cancel-button").bind("click", scope.cancel);
-            $wrapped_input.bind("keydown", scope.handleKeyDown);
+      $wrapper.find("button:first").bind("click", this.save);
+      $wrapper.find("button:last").bind("click", this.cancel);
+      $input.bind("keydown", this.handleKeyDown);
 
-            assert(args.container);
-            //noinspection JSUnusedLocalSymbols
-            $picker.click(function(e)
-            {
-                if (!$wrapper.is(":visible"))
-                {
-                    showPanel();
-                } else
-                {
-                    hidePanel();
-                }
-            });
-            //$wrapper.blur(function (e) {
-            //  hidePanel();
-            //});
-
+      scope.position(args.position);
             $input.focus().select();
-
-            defaultValue = '';
         };
 
-        this.handleKeyDown = function(e)
-        {
-            if (e.which === Slick.Keyboard.ENTER && e.ctrlKey)
-            {
+    this.handleKeyDown = function (e) {
+      if (e.which == $.ui.keyCode.ENTER && e.ctrlKey) {
                 scope.save();
-            } else if (e.which === Slick.Keyboard.ESCAPE)
-            {
+      } else if (e.which == $.ui.keyCode.ESCAPE) {
                 e.preventDefault();
                 scope.cancel();
-            } else if (e.which === Slick.Keyboard.TAB && e.shiftKey)
-            {
+      } else if (e.which == $.ui.keyCode.TAB && e.shiftKey) {
                 e.preventDefault();
                 args.grid.navigatePrev();
-            } else if (e.which === Slick.Keyboard.TAB)
-            {
+      } else if (e.which == $.ui.keyCode.TAB) {
                 e.preventDefault();
                 args.grid.navigateNext();
             }
         };
 
-        this.save = function()
-        {
+    this.save = function () {
             args.commitChanges();
         };
 
-        this.cancel = function()
-        {
+    this.cancel = function () {
             $input.val(defaultValue);
-            $wrapped_input.val(defaultValue);
             args.cancelChanges();
         };
 
-        function hidePanel()
-        {
-            $input.prop('readonly', null);
-            $input.val($wrapped_input.val());
-
+    this.hide = function () {
             $wrapper.hide();
-        }
-
-        function showPanel()
-        {
-            // mark regular input as readonly and copy its content into the panel textarea:
-            $input.prop('readonly', true);
-            $wrapped_input.val($input.val());
-
-            $wrapper.show();
-
-            scope.position(args);
-        }
-
-        this.hide = function()
-        {
-            hidePanel();
         };
 
-        this.show = function()
-        {
-            showPanel();
+    this.show = function () {
+      $wrapper.show();
         };
 
-        /*
-         * info: {
-         *         gridPosition: getGridPosition(),
-         *         position: cellBox,
-         *         container: activeCellNode
-         *       }
-         */
-        this.position = function(info)
-        {
-            if ($wrapper.is(":visible"))
-            {
-                $wrapper.position({
-                    my        : "left top+2",
-                    at        : "left bottom",
-                    of        : info.container,
-                    collision : "flipfit"
-                });
-            }
+    this.position = function (position) {
+      $wrapper
+          .css("top", position.top - 5)
+          .css("left", position.left - 5)
         };
 
-        this.destroy = function()
-        {
+    this.destroy = function () {
             $wrapper.remove();
-            $picker.remove();
-            $input.remove();
         };
 
-        this.focus = function()
-        {
-            if ($wrapper.is(":visible"))
-            {
-                $wrapped_input.focus();
-            } else
-            {
+    this.focus = function () {
                 $input.focus();
-            }
         };
 
-        this.setDirectValue = function(val)
-        {
-            if (val == null)
-            {
-                val = "";
-            }
-            val += "";
-            defaultValue = val;
-            $input.val(val);
-            $wrapped_input.val(val);
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+    this.loadValue = function (item) {
+      $input.val(defaultValue = item[args.column.field]);
             $input.select();
         };
 
-        function getValue()
-        {
-            var rv;
-            if ($wrapper.is(":visible"))
-            {
-                rv = $wrapped_input.val();
-            } else
-            {
-                rv = $input.val();
-            }
-            return rv;
-        }
-
-        this.serializeValue = function()
-        {
-            return getValue();
+    this.serializeValue = function () {
+      return $input.val();
         };
 
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+    this.applyValue = function (item, state) {
+      item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
-        {
-            assert(defaultValue != null);
-            return getValue() !== defaultValue;
+    this.isValueChanged = function () {
+      return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
         };
 
-        this.validate = function()
-        {
-            return {
-                valid : true,
-                msg   : null
-            };
-        };
-
-        this.init();
-    }
-
-    function ColorEditor(args)
-    {
-        var $input;
-        var defaultValue;
-        var scope = this;
-        var isOpen = false;
-        var $container = $(args.container);
-
-        this.init = function()
-        {
-            $input = $("<input type='color' />").appendTo($container).bind("keydown.nav", function(e)
-            {
-                if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
-                {
-                    e.stopImmediatePropagation();
-                }
-            }).focus().select();
-            scope.show();
-        };
-
-        this.destroy = function()
-        {
-            $input.spectrum("destroy");
-            $input.remove();
-            isOpen = false;
-        };
-
-        this.save = function()
-        {
-            args.commitChanges();
-        };
-
-        this.cancel = function()
-        {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
-        };
-
-        this.show = function()
-        {
-            if (!isOpen)
-            {
-                $input.spectrum({
-                    className            : 'spectrumSlick',
-                    clickoutFiresChange  : true,
-                    showButtons          : false,
-                    showPalette          : true,
-                    showInput            : true,
-                    showAlpha            : false,
-                    showSelectionPalette : true,
-                    maxPaletteSize       : 16,
-                    preferredFormat      : "hex6",
-                    appendTo             : "body",
-                    flat                 : true,
-                    palette              : [
-                        [
-                            "#000000",
-                            "#262626",
-                            "#464646",
-                            "#626262",
-                            "#707070",
-                            "#7D7D7D",
-                            "#898989",
-                            "#959595",
-                            "#A0A0A0",
-                            "#ACACAC",
-                            "#B7B7B7",
-                            "#C2C2C2",
-                            "#D7D7D7",
-                            "#E1E1E1",
-                            "#EBEBEB",
-                            "#FFFFFF"
-                        ],
-                        [
-                            "#FF0000",
-                            "#FFFF00",
-                            "#00FF00",
-                            "#00FFFF",
-                            "#0000FF",
-                            "#FF00FF",
-                            "#ED1C24",
-                            "#FFF200",
-                            "#00A651",
-                            "#00AEEF",
-                            "#2E3192",
-                            "#EC008C"
-                        ],
-                        [
-                            "#F7977A",
-                            "#F9AD81",
-                            "#FDC68A",
-                            "#FFF79A",
-                            "#C4DF9B",
-                            "#A2D39C",
-                            "#82CA9D",
-                            "#7BCDC8",
-                            "#6ECFF6",
-                            "#7EA7D8",
-                            "#8493CA",
-                            "#8882BE",
-                            "#A187BE",
-                            "#BC8DBF",
-                            "#F49AC2",
-                            "#F6989D"
-                        ],
-                        [
-                            "#F26C4F",
-                            "#F68E55",
-                            "#FBAF5C",
-                            "#FFF467",
-                            "#ACD372",
-                            "#7CC576",
-                            "#3BB878",
-                            "#1ABBB4",
-                            "#00BFF3",
-                            "#438CCA",
-                            "#5574B9",
-                            "#605CA8",
-                            "#855FA8",
-                            "#A763A8",
-                            "#F06EA9",
-                            "#F26D7D"
-                        ],
-                        [
-                            "#ED1C24",
-                            "#F26522",
-                            "#F7941D",
-                            "#FFF200",
-                            "#8DC73F",
-                            "#39B54A",
-                            "#00A651",
-                            "#00A99D",
-                            "#00AEEF",
-                            "#0072BC",
-                            "#0054A6",
-                            "#2E3192",
-                            "#662D91",
-                            "#92278F",
-                            "#EC008C",
-                            "#ED145B"
-                        ],
-                        [
-                            "#9E0B0F",
-                            "#A0410D",
-                            "#A36209",
-                            "#ABA000",
-                            "#598527",
-                            "#1A7B30",
-                            "#007236",
-                            "#00746B",
-                            "#0076A3",
-                            "#004B80",
-                            "#003471",
-                            "#1B1464",
-                            "#440E62",
-                            "#630460",
-                            "#9E005D",
-                            "#9E0039"
-                        ],
-                        [
-                            "#790000",
-                            "#7B2E00",
-                            "#7D4900",
-                            "#827B00",
-                            "#406618",
-                            "#005E20",
-                            "#005826",
-                            "#005952",
-                            "#005B7F",
-                            "#003663",
-                            "#002157",
-                            "#0D004C",
-                            "#32004B",
-                            "#4B0049",
-                            "#7B0046",
-                            "#7A0026"
-                        ]
-                    ]
-                });
-                isOpen = true;
-            }
-            $input.spectrum("show");
-        };
-
-        this.hide = function()
-        {
-            if (isOpen)
-            {
-                $input.spectrum("hide");
-                isOpen = false;
-            }
-        };
-
-        this.position = function(position)
-        {
-            if (!isOpen)
-            {
-                return;
-            }
-            //$cp.css("top", position.top + 20).css("left", position.left);
-        };
-
-        this.focus = function()
-        {
-            scope.show();
-            $input.focus();
-        };
-
-        this.setDirectValue = function(val)
-        {
-            if (val == null)
-            {
-                val = "";
-            }
-            $input.spectrum("set", val);
-            defaultValue = scope.serializeValue();
-        };
-
-        this.loadValue = function(item)
-        {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
-            $input.select();
-        };
-
-        this.serializeValue = function()
-        {
-            return $input.spectrum("get").toString();
-        };
-
-        this.applyValue = function(item, state)
-        {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
-        };
-
-        this.isValueChanged = function()
-        {
-            assert(defaultValue !== null);
-            var v = scope.serializeValue();
-            return v !== defaultValue;
-        };
-
-        this.validate = function()
+    this.validate = function () {
         {
             return {
                 valid : true,
@@ -1878,7 +730,7 @@
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+            scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
@@ -1890,7 +742,8 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
+            item[args.column.field] = state;
 
 
         };
@@ -2119,7 +972,7 @@
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+            scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
@@ -2131,7 +984,8 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+             item[args.column.field] = state;
+            //args.grid.setDataItemValueForColumn(item, args.column, state);
         };
 
         this.isValueChanged = function()
@@ -2258,7 +1112,7 @@
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+            scope.setDirectValue(item[args.column.field]);
             $select.select();
         };
 
@@ -2269,7 +1123,7 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
         };
 
         this.isValueChanged = function()
@@ -2355,7 +1209,7 @@
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+            scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
@@ -2367,7 +1221,7 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
 
 
         };
@@ -2474,7 +1328,7 @@
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+            scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
@@ -2486,7 +1340,7 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
 
 
         };
@@ -2590,7 +1444,7 @@
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+            scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
@@ -2607,7 +1461,7 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
 
 
         };
@@ -2743,7 +1597,7 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
 
         };
 
@@ -2830,7 +1684,7 @@
 
         this.loadValue = function(item)
         {
-            scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
+            scope.setDirectValue(item[args.column.field]);
             $select.select();
         };
 
@@ -2841,7 +1695,7 @@
 
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
         };
 
         this.isValueChanged = function()
@@ -2963,7 +1817,7 @@
         
         this.applyValue = function(item, state)
         {
-            args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[args.column.field] = state;
 
         };
 

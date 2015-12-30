@@ -1,31 +1,37 @@
 (function ($) {
   // register namespace
   $.extend(true, window, {
-    Slick: {
-      CellRangeSelector: CellRangeSelector
+    "Slick": {
+      "CellRangeSelector": CellRangeSelector
     }
   });
 
 
   function CellRangeSelector(options) {
     var _grid;
-    var _canvas;
+    var _gridOptions;
+    var _$activeCanvas;
     var _dragging;
     var _decorator;
     var _self = this;
     var _handler = new Slick.EventHandler();
     var _defaults = {
       selectionCss: {
-        border: "2px dashed blue"
+        "border": "2px dashed blue"
       }
     };
 
+    // Frozen row & column variables
+    var _rowOffset;
+    var _columnOffset;
+    var _isRightCanvas;
+    var _isBottomCanvas;
 
     function init(grid) {
       options = $.extend(true, {}, _defaults, options);
       _decorator = new Slick.CellRangeDecorator(grid, options);
       _grid = grid;
-      _canvas = _grid.getCanvasNode();
+      _gridOptions = _grid.getOptions();
       _handler
         .subscribe(_grid.onDragInit, handleDragInit)
         .subscribe(_grid.onDragStart, handleDragStart)
@@ -37,43 +43,48 @@
       _handler.unsubscribeAll();
     }
 
-    //noinspection JSUnusedLocalSymbols
     function handleDragInit(e, dd) {
-      _dragging = false;
+        // Set the active canvas node because the decorator needs to append its
+        // box to the correct canvas
+        _$activeCanvas = $( _grid.getActiveCanvasNode( e ) );
+
+        var c = _$activeCanvas.offset();
+
+        _rowOffset = 0;
+        _columnOffset = 0;
+        _isBottomCanvas = _$activeCanvas.hasClass( 'grid-canvas-bottom' );
+
+        if ( _gridOptions.frozenRow > -1 && _isBottomCanvas ) {
+            _rowOffset = ( _gridOptions.frozenBottom ) ? $('.grid-canvas-bottom').height() : $('.grid-canvas-top').height();
+        }
+        
+        _isRightCanvas = _$activeCanvas.hasClass( 'grid-canvas-right' );
+        
+        if ( _gridOptions.frozenColumn > -1 && _isRightCanvas ) {
+            _columnOffset = $('.grid-canvas-left').width();
+        }
+              
       // prevent the grid from cancelling drag'n'drop by default
       e.stopImmediatePropagation();
     }
 
     function handleDragStart(e, dd) {
       var cell = _grid.getCellFromEvent(e);
-      var evt = new Slick.EventData(e);
-      var state = _self.onBeforeCellRangeSelected.notify(cell, evt);
-      if (state === false ||
-          evt.isHandled() ||
-          !_grid.canCellBeSelected(cell.row, cell.cell)) {
-        return;
-      }
+        if (_self.onBeforeCellRangeSelected.notify(cell) !== false) {
+            if (_grid.canCellBeSelected(cell.row, cell.cell)) {
           _dragging = true;
           e.stopImmediatePropagation();
+            }
+        }
+        if (!_dragging) {
+            return;
+        }
 
       _grid.focus();
+        dd.range = {start: cell, end: {}};
 
-      var x, y, o;
-      o = $(_canvas).offset();
-      x = dd.startX - o.left;
-      y = dd.startY - o.top;
-      var start = _grid.getCellFromPoint(x, y, {
-        clipToValidRange: true
-      });
-      assert(start);
 
-      dd.range = {
-        start: start,
-        end: {}
-      };
-      dd.currentCell = cell;
-
-      return _decorator.show(new Slick.Range(start.row, start.cell));
+        return _decorator.show(new Slick.Range(cell.row, cell.cell));
     }
 
     function handleDrag(e, dd) {
@@ -82,30 +93,23 @@
       }
       e.stopImmediatePropagation();
 
-      var x, y, o;
-      o = $(_canvas).offset();
-      x = e.pageX - o.left;
-      y = e.pageY - o.top;
-      var end = _grid.getCellFromPoint(x, y, {
-        clipToValidRange: true
-      });
-      assert(end);
+        var end = _grid.getCellFromPoint(
+            e.pageX - _$activeCanvas.offset().left + _columnOffset,
+            e.pageY - _$activeCanvas.offset().top + _rowOffset
+        );
 
-      var eventData = {
-          range: dd.range,
-          currentCell: end
-      };
-      var evt = new Slick.EventData(e);
-      var state = _self.onCellRangeSelectionOngoing.notify(eventData, evt);
-      if (state === false ||
-          evt.isHandled() ||
-          !eventData.currentCell ||
-          !_grid.canCellBeSelected(eventData.currentCell.row, eventData.currentCell.cell)) {
+        if ( (!_grid.canCellBeSelected( end.row, end.cell ) ) 
+             || ( !_isRightCanvas && ( end.cell > _gridOptions.frozenColumn ) )
+             || ( _isRightCanvas && ( end.cell <= _gridOptions.frozenColumn ) )
+             || ( !_isBottomCanvas && ( end.row >= _gridOptions.frozenRow ) )
+             || ( _isBottomCanvas && ( end.row < _gridOptions.frozenRow ) )
+           ) {
         return;
       }
 
-      dd.range.end = eventData.currentCell;
-      _decorator.show(new Slick.Range(dd.range.start.row, dd.range.start.cell, dd.range.end.row, dd.range.end.cell));
+        dd.range.end = end;
+
+        _decorator.show(new Slick.Range(dd.range.start.row, dd.range.start.cell, end.row, end.cell));
     }
 
     function handleDragEnd(e, dd) {
@@ -117,7 +121,6 @@
       e.stopImmediatePropagation();
 
       _decorator.hide();
-      var evt = new Slick.EventData(e);
       _self.onCellRangeSelected.notify({
         range: new Slick.Range(
             dd.range.start.row,
@@ -125,7 +128,7 @@
             dd.range.end.row,
             dd.range.end.cell
         )
-      }, evt);
+      });
     }
 
     $.extend(this, {
@@ -133,7 +136,6 @@
       "destroy": destroy,
 
       "onBeforeCellRangeSelected": new Slick.Event(),
-      "onCellRangeSelectionOngoing": new Slick.Event(),
       "onCellRangeSelected": new Slick.Event()
     });
   }

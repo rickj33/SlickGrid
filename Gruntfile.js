@@ -82,7 +82,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: 'src',
-            src: ['*.less', 'controls/*.less', 'plugins/*.less', 'examples/*.less', '!slick.grid.less', '!slick.config.less', '!slick.config.*.less', '!slick.less.macros.less'],
+            src: ['less/slickgrid.less'],
             dest: 'src',
             ext: '.css'
           }
@@ -100,7 +100,7 @@ module.exports = function (grunt) {
           {
             cwd: '',
             expand: false,
-            src: 'src/slick.grid.less',
+            src: 'src/less/slick.grid.less',
             dest: 'src/slick.grid.css'
           }
         ]

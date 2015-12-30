@@ -5,16 +5,9 @@
                 DataView: DataView,
                 Aggregators: {
                     Avg: AvgAggregator,
-                    Mde: MdeAggregator,
-                    Mdn: MdnAggregator,
                     Min: MinAggregator,
                     Max: MaxAggregator,
-                    Sum: SumAggregator,
-                    Std: StdAggregator,
-                    CheckCount: CheckCountAggregator,
-                    DateRange: DateRangeAggregator,
-                    Unique: UniqueAggregator,
-                    WeightedAverage: WeightedAverageAggregator
+                    Sum: SumAggregator
                 }
             }
         }
@@ -31,20 +24,12 @@
         var self = this;
 
         var defaults = {
-            groupItemMetadataProvider: null,        // { getGroupRowMetadata: function(rowData, row, cell /* may be FALSE */, dataRows) , getTotalsRowMetadata: function(rowData, row, cell /* may be FALSE */, dataRows) }
-            globalItemMetadataProvider: null,       // { getRowMetadata: function(rowData, row, cell /* may be FALSE */, dataRows) }
-            flattenGroupedRows: flattenGroupedRows, // function (groups, level, groupingInfos, filteredItems, options) { return all_rows_you_want_to_see[]; }
-            showExpandedGroupRows: true,
-            inlineFilters: false,
-            idProperty: "id",
-            stableSort: true                        // set this to FALSE if you don't need it for your data (your sort key is always guaranteed unique, for instance) for a sort speedup
+            groupItemMetadataProvider: null,
+            inlineFilters: false
         };
 
-        options = $.extend(true, {}, defaults, options);
-
         // private
-        var idProperty = options.idProperty;  // property holding a unique row id
-        var stableSort = options.stableSort;
+        var idProperty = "id"; // property holding a unique row id
         var items = [];         // data by index
         var rows = [];          // data by row
         var idxById = {};       // indexes by id
@@ -53,6 +38,7 @@
         var updated = null;     // updated item ids
         var suspendCount = 0;   // suspends the recalculation
         var sortAsc = true;
+        var fastSortField;
         var sortComparer;
         var refreshHints = {};
         var prevRefreshHints = {};
@@ -78,9 +64,7 @@
             aggregateCollapsed: false,
             aggregateChildGroups: false,
             collapsed: false,
-            displayTotalsRow: true,
-            totalsRowBeforeItems: false,
-            lazyTotalsCalculation: false
+            displayTotalsRow: true
         };
         var groupingInfos = [];
         var groups = [];
@@ -95,6 +79,8 @@
         var onRowCountChanged = new Slick.Event();
         var onRowsChanged = new Slick.Event();
         var onPagingInfoChanged = new Slick.Event();
+
+        options = $.extend(true, {}, defaults, options);
 
         function beginUpdate() {
             suspendCount++;
@@ -182,7 +168,7 @@
         }
 
         function setItems(data, objectIdProperty) {
-            if (objectIdProperty != null) {
+            if (objectIdProperty !== null && objectIdProperty !== undefined) {
                 idProperty = objectIdProperty;
             }
             items = filteredItems = data;
@@ -193,12 +179,12 @@
         }
 
         function setPagingOptions(args) {
-            if (args.pageSize != null) {
+            if (args.pageSize != null && args.pageSize != undefined) {
                 pagesize = args.pageSize;
                 pagenum = pagesize ? Math.min(pagenum, Math.max(0, Math.ceil(totalRows / pagesize) - 1)) : 0;
             }
 
-            if (args.pageNum != null) {
+            if (args.pageNum !== null && args.pageNum !== undefined) {
                 pagenum = pagesize ? Math.min(args.pageNum, Math.max(0, Math.ceil(totalRows / pagesize) - 1)) : 0;
             }
 
@@ -217,337 +203,39 @@
             };
         }
 
-        var defaultSortComparator = {
-            /*! jshint -W086 */
-            valueExtractor: function (node) {
-                switch (typeof node) {
-                    case 'boolean':
-                    case 'number':
-                    case 'string':
-                    case 'undefined':
-                        return node;
-
-                    case 'object':
-                        if (node === null) {
-                            return node;
-                        }
-                    /*! fall through */
-                    default:
-                        return "x" + node.toString();   // string conversion here ensures the strings come out as NaN when treated as numbers
+        function sort(comparer, ascending) {
+            sortAsc = ascending;
+            sortComparer = comparer;
+            fastSortField = null;
+            if (ascending === false) {
+                items.reverse();
                 }
-            },
-            // default comparator is lexicographic for strings and anything else that is not a boolean or a number.
-            //
-            // boolean FALSE evaluates as 0-but-smaller-than-0, i.e. in an ascending sort it ends up before the numeric 0,
-            // same goes for boolean TRUE and numeric 1.
-            //
-            // UNDEFINED and NULL are also evaluated as 0-but-smaller-than-0: in an ascending sort the order in which
-            // these end up is before FALSE.
-            //
-            // The ascending sort output order is:
-            //
-            // -Inf, ...<negative numbers>..., NaN, UNDEFINED, NULL, FALSE, 0, ...<numbers between 0 and 1>..., TRUE, 1, ...<numbers larger than 1>..., +Inf, <strings>
-            //
-            // Inputs to compare are two objects of format
-            //     { value: <value>, order: <sequencenumber> }
-            //
-            comparator: function (x, y) {
-                var xv = x.value;
-                var yv = y.value;
-                if (xv === yv) {
-                    return x.order - y.order;
-                }
-                var r = xv - yv;
-                if (r < 0) {
-                    return -1;
-                } else if (r > 0) {
-                    return 1;
-                }
-                // now we're stuck with the NaNs, the non-numerics and the 'zeroes'
-                //
-                // apply the decision matrix
-                // true vs. 1
-                // false vs. undefined vs. null vs. 0
-                switch (typeof xv) {
-                    case 'boolean':
-                        switch (typeof yv) {
-                            case 'boolean':
-                                // both booleans and they are identical too or the < or > comparisons above would've caught them!
-                                // But wait a minute! When they are identical, the === check at the very top should've caught them already!
-                                assert(0);                      // So what are we doin' here, eh?! We should never get here!
-                                return x.order - y.order;
-                            case 'number':
-                                if (isNaN(yv)) {
-                                    return 1;                   // rate a NaN below all booleans
-                                } else {
-                                    return -1;                  // rate a boolean below a number when "boolean minus number equals zero"
-                                }
-                            case 'string':
-                                return -1;
-                            case 'undefined':
-                                return 1;
-                            case 'object':                      // this is equivalent to y === NULL thanks to the valueExtractor above
-                                return 1;
-                        }
-                        // This next statement, and all its brethren below, are here merely to appease
-                        // the JSHint/JSCS Gods and other less-than-truly-intelligent JIT engines;
-                        // *we*, on the other hand, know we'll never get here!
-                        break;
-                    case 'number':
-                        if (isNaN(xv)) {
-                            switch (typeof yv) {
-                                case 'boolean':
-                                    return -1;
-                                case 'number':
-                                    // either one or both are NaN or this would've been caught by the === type-equality check at the very start of this comparator:
-                                    if (isNaN(yv)) {
-                                        // both NaNs:
-                                        return x.order - y.order;
-                                    }
-                                    xv = 0;
-                                    r = xv - yv;
-                                    if (r < 0) {
-                                        return -1;
-                                    } else if (r > 0) {
-                                        return 1;
-                                    }
-                                    // yv == 0, xv == NaN -->
-                                    return -1;
-                                case 'string':
-                                    return -1;
-                                case 'undefined':
-                                    return -1;
-                                case 'object':
-                                    return -1;
-                            }
-                        } else {
-                            switch (typeof yv) {
-                                case 'boolean':
-                                    return 1;                   // rate a boolean below a number when "boolean minus number equals zero"
-                                case 'number':
-                                    // either one or both are NaN or same-sign Infinity or this would've been caught by the === or < or > checks at the very start of this comparator:
-                                    if (xv < 0) {
-                                        // xv == -Inf
-                                        if (yv < 0) {
-                                            // yv == -Inf --> xv - yv = NaN
-                                            return x.order - y.order;
-                                        } else if (yv > 0) {
-                                            // this should've been caught by the < and > checks at the top of this routine
-                                            assert(0);
-                                        }
-                                    } else if (xv > 0) {
-                                        // xv == +Inf
-                                        if (yv < 0) {
-                                            // this should've been caught by the < and > checks at the top of this routine
-                                            assert(0);
-                                        } else if (yv > 0) {
-                                            // yv == +Inf --> xv - yv = NaN
-                                            return x.order - y.order;
-                                        }
-                                    }
-                                    assert(isNaN(yv));
-                                    yv = 0;
-                                    r = xv - yv;
-                                    if (r < 0) {
-                                        return -1;
-                                    } else if (r > 0) {
-                                        return 1;
-                                    }
-                                    // xv == 0, yv == NaN -->
-                                    return x.order - y.order;
-                                case 'string':
-                                    return -1;
-                                case 'undefined':
-                                    return 1;
-                                case 'object':
-                                    return 1;
-                            }
-                        }
-                        break;
-                    case 'string':
-                        switch (typeof yv) {
-                            case 'boolean':
-                                return 1;
-                            case 'number':
-                                return 1;
-                            case 'string':
-                                if (xv < yv) {
-                                    return -1;
-                                } else {
-                                    // equality should've already been caught at the top where we perform the === check, so this must be:
-                                    assert(xv > yv);
-                                    return 1;
-                                }
-                            case 'undefined':
-                                return 1;
-                            case 'object':
-                                return 1;
-                        }
-                        break;
-                    case 'undefined':
-                        switch (typeof yv) {
-                            case 'boolean':
-                                return -1;
-                            case 'number':
-                                if (isNaN(yv)) {
-                                    return 1;
-                                }
-                                xv = 0;
-                                r = xv - yv;
-                                if (r < 0) {
-                                    return -1;
-                                } else if (r > 0) {
-                                    return 1;
-                                }
-                                // xv == undefined, yv == 0 -->
-                                return -1;
-                            case 'string':
-                                return -1;
-                            case 'undefined':
-                                // But wait a minute! When they are identical, the === check at the very top should've caught them already!
-                                assert(0);                      // So what are we doin' here, eh?! We should never get here!
-                                return x.order - y.order;
-                            case 'object':
-                                return -1;
-                        }
-                        break;
-                    case 'object':                          // this is representing NULL
-                        switch (typeof yv) {
-                            case 'boolean':
-                                return -1;
-                            case 'number':
-                                if (isNaN(yv)) {
-                                    return 1;
-                                }
-                                xv = 0;
-                                r = xv - yv;
-                                if (r < 0) {
-                                    return -1;
-                                } else if (r > 0) {
-                                    return 1;
-                                }
-                                // xv == null, yv == 0 -->
-                                return -1;
-                            case 'string':
-                                return -1;
-                            case 'undefined':
-                                return 1;
-                            case 'object':
-                                // But wait a minute! When they are identical, the === check at the very top should've caught them already!
-                                assert(0);                      // So what are we doin' here, eh?! We should never get here!
-                                return x.order - y.order;
-                        }
-                        break;
-                }
-            },
-            // fast comparator for when you don't care about stable sort provisions nor very tight handling of NULL, UNDEFINED, NaN, etc.
-            // because you know your dataset and either really don't care about a stable sort or know for sure that all keys are
-            // guaranteed unique.
-            //
-            // The ascending sort output order is:
-            //
-            // -Inf, ...<negative numbers>..., NaN, UNDEFINED, NULL, FALSE, 0, ...<numbers between 0 and 1>..., TRUE, 1, ...<numbers larger than 1>..., +Inf, <strings>
-            //
-            fastComparator: function (x, y) {
-                // Strings do not 'subtract' so we simply compare.
-                if (x.value < y.value) {
-                    return -1;
-                } else if (x.value > y.value) {
-                    return 1;
-                }
-                // now we're stuck with the NaNs, possibly a few +/-Infinities and may a couple of NULLs:
-                // we don't care and treat them as equals
-                return x.order - y.order;
+            items.sort(comparer);
+            if (ascending === false) {
+                items.reverse();
             }
-            /*! jshint +W086 */
-        };
-
-        function getDefaultSortComparator() {
-            return defaultSortComparator;
+            idxById = {};
+            updateIdxById();
+            refresh();
         }
 
 
-        function sort(comparer, ascending, unstable) {
-            sortAsc = (ascending == null ? true : ascending);
-            var sortUnstable = unstable || false;
-            if (typeof comparer === 'function') {
-                sortComparer = {
-                    valueExtractor: function (node) {
-                        return node;
-                    },
-                    comparator: function (x, y) {
-                        var rv = comparer(x.value, y.value);
-                        if (!rv) {
-                            return x.order - y.order;
-                        }
-                        return rv;
-                    }
+        function fastSort(field, ascending) {
+            sortAsc = ascending;
+            fastSortField = field;
+            sortComparer = null;
+            var oldToString = Object.prototype.toString;
+            Object.prototype.toString = (typeof field == "function") ? field : function () {
+                return this[field]
                 };
-            } else if (typeof comparer === 'string' || typeof comparer === 'number') {
-                sortComparer = {
-                    valueExtractor: function (node) {
-                        return node[comparer];
-                    },
-                    comparator: sortUnstable ? defaultSortComparator.fastComparator : defaultSortComparator.comparator
-                };
-            } else {
-                sortComparer = $.extend({}, defaultSortComparator, (sortUnstable ? {
-                    comparator: defaultSortComparator.fastComparator
-                } : {}), comparer);
-            }
-            // check the comparator spec:
-            assert(typeof sortComparer.valueExtractor === 'function');
-            assert(typeof sortComparer.comparator === 'function');
-
-            if (!sortAsc) {
-                /* Provides; a; workaround; for the extremely slow; sorting in IE.
-                 * Does; a [lexicographic]; sort; on; a; give; column; by; temporarily; overriding; Object.prototype.toString
-                 * to; return the; value; of; that; field; and; then; doing; a; native; Array.sort().
-                 */
+            // an extra reversal for descending sort keeps the sort stable
+            // (assuming a stable native sort implementation, which isn't true in some cases)
+            if (ascending === false) {
                 items.reverse();
             }
-
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-            //
-            // Sorting maps
-            // ------------
-            //
-            // The `comparer` function can be invoked multiple times per element within the array.
-            // Depending on the `comparer` function's nature, this may yield a high overhead.
-            // The more work a compare function does and the more elements there are to sort, the
-            // wiser it may be to consider using a map for sorting.
-            //
-            // The idea is to walk the array once to extract the actual values used for sorting into
-            // a temporary array applying the `mapper` function to each element, sort the temporary
-            // array and then walk the temporary array to bring the original array into the right order.
-            //
-            // ---------------------------------------
-            //
-            // Extra notes:
-            //
-            // We also use the mapper phase to turn sort into a stable sort by initializing
-            // the stableSortIdProperty for each data item:
-            // by including that one in the comparer check we create a stable sort.
-
-            // temporary holder of position and sort-value
-            var map = items.map(function (d, i) {
-                return {
-                    value: sortComparer.valueExtractor(d),
-                    order: i
-                };
-            });
-
-            // sorting the map containing the reduced values
-            map.sort(sortComparer.comparator);
-
-            // apply the map for the resulting order; but keep the 'items' reference itself unchanged however!
-            // (we do that so that users can use customized Array-derived instances for `items` and get away with it)
-            var rv = items.slice(0);
-            map.forEach(function (d, i) {
-                items[i] = rv[d.order];
-            });
-
-            if (!sortAsc) {
+            items.sort();
+            Object.prototype.toString = oldToString;
+            if (ascending === false) {
                 items.reverse();
             }
             idxById = {};
@@ -556,8 +244,11 @@
         }
 
         function reSort() {
-            assert(sortComparer);
+            if (sortComparer) {
             sort(sortComparer, sortAsc);
+            } else if (fastSortField) {
+                fastSort(fastSortField, sortAsc);
+            }
         }
 
         function setFilter(filterFn) {
@@ -718,62 +409,27 @@
         }
 
         function getItem(i) {
+            return rows[i];
+            }
+
+        function getItemMetadata(i) {
             var item = rows[i];
-           // var gi;
-
-            // if this is a group row, make sure totals are calculated and update the title
-            if (item && item.__group && item.totals && !item.totals.initialized) {
-              //  gi = groupingInfos[item.level];
-                // We'll always have to calculate the totals once we get here as those totals
-                // may not just be used in the totals row only: see the 'grouping' example for a
-                // situation where aggregated data is used as part of the group line itself, in
-                // a userland custom formatter.
-                //
-                // Hence we do NOT check for `!gi.displayTotalsRow` here.
-                //
-                // Also note that a side effect of the totals calculation here is the proper
-                // initialization of the group title when lazy calculation for the group has
-                // been enabled: this is the quickest and overall cleanest way to ensure that
-                // the optional title userland formatter always is guaranteed to receive
-                // properly initialized group/totals data on invocation.
-                // (The 'grouping' example, for instance, would crash without this 'delayed'
-                // rendering of the group title.)
-                calculateTotals(item.totals);
-                assert(item.totals.initialized);
-            }
-            // if this is a totals row, make sure it's calculated
-            else if (item && item.__groupTotals && !item.initialized) {
-                calculateTotals(item);
-                assert(item.initialized);
-            }
-
-            return item;
-        }
-
-        function getItemMetadata(row, cell) {
-            var item = rows[row];
             if (item === undefined) {
                 return null;
             }
 
-            // global override for all rows
-            if (options.globalItemMetadataProvider && options.globalItemMetadataProvider.getRowMetadata) {
-                return options.globalItemMetadataProvider.getRowMetadata(item, row, cell, rows);
-            }
-
             // overrides for grouping rows
-            if (item.__group && options.groupItemMetadataProvider && options.groupItemMetadataProvider.getGroupRowMetadata) {
-                return options.groupItemMetadataProvider.getGroupRowMetadata(item, row, cell, rows);
+            if (item.__group) {
+                return options.groupItemMetadataProvider.getGroupRowMetadata(item);
             }
 
             // overrides for totals rows
-            if (item.__groupTotals && options.groupItemMetadataProvider && options.groupItemMetadataProvider.getTotalsRowMetadata) {
-                return options.groupItemMetadataProvider.getTotalsRowMetadata(item, row, cell, rows);
+            if (item.__groupTotals) {
+                return options.groupItemMetadataProvider.getTotalsRowMetadata(item);
             }
 
-            /* overrides for rows with items that supply a custom meta data provider */
-            if (item.itemMetadataProvider && item.itemMetadataProvider.getRowMetadata) {
-                return item.itemMetadataProvider.getRowMetadata(item, row, cell, rows);
+            if (options.groupItemMetadataProvider) {
+                return options.groupItemMetadataProvider.getRowMetadata(item);
             }
 
             return null;
@@ -813,27 +469,6 @@
 
         /**
      * @param varArgs Either a Slick.Group's "groupingKey" property, or a
-     *     variable argument list of grouping values denoting a unique path to the row.
-     *     For example, calling isGroupCollapsed('high', '10%') will return whether the
-     *     '10%' subgroup of the 'high' setGrouping is collapsed.
-     */
-         function isGroupCollapsed(groupingValue) {
-      var args = Array.prototype.slice.call(arguments);
-      var arg0 = args[0];
-      var level;
-      var groupingKey;
-      if (args.length === 1 && arg0.indexOf(groupingDelimiter) !== -1) {
-        level = arg0.split(groupingDelimiter).length - 1;
-        groupingKey = arg0;
-      } else {
-        level = args.length - 1;
-        groupingKey = args.join(groupingDelimiter);
-      }
-      return toggledGroupsByLevel[level][groupingKey];
-    }
-
-         /**
-         * @param varArgs Either a Slick.Group's "groupingKey" property, or a
          *     variable argument list of grouping values denoting a unique path to the row.  For
          *     example, calling collapseGroup('high', '10%') will collapse the '10%' subgroup of
          *     the 'high' setGrouping.
@@ -868,20 +503,16 @@
             return groups;
         }
 
-        function extractGroups(rows, parentGroup, allFilteredItems) {
+        function extractGroups(rows, parentGroup) {
             var group;
             var val;
             var groups = [];
             var groupsByVal = {};
-            var r, i, l;
+            var r;
             var level = parentGroup ? parentGroup.level + 1 : 0;
             var gi = groupingInfos[level];
 
-            if (gi.getGroupRows) {
-                rows = gi.getGroupRows.call(self, gi, rows, allFilteredItems, level, parentGroup);
-            }
-
-            for (i = 0, l = gi.predefinedValues.length; i < l; i++) {
+            for (var i = 0, l = gi.predefinedValues.length; i < l; i++) {
                 val = gi.predefinedValues[i];
                 group = groupsByVal[val];
                 if (!group) {
@@ -894,7 +525,7 @@
                 }
             }
 
-            for (i = 0, l = rows.length; i < l; i++) {
+            for (var i = 0, l = rows.length; i < l; i++) {
                 r = rows[i];
                 val = gi.getterIsAFn ? gi.getter(r) : r[gi.getter];
                 group = groupsByVal[val];
@@ -911,9 +542,9 @@
             }
 
             if (level < groupingInfos.length - 1) {
-                for (i = 0; i < groups.length; i++) {
+                for (var i = 0; i < groups.length; i++) {
                     group = groups[i];
-                    group.groups = extractGroups(group.rows, group, allFilteredItems);
+                    group.groups = extractGroups(group.rows, group);
                 }
             }
 
@@ -922,57 +553,29 @@
             return groups;
         }
 
-        function calculateTotals(totals) {
-            var group = totals.group;
+        // TODO:  lazy totals calculation
+
+
+        function calculateGroupTotals(group) {
+            // TODO:  try moving iterating over groups into compiled accumulator
             var gi = groupingInfos[group.level];
-            var isLeafLevel = (group.level === groupingInfos.length);
+            var isLeafLevel = (group.level == groupingInfos.length);
+            var totals = new Slick.GroupTotals();
             var agg, idx = gi.aggregators.length;
-
-            if (!isLeafLevel && gi.aggregateChildGroups) {
-                // make sure all the subgroups are calculated
-                var i = group.groups.length;
-                while (i--) {
-                    if (!group.groups[i].initialized) {
-                        calculateTotals(group.groups[i].totals);
-                    }
-                }
-            }
-
             while (idx--) {
                 agg = gi.aggregators[idx];
-                agg.init(gi, group, totals);
-                if (!isLeafLevel && gi.aggregateChildGroups) {
-                    gi.compiledAccumulators[idx].call(agg, group.groups);
-                } else {
-                    gi.compiledAccumulators[idx].call(agg, group.rows);
-                }
+                agg.init();
+                gi.compiledAccumulators[idx].call(agg,
+                    (!isLeafLevel && gi.aggregateChildGroups) ? group.groups : group.rows);
                 agg.storeResult(totals);
             }
-            totals.initialized = true;
-
-            // And when we have lazy initialization enabled, we'll also have to set the title
-            // now, because we wouldn't have been able to do that one before!
-
-            //if (gi.lazyTotalsCalculation) {
-            group.title = gi.formatter ? gi.formatter(group) : group.value;
-            //}
-        }
-
-        function addGroupTotals(group) {
-            var gi = groupingInfos[group.level];
-            var totals = new Slick.GroupTotals();
             totals.group = group;
             group.totals = totals;
-            if (!gi.lazyTotalsCalculation) {
-                calculateTotals(totals);
-            }
         }
 
-        function addTotals(groups, level) {
+        function calculateTotals(groups, level) {
             level = level || 0;
             var gi = groupingInfos[level];
-            var groupCollapsed = gi.collapsed;
-            var toggledGroups = toggledGroupsByLevel[level];
             var idx = groups.length, g;
             while (idx--) {
                 g = groups[idx];
@@ -983,48 +586,53 @@
 
                 // Do a depth-first aggregation so that parent group aggregators can access subgroup totals.
                 if (g.groups) {
-                    addTotals(g.groups, level + 1);
+                    calculateTotals(g.groups, level + 1);
                 }
 
                 if (gi.aggregators.length && (
                     gi.aggregateEmpty || g.rows.length || (g.groups && g.groups.length))) {
-                    addGroupTotals(g);
+                    calculateGroupTotals(g);
                 }
+                }
+        }
 
+        function finalizeGroups(groups, level) {
+            level = level || 0;
+            var gi = groupingInfos[level];
+            var groupCollapsed = gi.collapsed;
+            var toggledGroups = toggledGroupsByLevel[level];
+            var idx = groups.length, g;
+            while (idx--) {
+                g = groups[idx];
                 g.collapsed = groupCollapsed ^ toggledGroups[g.groupingKey];
-
-                if (!gi.lazyTotalsCalculation || (g.totals && g.totals.initialized)) {
                     g.title = gi.formatter ? gi.formatter(g) : g.value;
+
+                if (g.groups) {
+                    finalizeGroups(g.groups, level + 1);
+                    // Let the non-leaf setGrouping rows get garbage-collected.
+                    // They may have been used by aggregates that go over all of the descendants,
+                    // but at this point they are no longer needed.
+                    g.rows = [];
                 }
             }
         }
 
-        function flattenGroupedRows(groups, level, groupingInfos, filteredItems, options) {
-            //level = level || 0;
+        function flattenGroupedRows(groups, level) {
+            level = level || 0;
             var gi = groupingInfos[level];
             var groupedRows = [], rows, gl = 0, g;
             for (var i = 0, l = groups.length; i < l; i++) {
                 g = groups[i];
-
-                if (options.showExpandedGroupRows || g.collapsed) {
                     groupedRows[gl++] = g;
-                }
-
-                var displayTotalsRow = g.totals && gi.displayTotalsRow && (!g.collapsed || gi.aggregateCollapsed);
-                if (displayTotalsRow && gi.totalsRowBeforeItems) {
-                    groupedRows[gl++] = g.totals;
-                }
 
                 if (!g.collapsed) {
-                    rows = g.groups ? options.flattenGroupedRows(g.groups, level + 1, groupingInfos, filteredItems, options) : g.rows;
-                    if (!options.rollupSingleChildGroup || (rows && rows.length > 1)) {
+                    rows = g.groups ? flattenGroupedRows(g.groups, level + 1) : g.rows;
                         for (var j = 0, jj = rows.length; j < jj; j++) {
                             groupedRows[gl++] = rows[j];
                         }
                     }
-                }
 
-                if (displayTotalsRow && !gi.totalsRowBeforeItems) {
+                if (g.totals && gi.displayTotalsRow && (!g.collapsed || gi.aggregateCollapsed)) {
                     groupedRows[gl++] = g.totals;
                 }
             }
@@ -1122,7 +730,8 @@
         }
 
         function uncompiledFilter(items, args) {
-            var retval = [], idx = 0;
+            var retval = [],
+                idx = 0;
 
             for (var i = 0, ii = items.length; i < ii; i++) {
                 if (filter(items[i], args)) {
@@ -1134,7 +743,9 @@
         }
 
         function uncompiledFilterWithCaching(items, args, cache) {
-            var retval = [], idx = 0, item;
+            var retval = [],
+                idx = 0,
+                item;
 
             for (var i = 0, ii = items.length; i < ii; i++) {
                 item = items[i];
@@ -1187,19 +798,18 @@
 
         function getRowDiffs(rows, newRows) {
             var item, r, eitherIsNonData, diff = [];
-            var from = 0, to = newRows.length - 1;
+            var from = 0,
+                to = newRows.length;
 
             if (refreshHints && refreshHints.ignoreDiffsBefore) {
-                from = Math.max(0,
-                    Math.min(newRows.length, refreshHints.ignoreDiffsBefore));
+                from = Math.max(0, Math.min(newRows.length, refreshHints.ignoreDiffsBefore));
             }
 
             if (refreshHints && refreshHints.ignoreDiffsAfter) {
-                to = Math.min(newRows.length - 1,
-                    Math.max(0, refreshHints.ignoreDiffsAfter));
+                to = Math.min(newRows.length, Math.max(0, refreshHints.ignoreDiffsAfter));
             }
 
-            for (var i = from, rl = rows.length; i <= to; i++) {
+            for (var i = from, rl = rows.length; i < to; i++) {
                 if (i >= rl) {
                     diff[diff.length] = i;
                 } else {
@@ -1238,10 +848,11 @@
 
             groups = [];
             if (groupingInfos.length) {
-                groups = extractGroups(newRows, null, filteredItems);
+                groups = extractGroups(newRows);
                 if (groups.length) {
-                    addTotals(groups);
-                    newRows = options.flattenGroupedRows(groups, 0, groupingInfos, filteredItems, options);
+                    calculateTotals(groups);
+                    finalizeGroups(groups);
+                    newRows = flattenGroupedRows(groups);
                 }
             }
 
@@ -1260,23 +871,22 @@
             var countBefore = rows.length;
             var totalRowsBefore = totalRows;
 
-            var diff = recalc(items); // pass as direct refs to avoid closure perf hit
-
-            // If the current page is no longer valid, go to last page and recalc.
-            // We suffer a performance penalty here, but the main loop (recalc) remains highly optimized.
-            if (pagesize && pagenum && totalRows < pagenum * pagesize) {
+            var diff = recalc(items, filter); // pass as direct refs to avoid closure perf hit
+            // if the current page is no longer valid, go to last page and recalc
+            // we suffer a performance penalty here, but the main loop (recalc) remains highly optimized
+            if (pagesize && totalRows < pagenum * pagesize) {
                 pagenum = Math.max(0, Math.ceil(totalRows / pagesize) - 1);
-                diff = recalc(items);
+                diff = recalc(items, filter);
             }
 
             updated = null;
             prevRefreshHints = refreshHints;
             refreshHints = {};
 
-            if (totalRowsBefore !== totalRows) {
+            if (totalRowsBefore != totalRows) {
                 onPagingInfoChanged.notify(getPagingInfo(), null, self);
             }
-            if (countBefore !== rows.length) {
+            if (countBefore != rows.length) {
                 onRowCountChanged.notify({
                     previous: countBefore,
                     current: rows.length
@@ -1290,7 +900,7 @@
         }
 
         /***
-         * Wires the grid and the DataView together to keep row selection tied to item ids.
+        function syncGridSelection(grid, preserveHidden) {
          * This is useful since, without it, the grid only knows about rows, so if the items
          * move around, the same rows stay selected instead of the selection moving along
          * with the items.
@@ -1308,32 +918,17 @@
          *     access to the full list selected row ids, and not just the ones visible to the grid.
          * @method syncGridSelection
          */
-        function syncGridSelection(grid, preserveHidden, preserveHiddenOnSelectionChange) {
             var self = this;
-            var inHandler;
             var selectedRowIds = self.mapRowsToIds(grid.getSelectedRows());
-            var onSelectedRowIdsChanged = new Slick.Event();
-
-            function setSelectedRowIds(rowIds) {
-                if (selectedRowIds.join(",") === rowIds.join(",")) {
-                    return;
-                }
-
-                selectedRowIds = rowIds;
-
-                onSelectedRowIdsChanged.notify({
-                    grid: grid,
-                    ids: selectedRowIds
-                }, new Slick.EventData(), self);
-            }
+            ;
+            var inHandler;
 
             function update() {
                 if (selectedRowIds.length > 0) {
-                    //noinspection JSUnusedAssignment
                     inHandler = true;
                     var selectedRows = self.mapIdsToRows(selectedRowIds);
                     if (!preserveHidden) {
-                        setSelectedRowIds(self.mapRowsToIds(selectedRows));
+                        selectedRowIds = self.mapRowsToIds(selectedRows);
                     }
                     grid.setSelectedRows(selectedRows);
                     inHandler = false;
@@ -1345,24 +940,13 @@
                 if (inHandler) {
                     return;
                 }
-                var newSelectedRowIds = self.mapRowsToIds(grid.getSelectedRows());
-                if (!preserveHiddenOnSelectionChange || !grid.getOptions().multiSelect) {
-                    setSelectedRowIds(newSelectedRowIds);
-                } else {
-                    // keep the ones that are hidden
-                    var existing = $.grep(selectedRowIds, function (id) {
-                        return self.getRowById(id) === undefined;
-                    });
-                    // add the newly selected ones
-                    setSelectedRowIds(existing.concat(newSelectedRowIds));
-                }
+
+                selectedRowIds = self.mapRowsToIds(grid.getSelectedRows());
             });
 
             this.onRowsChanged.subscribe(update);
 
             this.onRowCountChanged.subscribe(update);
-
-            return onSelectedRowIdsChanged;
         }
 
         function syncGridCellCssStyles(grid, key) {
@@ -1389,7 +973,7 @@
                     var newHash = {};
                     for (var id in hashById) {
                         var row = rowsById[id];
-                        if (row != null) {
+                        if (row !== null && row !== undefined) {
                             newHash[row] = hashById[id];
                         }
                     }
@@ -1415,11 +999,6 @@
             this.onRowCountChanged.subscribe(update);
         }
 
-        function getOptions() {
-            return options;
-        }
-
-        //noinspection JSDeprecatedSymbols
         $.extend(this, {
             // methods
             "beginUpdate": beginUpdate,
@@ -1430,10 +1009,8 @@
             "getItems": getItems,
             "setItems": setItems,
             "setFilter": setFilter,
-            "getDefaultSortComparator": getDefaultSortComparator,
-            "getOptions": getOptions,
-            "getFilterdItems": getFilterdItems,
             "sort": sort,
+            "fastSort": fastSort,
             "reSort": reSort,
             "setGrouping": setGrouping,
             "getGrouping": getGrouping,
@@ -1441,7 +1018,6 @@
             "setAggregators": setAggregators,
             "collapseAllGroups": collapseAllGroups,
             "expandAllGroups": expandAllGroups,
-            "isGroupCollapsed": isGroupCollapsed,
             "collapseGroup": collapseGroup,
             "expandGroup": expandGroup,
             "getGroups": getGroups,
@@ -1452,7 +1028,6 @@
             "mapRowsToIds": mapRowsToIds,
             "mapIdsToRows": mapIdsToRows,
             "setRefreshHints": setRefreshHints,
-            "getFilterArgs": getFilterArgs,
             "setFilterArgs": setFilterArgs,
             "refresh": refresh,
             "updateItem": updateItem,
@@ -1479,7 +1054,7 @@
         this.field_ = field;
 
         //noinspection JSUnusedLocalSymbols
-        this.init = function (groupingInfo, group, totals) {
+        this.init = function () {
             this.count_ = 0;
             this.nonNullCount_ = 0;
             this.sum_ = 0;
@@ -1488,7 +1063,7 @@
         this.accumulate = function (item) {
             var val = item[this.field_];
             this.count_++;
-            if (val != null && val !== "" && !isNaN(val)) {
+            if (val != null && val !== "" && val !== NaN) {
                 this.nonNullCount_++;
                 this.sum_ += parseFloat(val);
             }
@@ -1508,14 +1083,13 @@
         this.field_ = field;
 
         //noinspection JSUnusedLocalSymbols
-        this.init = function (groupingInfo, group, totals) {
+        this.init = function () {
             this.min_ = null;
         };
 
         this.accumulate = function (item) {
             var val = item[this.field_];
-            if (val != null && val !== "" && !isNaN(val)) {
-                val = parseFloat(val);
+            if (val != null && val !== "" && val !== NaN) {
                 if (this.min_ == null || val < this.min_) {
                     this.min_ = val;
                 }
@@ -1527,21 +1101,19 @@
                 groupTotals.min = {};
             }
             groupTotals.min[this.field_] = this.min_;
-        };
+        }
     }
 
     function MaxAggregator(field) {
         this.field_ = field;
 
-        //noinspection JSUnusedLocalSymbols
-        this.init = function (groupingInfo, group, totals) {
+        this.init = function () {
             this.max_ = null;
         };
 
         this.accumulate = function (item) {
             var val = item[this.field_];
-            if (val != null && val !== "" && !isNaN(val)) {
-                val = parseFloat(val);
+            if (val != null && val !== "" && val !== NaN) {
                 if (this.max_ == null || val > this.max_) {
                     this.max_ = val;
                 }
@@ -1553,20 +1125,19 @@
                 groupTotals.max = {};
             }
             groupTotals.max[this.field_] = this.max_;
-        };
+        }
     }
 
     function SumAggregator(field) {
         this.field_ = field;
 
-        //noinspection JSUnusedLocalSymbols
-        this.init = function (groupingInfo, group, totals) {
+        this.init = function () {
             this.sum_ = null;
         };
 
         this.accumulate = function (item) {
             var val = item[this.field_];
-            if (val != null && val !== "" && !isNaN(val)) {
+            if (val != null && val !== "" && val !== NaN) {
                 this.sum_ += parseFloat(val);
             }
         };
@@ -1576,245 +1147,6 @@
                 groupTotals.sum = {};
             }
             groupTotals.sum[this.field_] = this.sum_;
-        };
-    }
-
-
-    function MdeAggregator(field) {
-        this.field_ = field;
-
-        //noinspection JSUnusedLocalSymbols
-        this.init = function (groupingInfo, group, totals) {
-            this.pairs_ = [];
-        };
-
-        this.accumulate = function (item) {
-            var val = item[this.field_];
-            var found = false;
-            if (val != null && val !== "" && !isNaN(val)) {
-                val = parseFloat(val);
-                for (var i = 0, len = this.pairs_.length; i < len; i++) {
-                    if (this.pairs_[i].value === val) {
-                        this.pairs_[i].count++;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    this.pairs_.push({
-                        value: val,
-                        count: 1
-                    });
-                }
-            }
-        };
-
-        this.storeResult = function (groupTotals) {
-            if (!groupTotals.mde) {
-                groupTotals.mde = {};
-            }
-            var maxCountI = 0;
-            for (var i = 0, len = this.pairs_.length; i < len; i++) {
-                if ((this.pairs_[i].count > this.pairs_[maxCountI].count) || ((this.pairs_[i].count === this.pairs_[maxCountI].count) && (this.pairs_[i].value < this.pairs_[maxCountI].value))) {
-                    maxCountI = i;
-                }
-            }
-            if (typeof this.pairs_[maxCountI] !== "undefined") {
-                groupTotals.mde[this.field_] = this.pairs_[maxCountI].value;
-            }
-        };
-    }
-
-    function MdnAggregator(field) {
-        this.field_ = field;
-
-        //noinspection JSUnusedLocalSymbols
-        this.init = function (groupingInfo, group, totals) {
-            this.sorted_ = [];
-        };
-
-        this.accumulate = function (item) {
-            var val = item[this.field_];
-            var spliced = false;
-            if (val != null && val !== "" && !isNaN(val)) {
-                val = parseFloat(val);
-                for (var i = 0, len = this.sorted_.length; i < len; i++) {
-                    if (val < this.sorted_[i]) {
-                        this.sorted_.splice(i, 0, val);
-                        spliced = true;
-                        break;
-                    }
-                }
-                if (!spliced) {
-                    this.sorted_.push(val);
-                }
-            }
-        };
-
-        this.storeResult = function (groupTotals) {
-            if (!groupTotals.mdn) {
-                groupTotals.mdn = {};
-            }
-            var n = this.sorted_.length;
-            if (n % 2 === 1) {
-                groupTotals.mdn[this.field_] = this.sorted_[(n - 1) / 2];
-            } else {
-                var i = n / 2;
-                groupTotals.mdn[this.field_] = 0.5 * (this.sorted_[i] + this.sorted_[i - 1]);
-            }
-        };
-    }
-
-    function StdAggregator(field) {
-        this.field_ = field;
-
-        //noinspection JSUnusedLocalSymbols
-        this.init = function (groupingInfo, group, totals) {
-            this.nonNullCount_ = 0;
-            this.Mk_ = null;
-            this.Qk_ = 0;
-        };
-
-        this.accumulate = function (item) {
-            var val = item[this.field_];
-            if (val != null && val !== "" && !isNaN(val)) {
-                val = parseFloat(val);
-                this.nonNullCount_++;
-                if (this.Mk_ != null) {
-                    this.Qk_ = this.Qk_ + (this.nonNullCount_ - 1) * Math.pow((val - this.Mk_), 2) / this.nonNullCount_;
-                    this.Mk_ = this.Mk_ + (val - this.Mk_) / this.nonNullCount_;
-                } else {
-                    this.Mk_ = val;
-                }
-            }
-        };
-
-        this.storeResult = function (groupTotals) {
-            if (!groupTotals.std) {
-                groupTotals.std = {};
-            }
-            if (this.nonNullCount_) {
-                groupTotals.std[this.field_] = Math.sqrt(this.Qk_ / this.nonNullCount_);
-            }
-        };
-    }
-
-    function CheckCountAggregator(field) {
-        this.field_ = field;
-
-        this.init = function () {
-            this.count_ = 0;
-            this.checkCount_ = 0;
-        };
-
-        this.accumulate = function (item) {
-            var val = item[this.field_];
-            this.count_++;
-            if (val) {
-                this.checkCount_++;
-            }
-        };
-
-        this.storeResult = function (groupTotals) {
-            if (!groupTotals.checkCount) {
-                groupTotals.checkCount = {};
-            }
-
-            groupTotals.checkCount[this.field_] = {
-                checked: this.checkCount_,
-                count: this.count_
-            };
-        };
-    }
-
-    function DateRangeAggregator(field) {
-        this.field_ = field;
-
-        this.init = function () {
-            this.min_ = null;
-            this.max_ = null;
-        };
-
-        this.accumulate = function (item) {
-            var val = item[this.field_];
-            if (val && val.valueOf) {
-                val = val.valueOf();
-                if (this.min_ === null || this.min_ > val)
-                    this.min_ = val;
-                if (this.max_ === null || this.max_ < val)
-                    this.max_ = val;
-            }
-        };
-
-        this.storeResult = function (groupTotals) {
-            if (!groupTotals.dateRange)
-                groupTotals.dateRange = {};
-
-            groupTotals.dateRange[this.field_] = {
-                min: this.min_ === null ? null : new Date(this.min_),
-                max: this.max_ === null ? null : new Date(this.max_)
-            };
-        };
-    }
-
-    function UniqueAggregator(field) {
-        this.field_ = field;
-
-        this.init = function () {
-            this.valueSeen_ = null;
-            this.isStillUnique_ = true;
-        };
-
-        this.accumulate = function (item) {
-            var currentValue = item[this.field_];
-            if (!this.isStillUnique_)
-                return;
-
-            if (this.valueSeen_ === null) {
-                this.valueSeen_ = currentValue;
-            } else if (this.valueSeen_ !== currentValue) {
-                this.valueSeen_ = null;
-                this.isStillUnique_ = false;
-            }
-        };
-
-        this.storeResult = function (groupTotals) {
-            if (!groupTotals.unique) {
-                groupTotals.unique = {};
-            }
-            groupTotals.unique[this.field_] = this.valueSeen_;
-        }
-    }
-
-    function WeightedAverageAggregator(field, weightField) {
-        this.field_ = field;
-        this.weightField_ = weightField;
-
-        this.init = function () {
-            this.weightedSum_ = null;
-            this.weightSum_ = null;
-        };
-
-        this.accumulate = function (item) {
-            var currentValue = item[this.field_];
-            var currentWeight = item[this.weightField_];
-
-            // we only accumulate if both the value and the weight are numbers.
-            // this is equivalent to treating null weights or values as zero
-            // weight or values.
-            if (currentValue != null && currentValue !== "" && !isNaN(currentValue) &&
-                currentWeight != null && currentWeight !== "" && !isNaN(currentWeight)) {
-                var parsedWeight = parseFloat(currentWeight);
-                this.weightedSum_ += parseFloat(currentValue) * parsedWeight;
-                this.weightSum_ += parsedWeight;
-            }
-        };
-
-        this.storeResult = function (groupTotals) {
-            if (!groupTotals.weightedAverage) {
-                groupTotals.weightedAverage = {};
-            }
-            groupTotals.weightedAverage[this.field_] = this.weightedSum_ / this.weightSum_;
         }
     }
 

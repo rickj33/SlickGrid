@@ -70,7 +70,10 @@
 
         function destroy()
         {
+            if(_grid &&  _grid.onKeyDown)
+            {
             _grid.onKeyDown.unsubscribe( handleKeyDown );
+        	}
         }
 
         function getDataItemValueForColumn( item, columnDef )
