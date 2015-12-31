@@ -157,7 +157,8 @@ module.exports = function (grunt) {
                'controls/*.js',
                'controls/*.css',
               'plugins/*.js',
-              'plugins/*.css'
+              'plugins/*.css',
+              'less/*.less'
             ],
             flatten: false,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
             dest: 'dist/',

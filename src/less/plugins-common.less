@@ -1,4 +1,9 @@
-﻿.slick-header-menubutton {
+﻿// Color variables (appears count calculates by raw css)
+@color0: #bfbdbd; // Appears 4 times
+
+
+
+.slick-header-menubutton {
     background-position: center center;
     background-repeat: no-repeat;
     border-left: thin ridge silver;
@@ -12,24 +17,24 @@
 }
 .slick-header-menu {
     background: none repeat scroll 0 0 white;
-    border: 1px solid #BFBDBD;
-    min-width: 175px;
-    padding: 4px;
-    z-index: 100000;
+    border: 1px solid @color0;
     cursor: default;
     display: inline-block;
     margin: 0;
+    min-width: 175px;
+    padding: 4px;
     position: absolute;
-    BUTTON {
-        border: 1px solid #BFBDBD;
+    z-index: 100000;
+    button {
         background-color: White;
-        width: 45px;
-        padding: 4px;
+        border: 1px solid @color0;
         margin: 4px 4px 4px 0;
+        padding: 4px;
+        width: 45px;
     }
     .filter {
-        border: 1px solid #BFBDBD;
-        font-size: 8pt;
+        border: 1px solid @color0;
+        font-size: @font-size-xsmall;
         height: 400px;
         margin-top: 6px;
         overflow: scroll;
@@ -44,10 +49,13 @@ label {
 }
 .slick-header-menuitem {
     border: 1px solid transparent;
-    padding: 2px 4px;
     cursor: pointer;
     list-style: none outside none;
     margin: 0;
+    padding: 2px 4px;
+    &:hover {
+        border-color: @color0;
+    }
 }
 .slick-header-menuicon {
     background-position: center center;
@@ -62,10 +70,17 @@ label {
     display: inline-block;
     vertical-align: middle;
 }
-.slick-header-menuitem:hover {
-    border-color: #BFBDBD;
+.header-overlay {
+    display: block;
+    position: absolute;
+    z-index: 999;
 }
-.header-overlay, .cell-overlay, .selection-cell-overlay {
+.cell-overlay {
+    display: block;
+    position: absolute;
+    z-index: 999;
+}
+.selection-cell-overlay {
     display: block;
     position: absolute;
     z-index: 999;

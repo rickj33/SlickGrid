@@ -395,7 +395,7 @@ if (typeof Slick === "undefined") {
 
             $container
                 .empty()
-                  .addClass("slickgrid-container ui-widget " + uid)
+                .addClass("slickgrid-container ui-widget " + uid)
                 .attr("role", "grid")
                 .attr("tabIndex", 0)
                 .attr("hideFocus", "true");
@@ -495,8 +495,8 @@ if (typeof Slick === "undefined") {
 
             if (!options.explicitInitialization) {
                 finishInitialization();
-                }
             }
+        }
 
         function finishInitialization() {
             if (!initialized) {
@@ -540,10 +540,10 @@ if (typeof Slick === "undefined") {
                 $container
                     .bind("resize.slickgrid", resizeCanvas);
                 $viewport
-                    //.bind("click", handleClick)
+                //.bind("click", handleClick)
                     .bind("scroll", handleScroll);
                 if (jQuery.fn.mousewheel && ( options.frozenColumn > -1 || hasFrozenRows )) {
-                $viewport
+                    $viewport
                         .bind("mousewheel", handleMouseWheel);
                 }
                 $headerScroller
@@ -566,7 +566,7 @@ if (typeof Slick === "undefined") {
                     .bind("dragend", handleDragEnd)
                     .delegate(".slick-cell", "mouseenter", handleMouseEnter)
                     .delegate(".slick-cell", "mouseleave", handleMouseLeave);
-        }
+            }
         }
 
         function registerPlugin(plugin) {
@@ -655,7 +655,7 @@ if (typeof Slick === "undefined") {
             headersWidth = headersWidthL = headersWidthR = 0;
 
             for (var i = 0, ii = columns.length; i < ii; i++) {
-                var width = columns[ i ].width;
+                var width = columns[i].width;
 
                 if (( options.frozenColumn ) > -1 && ( i > options.frozenColumn )) {
                     headersWidthR += width;
@@ -690,12 +690,12 @@ if (typeof Slick === "undefined") {
                 } else {
                     canvasWidthL += columns[i].width;
                 }
-        }
+            }
 
             var totalRowWidth = canvasWidthL + canvasWidthR;
 
             return options.fullWidthRows ? Math.max(totalRowWidth, availableWidth) : totalRowWidth;
-                }
+        }
 
         function updateCanvasWidth(forceColumnWidthsUpdate) {
             var oldCanvasWidth = canvasWidth;
@@ -743,7 +743,7 @@ if (typeof Slick === "undefined") {
 
                         $canvasBottomL.width(canvasWidthL);
                         $canvasBottomR.width(canvasWidthR);
-            }
+                    }
                 } else {
                     $paneHeaderL.width('100%');
 
@@ -759,7 +759,7 @@ if (typeof Slick === "undefined") {
                         $viewportBottomL.width('100%');
                         $canvasBottomL.width(canvasWidthL);
                     }
-            }
+                }
 
                 viewportHasHScroll = (canvasWidth > viewportW - scrollbarDimensions.width);
             }
@@ -775,8 +775,8 @@ if (typeof Slick === "undefined") {
         function disableSelection($target) {
             if ($target && $target.jquery) {
                 $target.attr("unselectable", "on").css("MozUserSelect", "none").bind("selectstart.ui", function () {
-                        return false;
-                    }); // from jquery:ui.core.js 1.7.2
+                    return false;
+                }); // from jquery:ui.core.js 1.7.2
             }
         }
 
@@ -877,7 +877,7 @@ if (typeof Slick === "undefined") {
                 }
             } else {
                 $headerRowTarget = $headerRowL;
-        }
+            }
 
             var $header = $headerRowTarget.children().eq(idx);
             return $header && $header[0];
@@ -1037,22 +1037,22 @@ if (typeof Slick === "undefined") {
                     } else {
                         trigger(
                             self.onSort, {
-                            multiColumnSort: true,
+                                multiColumnSort: true,
                                 sortCols: $.map(
                                     sortColumns, function (col) {
-                                return {
-                                    sortCol: columns[getColumnIndex(col.columnId)],
-                                    sortAsc: col.sortAsc
-                                };
-                            })
-                        }, e);
+                                        return {
+                                            sortCol: columns[getColumnIndex(col.columnId)],
+                                            sortAsc: col.sortAsc
+                                        };
+                                    })
+                            }, e);
                     }
                 }
             });
         }
 
         function setupColumnReorder() {
-                $headers.filter(":ui-sortable").sortable("destroy");
+            $headers.filter(":ui-sortable").sortable("destroy");
             var columnScrollTimer = null;
 
             function scrollColumnsRight() {
@@ -1141,242 +1141,242 @@ if (typeof Slick === "undefined") {
                 $col = $(e);
                 $("<div class='slick-resizable-handle' />")
                     .appendTo(e)
-                    .bind("dragstart",function (e, dd) {
-                if (!getEditorLock().commitCurrentEdit()) {
-                    return false;
-                }
-                pageX = e.pageX;
-                $(this).parent().addClass("slick-header-column-active");
+                    .bind("dragstart", function (e, dd) {
+                        if (!getEditorLock().commitCurrentEdit()) {
+                            return false;
+                        }
+                        pageX = e.pageX;
+                        $(this).parent().addClass("slick-header-column-active");
                         var shrinkLeewayOnRight = null,
                             stretchLeewayOnRight = null;
                         // lock each column's width option to current width
                         columnElements.each(function (i, e) {
                             columns[i].previousWidth = $(e).outerWidth();
                         });
-                if (options.forceFitColumns) {
-                    shrinkLeewayOnRight = 0;
-                    stretchLeewayOnRight = 0;
+                        if (options.forceFitColumns) {
+                            shrinkLeewayOnRight = 0;
+                            stretchLeewayOnRight = 0;
                             // colums on right affect maxPageX/minPageX
                             for (j = i + 1; j < columnElements.length; j++) {
-                        c = columns[j];
-                        if (c.resizable) {
-                            if (stretchLeewayOnRight !== null) {
-                                if (c.maxWidth) {
+                                c = columns[j];
+                                if (c.resizable) {
+                                    if (stretchLeewayOnRight !== null) {
+                                        if (c.maxWidth) {
                                             stretchLeewayOnRight += c.maxWidth - c.previousWidth;
-                                } else {
-                                    stretchLeewayOnRight = null;
+                                        } else {
+                                            stretchLeewayOnRight = null;
+                                        }
+                                    }
+                                    shrinkLeewayOnRight += c.previousWidth - Math.max(c.minWidth || 0, absoluteColumnMinWidth);
                                 }
                             }
-                                    shrinkLeewayOnRight += c.previousWidth - Math.max(c.minWidth || 0, absoluteColumnMinWidth);
                         }
-                    }
-                }
                         var shrinkLeewayOnLeft = 0,
                             stretchLeewayOnLeft = 0;
                         for (j = 0; j <= i; j++) {
-                    // columns on left only affect minPageX
-                    c = columns[j];
-                    if (c.resizable) {
-                        if (stretchLeewayOnLeft !== null) {
-                            if (c.maxWidth) {
-                                        stretchLeewayOnLeft += c.maxWidth - c.previousWidth;
-                            } else {
-                                stretchLeewayOnLeft = null;
-                            }
-                        }
-                                shrinkLeewayOnLeft += c.previousWidth - Math.max(c.minWidth || 0, absoluteColumnMinWidth);
-                    }
-                }
-                if (shrinkLeewayOnRight === null) {
-                    shrinkLeewayOnRight = 100000;
-                }
-                if (shrinkLeewayOnLeft === null) {
-                    shrinkLeewayOnLeft = 100000;
-                }
-                if (stretchLeewayOnRight === null) {
-                    stretchLeewayOnRight = 100000;
-                }
-                if (stretchLeewayOnLeft === null) {
-                    stretchLeewayOnLeft = 100000;
-                }
-                maxPageX = pageX + Math.min(shrinkLeewayOnRight, stretchLeewayOnLeft);
-                minPageX = pageX - Math.min(shrinkLeewayOnLeft, stretchLeewayOnRight);
-                    }).bind("drag",function (e, dd) {
-                        var actualMinWidth, d = Math.min(maxPageX, Math.max(minPageX, e.pageX)) - pageX,
-                    x;
-
-                if (d < 0) { // shrink column
-                    x = d;
-
-                            var newCanvasWidthL = 0, newCanvasWidthR = 0;
-
-                            for (j = i; j >= 0; j--) {
+                            // columns on left only affect minPageX
                             c = columns[j];
                             if (c.resizable) {
+                                if (stretchLeewayOnLeft !== null) {
+                                    if (c.maxWidth) {
+                                        stretchLeewayOnLeft += c.maxWidth - c.previousWidth;
+                                    } else {
+                                        stretchLeewayOnLeft = null;
+                                    }
+                                }
+                                shrinkLeewayOnLeft += c.previousWidth - Math.max(c.minWidth || 0, absoluteColumnMinWidth);
+                            }
+                        }
+                        if (shrinkLeewayOnRight === null) {
+                            shrinkLeewayOnRight = 100000;
+                        }
+                        if (shrinkLeewayOnLeft === null) {
+                            shrinkLeewayOnLeft = 100000;
+                        }
+                        if (stretchLeewayOnRight === null) {
+                            stretchLeewayOnRight = 100000;
+                        }
+                        if (stretchLeewayOnLeft === null) {
+                            stretchLeewayOnLeft = 100000;
+                        }
+                        maxPageX = pageX + Math.min(shrinkLeewayOnRight, stretchLeewayOnLeft);
+                        minPageX = pageX - Math.min(shrinkLeewayOnLeft, stretchLeewayOnRight);
+                    }).bind("drag", function (e, dd) {
+                    var actualMinWidth, d = Math.min(maxPageX, Math.max(minPageX, e.pageX)) - pageX,
+                        x;
+
+                    if (d < 0) { // shrink column
+                        x = d;
+
+                        var newCanvasWidthL = 0, newCanvasWidthR = 0;
+
+                        for (j = i; j >= 0; j--) {
+                            c = columns[j];
+                            if (c.resizable) {
+                                actualMinWidth = Math.max(c.minWidth || 0, absoluteColumnMinWidth);
+                                if (x && c.previousWidth + x < actualMinWidth) {
+                                    x += c.previousWidth - actualMinWidth;
+                                    c.width = actualMinWidth;
+                                } else {
+                                    c.width = c.previousWidth + x;
+                                    x = 0;
+                                }
+                            }
+                        }
+
+                        for (k = 0; k <= i; k++) {
+                            c = columns[k];
+
+                            if ((options.frozenColumn > -1) && (k > options.frozenColumn)) {
+                                newCanvasWidthR += c.width;
+                            } else {
+                                newCanvasWidthL += c.width;
+                            }
+                        }
+
+                        if (options.forceFitColumns) {
+                            x = -d;
+
+                            for (j = i + 1; j < columnElements.length; j++) {
+                                c = columns[j];
+                                if (c.resizable) {
+                                    if (x && c.maxWidth && (c.maxWidth - c.previousWidth < x)) {
+                                        x -= c.maxWidth - c.previousWidth;
+                                        c.width = c.maxWidth;
+                                    } else {
+                                        c.width = c.previousWidth + x;
+                                        x = 0;
+                                    }
+
+                                    if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
+                                        newCanvasWidthR += c.width;
+                                    } else {
+                                        newCanvasWidthL += c.width;
+                                    }
+                                }
+                            }
+                        } else {
+                            for (j = i + 1; j < columnElements.length; j++) {
+                                c = columns[j];
+
+                                if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
+                                    newCanvasWidthR += c.width;
+                                } else {
+                                    newCanvasWidthL += c.width;
+                                }
+                            }
+                        }
+                    } else { // stretch column
+                        x = d;
+
+                        var newCanvasWidthL = 0, newCanvasWidthR = 0;
+
+                        for (j = i; j >= 0; j--) {
+                            c = columns[j];
+                            if (c.resizable) {
+                                if (x && c.maxWidth && (c.maxWidth - c.previousWidth < x)) {
+                                    x -= c.maxWidth - c.previousWidth;
+                                    c.width = c.maxWidth;
+                                } else {
+                                    c.width = c.previousWidth + x;
+                                    x = 0;
+                                }
+                            }
+                        }
+
+                        for (k = 0; k <= i; k++) {
+                            c = columns[k];
+
+                            if ((options.frozenColumn > -1) && (k > options.frozenColumn)) {
+                                newCanvasWidthR += c.width;
+                            } else {
+                                newCanvasWidthL += c.width;
+                            }
+                        }
+
+                        if (options.forceFitColumns) {
+                            x = -d;
+
+                            for (j = i + 1; j < columnElements.length; j++) {
+                                c = columns[j];
+                                if (c.resizable) {
                                     actualMinWidth = Math.max(c.minWidth || 0, absoluteColumnMinWidth);
                                     if (x && c.previousWidth + x < actualMinWidth) {
                                         x += c.previousWidth - actualMinWidth;
-                                    c.width = actualMinWidth;
-                                } else {
+                                        c.width = actualMinWidth;
+                                    } else {
                                         c.width = c.previousWidth + x;
-                                    x = 0;
-                                }
-                            }
-                        }
+                                        x = 0;
+                                    }
 
-                            for (k = 0; k <= i; k++) {
-                                c = columns[k];
-
-                                if ((options.frozenColumn > -1) && (k > options.frozenColumn)) {
-                                    newCanvasWidthR += c.width;
-                                } else {
-                                    newCanvasWidthL += c.width;
-                                }
-                    }
-
-                    if (options.forceFitColumns) {
-                        x = -d;
-
-                                for (j = i + 1; j < columnElements.length; j++) {
-                            c = columns[j];
-                            if (c.resizable) {
-                                        if (x && c.maxWidth && (c.maxWidth - c.previousWidth < x)) {
-                                            x -= c.maxWidth - c.previousWidth;
-                                    c.width = c.maxWidth;
-                                } else {
-                                            c.width = c.previousWidth + x;
-                                    x = 0;
-                                }
-
-                                        if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
-                                            newCanvasWidthR += c.width;
-                                        } else {
-                                            newCanvasWidthL += c.width;
-                                        }
+                                    if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
+                                        newCanvasWidthR += c.width;
+                                    } else {
+                                        newCanvasWidthL += c.width;
                                     }
                                 }
-                            } else {
-                                for (j = i + 1; j < columnElements.length; j++) {
-                                    c = columns[j];
-
-                                    if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
-                                        newCanvasWidthR += c.width;
-                                    } else {
-                                        newCanvasWidthL += c.width;
                             }
-                        }
-                    }
-                } else { // stretch column
-                    x = d;
+                        } else {
+                            for (j = i + 1; j < columnElements.length; j++) {
+                                c = columns[j];
 
-                            var newCanvasWidthL = 0, newCanvasWidthR = 0;
-
-                            for (j = i; j >= 0; j--) {
-                            c = columns[j];
-                            if (c.resizable) {
-                                    if (x && c.maxWidth && (c.maxWidth - c.previousWidth < x)) {
-                                        x -= c.maxWidth - c.previousWidth;
-                                    c.width = c.maxWidth;
-                                } else {
-                                        c.width = c.previousWidth + x;
-                                    x = 0;
-                                }
-                            }
-                        }
-
-                            for (k = 0; k <= i; k++) {
-                                c = columns[k];
-
-                                if ((options.frozenColumn > -1) && (k > options.frozenColumn)) {
+                                if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
                                     newCanvasWidthR += c.width;
                                 } else {
                                     newCanvasWidthL += c.width;
                                 }
-                    }
-
-                    if (options.forceFitColumns) {
-                        x = -d;
-
-                                for (j = i + 1; j < columnElements.length; j++) {
-                            c = columns[j];
-                            if (c.resizable) {
-                                        actualMinWidth = Math.max(c.minWidth || 0, absoluteColumnMinWidth);
-                                        if (x && c.previousWidth + x < actualMinWidth) {
-                                            x += c.previousWidth - actualMinWidth;
-                                    c.width = actualMinWidth;
-                                } else {
-                                            c.width = c.previousWidth + x;
-                                    x = 0;
-                                }
-
-                                        if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
-                                            newCanvasWidthR += c.width;
-                                        } else {
-                                            newCanvasWidthL += c.width;
                             }
                         }
                     }
-                            } else {
-                                for (j = i + 1; j < columnElements.length; j++) {
-                    c = columns[j];
 
-                                    if ((options.frozenColumn > -1) && (j > options.frozenColumn)) {
-                                        newCanvasWidthR += c.width;
-                                    } else {
-                                        newCanvasWidthL += c.width;
+                    if (options.frozenColumn > -1 && newCanvasWidthL != canvasWidthL) {
+                        $headerL.width(newCanvasWidthL + 1000);
+                        $paneHeaderR.css('left', newCanvasWidthL);
+                    }
+
+                    applyColumnHeaderWidths();
+                    if (options.syncColumnCellResize) {
+                        updateCanvasWidth();
+                        applyColumnWidths();
+                    }
+                }).bind("dragend", function (e, dd) {
+                    var newWidth;
+                    $(this).parent().removeClass("slick-header-column-active");
+                    for (j = 0; j < columnElements.length; j++) {
+                        c = columns[j];
+                        newWidth = $(columnElements[j]).outerWidth();
+
+                        if (c.previousWidth !== newWidth && c.rerenderOnResize) {
+                            invalidateAllRows();
                         }
                     }
-                }
-            }
 
-                        if (options.frozenColumn > -1 && newCanvasWidthL != canvasWidthL) {
-                            $headerL.width(newCanvasWidthL + 1000);
-                            $paneHeaderR.css('left', newCanvasWidthL);
-                }
-
-                        applyColumnHeaderWidths();
-                        if (options.syncColumnCellResize) {
-                            updateCanvasWidth();
-                            applyColumnWidths();
-                }
-                    }).bind("dragend", function (e, dd) {
-                        var newWidth;
-                        $(this).parent().removeClass("slick-header-column-active");
-                        for (j = 0; j < columnElements.length; j++) {
-                            c = columns[j];
-                            newWidth = $(columnElements[j]).outerWidth();
-
-                            if (c.previousWidth !== newWidth && c.rerenderOnResize) {
-                                invalidateAllRows();
-                    }
-                }
-
-                        updateCanvasWidth(true);
-                        render();
-                        trigger(self.onColumnsResized, {});
-                    });
+                    updateCanvasWidth(true);
+                    render();
+                    trigger(self.onColumnsResized, {});
+                });
             });
-            }
+        }
 
         function getVBoxDelta($el) {
             var p = ["borderTopWidth", "borderBottomWidth", "paddingTop", "paddingBottom"];
             var delta = 0;
             $.each(p, function (n, val) {
                 delta += parseFloat($el.css(val)) || 0;
-                        });
+            });
             return delta;
-            }
+        }
 
         function setFrozenOptions() {
             options.frozenColumn = ( options.frozenColumn >= 0
                 && options.frozenColumn < columns.length
-                )
+            )
                 ? parseInt(options.frozenColumn)
                 : -1;
 
             options.frozenRow = ( options.frozenRow >= 0
                 && options.frozenRow < numVisibleRows
-                )
+            )
                 ? parseInt(options.frozenRow)
                 : -1;
 
@@ -1405,7 +1405,7 @@ if (typeof Slick === "undefined") {
                 } else {
                     $paneBottomR.hide();
                     $paneBottomL.hide();
-            }
+                }
             } else {
                 $paneHeaderR.hide();
                 $paneTopR.hide();
@@ -1413,12 +1413,12 @@ if (typeof Slick === "undefined") {
 
                 if (hasFrozenRows) {
                     $paneBottomL.show();
-            } else {
+                } else {
                     $paneBottomR.hide();
                     $paneBottomL.hide();
                 }
             }
-            }
+        }
 
         function setOverflow() {
             $viewportTopL.css({
@@ -1456,7 +1456,7 @@ if (typeof Slick === "undefined") {
                     }
                 } else {
                     $viewportScrollContainerX = $viewportScrollContainerY = $viewportTopR;
-        }
+                }
             } else {
                 $headerScrollContainer = $headerScrollerL;
                 $headerRowScrollContainer = $headerRowScrollerL;
@@ -1537,8 +1537,8 @@ if (typeof Slick === "undefined") {
                     if ((sheets[i].ownerNode || sheets[i].owningElement) == $style[0]) {
                         stylesheet = sheets[i];
                         break;
-            }
-        }
+                    }
+                }
 
                 if (!stylesheet) {
                     throw new Error("Cannot find stylesheet.");
@@ -1743,8 +1743,8 @@ if (typeof Slick === "undefined") {
         function setSortColumn(columnId, ascending) {
             setSortColumns([
                 {
-                columnId: columnId,
-                sortAsc: ascending
+                    columnId: columnId,
+                    sortAsc: ascending
                 }
             ]);
         }
@@ -1763,7 +1763,7 @@ if (typeof Slick === "undefined") {
                 if (columnIndex != null) {
                     headerColumnEls.eq(columnIndex).addClass("slick-header-column-sorted").find(".slick-sort-indicator").addClass(
                         col.sortAsc ? "slick-sort-indicator-asc" : "slick-sort-indicator-desc");
-            }
+                }
             });
         }
 
@@ -1811,8 +1811,8 @@ if (typeof Slick === "undefined") {
                 if (options.frozenColumn == i) {
                     x = 0;
                 } else {
-                x += columns[i].width;
-            }
+                    x += columns[i].width;
+                }
             }
         }
 
@@ -1849,18 +1849,18 @@ if (typeof Slick === "undefined") {
 
         function getOptions() {
             return options;
-            }
+        }
 
         function setOptions(args) {
             if (!getEditorLock().commitCurrentEdit()) {
                 return;
-                    }
+            }
 
             makeActiveCellNormal();
 
             if (options.enableAddRow !== args.enableAddRow) {
                 invalidateRow(getDataLength());
-                }
+            }
 
             options = $.extend(options, args);
             validateAndEnforceOptions();
@@ -1975,38 +1975,38 @@ if (typeof Slick === "undefined") {
 
                 if (options.frozenColumn > -1) {
                     $viewportTopL[0].scrollTop = newScrollTop;
-            }
+                }
 
                 if (hasFrozenRows) {
                     $viewportBottomL[0].scrollTop = $viewportBottomR[0].scrollTop = newScrollTop;
-            }
+                }
 
                 $viewportScrollContainerY[0].scrollTop = newScrollTop;
 
                 trigger(self.onViewportChanged, {});
-                }
             }
+        }
 
         function defaultFormatter(row, cell, value, columnDef, dataContext) {
             if (value == null) {
                 return "";
-                } else {
+            } else {
                 return (value + "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                }
             }
+        }
 
         function getFormatter(row, column) {
-            var rowMetadata = data.getItemMetadata && data.getItemMetadata(row);
+            var rowMetadata = data.getItemMetadata && data.getItemMetadata(row, column);
 
             // look up by id, then index
             var columnOverrides = rowMetadata && rowMetadata.columns && (rowMetadata.columns[column.id] || rowMetadata.columns[getColumnIndex(column.id)]);
 
             return (columnOverrides && columnOverrides.formatter) || (rowMetadata && rowMetadata.formatter) || column.formatter || (options.formatterFactory && options.formatterFactory.getFormatter(column)) || options.defaultFormatter;
-                }
+        }
 
         function getEditor(row, cell) {
             var column = columns[cell];
-            var rowMetadata = data.getItemMetadata && data.getItemMetadata(row);
+            var rowMetadata = data.getItemMetadata && data.getItemMetadata(row, cell);
             var columnMetadata = rowMetadata && rowMetadata.columns;
 
             if (columnMetadata && columnMetadata[column.id] && columnMetadata[column.id].editor !== undefined) {
@@ -2014,7 +2014,7 @@ if (typeof Slick === "undefined") {
             }
             if (columnMetadata && columnMetadata[cell] && columnMetadata[cell].editor !== undefined) {
                 return columnMetadata[cell].editor;
-        }
+            }
 
             return column.editor || (options.editorFactory && options.editorFactory.getEditor(column));
         }
@@ -2024,7 +2024,7 @@ if (typeof Slick === "undefined") {
                 return options.dataItemColumnValueExtractor(item, columnDef);
             }
             return item[columnDef.field];
-            }
+        }
 
         function appendRowHtml(stringArrayL, stringArrayR, row, range, dataLength) {
             var d = getDataItem(row);
@@ -2061,29 +2061,29 @@ if (typeof Slick === "undefined") {
                     colspan = (columnData && columnData.colspan) || 1;
                     if (colspan === "*") {
                         colspan = ii - i;
-            }
-        }
+                    }
+                }
 
                 // Do not render cells outside of the viewport.
                 if (columnPosRight[Math.min(ii - 1, i + colspan - 1)] > range.leftPx) {
                     if (columnPosLeft[i] > range.rightPx) {
                         // All columns to the right are outside the range.
                         break;
-                }
+                    }
 
                     if (( options.frozenColumn > -1 ) && ( i > options.frozenColumn )) {
                         appendCellHtml(stringArrayR, row, i, colspan, d);
-            } else {
+                    } else {
                         appendCellHtml(stringArrayL, row, i, colspan, d);
-            }
+                    }
                 } else if (( options.frozenColumn > -1 ) && ( i <= options.frozenColumn )) {
                     appendCellHtml(stringArrayL, row, i, colspan);
-        }
+                }
 
                 if (colspan > 1) {
                     i += (colspan - 1);
+                }
             }
-        }
 
             stringArrayL.push("</div>");
 
@@ -2098,14 +2098,14 @@ if (typeof Slick === "undefined") {
                 + (m.cssClass ? " " + m.cssClass : "");
             if (row === activeRow && cell === activeCell) {
                 cellCss += (" active");
-        }
+            }
 
             // TODO:  merge them together in the setter
             for (var key in cellCssClasses) {
                 if (cellCssClasses[key][row] && cellCssClasses[key][row][m.id]) {
                     cellCss += (" " + cellCssClasses[key][row][m.id]);
-        }
-        }
+                }
+            }
 
             stringArray.push("<div class='" + cellCss + "'>");
 
@@ -2114,7 +2114,7 @@ if (typeof Slick === "undefined") {
                 var value = getDataItemValueForColumn(item, m);
 
                 stringArray.push(getFormatter(row, m)(row, cell, value, m, item));
-        }
+            }
 
             stringArray.push("</div>");
 
@@ -2128,18 +2128,18 @@ if (typeof Slick === "undefined") {
 
                 if (hasFrozenRows
                     && ( ( options.frozenBottom && i >= actualFrozenRow ) // Frozen bottom rows
-                    || ( !options.frozenBottom && i <= actualFrozenRow ) // Frozen top rows
+                        || ( !options.frozenBottom && i <= actualFrozenRow ) // Frozen top rows
                     )
-                    ) {
+                ) {
                     removeFrozenRow = false;
-        }
+                }
 
                 if (( ( i = parseInt(i, 10)) !== activeRow )
                     && ( i < rangeToKeep.top || i > rangeToKeep.bottom )
                     && ( removeFrozenRow )
-                    ) {
+                ) {
                     removeRowFromCache(i);
-            }
+                }
             }
         }
 
@@ -2152,11 +2152,11 @@ if (typeof Slick === "undefined") {
         function invalidateAllRows() {
             if (currentEditor) {
                 makeActiveCellNormal();
-                    }
+            }
             for (var row in rowsCache) {
                 removeRowFromCache(row);
-                }
             }
+        }
 
         function removeRowFromCache(row) {
             var cacheEntry = rowsCache[row];
@@ -2175,7 +2175,7 @@ if (typeof Slick === "undefined") {
             delete postProcessedRows[row];
             renderedRows--;
             counter_rows_removed++;
-            }
+        }
 
         function invalidateRows(rows) {
             var i, rl;
@@ -2189,13 +2189,13 @@ if (typeof Slick === "undefined") {
                 }
                 if (rowsCache[rows[i]]) {
                     removeRowFromCache(rows[i]);
+                }
+            }
         }
-            }
-            }
 
         function invalidateRow(row) {
             invalidateRows([row]);
-            }
+        }
 
         function updateCell(row, cell) {
             var cellNode = getCellNode(row, cell);
@@ -2207,26 +2207,26 @@ if (typeof Slick === "undefined") {
                 d = getDataItem(row);
             if (currentEditor && activeRow === row && activeCell === cell) {
                 currentEditor.loadValue(d);
-                } else {
+            } else {
                 cellNode.innerHTML = d ? getFormatter(row, m)(row, cell, getDataItemValueForColumn(d, m), m, d) : "";
                 invalidatePostProcessingResults(row);
             }
-            }
-
-        function updateRow(row) {
-                var cacheEntry = rowsCache[row];
-            if (!cacheEntry) {
-                return;
         }
 
-                        ensureCellNodesInRowsCache(row);
+        function updateRow(row) {
+            var cacheEntry = rowsCache[row];
+            if (!cacheEntry) {
+                return;
+            }
+
+            ensureCellNodesInRowsCache(row);
 
             var d = getDataItem(row);
 
             for (var columnIdx in cacheEntry.cellNodesByColumnIdx) {
                 if (!cacheEntry.cellNodesByColumnIdx.hasOwnProperty(columnIdx)) {
                     continue;
-                    }
+                }
 
                 columnIdx = columnIdx | 0;
                 var m = columns[columnIdx],
@@ -2238,8 +2238,8 @@ if (typeof Slick === "undefined") {
                     node.innerHTML = getFormatter(row, m)(row, columnIdx, getDataItemValueForColumn(d, m), m, d);
                 } else {
                     node.innerHTML = "";
+                }
             }
-        }
 
             invalidatePostProcessingResults(row);
         }
@@ -2293,11 +2293,11 @@ if (typeof Slick === "undefined") {
                     paneTopH = viewportH - frozenRowsHeight - scrollbarDimensions.height;
 
                     paneBottomH = frozenRowsHeight + scrollbarDimensions.height;
-                                    } else {
+                } else {
                     paneTopH = frozenRowsHeight;
                     paneBottomH = viewportH - frozenRowsHeight;
-                                    }
-                                        } else {
+                }
+            } else {
                 paneTopH = viewportH;
             }
 
@@ -2306,7 +2306,7 @@ if (typeof Slick === "undefined") {
 
             if (options.frozenColumn > -1 && options.autoHeight) {
                 paneTopH += scrollbarDimensions.height;
-        }
+            }
 
             // The top viewport does not contain the top panel or header row
             viewportTopH = paneTopH - topPanelH - headerRowH
@@ -2315,12 +2315,12 @@ if (typeof Slick === "undefined") {
                 if (options.frozenColumn > -1) {
                     $container.height(
                         paneTopH
-                            + parseFloat($.css($headerScrollerL[0], "height"))
+                        + parseFloat($.css($headerScrollerL[0], "height"))
                     );
-        }
+                }
 
                 $paneTopL.css('position', 'relative');
-        }
+            }
 
             $paneTopL.css({
                 'top': $paneHeaderL.height(), 'height': paneTopH
@@ -2348,7 +2348,7 @@ if (typeof Slick === "undefined") {
                     });
 
                     $viewportBottomR.height(paneBottomH);
-            }
+                }
             } else {
                 if (hasFrozenRows) {
                     $paneBottomL.css({
@@ -2367,17 +2367,17 @@ if (typeof Slick === "undefined") {
 
                     if (options.frozenColumn > -1) {
                         $canvasBottomR.height(frozenRowsHeight);
-        }
-            } else {
+                    }
+                } else {
                     $canvasTopL.height(frozenRowsHeight);
 
                     if (options.frozenColumn > -1) {
                         $canvasTopR.height(frozenRowsHeight);
-        }
-            }
-                } else {
-                $viewportTopR.height(viewportTopH);
+                    }
                 }
+            } else {
+                $viewportTopR.height(viewportTopH);
+            }
 
             if (options.forceFitColumns) {
                 autosizeColumns();
@@ -2449,7 +2449,7 @@ if (typeof Slick === "undefined") {
                 } else {
                     $canvasTopL.css("height", h);
                     $canvasTopR.css("height", h);
-            }
+                }
 
                 scrollTop = $viewportScrollContainerY[0].scrollTop;
             }
@@ -2535,7 +2535,7 @@ if (typeof Slick === "undefined") {
                 if (cacheEntry.cellRenderQueue.length) {
                     var $lastNode = cacheEntry.rowNode.children().last();
                     while (cacheEntry.cellRenderQueue.length) {
-                            var columnIdx = cacheEntry.cellRenderQueue.pop();
+                        var columnIdx = cacheEntry.cellRenderQueue.pop();
 
                         cacheEntry.cellNodesByColumnIdx[columnIdx] = $lastNode;
                         $lastNode = $lastNode.prev();
@@ -2553,9 +2553,9 @@ if (typeof Slick === "undefined") {
             // Ignore frozen rows
             if (hasFrozenRows
                 && ( ( options.frozenBottom && row > actualFrozenRow ) // Frozen bottom rows
-                || ( row <= actualFrozenRow )                     // Frozen top rows
+                    || ( row <= actualFrozenRow )                     // Frozen top rows
                 )
-                ) {
+            ) {
                 return;
             }
 
@@ -2576,7 +2576,7 @@ if (typeof Slick === "undefined") {
                 // Ignore frozen columns
                 if (i <= options.frozenColumn) {
                     continue;
-                                }
+                }
 
                 var colspan = cacheEntry.cellColSpans[i];
                 if (columnPosLeft[i] > range.rightPx || columnPosRight[Math.min(columns.length - 1, i + colspan - 1)] < range.leftPx) {
@@ -2584,19 +2584,19 @@ if (typeof Slick === "undefined") {
                         cellsToRemove.push(i);
                     }
                 }
-                        }
+            }
 
             var cellToRemove;
             while ((cellToRemove = cellsToRemove.pop()) != null) {
                 cacheEntry.cellNodesByColumnIdx[cellToRemove][0].parentElement.removeChild(cacheEntry.cellNodesByColumnIdx[cellToRemove][0]);
                 delete cacheEntry.cellColSpans[cellToRemove];
                 delete cacheEntry.cellNodesByColumnIdx[cellToRemove];
-                        if (postProcessedRows[row]) {
+                if (postProcessedRows[row]) {
                     delete postProcessedRows[row][cellToRemove];
-                    }
-                totalCellsRemoved++;
                 }
+                totalCellsRemoved++;
             }
+        }
 
         function cleanUpAndRenderCells(range) {
             var cacheEntry;
@@ -2613,7 +2613,7 @@ if (typeof Slick === "undefined") {
                 }
 
                 // cellRenderQueue populated in renderRows() needs to be cleared first
-                    ensureCellNodesInRowsCache(row);
+                ensureCellNodesInRowsCache(row);
 
                 cleanUpCells(range, row);
 
@@ -2696,12 +2696,12 @@ if (typeof Slick === "undefined") {
 
             for (var i = range.top, ii = range.bottom; i <= ii; i++) {
                 if (rowsCache[i] || ( hasFrozenRows && options.frozenBottom && i == getDataLength() )) {
-                        continue;
-                    }
-                    renderedRows++;
+                    continue;
+                }
+                renderedRows++;
                 rows.push(i);
 
-                    // Create an entry right away so that appendRowHtml() can
+                // Create an entry right away so that appendRowHtml() can
                 // start populatating it.
                 rowsCache[i] = {
                     "rowNode": null,
@@ -2710,25 +2710,25 @@ if (typeof Slick === "undefined") {
                     // Can also be used for checking whether a cell has been rendered.
                     "cellColSpans": [],
 
-                        // Cell nodes (by column idx).  Lazy-populated by ensureCellNodesInRowsCache().
+                    // Cell nodes (by column idx).  Lazy-populated by ensureCellNodesInRowsCache().
                     "cellNodesByColumnIdx": [],
 
-                        // Column indices of cell nodes that have been rendered, but not yet indexed in
-                        // cellNodesByColumnIdx.  These are in the same order as cell nodes added at the
-                        // end of the row.
+                    // Column indices of cell nodes that have been rendered, but not yet indexed in
+                    // cellNodesByColumnIdx.  These are in the same order as cell nodes added at the
+                    // end of the row.
                     "cellRenderQueue": []
-                    };
+                };
 
                 appendRowHtml(stringArrayL, stringArrayR, i, range, dataLength);
                 if (activeCellNode && activeRow === i) {
-                        needToReselectCell = true;
-                    }
-                    counter_rows_rendered++;
+                    needToReselectCell = true;
                 }
+                counter_rows_rendered++;
+            }
 
             if (!rows.length) {
                 return;
-                    }
+            }
 
             var x = document.createElement("div"),
                 xRight = document.createElement("div");
@@ -2745,7 +2745,7 @@ if (typeof Slick === "undefined") {
                     } else {
                         rowsCache[rows[i]].rowNode = $()
                             .add($(x.firstChild).appendTo($canvasBottomL));
-            }
+                    }
                 } else if (options.frozenColumn > -1) {
                     rowsCache[rows[i]].rowNode = $()
                         .add($(x.firstChild).appendTo($canvasTopL))
@@ -2765,7 +2765,7 @@ if (typeof Slick === "undefined") {
             if (!options.enableAsyncPostRender) {
                 return;
             }
-                clearTimeout(h_postrender);
+            clearTimeout(h_postrender);
             h_postrender = setTimeout(asyncPostProcessRows, options.asyncPostRenderDelay);
         }
 
@@ -2803,16 +2803,19 @@ if (typeof Slick === "undefined") {
             // Render frozen bottom rows
             if (options.frozenBottom) {
                 renderRows({
-                    top: actualFrozenRow, bottom: getDataLength() - 1, leftPx: rendered.leftPx, rightPx: rendered.rightPx
+                    top: actualFrozenRow,
+                    bottom: getDataLength() - 1,
+                    leftPx: rendered.leftPx,
+                    rightPx: rendered.rightPx
                 });
             }
 
             postProcessFromRow = visible.top;
             postProcessToRow = Math.min(getDataLengthIncludingAddNew() - 1, visible.bottom);
-                startPostProcessing();
+            startPostProcessing();
 
-                lastRenderedScrollTop = scrollTop;
-                lastRenderedScrollLeft = scrollLeft;
+            lastRenderedScrollTop = scrollTop;
+            lastRenderedScrollLeft = scrollLeft;
             h_render = null;
         }
 
@@ -2828,7 +2831,7 @@ if (typeof Slick === "undefined") {
             scrollLeft = $viewportScrollContainerX[0].scrollLeft + (deltaX * 10);
             _handleScroll(true);
             event.preventDefault();
-            }
+        }
 
         function handleScroll() {
             scrollTop = $viewportScrollContainerY[0].scrollTop;
@@ -2846,7 +2849,7 @@ if (typeof Slick === "undefined") {
             }
             if (scrollLeft > maxScrollDistanceX) {
                 scrollLeft = maxScrollDistanceX;
-        }
+            }
 
             var vScrollDist = Math.abs(scrollTop - prevScrollTop);
             var hScrollDist = Math.abs(scrollLeft - prevScrollLeft);
@@ -2912,7 +2915,7 @@ if (typeof Slick === "undefined") {
                     Math.abs(lastRenderedScrollLeft - scrollLeft) > 20) {
                     if (options.forceSyncScrolling || (
                         Math.abs(lastRenderedScrollTop - scrollTop) < viewportH &&
-                            Math.abs(lastRenderedScrollLeft - scrollLeft) < viewportW)) {
+                        Math.abs(lastRenderedScrollLeft - scrollLeft) < viewportW)) {
                         render();
                     } else {
                         h_render = setTimeout(render, 50);
@@ -2931,20 +2934,20 @@ if (typeof Slick === "undefined") {
             var dataLength = getDataLength();
             while (postProcessFromRow <= postProcessToRow) {
                 var row = (vScrollDir >= 0) ? postProcessFromRow++ : postProcessToRow--;
-                    var cacheEntry = rowsCache[row];
-                    if (!cacheEntry || row >= dataLength) {
-                        continue;
-                    }
+                var cacheEntry = rowsCache[row];
+                if (!cacheEntry || row >= dataLength) {
+                    continue;
+                }
 
-                    if (!postProcessedRows[row]) {
+                if (!postProcessedRows[row]) {
                     postProcessedRows[row] = {};
-                    }
+                }
 
-                    ensureCellNodesInRowsCache(row);
+                ensureCellNodesInRowsCache(row);
                 for (var columnIdx in cacheEntry.cellNodesByColumnIdx) {
                     if (!cacheEntry.cellNodesByColumnIdx.hasOwnProperty(columnIdx)) {
                         continue;
-                            }
+                    }
 
                     columnIdx = columnIdx | 0;
 
@@ -3019,7 +3022,7 @@ if (typeof Slick === "undefined") {
                 "key": key,
                 "hash": null
             });
-            }
+        }
 
         function setCellCssStyles(key, hash) {
             var prevHash = cellCssClasses[key];
@@ -3045,7 +3048,7 @@ if (typeof Slick === "undefined") {
                 function toggleCellClass(times) {
                     if (!times) {
                         return;
-        }
+                    }
                     setTimeout(function () {
                         $cell.queue(function () {
                             $cell.toggleClass(options.cellFlashingCssClass).dequeue();
@@ -3101,8 +3104,8 @@ if (typeof Slick === "undefined") {
 
         function handleKeyDown(e) {
             trigger(self.onKeyDown, {
-                    row: activeRow,
-                    cell: activeCell
+                row: activeRow,
+                cell: activeCell
             }, e);
 
             var handled = e.isImmediatePropagationStopped();
@@ -3110,42 +3113,42 @@ if (typeof Slick === "undefined") {
             if (!handled) {
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey) {
                     if (e.which == 27) {
-                            if (!getEditorLock().isActive()) {
+                        if (!getEditorLock().isActive()) {
                             return; // no editing mode to cancel, allow bubbling and default processing (exit without cancelling the event)
-                            }
-                            cancelEditAndSetFocus();
+                        }
+                        cancelEditAndSetFocus();
                     } else if (e.which == 34) {
-                            navigatePageDown();
-                            handled = true;
+                        navigatePageDown();
+                        handled = true;
                     } else if (e.which == 33) {
-                            navigatePageUp();
-                            handled = true;
+                        navigatePageUp();
+                        handled = true;
                     } else if (e.which == 37) {
-                            handled = navigateLeft();
+                        handled = navigateLeft();
                     } else if (e.which == 39) {
-                            handled = navigateRight();
+                        handled = navigateRight();
                     } else if (e.which == 38) {
-                            handled = navigateUp();
+                        handled = navigateUp();
                     } else if (e.which == 40) {
-                            handled = navigateDown();
+                        handled = navigateDown();
                     } else if (e.which == 9) {
-                            handled = navigateNext();
+                        handled = navigateNext();
                     } else if (e.which == 13) {
-                            if (options.editable) {
+                        if (options.editable) {
                             if (currentEditor) {
-                                    // adding new row
-                                    if (activeRow === getDataLength()) {
-                                        navigateDown();
-                                    } else {
-                                        commitEditAndSetFocus();
-                                    }
+                                // adding new row
+                                if (activeRow === getDataLength()) {
+                                    navigateDown();
                                 } else {
+                                    commitEditAndSetFocus();
+                                }
+                            } else {
                                 if (getEditorLock().commitCurrentEdit()) {
                                     makeActiveCellEditable();
-                                    }
                                 }
                             }
-                            handled = true;
+                        }
+                        handled = true;
                     }
                 } else if (e.which == 9 && e.shiftKey && !e.ctrlKey && !e.altKey) {
                     handled = navigatePrev();
@@ -3158,7 +3161,7 @@ if (typeof Slick === "undefined") {
                 e.preventDefault();
                 try {
                     e.originalEvent.keyCode = 0; // prevent default behaviour for special keys in IE browsers (F3, F5, etc.)
-            }
+                }
                     // ignore exceptions - setting the original event's keycode throws
                     // access denied exception for "Ctrl" (hitting control key only, nothing else), "Shift" (maybe others)
                 catch (error) {
@@ -3183,7 +3186,7 @@ if (typeof Slick === "undefined") {
             }
 
             trigger(self.onClick, {
-                row : cell.row,
+                row: cell.row,
                 cell: cell.cell
             }, e);
             if (e.isImmediatePropagationStopped()) {
@@ -3195,13 +3198,13 @@ if (typeof Slick === "undefined") {
                     if (hasFrozenRows) {
                         if (( !( options.frozenBottom ) && ( cell.row >= actualFrozenRow ) )
                             || ( options.frozenBottom && ( cell.row < actualFrozenRow ) )
-                            ) {
-                    scrollRowIntoView(cell.row, false);
-        }
+                        ) {
+                            scrollRowIntoView(cell.row, false);
+                        }
 
                         setActiveCellInternal(getCellNode(cell.row, cell.cell));
-            }
-        }
+                    }
+                }
             }
         }
 
@@ -3217,7 +3220,7 @@ if (typeof Slick === "undefined") {
             }
 
             trigger(self.onContextMenu, {}, e);
-            }
+        }
 
         function handleDblClick(e) {
             var cell = getCellFromEvent(e);
@@ -3226,7 +3229,7 @@ if (typeof Slick === "undefined") {
             }
 
             trigger(self.onDblClick, {
-                row : cell.row,
+                row: cell.row,
                 cell: cell.cell
             }, e);
             if (e.isImmediatePropagationStopped()) {
@@ -3265,16 +3268,16 @@ if (typeof Slick === "undefined") {
                 trigger(self.onHeaderClick, {
                     column: column
                 }, e);
-        }
+            }
         }
 
         function handleMouseEnter(e) {
             trigger(self.onMouseEnter, {}, e);
-            }
+        }
 
         function handleMouseLeave(e) {
             trigger(self.onMouseLeave, {}, e);
-            }
+        }
 
         function cellExists(row, cell) {
             return !(row < 0 || row >= getDataLength() || cell < 0 || cell >= columns.length);
@@ -3293,9 +3296,9 @@ if (typeof Slick === "undefined") {
             if (cell < 0) {
                 cell = 0;
             }
-            
+
             return {
-                row : row,
+                row: row,
                 cell: cell - 1
             };
         }
@@ -3313,11 +3316,11 @@ if (typeof Slick === "undefined") {
             for (var row in rowsCache) {
                 if (rowsCache[row].rowNode[0] === rowNode[0]) {
                     return row | 0;
+                }
             }
-        }
 
-                return null;
-            }
+            return null;
+        }
 
         function getFrozenRowOffset(row) {
             var offset =
@@ -3339,8 +3342,8 @@ if (typeof Slick === "undefined") {
         function getCellFromEvent(e) {
             var $cell = $(e.target).closest(".slick-cell", $canvas);
             if (!$cell.length) {
-                    return null;
-                }
+                return null;
+            }
 
             // TODO: This change eliminates the need for getCellFromEvent since
             //  we're ultimately calling getCellFromPoint.  Need to further analyze
@@ -3362,7 +3365,7 @@ if (typeof Slick === "undefined") {
                 return null;
             } else {
                 return {
-                    "row" : row,
+                    "row": row,
                     "cell": cell
                 };
             }
@@ -3370,8 +3373,8 @@ if (typeof Slick === "undefined") {
 
         function getCellNodeBox(row, cell) {
             if (!cellExists(row, cell)) {
-                    return null;
-                }
+                return null;
+            }
 
             var frozenRowOffset = getFrozenRowOffset(row);
 
@@ -3414,11 +3417,11 @@ if (typeof Slick === "undefined") {
             // Don't scroll to frozen cells
             if (cell <= options.frozenColumn) {
                 return;
-        }
+            }
 
             if (row < actualFrozenRow) {
                 scrollRowIntoView(row, doPaging);
-        }
+            }
 
             var colspan = getColspan(row, cell);
             var left = columnPosLeft[cell],
@@ -3546,7 +3549,7 @@ if (typeof Slick === "undefined") {
                 var d = getDataItem(activeRow);
                 $(activeCellNode).removeClass("editable invalid");
                 if (d) {
-                var column = columns[activeCell];
+                    var column = columns[activeCell];
                     var formatter = getFormatter(activeRow, column);
                     activeCellNode[0].innerHTML = formatter(activeRow, activeCell, getDataItemValueForColumn(d, column), column, d);
                     invalidatePostProcessingResults(activeRow);
@@ -3581,12 +3584,12 @@ if (typeof Slick === "undefined") {
             var item = getDataItem(activeRow);
 
             if (trigger(self.onBeforeEditCell, {
-                row: activeRow,
-                cell: activeCell,
-                item: item,
-                column: columnDef
-            }) === false) {
-                    setFocus();
+                    row: activeRow,
+                    cell: activeCell,
+                    item: item,
+                    column: columnDef
+                }) === false) {
+                setFocus();
                 return;
             }
 
@@ -3730,8 +3733,8 @@ if (typeof Slick === "undefined") {
         function scrollActiveCellIntoView() {
             if (activeRow != null && activeCell != null) {
                 scrollCellIntoView(activeRow, activeCell);
-                }
             }
+        }
 
         function scrollRowIntoView(row, doPaging) {
             if (hasFrozenRows && !options.frozenBottom) {
@@ -3748,24 +3751,24 @@ if (typeof Slick === "undefined") {
             // need to page down?
             if ((row + 1) * options.rowHeight > scrollTop + viewportScrollH + offset) {
                 scrollTo(doPaging ? rowAtTop : rowAtBottom);
-                    render();
-                }
+                render();
+            }
             // or page up?
             else if (row * options.rowHeight < scrollTop + offset) {
                 scrollTo(doPaging ? rowAtBottom : rowAtTop);
-                    render();
-                }
+                render();
             }
+        }
 
         function scrollRowToTop(row) {
             scrollTo(row * options.rowHeight);
-                render();
-            }
+            render();
+        }
 
         function scrollPage(dir) {
             var deltaRows = dir * numVisibleRows;
             scrollTo((getRowFromPosition(scrollTop) + deltaRows) * options.rowHeight);
-                render();
+            render();
 
             if (options.enableCellNavigation && activeRow != null) {
                 var row = activeRow + deltaRows;
@@ -3805,28 +3808,28 @@ if (typeof Slick === "undefined") {
 
         function getColspan(row, cell) {
             var metadata = data.getItemMetadata && data.getItemMetadata(row);
-                if (!metadata || !metadata.columns) {
+            if (!metadata || !metadata.columns) {
                 return 1;
-                    }
+            }
 
             var columnData = metadata.columns[columns[cell].id] || metadata.columns[cell];
             var colspan = (columnData && columnData.colspan);
-                    if (colspan === "*") {
+            if (colspan === "*") {
                 colspan = columns.length - cell;
             } else {
                 colspan = colspan || 1;
-                    }
+            }
             return (colspan || 1);
-                    }
+        }
 
         function findFirstFocusableCell(row) {
             var cell = 0;
             while (cell < columns.length) {
                 if (canCellBeActive(row, cell)) {
                     return cell;
-            }
+                }
                 cell += getColspan(row, cell);
-        }
+            }
             return null;
         }
 
@@ -3836,9 +3839,9 @@ if (typeof Slick === "undefined") {
             while (cell < columns.length) {
                 if (canCellBeActive(row, cell)) {
                     lastFocusableCell = cell;
-        }
+                }
                 cell += getColspan(row, cell);
-        }
+            }
             return lastFocusableCell;
         }
 
@@ -3852,12 +3855,12 @@ if (typeof Slick === "undefined") {
             } while (cell < columns.length && !canCellBeActive(row, cell));
 
             if (cell < columns.length) {
-                    return {
+                return {
                     "row": row,
                     "cell": cell,
                     "posX": cell
-                    };
-                }
+                };
+            }
             return null;
         }
 
@@ -3869,13 +3872,13 @@ if (typeof Slick === "undefined") {
             var firstFocusableCell = findFirstFocusableCell(row);
             if (firstFocusableCell === null || firstFocusableCell >= cell) {
                 return null;
-                }
+            }
 
             var prev = {
                 "row": row,
                 "cell": firstFocusableCell,
                 "posX": firstFocusableCell
-                    };
+            };
             var pos;
             while (true) {
                 pos = gotoRight(prev.row, prev.cell, prev.posX);
@@ -3884,10 +3887,10 @@ if (typeof Slick === "undefined") {
                 }
                 if (pos.cell >= cell) {
                     return prev;
-            }
+                }
                 prev = pos;
-        }
             }
+        }
 
         function gotoDown(row, cell, posX) {
             var prevCell;
@@ -3917,8 +3920,8 @@ if (typeof Slick === "undefined") {
             var prevCell;
             while (true) {
                 if (--row < 0) {
-                return null;
-            }
+                    return null;
+                }
 
                 prevCell = cell = 0;
                 while (cell <= posX) {
@@ -3940,18 +3943,18 @@ if (typeof Slick === "undefined") {
             if (row == null && cell == null) {
                 row = cell = posX = 0;
                 if (canCellBeActive(row, cell)) {
-                        return {
+                    return {
                         "row": row,
                         "cell": cell,
                         "posX": cell
-                        };
-                    }
+                    };
                 }
+            }
 
             var pos = gotoRight(row, cell, posX);
             if (pos) {
                 return pos;
-                }
+            }
 
             var firstFocusableCell = null;
             var dataLengthIncludingAddNew = getDataLengthIncludingAddNew();
@@ -3973,13 +3976,13 @@ if (typeof Slick === "undefined") {
                 row = getDataLengthIncludingAddNew() - 1;
                 cell = posX = columns.length - 1;
                 if (canCellBeActive(row, cell)) {
-                        return {
+                    return {
                         "row": row,
                         "cell": cell,
                         "posX": cell
-                        };
-                    }
+                    };
                 }
+            }
 
             var pos;
             var lastSelectableCell;
@@ -3987,10 +3990,10 @@ if (typeof Slick === "undefined") {
                 pos = gotoLeft(row, cell, posX);
                 if (pos) {
                     break;
-            }
+                }
                 if (--row < 0) {
-            return null;
-        }
+                    return null;
+                }
 
                 cell = 0;
                 lastSelectableCell = findLastFocusableCell(row);
@@ -3999,11 +4002,11 @@ if (typeof Slick === "undefined") {
                         "row": row,
                         "cell": lastSelectableCell,
                         "posX": lastSelectableCell
-            };
+                    };
+                }
             }
+            return pos;
         }
-                return pos;
-            }
 
         function navigateRight() {
             return navigate("right");
@@ -4040,11 +4043,11 @@ if (typeof Slick === "undefined") {
 
             if (!activeCellNode && dir != "prev" && dir != "next") {
                 return false;
-                                }
+            }
 
             if (!getEditorLock().commitCurrentEdit()) {
                 return true;
-                                }
+            }
 
             setFocus();
 
@@ -4078,9 +4081,9 @@ if (typeof Slick === "undefined") {
 
                 if (( !options.frozenBottom && pos.row >= actualFrozenRow )
                     || ( options.frozenBottom && pos.row < actualFrozenRow )
-                    ) {
+                ) {
                     scrollCellIntoView(pos.row, pos.cell, !isAddNewRow);
-            }
+                }
 
                 setActiveCellInternal(getCellNode(pos.row, pos.cell))
                 activePosX = pos.posX;
@@ -4107,24 +4110,24 @@ if (typeof Slick === "undefined") {
                 return;
             }
 
-                if (!options.enableCellNavigation) {
-                    return;
-                }
+            if (!options.enableCellNavigation) {
+                return;
+            }
 
-                scrollCellIntoView(row, cell, false);
+            scrollCellIntoView(row, cell, false);
             setActiveCellInternal(getCellNode(row, cell), false);
         }
 
         function canCellBeActive(row, cell) {
             if (!options.enableCellNavigation || row >= getDataLengthIncludingAddNew() ||
                 row < 0 || cell >= columns.length || cell < 0) {
-                            return false;
-                        }
+                return false;
+            }
 
             var rowMetadata = data.getItemMetadata && data.getItemMetadata(row);
             if (rowMetadata && typeof rowMetadata.focusable === "boolean") {
-                        return rowMetadata.focusable;
-                    }
+                return rowMetadata.focusable;
+            }
 
             var columnMetadata = rowMetadata && rowMetadata.columns;
             if (columnMetadata && columnMetadata[columns[cell].id] && typeof columnMetadata[columns[cell].id].focusable === "boolean") {
@@ -4132,25 +4135,25 @@ if (typeof Slick === "undefined") {
             }
             if (columnMetadata && columnMetadata[cell] && typeof columnMetadata[cell].focusable === "boolean") {
                 return columnMetadata[cell].focusable;
-                }
+            }
 
             return columns[cell].focusable;
-            }
+        }
 
         function canCellBeSelected(row, cell) {
             if (row >= getDataLength() || row < 0 || cell >= columns.length || cell < 0) {
-            return false;
-        }
+                return false;
+            }
 
             var rowMetadata = data.getItemMetadata && data.getItemMetadata(row);
             if (rowMetadata && typeof rowMetadata.selectable === "boolean") {
-                    return rowMetadata.selectable;
-                }
+                return rowMetadata.selectable;
+            }
 
             var columnMetadata = rowMetadata && rowMetadata.columns && (rowMetadata.columns[columns[cell].id] || rowMetadata.columns[cell]);
             if (columnMetadata && typeof columnMetadata.selectable === "boolean") {
-                    return columnMetadata.selectable;
-                }
+                return columnMetadata.selectable;
+            }
 
             return columns[cell].selectable;
         }
@@ -4193,39 +4196,40 @@ if (typeof Slick === "undefined") {
 
                     if (validationResults.valid) {
                         if (activeRow < getDataLength()) {
-                        var editCommand = {
-                            row: activeRow,
-                            cell: activeCell,
-                            editor: currentEditor,
-                            serializedValue: currentEditor.serializeValue(),
-                            prevSerializedValue: serializedEditorValue,
+                            var editCommand = {
+                                row: activeRow,
+                                cell: activeCell,
+                                editor: currentEditor,
+                                serializedValue: currentEditor.serializeValue(),
+                                prevSerializedValue: serializedEditorValue,
                                 execute: function () {
                                     this.editor.applyValue(item, this.serializedValue);
                                     updateRow(this.row);
-                            },
+                                },
                                 undo: function () {
                                     this.editor.applyValue(item, this.prevSerializedValue);
                                     updateRow(this.row);
-                            }
-                        };
+                                }
+                            };
 
-                        if (options.editCommandHandler) {
+                            if (options.editCommandHandler) {
                                 makeActiveCellNormal();
-                            options.editCommandHandler(item, column, editCommand);
-                        } else {
-                            editCommand.execute();
+                                options.editCommandHandler(item, column, editCommand);
+                            } else {
+                                editCommand.execute();
                                 makeActiveCellNormal();
-                        }
+                            }
 
                             trigger(self.onCellChange, {
                                 row: activeRow,
                                 cell: activeCell,
-                                item: item
+                                item: item,
+                                column :column
                             });
                         } else {
                             var newItem = {};
                             currentEditor.applyValue(newItem, currentEditor.serializeValue());
-                        makeActiveCellNormal();
+                            makeActiveCellNormal();
                             trigger(self.onAddNewRow, {
                                 item: newItem,
                                 column: column
@@ -4303,7 +4307,7 @@ if (typeof Slick === "undefined") {
             s += ("\n" + "page height (ph):  " + ph);
             s += ("\n" + "vScrollDir:  " + vScrollDir);
 
-                alert(s);
+            alert(s);
         };
 
         // a debug helper to be able to access private members
