@@ -11,8 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.dataview.js" afterPath="$PROJECT_DIR$/src/slick.dataview.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tests/dataview/dataview.js" afterPath="$PROJECT_DIR$/src/tests/dataview/dataview.js" />
     </list>
     <ignored path="SlickGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,8 +70,8 @@
       <file leaf-file-name="slick.dataview.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5190476">
-              <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="1036" column="88" selection-start-line="1036" selection-start-column="83" selection-end-line="1036" selection-end-column="88" />
               <folding>
                 <element signature="e#13526#14224#0" expanded="false" />
                 <element signature="e#14292#14736#0" expanded="false" />
@@ -280,7 +279,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1592" y="-8" width="1616" height="1216" extended-state="7" />
+    <frame x="1592" y="-8" width="1616" height="1216" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -659,8 +658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5190476">
-          <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="1036" column="88" selection-start-line="1036" selection-start-column="83" selection-end-line="1036" selection-end-column="88" />
           <folding>
             <element signature="e#13526#14224#0" expanded="false" />
             <element signature="e#14292#14736#0" expanded="false" />
