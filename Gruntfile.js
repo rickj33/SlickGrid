@@ -146,6 +146,26 @@ module.exports = function (grunt) {
     },
 
     copy: {
+      dist_files:{
+        files:[
+          {
+            cwd: 'src/',
+            expand: true,
+            src: [
+              'slick*.js',
+              'controls/*.js',
+              'controls/*.css',
+              'plugins/*.js',
+              'plugins/*.css',
+              'less/*.less'
+            ],
+            //src:['dist/**'],
+            flatten: false,
+            dest: '../RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/'
+          }
+        ]
+      },
+
       app_files : {
         files: [
           {
@@ -288,6 +308,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('assemble-less');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
+  grunt.registerTask('updateFactlook', ['deploy','copy:dist_files']);
+
   // Preparation task: synchronize the libraries (lib/*) from the submodules.
   grunt.registerTask('deploy', ['compile','copy:app_files', 'copy:cssFiles', 'copy:images']);
 
@@ -300,7 +322,7 @@ module.exports = function (grunt) {
   grunt.registerTask('lint', ['csslint', 'jshint', 'jscs']);
 
   // Test task.
-  grunt.registerTask('test', ['compile', 'lint', 'qunit']);
+  //grunt.registerTask('test', ['compile', 'lint', 'qunit']);
 
   // CSS distribution task.
   grunt.registerTask('dist-css', ['compile', /*'cssmin',*/ 'csscomb', 'usebanner']);
@@ -309,5 +331,5 @@ module.exports = function (grunt) {
   grunt.registerTask('dist', ['dist-css']);
 
   // Default task.
-  grunt.registerTask('default', ['test', 'dist']);
+  grunt.registerTask('default', [ 'dist']);
 };
