@@ -44,7 +44,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-text' />")
             .appendTo(args.container)
@@ -59,27 +59,27 @@
             .select();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.getValue = function()
+        scope.getValue = function()
         {
             return $input.val();
         };
 
-        this.setValue = function(val)
+        scope.setValue = function(val)
         {
             $input.val(val);
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             defaultValue = item[args.column.field] || "";
             $input.val(defaultValue);
@@ -87,22 +87,22 @@
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (args.column.validator)
             {
@@ -119,7 +119,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
 
@@ -130,7 +130,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-text' />");
 
@@ -146,17 +146,17 @@
             $input.focus().select();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             defaultValue = item[args.column.field];
             $input.val(defaultValue);
@@ -164,22 +164,22 @@
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return parseInt($input.val(), 10) || 0;
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (isNaN($input.val()))
             {
@@ -195,7 +195,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -270,7 +270,7 @@
             return d || false;
         }
 
-        this.init = function()
+        scope.init = function()
         {
             defaultValue = new Date();
             $input = $("<INPUT type='text' class='editor-date' />").appendTo(args.container).bind("keydown.nav", function(e)
@@ -284,7 +284,7 @@
             $input.outerWidth($input.outerWidth() - 18);
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $.datepicker.dpDiv.stop(true, true);
             $input.datepicker("hide");
@@ -292,18 +292,18 @@
             $input.remove();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             if (calendarOpen)
             {
@@ -311,7 +311,7 @@
             }
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             if (calendarOpen)
             {
@@ -326,7 +326,7 @@
          *         container: activeCellNode
          *       }
          */
-        this.position = function(position)
+        scope.position = function(position)
         {
             if (!calendarOpen)
             {
@@ -337,12 +337,12 @@
 
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             val = parseDateStringAndDetectFormat(val);
             /* parseISODate() */
@@ -354,32 +354,32 @@
             $input.datepicker("setDate", val);
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             defaultValue = item[args.column.field];
             $input.val(defaultValue);
             $input[0].defaultValue = defaultValue;
             $input.select();
         };
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.datepicker("getDate");
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             var fmt = detectableDateFormats[dateFormat] || detectableDateFormats[0];
             state = $.datepicker.formatDate(fmt, state); // state.format('isoDate');
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             var d = $input.datepicker("getDate");
             return !d || !defaultValue || d.getTime() !== defaultValue.getTime();
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             var d = $input.datepicker("getDate");
             if (!d)
@@ -396,7 +396,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -406,45 +406,45 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $select = $("<SELECT tabIndex='0' class='editor-yesno'><OPTION value='yes'>Yes</OPTION><OPTION value='no'>No</OPTION></SELECT>");
             $select.appendTo(args.container);
             $select.focus();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $select.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $select.focus();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             $select.val((defaultValue = item[args.column.field]) ? "yes" : "no");
             $select.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return ($select.val() == "yes");
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return ($select.val() != defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -452,7 +452,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -462,24 +462,24 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $select = $("<INPUT type=checkbox value='true' class='editor-checkbox' hideFocus>");
             $select.appendTo(args.container);
             $select.focus();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $select.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $select.focus();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             defaultValue = !!item[args.column.field];
             if (defaultValue)
@@ -491,22 +491,22 @@
             }
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $select.prop('checked');
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
-            return (this.serializeValue() !== defaultValue);
+            return (scope.serializeValue() !== defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -514,7 +514,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -524,7 +524,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-percentcomplete' />");
             $input.width($(args.container).innerWidth() - 25);
@@ -556,39 +556,39 @@
             })
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
             $picker.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             $input.val(defaultValue = item[args.column.field]);
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return parseInt($input.val(), 10) || 0;
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() == "" && defaultValue == null)) && ((parseInt($input.val(), 10) || 0) != defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (isNaN(parseInt($input.val(), 10)))
             {
@@ -604,7 +604,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -614,7 +614,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             var $container = $("body");
 
@@ -628,15 +628,15 @@
             $("<DIV style='text-align:right'><BUTTON>Save</BUTTON><BUTTON>Cancel</BUTTON></DIV>")
             .appendTo($wrapper);
 
-            $wrapper.find("button:first").bind("click", this.save);
-            $wrapper.find("button:last").bind("click", this.cancel);
-            $input.bind("keydown", this.handleKeyDown);
+            $wrapper.find("button:first").bind("click", scope.save);
+            $wrapper.find("button:last").bind("click", scope.cancel);
+            $input.bind("keydown", scope.handleKeyDown);
 
             scope.position(args.position);
             $input.focus().select();
         };
 
-        this.handleKeyDown = function(e)
+        scope.handleKeyDown = function(e)
         {
             if (e.which == $.ui.keyCode.ENTER && e.ctrlKey)
             {
@@ -656,66 +656,66 @@
             }
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
             $input.val(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $wrapper.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $wrapper.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             $wrapper
             .css("top", position.top - 5)
             .css("left", position.left - 5)
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $wrapper.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             $input.val(defaultValue = item[args.column.field]);
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             {
                 return {
@@ -723,7 +723,7 @@
                     msg   : null
                 };
             }
-            this.init();
+            scope.init();
         };
     }
 
@@ -737,7 +737,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type='text' class='editor-float' />").appendTo(args.container).bind("keydown.nav", function(e)
             {
@@ -755,43 +755,43 @@
             defaultValue = 0;
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             val = parseFloat(val);
             if (isNaN(val))
@@ -803,13 +803,13 @@
             $input[0].defaultValue = val;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             var v = $input.val();
             if (v === '')
@@ -819,18 +819,18 @@
             return parseFloat(applyModifier(defaultValue, v)) || 0.0;
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             args.grid.setDataItemValueForColumn(item, args.column, state);
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             assert(defaultValue !== null);
             return $input.val() !== (defaultValue + "");
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             var val = $input.val();
             if (isNaN(val) && !isValidModifier(val))
@@ -847,7 +847,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -880,7 +880,7 @@
             return val;
         }
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type='text' class='editor-percentage' />").appendTo(args.container).bind("keydown.nav", function(e)
             {
@@ -892,43 +892,43 @@
             defaultValue = '';
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             val = stringToPerunage(val);
             val = (val * 100) + " %";
@@ -937,13 +937,13 @@
             $input[0].defaultValue = val;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             var v = $input.val();
             if (v === '')
@@ -954,18 +954,18 @@
             return stringToPerunage(applyModifier(sv, v) / 100) || 0;
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             args.grid.setDataItemValueForColumn(item, args.column, state);
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             assert(defaultValue !== null);
             return $input.val() !== defaultValue;
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             var val = $input.val();
             if (val.charAt(val.length - 1) === '%')
@@ -986,7 +986,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
 
@@ -997,45 +997,45 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<span class='editor-text-readonly' />").appendTo(args.container);
             defaultValue = '';
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             // nada
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
             // nada
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.focus = function() { };
+        scope.focus = function() { };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             defaultValue = val;
             if (val == null)
@@ -1045,28 +1045,28 @@
             $input.text(val);
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return defaultValue; // $input.text(); -- make sure the value is NEVER changed, which might happen when it goes 'through the DOM'
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             args.grid.setDataItemValueForColumn(item, args.column, state);
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return false;
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -1074,7 +1074,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -1086,7 +1086,7 @@
         var isOpen = false;
         var $container = $(args.container);
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<input type='color' />").appendTo($container).bind("keydown.nav", function(e)
             {
@@ -1098,25 +1098,25 @@
             scope.show();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.spectrum("destroy");
             $input.remove();
             isOpen = false;
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             if (!isOpen)
             {
@@ -1151,7 +1151,7 @@
             $input.spectrum("show");
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             if (isOpen)
             {
@@ -1160,7 +1160,7 @@
             }
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             if (!isOpen)
             {
@@ -1169,13 +1169,13 @@
             //$cp.css("top", position.top + 20).css("left", position.left);
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             scope.show();
             $input.focus();
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             if (val == null)
             {
@@ -1185,30 +1185,30 @@
             defaultValue = scope.serializeValue();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(args.grid.getDataItemValueForColumn(item, args.column));
             $input.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.spectrum("get").toString();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             args.grid.setDataItemValueForColumn(item, args.column, state);
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             assert(defaultValue !== null);
             var v = scope.serializeValue();
             return v !== defaultValue;
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -1216,7 +1216,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
 
@@ -1230,50 +1230,50 @@
 
         scope.realEditor = args.item.field.editor;
 
-        this.init = function()
+        scope.init = function()
         {
             // scope.realEditor = args.item.field.editor;
             scope.realEditor(args);
             //scope.realEditor.init();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             if (val === null)
             {
@@ -1284,19 +1284,19 @@
             $input[0].defaultValue = val;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
             item[args.column.field] = state;
@@ -1304,7 +1304,7 @@
 
         };
 
-        /* this.applyValue = function(item, state)
+        /* scope.applyValue = function(item, state)
          {
          scope.realEditor.applyValue(item, state);
 
@@ -1318,19 +1318,19 @@
 
          };*/
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
 
             return scope.realEditor.isValueChanged();
 
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return scope.realEditor.validate();
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -1343,7 +1343,7 @@
         var isOpen = false;
         var $container = $(args.container);
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<input type='text' class='editor-text' id='colorEditor'  />");
 
@@ -1361,31 +1361,31 @@
             scope.show();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.spectrum("destroy");
             $input.remove();
             isOpen = false;
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             scope.show();
             $input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             if (isOpen)
             {
@@ -1394,7 +1394,7 @@
             }
         };
 
-        this.show = function()
+        scope.show = function()
         {
             if (!isOpen)
             {
@@ -1445,7 +1445,7 @@
             $input.spectrum("show");
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             if (!isOpen)
             {
@@ -1455,7 +1455,7 @@
         };
 
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             if (val === null)
             {
@@ -1465,25 +1465,25 @@
             defaultValue = scope.serializeValue();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
             //args.grid.setDataItemValueForColumn(item, args.column, state);
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             assert(defaultValue !== null);
             var v = scope.serializeValue();
@@ -1491,7 +1491,7 @@
 
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -1499,7 +1499,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -1526,7 +1526,7 @@
             return index;
         }
 
-        this.init = function()
+        scope.init = function()
         {
             var i;
 
@@ -1560,44 +1560,44 @@
             });
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $select.multiselect("destroy");
             $select.remove();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $select.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $select.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $select.focus();
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             var key = getKeyFromKeyVal(opt, val);
             key = opt[key].key;
@@ -1606,28 +1606,28 @@
             $select.multiselect("refresh");
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(item[args.column.field]);
             $select.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $select.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return scope.serializeValue() !== defaultValue;
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -1644,7 +1644,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-text' />").appendTo(args.container).bind("keydown.nav", function(e)
             {
@@ -1656,43 +1656,43 @@
             defaultValue = '';
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             if (val === null)
             {
@@ -1703,19 +1703,19 @@
             $input[0].defaultValue = val;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
 
@@ -1723,12 +1723,12 @@
         };
 
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() === "" && defaultValue === null)) && ($input.val() !== defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (args.column.validator)
             {
@@ -1745,7 +1745,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -1756,7 +1756,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-text' />");
 
@@ -1774,43 +1774,43 @@
         };
 
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             var intVal = parseInt(val);
             if (isNaN(intVal))
@@ -1822,31 +1822,31 @@
             $input[0].defaultValue = intVal;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return parseInt($input.val(), 10) || 0;
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
 
 
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() == "" && defaultValue === null)) && ($input.val() != defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (isNaN($input.val()))
             {
@@ -1862,7 +1862,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -1873,7 +1873,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-text' />");
 
@@ -1890,43 +1890,43 @@
             defaultValue = 0.0;
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             var floatVal = parseFloat(val);
             if (isNaN(floatVal))
@@ -1938,14 +1938,14 @@
             $input[0].defaultValue = floatVal;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(item[args.column.field]);
             $input.select();
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             var v = $input.val();
             if (v === '')
@@ -1955,7 +1955,7 @@
             return parseFloat(applyModifier(defaultValue, v)) || 0.0;
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
 
@@ -1963,12 +1963,12 @@
         };
 
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() === "" && defaultValue === null)) && ($input.val() !== defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (isNaN($input.val()))
             {
@@ -1984,7 +1984,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -1995,7 +1995,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-text' />");
 
@@ -2011,43 +2011,43 @@
             defaultValue = 0;
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             if (val === null)
             {
@@ -2058,7 +2058,7 @@
             $input[0].defaultValue = val;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             var percentValue = 0;
             var decimalValue = 0;
@@ -2083,7 +2083,7 @@
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             var intValue = parseInt($input.val(), 10) || 0;
             //noinspection UnnecessaryLocalVariableJS
@@ -2091,19 +2091,19 @@
             return decimalValue;
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
 
         };
 
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() === "" && defaultValue === null)) && ($input.val() !== defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (isNaN($input.val()))
             {
@@ -2119,7 +2119,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -2129,77 +2129,77 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $select = $("<INPUT type=checkbox value='true' class='editor-checkbox' hideFocus ='true'>").appendTo(args.container).focus().select();
             defaultValue = false;
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $select.remove();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $select.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $select.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $select.focus();
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             val = !!val;
             defaultValue = val;
             $select.prop('checked', val);
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             scope.setDirectValue(item[args.column.field]);
             $select.select();
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $select.prop('checked');
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
-            return (this.serializeValue() !== defaultValue);
+            return (scope.serializeValue() !== defaultValue);
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -2207,7 +2207,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
     //noinspection FunctionNamingConventionJS
@@ -2218,7 +2218,7 @@
         var defaultValue;
         var scope = this;
 
-        this.init = function()
+        scope.init = function()
         {
             $input = $("<INPUT type=text class='editor-text' />");
             $input.bind("keydown.nav", function(e)
@@ -2237,43 +2237,43 @@
         };
 
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             $input.remove();
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             $input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
+            scope.setDirectValue(defaultValue);
             args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             $input.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             $input.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             // nada
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             if (val === null)
             {
@@ -2284,7 +2284,7 @@
             $input[0].defaultValue = val;
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             defaultValue = "";
             if (item.hasOwnProperty(args.column.field))
@@ -2302,25 +2302,25 @@
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return $input.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             item[args.column.field] = state;
 
         };
 
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return (!($input.val() === "" && defaultValue === null)) && ($input.val() !== defaultValue);
         };
 
 
-        /* this.applyValue = function(item, state)
+        /* scope.applyValue = function(item, state)
          {
          if (item.hasOwnProperty(args.column.field))
          {
@@ -2332,7 +2332,7 @@
          };*/
 
 
-        this.validate = function()
+        scope.validate = function()
         {
             if (args.column.validator)
             {
@@ -2349,7 +2349,7 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
 
 
@@ -2418,7 +2418,7 @@
     {
         var theEditor;
         var scope = this;
-        this.init = function()
+        scope.init = function()
         {
             //var data = args.grid.getData();
             if (args.item.editor === undefined)
@@ -2430,72 +2430,72 @@
             }
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
             theEditor.destroy();
         };
 
-        this.save = function()
+        scope.save = function()
         {
             theEditor.save();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
             theEditor.cancel();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
             theEditor.hide();
         };
 
-        this.show = function()
+        scope.show = function()
         {
             theEditor.show();
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
             theEditor.position(position);
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
             theEditor.focus();
         };
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             theEditor.setDirectValue(val);
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
             theEditor.loadValue(item);
         };
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
             return theEditor.serializeValue();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
             theEditor.applyValue(item, state);
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
             return theEditor.isValueChanged();
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return theEditor.validate();
         };
 
-        this.init();
+        scope.init();
     }
 
 })(jQuery);
