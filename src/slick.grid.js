@@ -395,10 +395,10 @@ if (typeof Slick === "undefined") {
 
             $container
                 .empty()
-                .css("overflow", "hidden")
-                .css("outline", 0)
-                .addClass(uid)
-                .addClass("ui-widget");
+                  .addClass("slickgrid-container ui-widget " + uid)
+                .attr("role", "grid")
+                .attr("tabIndex", 0)
+                .attr("hideFocus", "true");
 
             // set up a positioning container if needed
             if (!/relative|absolute|fixed/.test($container.css("position"))) {
