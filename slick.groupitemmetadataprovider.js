@@ -147,7 +147,7 @@
     return {
       "init": init,
       "destroy": destroy,
-            "getRowMetadata":       getRowMetadata,
+      "getRowMetadata": getRowMetadata,
       "getGroupRowMetadata": getGroupRowMetadata,
       "getTotalsRowMetadata": getTotalsRowMetadata
     };
