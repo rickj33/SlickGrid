@@ -9,7 +9,13 @@
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="" />
+    <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" afterPath="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.editors.js" afterPath="$PROJECT_DIR$/src/slick.editors.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.grid.css" afterPath="$PROJECT_DIR$/src/slick.grid.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.grid.js" afterPath="$PROJECT_DIR$/src/slick.grid.js" />
+    </list>
     <ignored path="SlickGrid.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,49 +35,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <file leaf-file-name="slick.editors.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/slick.editors.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13489737">
-              <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.1307768">
+              <caret line="1402" column="48" selection-start-line="1402" selection-start-column="48" selection-end-line="1402" selection-end-column="48" />
               <folding>
-                <element signature="e#1331#1704#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="slick.grid.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.172413">
-              <caret line="4226" column="46" selection-start-line="4226" selection-start-column="46" selection-end-line="4226" selection-end-column="46" />
-              <folding>
-                <marker date="1451553001443" expanded="true" signature="20103:20158" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="21609:21621" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="21750:21762" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="22250:22306" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="22495:22551" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="23490:23503" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="23604:23617" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="31262:31353" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="36679:36691" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="65667:65684" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="66379:66396" placeholder="..." />
-                <marker date="1451553001443" expanded="true" signature="86018:86099" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="slick.dataview.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.068966">
-              <caret line="1036" column="88" selection-start-line="1036" selection-start-column="83" selection-end-line="1036" selection-end-column="88" />
-              <folding>
-                <element signature="e#13526#14224#0" expanded="false" />
-                <element signature="e#14292#14736#0" expanded="false" />
+                <marker date="1451625441758" expanded="true" signature="17254:17382" placeholder="..." />
+                <marker date="1451625441758" expanded="true" signature="17482:17540" placeholder="..." />
+                <marker date="1451625441758" expanded="true" signature="17606:17622" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -91,7 +63,6 @@
         <option value="$PROJECT_DIR$/src/css/jquery-ui-1.8.16.custom.css" />
         <option value="$PROJECT_DIR$/src/css/jquery-ui-slickgrid.custom.css" />
         <option value="$PROJECT_DIR$/src/slick.core.js" />
-        <option value="$PROJECT_DIR$/src/slick.editors.js" />
         <option value="$PROJECT_DIR$/src/controls/slick.columnpicker.js" />
         <option value="$PROJECT_DIR$/src/slick.remotemodel.js" />
         <option value="$PROJECT_DIR$/src/plugins/slick.selectiontracker.js" />
@@ -104,7 +75,6 @@
         <option value="$PROJECT_DIR$/src/plugins/slick.cellselectionmodel.js" />
         <option value="$PROJECT_DIR$/src/plugins/slick.cellrowcolselectionmodel.js" />
         <option value="$PROJECT_DIR$/src/plugins/slick.cellrangeselector.js" />
-        <option value="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" />
         <option value="$PROJECT_DIR$/src/plugins/slick.cellcopymanager.js" />
         <option value="$PROJECT_DIR$/src/plugins/slick.autosizer.js" />
         <option value="$PROJECT_DIR$/src/plugins/ext.headerfilter.js" />
@@ -123,9 +93,12 @@
         <option value="$PROJECT_DIR$/src/less/slick.config.less" />
         <option value="$PROJECT_DIR$/src/less/slick.grid.less" />
         <option value="$PROJECT_DIR$/src/less/jqueryuiOverrides.less" />
-        <option value="$PROJECT_DIR$/src/slick.grid.js" />
         <option value="$PROJECT_DIR$/src/slick.dataview.js" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/src/slick.grid.js" />
+        <option value="$PROJECT_DIR$/dist/plugins/slick.cellexternalcopymanager.js" />
+        <option value="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" />
+        <option value="$PROJECT_DIR$/src/slick.editors.js" />
       </list>
     </option>
   </component>
@@ -152,10 +125,10 @@
     <scope name="CodeAnalysis" pattern="(file[SlickGrid]:src/*&amp;&amp;!file[SlickGrid]:src/tests//*&amp;&amp;!file[SlickGrid]:src/images//*&amp;&amp;!file[SlickGrid]:src/examples//*&amp;&amp;!file[SlickGrid]:src/lib//*||file[SlickGrid]:src/plugins//*||file[SlickGrid]:src/css//*||file[SlickGrid]:src/controls//*)&amp;&amp;!file:src/slick.grid - Copy.js" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1592" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1616" />
-    <option name="height" value="1216" />
+    <option name="height" value="1154" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -198,7 +171,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,12 +199,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dist" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlickGrid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlickGrid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -242,6 +233,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="js-jscs-nodeInterpreter" value="D:\Users\Rick\AppData\Roaming\npm\node.exe" />
+    <property name="js-jscs-package" value="D:\Users\Rick\AppData\Roaming\npm\node_modules\jscs" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
@@ -263,6 +256,24 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
@@ -275,8 +286,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1592" y="-8" width="1616" height="1216" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1616" height="1154" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -321,7 +332,118 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#1331#1704#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4226" column="46" selection-start-line="4226" selection-start-column="46" selection-end-line="4226" selection-end-column="46" />
+          <folding>
+            <element signature="e#90750#91195#0" expanded="false" />
+            <element signature="e#91320#91851#0" expanded="false" />
+            <element signature="e#92154#92826#0" expanded="false" />
+            <element signature="e#92926#94006#0" expanded="false" />
+            <element signature="e#94162#97784#0" expanded="false" />
+            <element signature="e#97820#100918#0" expanded="false" />
+            <element signature="e#97852#97891#0" expanded="false" />
+            <element signature="e#101657#102111#0" expanded="false" />
+            <element signature="e#102174#103073#0" expanded="false" />
+            <element signature="e#103124#103903#0" expanded="false" />
+            <element signature="e#103947#105862#0" expanded="false" />
+            <element signature="e#105910#109047#0" expanded="false" />
+            <element signature="e#112460#112690#0" expanded="false" />
+            <element signature="e#112746#112967#0" expanded="false" />
+            <marker date="1451616401729" expanded="true" signature="20103:20158" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21609:21621" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21750:21762" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22250:22306" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22495:22551" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23490:23503" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23604:23617" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="31262:31353" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="36679:36691" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="65667:65684" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="66379:66396" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="86018:86099" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1036" column="88" selection-start-line="1036" selection-start-column="83" selection-end-line="1036" selection-end-column="88" />
+          <folding>
+            <element signature="e#13526#14224#0" expanded="false" />
+            <element signature="e#14292#14736#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1331#1704#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4226" column="46" selection-start-line="4226" selection-start-column="46" selection-end-line="4226" selection-end-column="46" />
+          <folding>
+            <element signature="e#90750#91195#0" expanded="false" />
+            <element signature="e#91320#91851#0" expanded="false" />
+            <element signature="e#92154#92826#0" expanded="false" />
+            <element signature="e#92926#94006#0" expanded="false" />
+            <element signature="e#94162#97784#0" expanded="false" />
+            <element signature="e#97820#100918#0" expanded="false" />
+            <element signature="e#97852#97891#0" expanded="false" />
+            <element signature="e#101657#102111#0" expanded="false" />
+            <element signature="e#102174#103073#0" expanded="false" />
+            <element signature="e#103124#103903#0" expanded="false" />
+            <element signature="e#103947#105862#0" expanded="false" />
+            <element signature="e#105910#109047#0" expanded="false" />
+            <element signature="e#112460#112690#0" expanded="false" />
+            <element signature="e#112746#112967#0" expanded="false" />
+            <marker date="1451616401729" expanded="true" signature="20103:20158" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21609:21621" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21750:21762" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22250:22306" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22495:22551" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23490:23503" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23604:23617" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="31262:31353" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="36679:36691" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="65667:65684" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="66379:66396" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="86018:86099" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1036" column="88" selection-start-line="1036" selection-start-column="83" selection-end-line="1036" selection-end-column="88" />
+          <folding>
+            <element signature="e#13526#14224#0" expanded="false" />
+            <element signature="e#14292#14736#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
             <element signature="e#1331#1704#0" expanded="false" />
           </folding>
         </state>
@@ -332,7 +454,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="273" column="89" selection-start-line="273" selection-start-column="89" selection-end-line="273" selection-end-column="89" />
           <folding>
-            <element signature="n#!!doc" expanded="false" />
             <element signature="e#1331#1704#0" expanded="false" />
           </folding>
         </state>
@@ -343,18 +464,32 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1451553001443" expanded="true" signature="20103:20158" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="21609:21621" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="21750:21762" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="22250:22306" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="22495:22551" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="23490:23503" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="23604:23617" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="31262:31353" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="36679:36691" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="65667:65684" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="66379:66396" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="86018:86099" placeholder="..." />
+            <element signature="e#90750#91195#0" expanded="false" />
+            <element signature="e#91320#91851#0" expanded="false" />
+            <element signature="e#92154#92826#0" expanded="false" />
+            <element signature="e#92926#94006#0" expanded="false" />
+            <element signature="e#94162#97784#0" expanded="false" />
+            <element signature="e#97820#100918#0" expanded="false" />
+            <element signature="e#97852#97891#0" expanded="false" />
+            <element signature="e#101657#102111#0" expanded="false" />
+            <element signature="e#102174#103073#0" expanded="false" />
+            <element signature="e#103124#103903#0" expanded="false" />
+            <element signature="e#103947#105862#0" expanded="false" />
+            <element signature="e#105910#109047#0" expanded="false" />
+            <element signature="e#112460#112690#0" expanded="false" />
+            <element signature="e#112746#112967#0" expanded="false" />
+            <marker date="1451616401729" expanded="true" signature="20103:20158" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21609:21621" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21750:21762" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22250:22306" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22495:22551" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23490:23503" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23604:23617" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="31262:31353" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="36679:36691" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="65667:65684" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="66379:66396" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="86018:86099" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -450,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="77" selection-start-line="64" selection-start-column="77" selection-end-line="64" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugins/slick.cellcopymanager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -534,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/slick.editors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1209" column="0" selection-start-line="1209" selection-start-column="0" selection-end-line="1209" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/slick.groupitemmetadataprovider.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17471737">
@@ -601,7 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.186722">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="16" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -609,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23717949">
           <caret line="1388" column="5" selection-start-line="1388" selection-start-column="5" selection-end-line="1388" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -617,35 +736,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06042296">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/plugins/slick.cellexternalcopymanager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7419028">
+          <caret line="333" column="21" selection-start-line="322" selection-start-column="15" selection-end-line="333" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
+    <entry file="file://$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.172413">
-          <caret line="4226" column="46" selection-start-line="4226" selection-start-column="46" selection-end-line="4226" selection-end-column="46" />
-          <folding>
-            <marker date="1451553001443" expanded="true" signature="20103:20158" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="21609:21621" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="21750:21762" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="22250:22306" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="22495:22551" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="23490:23503" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="23604:23617" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="31262:31353" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="36679:36691" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="65667:65684" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="66379:66396" placeholder="..." />
-            <marker date="1451553001443" expanded="true" signature="86018:86099" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.88495576">
+          <caret line="336" column="0" selection-start-line="336" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.068966">
-          <caret line="1036" column="88" selection-start-line="1036" selection-start-column="83" selection-end-line="1036" selection-end-column="88" />
+        <state vertical-scroll-proportion="0.33299595">
+          <caret line="167" column="34" selection-start-line="167" selection-start-column="28" selection-end-line="167" selection-end-column="34" />
           <folding>
             <element signature="e#13526#14224#0" expanded="false" />
             <element signature="e#14292#14736#0" expanded="false" />
@@ -653,12 +766,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39271256">
+          <caret line="3204" column="63" selection-start-line="3204" selection-start-column="63" selection-end-line="3204" selection-end-column="63" />
+          <folding>
+            <element signature="e#90750#91195#0" expanded="false" />
+            <element signature="e#91320#91851#0" expanded="false" />
+            <element signature="e#92154#92826#0" expanded="false" />
+            <element signature="e#92926#94006#0" expanded="false" />
+            <element signature="e#94162#97784#0" expanded="false" />
+            <element signature="e#97820#100918#0" expanded="false" />
+            <element signature="e#97852#97891#0" expanded="false" />
+            <element signature="e#101657#102111#0" expanded="false" />
+            <element signature="e#102174#103073#0" expanded="false" />
+            <element signature="e#103124#103903#0" expanded="false" />
+            <element signature="e#103947#105862#0" expanded="false" />
+            <element signature="e#105910#109047#0" expanded="false" />
+            <element signature="e#112460#112690#0" expanded="false" />
+            <element signature="e#112746#112967#0" expanded="false" />
+            <marker date="1451616401729" expanded="true" signature="20103:20158" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21609:21621" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="21750:21762" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22250:22306" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="22495:22551" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23490:23503" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="23604:23617" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="31262:31353" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="36679:36691" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="65667:65684" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="66379:66396" placeholder="..." />
+            <marker date="1451616401729" expanded="true" signature="86018:86099" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13489737">
+        <state vertical-scroll-proportion="0.14355949">
           <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
           <folding>
             <element signature="e#1331#1704#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.editors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1307768">
+          <caret line="1402" column="48" selection-start-line="1402" selection-start-column="48" selection-end-line="1402" selection-end-column="48" />
+          <folding>
+            <marker date="1451625441758" expanded="true" signature="17254:17382" placeholder="..." />
+            <marker date="1451625441758" expanded="true" signature="17482:17540" placeholder="..." />
+            <marker date="1451625441758" expanded="true" signature="17606:17622" placeholder="..." />
           </folding>
         </state>
       </provider>

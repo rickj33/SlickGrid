@@ -320,18 +320,21 @@
                 if (availableRows < clippedRows)
                 {
                     gridData.beginUpdate();
-                    //var d = _grid.getData();
-                    for ( addRows = 1; addRows <= clippedRows - availableRows; addRows++ )
+                    var numberOfRowsAdded = 0;
+                    //start the row count at 1, since the clippedRange[0] are the headers.
+                    for ( var rowCount = 1; rowCount <= clippedRows - availableRows; rowCount++ )
                     {
-                        var id = activeRow + addRows;
-                        var valueData = clippedRange[addRows];
+                        //start the id with the activerow, as the active row is where the paste occurred.
+                        var id = activeRow + numberOfRowsAdded;
+
+
+                        var valueData = clippedRange[rowCount];
                         var dataItem = _buildObjectWithId(gridColumns, id,valueData);
 
-
-                      //  var itemData = [id];
-                       // itemData.splice( valueData );
                         gridData.addItem( dataItem );
+                        numberOfRowsAdded++;
                     }
+
                     gridData.endUpdate();
                     _grid.render();
                 }

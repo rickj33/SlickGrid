@@ -826,7 +826,6 @@
 
         scope.isValueChanged = function()
         {
-            assert(defaultValue !== null);
             return $input.val() !== (defaultValue + "");
         };
 
@@ -961,7 +960,6 @@
 
         scope.isValueChanged = function()
         {
-            assert(defaultValue !== null);
             return $input.val() !== defaultValue;
         };
 
@@ -1203,7 +1201,6 @@
 
         scope.isValueChanged = function()
         {
-            assert(defaultValue !== null);
             var v = scope.serializeValue();
             return v !== defaultValue;
         };
@@ -1485,7 +1482,6 @@
 
         scope.isValueChanged = function()
         {
-            assert(defaultValue !== null);
             var v = scope.serializeValue();
             return v !== defaultValue;
 
@@ -1531,11 +1527,10 @@
             var i;
 
             defaultValue = null;
-            opt = (args.metadataColumn && args.metadataColumn.options) || args.column.options;
-            assert(opt);
-            opt = typeof opt === 'function' ? opt.call(args.column) : opt;
-            assert(opt);
 
+            //TODO: need to take a look the opt vars, and determine which is the correct one to use
+            opt = (args.metadataColumn && args.metadataColumn.options) || args.column.options;
+            opt = typeof opt === 'function' ? opt.call(args.column) : opt;
             var option_str = [];
             for (i in opt)
             {
@@ -2376,7 +2371,6 @@
             case "/":
                 return dv / m.value;
         }
-        assert(0); // should never get here
     }
 
     //noinspection FunctionNamingConventionJS

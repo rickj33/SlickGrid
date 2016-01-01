@@ -2400,9 +2400,9 @@ if (typeof Slick === "undefined") {
             var oldH = ( hasFrozenRows && !options.frozenBottom ) ? $canvasBottomL.height() : $canvasTopL.height();
 
             if (hasFrozenRows && options.frozenBottom) {
-                var numberOfRows = getDataLength() - options.frozenRow;
+                numberOfRows = getDataLength() - options.frozenRow;
             } else {
-                var numberOfRows = dataLengthIncludingAddNew + (options.leaveSpaceForNewRows ? numVisibleRows - 1 : 0);
+                numberOfRows = dataLengthIncludingAddNew + (options.leaveSpaceForNewRows ? numVisibleRows - 1 : 0);
             }
 
             var tempViewportH = $viewportScrollContainerY.height();
@@ -2751,8 +2751,11 @@ if (typeof Slick === "undefined") {
                         .add($(x.firstChild).appendTo($canvasTopL))
                         .add($(xRight.firstChild).appendTo($canvasTopR));
                 } else {
-                    rowsCache[rows[i]].rowNode = $()
-                        .add($(x.firstChild).appendTo($canvasTopL));
+                    //fixes an issue where the blank row would not appear in the grid
+                    //  rowsCache[rows[i]].rowNode = $canvasTopL[0].appendChild(x.firstChild);
+                    //console.log('the x.firstchild = ' + _.stringify(x.firstChild));
+                    // console.log('the $ first child = ' + _.stringify($(x.firstChild)));
+                    rowsCache[rows[i]].rowNode = $().add($(x.firstChild).appendTo($canvasTopL[0]));
                 }
             }
 
@@ -3201,9 +3204,9 @@ if (typeof Slick === "undefined") {
                         ) {
                             scrollRowIntoView(cell.row, false);
                         }
-
-                        setActiveCellInternal(getCellNode(cell.row, cell.cell));
                     }
+                    setActiveCellInternal(getCellNode(cell.row, cell.cell));
+
                 }
             }
         }
@@ -4224,7 +4227,7 @@ if (typeof Slick === "undefined") {
                                 row: activeRow,
                                 cell: activeCell,
                                 item: item,
-                                column :column
+                                column: column
                             });
                         } else {
                             var newItem = {};
