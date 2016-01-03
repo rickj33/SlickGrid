@@ -2093,8 +2093,9 @@
                     ]
                 }, scope);
                 isOpen = true;
+                  $input.spectrum("show");
             }
-            $input.spectrum("show");
+          
         };
 
         this.position = function(position)
