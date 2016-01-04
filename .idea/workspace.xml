@@ -11,10 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discovery/MetricConfigurationEditior - Copy/example-transpose-providerV2 - Copy.html" afterPath="$PROJECT_DIR$/Discovery/MetricConfigurationEditior - Copy/example-transpose-providerV2 - Copy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discovery/MetricConfigurationEditior - Copy/slickGrid/slick.editors.js" afterPath="$PROJECT_DIR$/Discovery/MetricConfigurationEditior - Copy/slickGrid/slick.editors.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.editors.js" afterPath="$PROJECT_DIR$/src/slick.editors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.grid.js" afterPath="$PROJECT_DIR$/src/slick.grid.js" />
     </list>
     <ignored path="SlickGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +36,11 @@
         <entry file="file://$PROJECT_DIR$/src/slick.editors.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.49208143">
-              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+              <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
               <folding>
-                <marker date="1451797920574" expanded="true" signature="17189:17317" placeholder="..." />
-                <marker date="1451797920574" expanded="true" signature="17417:17475" placeholder="..." />
-                <marker date="1451797920574" expanded="true" signature="17541:17557" placeholder="..." />
+                <marker date="1451798140958" expanded="true" signature="17189:17317" placeholder="..." />
+                <marker date="1451798140958" expanded="true" signature="17417:17475" placeholder="..." />
+                <marker date="1451798140958" expanded="true" signature="17541:17557" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -761,11 +758,11 @@
     <entry file="file://$PROJECT_DIR$/src/slick.editors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49208143">
-          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+          <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
           <folding>
-            <marker date="1451797920574" expanded="true" signature="17189:17317" placeholder="..." />
-            <marker date="1451797920574" expanded="true" signature="17417:17475" placeholder="..." />
-            <marker date="1451797920574" expanded="true" signature="17541:17557" placeholder="..." />
+            <marker date="1451798140958" expanded="true" signature="17189:17317" placeholder="..." />
+            <marker date="1451798140958" expanded="true" signature="17417:17475" placeholder="..." />
+            <marker date="1451798140958" expanded="true" signature="17541:17557" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -1333,21 +1333,23 @@
         this.init();
     }
 
-  /*  //noinspection FunctionNamingConventionJS
-    function TransposedColorEditor(args)
-    {
+ //noinspection FunctionNamingConventionJS
+      function TransposedColorEditor(args)
+      {
         //noinspection LocalVariableNamingConventionJS
-        var $input;
+       
         var scope = this;
-        var defaultValue;
-        var isOpen = false;
-        var $container = $(args.container);
+        scope.args = args;
+         scope.$input = null;;
+        scope.defaultValue = '';
+        scope.isOpen = false;
+        scope.$container = $(scope.args.container);
 
-        this.init = function()
+        scope.init = function()
         {
-            $input = $("<input type='text' class='editor-text' id='colorEditor'  />");
+            scope.$input = $("<input type='text' class='editor-text' id='colorEditor'  />");
 
-            $input.bind("keydown.nav", function(e)
+            scope.$input.bind("keydown.nav", function(e)
             {
                 if (e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT)
                 {
@@ -1355,52 +1357,51 @@
                 }
             });
 
-            $input.appendTo($container);
+            scope.$input.appendTo(scope.$container);
 
-            $input.focus().select();
+            scope.$input.focus().select();
             scope.show();
         };
 
-        this.destroy = function()
+        scope.destroy = function()
         {
-            $input.spectrum("destroy");
-            $input.remove();
-            isOpen = false;
+            scope.$input.spectrum("destroy");
+            scope.$input.remove();
+            scope.isOpen = false;
         };
 
-        this.focus = function()
+        scope.focus = function()
         {
-
-            $input.focus();
             scope.show();
+            scope.$input.focus();
         };
 
-        this.save = function()
+        scope.save = function()
         {
-            args.commitChanges();
+            scope.args.commitChanges();
         };
 
-        this.cancel = function()
+        scope.cancel = function()
         {
-            this.setDirectValue(defaultValue);
-            args.cancelChanges();
+            scope.setDirectValue(scope.defaultValue);
+            scope.args.cancelChanges();
         };
 
-        this.hide = function()
+        scope.hide = function()
         {
-            if (isOpen)
+            if (scope.isOpen)
             {
-                $input.spectrum("hide");
-                isOpen = false;
+                scope.$input.spectrum("hide");
+                scope.isOpen = false;
             }
         };
 
-        this.show = function()
+        scope.show = function()
         {
-            if (!isOpen)
+            if (!scope.isOpen)
             {
-                $input.spectrum({
-                    color                : defaultValue,
+                scope.$input.spectrum({
+                    color                : scope.defaultValue,
                     clickoutFiresChange  : true,
                     togglePaletteOnly    : true,
                     showInitial          : true,
@@ -1421,38 +1422,96 @@
                     },
                     hide                 : function(color)
                     {
-                       //scope.save();
-                    },
-                    change                 : function(color)
-                    {
                         scope.save();
                     },
 
                     togglePaletteMoreText : 'more',
                     togglePaletteLessText : 'less',
                     preferredFormat       : "hex",
-                    palette               : [["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)", "rgb(204, 204, 204)", "rgb(217, 217, 217)",
-                        "rgb(255, 255, 255)"],
-                        ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)", "rgb(0, 255, 255)", "rgb(74, 134, 232)",
-                            "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"],
-                        ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)", "rgb(208, 224, 227)",
-                            "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)", "rgb(221, 126, 107)", "rgb(234, 153, 153)",
-                            "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)", "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)",
-                            "rgb(180, 167, 214)", "rgb(213, 166, 189)", "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)",
-                            "rgb(147, 196, 125)", "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
-                            "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)", "rgb(69, 129, 142)",
-                            "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)", "rgb(91, 15, 0)", "rgb(102, 0, 0)",
-                            "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)", "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)",
-                            "rgb(76, 17, 48)"]]
+                    palette               : [
+                    [
+                    "rgb(0, 0, 0)",
+                    "rgb(67, 67, 67)",
+                    "rgb(102, 102, 102)",
+                    "rgb(204, 204, 204)",
+                    "rgb(217, 217, 217)",
+                    "rgb(255, 255, 255)"
+                    ],
+                    [
+                    "rgb(152, 0, 0)",
+                    "rgb(255, 0, 0)",
+                    "rgb(255, 153, 0)",
+                    "rgb(255, 255, 0)",
+                    "rgb(0, 255, 0)",
+                    "rgb(0, 255, 255)",
+                    "rgb(74, 134, 232)",
+                    "rgb(0, 0, 255)",
+                    "rgb(153, 0, 255)",
+                    "rgb(255, 0, 255)"
+                    ],
+                    [
+                    "rgb(230, 184, 175)",
+                    "rgb(244, 204, 204)",
+                    "rgb(252, 229, 205)",
+                    "rgb(255, 242, 204)",
+                    "rgb(217, 234, 211)",
+                    "rgb(208, 224, 227)",
+                    "rgb(201, 218, 248)",
+                    "rgb(207, 226, 243)",
+                    "rgb(217, 210, 233)",
+                    "rgb(234, 209, 220)",
+                    "rgb(221, 126, 107)",
+                    "rgb(234, 153, 153)",
+                    "rgb(249, 203, 156)",
+                    "rgb(255, 229, 153)",
+                    "rgb(182, 215, 168)",
+                    "rgb(162, 196, 201)",
+                    "rgb(164, 194, 244)",
+                    "rgb(159, 197, 232)",
+                    "rgb(180, 167, 214)",
+                    "rgb(213, 166, 189)",
+                    "rgb(204, 65, 37)",
+                    "rgb(224, 102, 102)",
+                    "rgb(246, 178, 107)",
+                    "rgb(255, 217, 102)",
+                    "rgb(147, 196, 125)",
+                    "rgb(118, 165, 175)",
+                    "rgb(109, 158, 235)",
+                    "rgb(111, 168, 220)",
+                    "rgb(142, 124, 195)",
+                    "rgb(194, 123, 160)",
+                    "rgb(166, 28, 0)",
+                    "rgb(204, 0, 0)",
+                    "rgb(230, 145, 56)",
+                    "rgb(241, 194, 50)",
+                    "rgb(106, 168, 79)",
+                    "rgb(69, 129, 142)",
+                    "rgb(60, 120, 216)",
+                    "rgb(61, 133, 198)",
+                    "rgb(103, 78, 167)",
+                    "rgb(166, 77, 121)",
+                    "rgb(91, 15, 0)",
+                    "rgb(102, 0, 0)",
+                    "rgb(120, 63, 4)",
+                    "rgb(127, 96, 0)",
+                    "rgb(39, 78, 19)",
+                    "rgb(12, 52, 61)",
+                    "rgb(28, 69, 135)",
+                    "rgb(7, 55, 99)",
+                    "rgb(32, 18, 77)",
+                    "rgb(76, 17, 48)"
+                    ]
+                    ]
                 }, scope);
-                isOpen = true;
+                scope.isOpen = true;
+                scope.$input.spectrum("show");
             }
-            $input.spectrum("show");
+
         };
 
-        this.position = function(position)
+        scope.position = function(position)
         {
-            if (!isOpen)
+            if (!scope.isOpen)
             {
                 return;
             }
@@ -1460,47 +1519,42 @@
         };
 
 
-        this.setDirectValue = function(val)
+        scope.setDirectValue = function(val)
         {
             if (val === null)
             {
                 val = "";
             }
-            $input.spectrum("set", val);
-            defaultValue = scope.serializeValue();
+            scope.$input.spectrum("set", val);
+            scope.defaultValue = scope.serializeValue();
         };
 
-        this.loadValue = function(item)
+        scope.loadValue = function(item)
         {
-            scope.setDirectValue(item[args.column.field]);
-            $input.select();
+            scope.setDirectValue(item[scope.args.column.field]);
+            scope.$input.select();
         };
 
 
-        this.serializeValue = function()
+        scope.serializeValue = function()
         {
-            return $input.val();
+            return scope.$input.val();
         };
 
-        this.applyValue = function(item, state)
+        scope.applyValue = function(item, state)
         {
-            item[args.column.field] = state;
-            //args.grid.setDataItemValueForColumn(item, args.column, state);
+            item[scope.args.column.field] = state;
         };
 
-        this.isValueChanged = function()
+        scope.isValueChanged = function()
         {
-/!*
-            assert(defaultValue !== null);
+           // assert(scope.defaultValue !== null);
             var v = scope.serializeValue();
-            return v !== defaultValue;
-*!/
-
-            return (!($input.val() == "" && defaultValue === null)) && ($input.val() != defaultValue);
+            return v !== scope.defaultValue;
 
         };
 
-        this.validate = function()
+        scope.validate = function()
         {
             return {
                 valid : true,
@@ -1508,9 +1562,8 @@
             };
         };
 
-        this.init();
+        scope.init();
     }
-*/
 
 
     //noinspection FunctionNamingConventionJS
