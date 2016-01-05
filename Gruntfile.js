@@ -82,7 +82,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             cwd: 'src',
-            src: ['less/slickgrid.less'],
+            src: ['src/less/slickgrid.less'],
             dest: 'src',
             ext: '.css'
           }
@@ -102,6 +102,23 @@ module.exports = function (grunt) {
             expand: false,
             src: 'src/less/slick.grid.less',
             dest: 'src/slick.grid.css'
+          }
+        ]
+      },
+      test :{
+        options: {
+          ieCompat: false,
+          strictMath: true,
+          strictUnits: true,
+          outputSourceFiles: true,
+          sourceMap: false
+        },
+        files: [
+          {
+            cwd: '',
+            expand: false,
+            src: 'src/examples/css-less//less/main.less',
+            dest: 'src/examples/css-less/test.slick.grid.css'
           }
         ]
       }
@@ -184,6 +201,25 @@ module.exports = function (grunt) {
             ],
             flatten: false,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
             dest: 'dist/',
+            filter: 'isFile'
+          }]
+
+      },
+      example_files : {
+        files: [
+          {
+            expand: true,       // `mkdir -p` equivalent
+            cwd: 'src/',
+
+            src: [
+              'examples/css-less/*.js',
+              'examples/css-less/plugins/*.js',
+              'examples/css-less/*.css',
+              'examples/css-less/*.html',
+
+            ],
+            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
+            dest: 'dist/examples',
             filter: 'isFile'
           }]
 
@@ -334,4 +370,11 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('default', [ 'dist']);
+
+  grunt.registerTask('testcss', [ 'deploy','copy:example_files' ]);
+
+
+
+
+
 };

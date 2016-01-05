@@ -1,0 +1,91 @@
+﻿@import (less) 'grid_override.less';
+
+// Color variables (appears count calculates by raw css)
+@color0: #bfbdbd; // Appears 4 times
+
+
+
+.slick-header-menubutton {
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-left: thin ridge silver;
+    bottom: 0;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 18px;
+}
+.slick-header-menu {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid @color0;
+    cursor: default;
+    display: inline-block;
+    margin: 0;
+    min-width: 175px;
+    padding: 4px;
+    position: absolute;
+    z-index: 100000;
+ 
+    button {
+       
+        background-color: White;
+        border: 1px solid @color0;
+        margin: 4px 4px 4px 0;
+        padding: 4px;
+        width: 45px;
+    }
+    .filter {
+        border: 1px solid @color0;
+      
+        height: 400px;
+        margin-top: 6px;
+        overflow: scroll;
+        padding: 4px;
+        white-space: nowrap;
+        width: 200px;
+    }
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+.slick-header-menuitem {
+    border: 1px solid transparent;
+    cursor: pointer;
+    list-style: none outside none;
+    margin: 0;
+    padding: 2px 4px;
+    &:hover {
+        border-color: @color0;
+    }
+}
+.slick-header-menuicon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
+    width: 16px;
+}
+.slick-header-menucontent {
+    display: inline-block;
+    vertical-align: middle;
+}
+.header-overlay {
+    display: block;
+    position: absolute;
+    z-index: 999;
+}
+.cell-overlay {
+    display: block;
+    position: absolute;
+    z-index: 999;
+}
+.selection-cell-overlay {
+    display: block;
+    position: absolute;
+    z-index: 999;
+}

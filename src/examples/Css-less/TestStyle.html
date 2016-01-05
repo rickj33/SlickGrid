@@ -1,90 +1,181 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-  <title>Test Styles</title>
-  <link rel="stylesheet" href="./test.slick.grid.css" type="text/css"/>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Test Styles</title>
+    <link rel="stylesheet" href="./test.slick.grid.css" type="text/css"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <table width="100%">
-  <tr>
-    <td valign="top" width="50%">
-      <div id="myGrid" style="width:600px;height:500px;"></div>
-    </td>
-    <td valign="top">
-      <h2>Demonstrates:</h2>
-      <ul>
-        <li>basic grid with minimal configuration</li>
-      </ul>
-    </td>
-  </tr>
+    <tr>
+        <td valign="top" width="50%">
+            <div id="myGrid" style="width:600px;height:500px;"></div>
+        </td>
+        <td valign="top">
+            <h2>Demonstrates:</h2>
+            <ul>
+                <li>basic grid with minimal configuration</li>
+            </ul>
+        </td>
+    </tr>
 </table>
 
 <script src="../lib/jquery.min.js"></script>
 <script src="../lib/jquery.event.drag.js"></script>
+<script src="./jquery-ui.js"></script>
+<script src="./jquery-fixclick.js"></script>
+
 
 <script src="../slick.core.js"></script>
 <script src="../slick.grid.js"></script>
 <script src="../slick.dataview.js"></script>
 <script src="../plugins/slick.checkboxSelectColumn.js"></script>
 <script src="../plugins/slick.rowSelectionModel.js"></script>
+<script src="../plugins/slick.cellselectionmodel.js"></script>
+
 <script src="../plugins/slick.cellexternalcopymanager.js"></script>
+<script src="../plugins/ext.headerfilter.js"></script>
+<script src="../plugins/ext.overlays.js"></script>
 <script src="./mockCountyWorkspaceSelectionData.js"></script>
+<script src="./lodash.js"></script>
 
 <script>
-  var grid;
+    var grid;
+    var dataView;
 
     var columns = [{
-    'propertyId': 14,
-    'name': 'State',
-    'field': '14'
-  }, {
-    'propertyId': 8,
-    'name': 'County',
-    'field': '8'
-  }, {
-    'propertyId': 9,
-    'name': 'Value',
-    'field': '9'
-  }, {
-    'propertyId': 1,
-    'name': 'Key',
-    'field': '1'
-  }];
+        'propertyId': 14,
+        'name': 'State',
+        'field': '14'
 
-  var options = {
-    enableCellNavigation: true,
-    enableColumnReorder: false
-  };
+    }, {
+        'propertyId': 8,
+        'name': 'County',
+        'field': '8'
+    }, {
+        'propertyId': 9,
+        'name': 'Value',
+        'field': '9'
+    }, {
+        'propertyId': 1,
+        'name': 'Key',
+        'field': '1'
+    }];
 
+    var options = {
+        enableCellNavigation: true,
+        enableColumnReorder: false
+    };
 
-var createFakeGridControl = function(gridCreateData)  {
-  var gridData = gridCreateData.data;
-  var columns = gridCreateData.columns;
-  var options = gridCreateData.options;
-  var grid = new Slick.Grid(gridCreateData.container, gridData, columns, options);
-  grid.setSelectionModel(new Slick.RowSelectionModel({selectActiveRow: false}));
-  return grid;
-};
+    var handler = new Slick.EventHandler();
 
-  $(function () {
-
- 	var dataView = new Slick.Data.DataView();
-    dataView.setItems(mockCountyWorkspaceSelectionData.data);
-
-  gridCreateOptions = {
-      data: dataView,
-      columns: columns,
-      options: {},
-      container: document.createElement('div')
+    var createFakeGridControl = function( gridCreateData )
+    {
+        var gridData = gridCreateData.data;
+        var columns = gridCreateData.columns;
+        var options = gridCreateData.options;
+        var grid = new Slick.Grid( '#myGrid', gridData, columns, options );
+        grid.setSelectionModel( new Slick.RowSelectionModel(  ) );
+        return grid;
     };
 
 
-     grid = createFakeGridControl(gridCreateOptions);
+    var getItemColumnValue = function( item, column )
+    {
+        return item[column.field];
+    };
 
-    
-  })
+
+    var handleOnCommand = function( e, args )
+    {
+        dataView.sort( args.column.field, args.command === 'sort-asc' );
+        grid.render();
+    };
+
+    var filter = function( item, args )
+    {
+        var value = true;
+
+        //if no filter.
+        if (!args || args.length === 0)
+        {
+            return value;
+        }
+        for ( var i = 0; i < args.length; i++ )
+        {
+            var filterValues = args[i].column.filterValues;
+            var column = args[i].column;
+            if (filterValues && filterValues.length > 0)
+            {
+                value = value & _.contains(filterValues, getItemColumnValue(item, column));
+            }
+            //return on the first failure of the filter value so we dont waste time checking them all.
+            if (!value)
+            {
+                break;
+            }
+        }
+        return value;
+    };
+
+
+
+
+
+
+    $( function()
+    {
+
+        dataView = new Slick.Data.DataView();
+        dataView.setFilter(filter);
+        dataView.setItems( mockCountyWorkspaceSelectionData.data );
+
+       /* var gridCreateOptions = {
+            data: dataView,
+            columns: columns,
+            options: {
+                editable: true,
+                enableAddRow: false,
+                enableCellNavigation: true,
+                asyncEditorLoading: false,
+                forceFitColumns: true,
+                autoEdit: true,
+                explicitInitialization: true,
+                rowHeight: 20,
+               
+            }
+        };*/
+
+var options= {
+            enableCellNavigation: true,
+            enableColumnReorder: false,
+            explicitInitialization: true,
+            editable: true,
+                forceFitColumns: true,
+                autoEdit: true,
+                rowHeight: 20,
+               
+            }
+
+        var headerFilterOptions = {
+            dataItemColumnValueExtractor: getItemColumnValue,
+            buttonImage: '../images/down.png',
+            filterImage: '../images/filter.png',
+            sortAscImage: '../images/sort-asc.png',
+            sortDescImage: '../images/sort-desc.png'
+        };
+        //noinspection JSUnresolvedVariable
+        var filterPlugin = new Ext.Plugins.HeaderFilter( headerFilterOptions );
+
+         var grid = new Slick.Grid( '#myGrid', dataView, columns, options );
+       // grid.setSelectionModel( new Slick.RowSelectionModel(  ) );
+       //    grid.setSelectionModel(new Slick.CellSelectionModel());
+        grid.registerPlugin( filterPlugin );
+        grid.init();
+        handler.subscribe(filterPlugin.onCommand, handleOnCommand);
+
+    } )
 </script>
 </body>
 </html>

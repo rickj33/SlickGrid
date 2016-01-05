@@ -1,3 +1,4 @@
+@import (less) 'grid_override.less';
 // Color variables (appears count calculates by raw css)
 @color0: #cd0a0a; // Appears 12 times
 @color1: #212121; // Appears 9 times
@@ -96,7 +97,7 @@
 	width: @width4;
 }
 .ui-widget {
-	font-family: '@{font-family}';
+	font-family: @font-family;
 	font-size: @font-size-small;
 	.ui-widget {
 		font-size: @font-size-small;
@@ -106,10 +107,10 @@
 	}
 }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button  {
-	font-family:'@{font-family}';
+	font-family:@font-family;
 	font-size: @font-size-small;
 }
-.ui-widget-content {
+/*.ui-widget-content {
 	background: @color6 url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
 	border: 1px solid @color2;
 	color: @color5;
@@ -163,7 +164,7 @@
 	.ui-icon {
 		background-image: url('@{images}/ui-icons_222222_256x240.png');
 	}
-}
+}*/
 .ui-widget-header {
 	background: #cccccc url('@{images}/ui-bg_highlight-soft_75_cccccc_1x100.png') 50% 50% repeat-x;
 	border: 1px solid @color2;

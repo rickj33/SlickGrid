@@ -1,0 +1,44 @@
+@import (less) 'grid_override.less';
+@borderColor : #d3d3d3;
+
+
+
+.slick-row.ui-widget-content {
+	border-bottom: 1px solid @borderColor;
+
+}
+
+.slick-pane{
+
+	border-left: 1px solid @borderColor;
+	border-bottom: 1px solid @borderColor;
+}
+.slick-pane-header{
+	border-bottom-style: none;
+}
+
+.slick-cell {
+	-o-text-overflow: ellipsis;
+	border-bottom-style: none;
+	border-top-style: none;
+	border-right: 1px solid @borderColor;
+	border-left-style: none;
+	padding: 5px 2px 2px 3px;
+}
+
+.slick-header-menu {
+   
+    font-family:@font-family;
+      font-size:  @font-size-small ;
+    button {
+          font-family:@font-family;
+          font-size:  @font-size-small ;
+     
+    }
+    .filter {
+      
+          font-family:@font-family;
+        font-size: @font-size-xsmall;
+      
+    }
+}
