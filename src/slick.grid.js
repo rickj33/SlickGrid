@@ -2768,13 +2768,28 @@ if ( typeof Slick === "undefined" )
       // this helps avoid redundant calls to .removeRow() when the size of
       // the data decreased by thousands of rows
       var l = dataLengthIncludingAddNew - 1;
-      for ( var i in rowsCache )
+      var keys = _.keys( rowsCache );
+      var intKeys = _.transform( keys, function( result, key )
       {
-        if ( i >= l )
+        if ( _.isNumber( key ) )
         {
-          removeRowFromCache( i );
+          result.push( key )
+        } else
+        {
+          var intKey = parseInt( key, 10 );
+
+          result.push( intKey )
         }
-      }
+
+      } );
+
+      _.forEach( intKeys, function( key )
+      {
+        if ( key >= l )
+        {
+          removeRowFromCache( key );
+        }
+      }, this );
 
       th = Math.max( options.rowHeight * numberOfRows, tempViewportH - scrollbarDimensions.height );
 

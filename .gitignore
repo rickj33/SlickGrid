@@ -5,3 +5,4 @@ node_modules
 bower_components
 dist
 /src/plugins/*.map
+jquery-ui-1.11.4.custom

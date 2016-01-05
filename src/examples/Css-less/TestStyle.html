@@ -21,15 +21,26 @@
     </tr>
 </table>
 
+
+
+
 <script src="../lib/jquery.min.js"></script>
 <script src="../lib/jquery.event.drag.js"></script>
-<script src="./jquery-ui.js"></script>
-<script src="./jquery-fixclick.js"></script>
+<script src="../lib/jquery-ui.min.js"></script>
+<script src="../lib/jquery-fixclick.js"></script>
+<script src="../lib/lodash.js"></script>
+
+
+
+
+
 
 
 <script src="../slick.core.js"></script>
 <script src="../slick.grid.js"></script>
 <script src="../slick.dataview.js"></script>
+<script src="../slick.editors.js"></script>
+<script src="../slick.formatters.js"></script>
 <script src="../plugins/slick.checkboxSelectColumn.js"></script>
 <script src="../plugins/slick.rowSelectionModel.js"></script>
 <script src="../plugins/slick.cellselectionmodel.js"></script>
@@ -38,7 +49,7 @@
 <script src="../plugins/ext.headerfilter.js"></script>
 <script src="../plugins/ext.overlays.js"></script>
 <script src="./mockCountyWorkspaceSelectionData.js"></script>
-<script src="./lodash.js"></script>
+
 
 <script>
     var grid;
@@ -47,45 +58,50 @@
     var columns = [{
         'propertyId': 14,
         'name': 'State',
-        'field': '14'
+        'field': '14',
+        editor: Slick.Editors.Text,
+        nofilter: false
 
     }, {
         'propertyId': 8,
         'name': 'County',
-        'field': '8'
+        'field': '8',
+        editor: Slick.Editors.Text,
+        nofilter: false
     }, {
         'propertyId': 9,
         'name': 'Value',
-        'field': '9'
+        'field': '9',
+        editor: Slick.Editors.Text,
+        nofilter: false
     }, {
         'propertyId': 1,
         'name': 'Key',
-        'field': '1'
+        'field': '1',
+        editor: Slick.Editors.Text,
+        nofilter: false
     }];
 
-    var options = {
-        enableCellNavigation: true,
-        enableColumnReorder: false
-    };
-
     var handler = new Slick.EventHandler();
-
-    var createFakeGridControl = function( gridCreateData )
-    {
-        var gridData = gridCreateData.data;
-        var columns = gridCreateData.columns;
-        var options = gridCreateData.options;
-        var grid = new Slick.Grid( '#myGrid', gridData, columns, options );
-        grid.setSelectionModel( new Slick.RowSelectionModel(  ) );
-        return grid;
-    };
-
 
     var getItemColumnValue = function( item, column )
     {
         return item[column.field];
     };
 
+    //to support filtering you need to subscribe to row count changed, and rowschanged.
+    //region events required to support filtering.
+    var handleRowCountChanged = function( e, args )
+    {
+        grid.updateRowCount();
+        grid.render();
+    };
+
+    var handleRowsChanged = function( e, args )
+    {
+        grid.invalidateRows( args.rows );
+        grid.render();
+    };
 
     var handleOnCommand = function( e, args )
     {
@@ -93,12 +109,21 @@
         grid.render();
     };
 
+    var handleFilter = function( e, args )
+    {
+        dataView.setFilterArgs( [args] );
+        dataView.refresh();
+        grid.resetActiveCell();
+        grid.render();
+    };
+    //endregion events for filter support.
+
     var filter = function( item, args )
     {
         var value = true;
 
         //if no filter.
-        if (!args || args.length === 0)
+        if ( !args || args.length === 0 )
         {
             return value;
         }
@@ -106,12 +131,12 @@
         {
             var filterValues = args[i].column.filterValues;
             var column = args[i].column;
-            if (filterValues && filterValues.length > 0)
+            if ( filterValues && filterValues.length > 0 )
             {
-                value = value & _.contains(filterValues, getItemColumnValue(item, column));
+                value = value & _.contains( filterValues, getItemColumnValue( item, column ) );
             }
             //return on the first failure of the filter value so we dont waste time checking them all.
-            if (!value)
+            if ( !value )
             {
                 break;
             }
@@ -119,62 +144,47 @@
         return value;
     };
 
-
-
-
-
-
     $( function()
     {
 
         dataView = new Slick.Data.DataView();
-        dataView.setFilter(filter);
+        dataView.setFilter( filter );
         dataView.setItems( mockCountyWorkspaceSelectionData.data );
 
-       /* var gridCreateOptions = {
-            data: dataView,
-            columns: columns,
-            options: {
-                editable: true,
-                enableAddRow: false,
-                enableCellNavigation: true,
-                asyncEditorLoading: false,
-                forceFitColumns: true,
-                autoEdit: true,
-                explicitInitialization: true,
-                rowHeight: 20,
-               
-            }
-        };*/
-
-var options= {
+        var options = {
             enableCellNavigation: true,
             enableColumnReorder: false,
             explicitInitialization: true,
             editable: true,
-                forceFitColumns: true,
-                autoEdit: true,
-                rowHeight: 20,
-               
-            }
+            forceFitColumns: true,
+            autoEdit: true,
+            rowHeight: 20, //need dataitem column value extractor to support filtering.
+            dataItemColumnValueExtractor: getItemColumnValue
+        }
 
         var headerFilterOptions = {
+            //need dataitem column value extractor to support filtering.
             dataItemColumnValueExtractor: getItemColumnValue,
             buttonImage: '../images/down.png',
             filterImage: '../images/filter.png',
             sortAscImage: '../images/sort-asc.png',
             sortDescImage: '../images/sort-desc.png'
         };
+
         //noinspection JSUnresolvedVariable
         var filterPlugin = new Ext.Plugins.HeaderFilter( headerFilterOptions );
 
-         var grid = new Slick.Grid( '#myGrid', dataView, columns, options );
-       // grid.setSelectionModel( new Slick.RowSelectionModel(  ) );
-       //    grid.setSelectionModel(new Slick.CellSelectionModel());
+        grid = new Slick.Grid( '#myGrid', dataView, columns, options );
+        grid.setSelectionModel( new Slick.RowSelectionModel() );
+        //    grid.setSelectionModel(new Slick.CellSelectionModel());
         grid.registerPlugin( filterPlugin );
         grid.init();
-        handler.subscribe(filterPlugin.onCommand, handleOnCommand);
+        handler.subscribe( filterPlugin.onCommand, handleOnCommand );
+        handler.subscribe( filterPlugin.onFilterApplied, handleFilter );
+        handler.subscribe( dataView.onRowsChanged, handleRowsChanged );
+        handler.subscribe( dataView.onRowCountChanged, handleRowCountChanged );
 
+        grid.render();
     } )
 </script>
 </body>

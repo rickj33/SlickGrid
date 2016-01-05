@@ -47,10 +47,16 @@
           .appendTo( scope.args.container )
           .bind( "keydown.nav", function( e )
           {
-            if ( e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT )
-            {
-              e.stopImmediatePropagation();
-            }
+              if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+             if (!((e.target.selectionStart === e.target.value.length) &&
+                        (e.keyCode === $.ui.keyCode.RIGHT) ||
+                        (e.target.selectionStart === 0) &&
+                        (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
+                        e.stopImmediatePropagation();
+                    }
+                  }
           } )
           .focus()
           .select();
@@ -163,10 +169,17 @@
 
       scope.$input.bind( "keydown.nav", function( e )
       {
-        if ( e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT )
-        {
-          e.stopImmediatePropagation();
-        }
+         if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    //noinspection OverlyComplexBooleanExpressionJS
+                    if (!((e.target.selectionStart === e.target.value.length) &&
+                        (e.keyCode === $.ui.keyCode.RIGHT) ||
+                        (e.target.selectionStart === 0) &&
+                        (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
+                        e.stopImmediatePropagation();
+                    }
+                }
       } );
 
       scope.$input.appendTo( scope.args.container );
@@ -341,10 +354,17 @@
       scope.defaultValue = new Date();
       scope.$input = $( "<INPUT type='text' class='editor-date' />" ).appendTo( scope.args.container ).bind( "keydown.nav", function( e )
       {
-        if ( e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT )
-        {
-          e.stopImmediatePropagation();
-        }
+        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    //noinspection OverlyComplexBooleanExpressionJS
+                    if (!((e.target.selectionStart === e.target.value.length) &&
+                        (e.keyCode === $.ui.keyCode.RIGHT) ||
+                        (e.target.selectionStart === 0) &&
+                        (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
+                        e.stopImmediatePropagation();
+                    }
+                }
       } ).focus().select();
       scope.$input.datepicker( scope.datePickerOptions );
       scope.$input.outerWidth( scope.$input.outerWidth() - 18 );
@@ -662,10 +682,17 @@
 
       scope.$input = $( "<INPUT type='text' class='editor-percentcomplete' />" ).appendTo( scope.args.container ).bind( "keydown.nav", function( e )
       {
-        if ( e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT )
-        {
-          e.stopImmediatePropagation();
-        }
+        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    //noinspection OverlyComplexBooleanExpressionJS
+                    if (!((e.target.selectionStart === e.target.value.length) &&
+                        (e.keyCode === $.ui.keyCode.RIGHT) ||
+                        (e.target.selectionStart === 0) &&
+                        (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
+                        e.stopImmediatePropagation();
+                    }
+                }
       } ).focus().select();
 
       scope.$input.outerWidth( $( scope.args.container ).innerWidth() - 25 );
@@ -1096,10 +1123,17 @@
     {
       $input = $( "<INPUT type='text' class='editor-percentage' />" ).appendTo( args.container ).bind( "keydown.nav", function( e )
       {
-        if ( e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT )
-        {
-          e.stopImmediatePropagation();
-        }
+        if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    //noinspection OverlyComplexBooleanExpressionJS
+                    if (!((e.target.selectionStart === e.target.value.length) &&
+                        (e.keyCode === $.ui.keyCode.RIGHT) ||
+                        (e.target.selectionStart === 0) &&
+                        (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
+                        e.stopImmediatePropagation();
+                    }
+                }
       } ).focus().select();
       defaultValue = '';
     };
@@ -1303,10 +1337,17 @@
     {
       $input = $( "<input type='color' />" ).appendTo( $container ).bind( "keydown.nav", function( e )
       {
-        if ( e.keyCode === Slick.Keyboard.LEFT || e.keyCode === Slick.Keyboard.RIGHT )
-        {
-          e.stopImmediatePropagation();
-        }
+         if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT)
+                {
+                    //noinspection OverlyComplexBooleanExpressionJS
+                    if (!((e.target.selectionStart === e.target.value.length) &&
+                        (e.keyCode === $.ui.keyCode.RIGHT) ||
+                        (e.target.selectionStart === 0) &&
+                        (e.keyCode === $.ui.keyCode.LEFT)))
+                    {
+                        e.stopImmediatePropagation();
+                    }
+                }
       } ).focus().select();
       scope.show();
     };

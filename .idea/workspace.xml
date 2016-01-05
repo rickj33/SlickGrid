@@ -10,31 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/factlookstyle.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/grid_override.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/jquery-ui-smoothness.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/main.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/slick-grid.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/slick.columnpicker.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/slick.headerbutton.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/slick.headermenu.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/slick.less.macros.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/slick.pager.less" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/grid_override.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/jquery-ui-smoothness.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/main.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/slick-default-theme.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/slick-grid.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/slick.columnpicker.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/slick.headerbutton.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/slick.headermenu.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/slick.less.macros.less" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/slick.pager.less" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/jquery-fixclick.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/examples/Css-less/jquery-ui.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/examples/Css-less/TestStyle.html" afterPath="$PROJECT_DIR$/src/examples/Css-less/TestStyle.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/examples/Css-less/less/factlookstyle.less" afterPath="$PROJECT_DIR$/src/examples/Css-less/less/factlookstyle.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/examples/Css-less/test.slick.grid.css" afterPath="$PROJECT_DIR$/src/examples/Css-less/test.slick.grid.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/slick-default-theme.less" afterPath="$PROJECT_DIR$/src/less/slick-default-theme.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/examples/example-dataviewDataResponse.html" afterPath="$PROJECT_DIR$/src/examples/example-dataviewDataResponse.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.dataview.js" afterPath="$PROJECT_DIR$/src/slick.dataview.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.grid.js" afterPath="$PROJECT_DIR$/src/slick.grid.js" />
     </list>
     <ignored path="SlickGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,19 +52,17 @@
       <file leaf-file-name="TestStyle.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/examples/Css-less/TestStyle.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6226416">
-              <caret line="132" column="29" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
-              <folding>
-                <element signature="e#2630#3320#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="-5.207547">
+              <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gruntfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6199095">
+            <state vertical-scroll-proportion="0.0">
               <caret line="215" column="41" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
               <folding>
                 <element signature="e#1331#1704#0" expanded="false" />
@@ -88,6 +70,69 @@
                 <element signature="e#2947#3126#0" expanded="false" />
                 <element signature="e#3144#3388#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="slick.grid.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.13743456">
+              <caret line="3603" column="26" selection-start-line="3603" selection-start-column="13" selection-end-line="3603" selection-end-column="26" />
+              <folding>
+                <marker date="1452020480978" expanded="true" signature="18880:18935" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="20342:20354" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="20481:20493" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="20965:21021" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="21198:21254" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="22156:22169" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="22268:22281" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="29171:29262" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="34009:34021" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="58794:58811" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="59470:59487" placeholder="..." />
+                <marker date="1452020480978" expanded="true" signature="76959:77010" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="slick.dataview.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.464286">
+              <caret line="952" column="24" selection-start-line="952" selection-start-column="24" selection-end-line="952" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="slick.headerbuttons.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/plugins/slick.headerbuttons.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="slick.headermenu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/plugins/slick.headermenu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ext.headerfilter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/plugins/ext.headerfilter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.793104">
+              <caret line="350" column="28" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,13 +187,11 @@
         <option value="$PROJECT_DIR$/src/less/slick-editors.less" />
         <option value="$PROJECT_DIR$/src/less/slick.config.less" />
         <option value="$PROJECT_DIR$/src/less/jqueryuiOverrides.less" />
-        <option value="$PROJECT_DIR$/src/slick.dataview.js" />
         <option value="$PROJECT_DIR$/dist/plugins/slick.cellexternalcopymanager.js" />
         <option value="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" />
         <option value="$PROJECT_DIR$/bower_components/jquery.dragdrop/bower.json" />
         <option value="$PROJECT_DIR$/bower_components/jquery.dragdrop/event.drag/jquery.event.drag.js" />
         <option value="$PROJECT_DIR$/src/tests/dog.js" />
-        <option value="$PROJECT_DIR$/src/slick.grid.js" />
         <option value="$PROJECT_DIR$/src/eraseme.js" />
         <option value="$PROJECT_DIR$/src/slick.editors.js" />
         <option value="$PROJECT_DIR$/src/less/slick.grid.less" />
@@ -156,8 +199,10 @@
         <option value="$PROJECT_DIR$/src/examples/Css-less/slick-grid.less" />
         <option value="$PROJECT_DIR$/src/examples/Css-less/main.less" />
         <option value="$PROJECT_DIR$/src/examples/Css-less/factlookstyle.less" />
-        <option value="$PROJECT_DIR$/src/examples/Css-less/TestStyle.html" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/src/slick.dataview.js" />
+        <option value="$PROJECT_DIR$/src/slick.grid.js" />
+        <option value="$PROJECT_DIR$/src/examples/Css-less/TestStyle.html" />
       </list>
     </option>
   </component>
@@ -184,10 +229,10 @@
     <scope name="CodeAnalysis" pattern="(file[SlickGrid]:src/*&amp;&amp;!file[SlickGrid]:src/tests//*&amp;&amp;!file[SlickGrid]:src/images//*&amp;&amp;!file[SlickGrid]:src/examples//*&amp;&amp;!file[SlickGrid]:src/lib//*||file[SlickGrid]:src/plugins//*||file[SlickGrid]:src/css//*||file[SlickGrid]:src/controls//*)&amp;&amp;!file:src/slick.grid - Copy.js" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="1154" />
+    <option name="x" value="-5" />
+    <option name="y" value="142" />
+    <option name="width" value="965" />
+    <option name="height" value="1063" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -296,29 +341,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SlickGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SlickGrid" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Css-less" />
+              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -386,14 +409,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="1154" extended-state="6" />
+    <frame x="-5" y="142" width="965" height="1063" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3561644" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12727273" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.139413" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -489,13 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="239" column="21" selection-start-line="239" selection-start-column="21" selection-end-line="239" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/ext.headerfilter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="278" column="31" selection-start-line="278" selection-start-column="31" selection-end-line="278" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -625,20 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4981" column="2" selection-start-line="4981" selection-start-column="2" selection-end-line="4981" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/slick.transposedEditors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -758,25 +760,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/examples/Css-less/TestStyle.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6226416">
-          <caret line="132" column="29" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
-          <folding>
-            <element signature="e#2630#3320#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6199095">
+        <state vertical-scroll-proportion="0.0">
           <caret line="215" column="41" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
           <folding>
             <element signature="e#1331#1704#0" expanded="false" />
             <element signature="e#1719#2926#0" expanded="false" />
             <element signature="e#2947#3126#0" expanded="false" />
             <element signature="e#3144#3388#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.464286">
+          <caret line="952" column="24" selection-start-line="952" selection-start-column="24" selection-end-line="952" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/slick.headerbuttons.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/slick.headermenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/ext.headerfilter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.793104">
+          <caret line="350" column="28" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/examples/Css-less/TestStyle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.207547">
+          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13743456">
+          <caret line="3603" column="26" selection-start-line="3603" selection-start-column="13" selection-end-line="3603" selection-end-column="26" />
+          <folding>
+            <marker date="1452020480978" expanded="true" signature="18880:18935" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="20342:20354" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="20481:20493" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="20965:21021" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="21198:21254" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="22156:22169" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="22268:22281" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="29171:29262" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="34009:34021" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="58794:58811" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="59470:59487" placeholder="..." />
+            <marker date="1452020480978" expanded="true" signature="76959:77010" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -1507,7 +1507,19 @@ label {
   border-top-style: none;
   border-right: 1px solid #d3d3d3;
   border-left-style: none;
-  padding: 5px 2px 2px 3px;
+  padding: 2px 2px 2px 3px;
+}
+.slick-cell.editable {
+  border: 2px solid Green;
+}
+input.editor-text {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
 }
 .slick-header-menu {
   font-family: 'Roboto', 'Open Sans', sans-serif;

@@ -3,11 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>SlickGrid example 3: Editing</title>
-  <link rel="stylesheet" href="../slick.grid.css" type="text/css"/>
-  <link rel="stylesheet" href="../css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>
-  <link rel="stylesheet" href="examples.css" type="text/css"/>
-    <link rel="stylesheet" href="../plugins-common.css" type="text/css" />
-        <link rel="stylesheet" href="../plugins-excel-style.css" type="text/css" />
+  <link rel="stylesheet" href="./test.slick.grid.css" type="text/css"/>
   <style>
     .slick-cell.copied {
       background: blue;
@@ -105,23 +101,32 @@
 </div>
 
 <script src="../lib/firebugx.js"></script>
-<script src="../lib/jquery-1.7.min.js"></script>
-<script src="../lib/jquery-ui-1.8.16.custom.min.js"></script>
-<script src="../lib/jquery.event.drag-2.2.js"></script>
-<script src="../lib/lodash.min.js"></script>
-<script src="../lib/lodash.underscore.min.js"></script>
+
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/jquery.event.drag.js"></script>
+<script src="../lib/jquery-ui.js"></script>
+<script src="../lib/jquery-fixclick.js"></script>
+<script src="../lib/lodash.js"></script>
+
 <script src="../slick.core.js"></script>
-<script src="../plugins/slick.autotooltips.js"></script>
-<script src="../plugins/slick.cellrangedecorator.js"></script>
-<script src="../plugins/slick.cellrangeselector.js"></script>
-<script src="../plugins/slick.cellexternalcopymanager.js"></script>
-<script src="../plugins/slick.cellselectionmodel.js"></script>
+<script src="../slick.grid.js"></script>
+<script src="../slick.dataview.js"></script>
 <script src="../slick.editors.js"></script>
 <script src="../slick.formatters.js"></script>
-   <script type="text/javascript" src="../slick.dataview.js"></script>
-<script src="../slick.grid.js"></script>
-    <script type="text/javascript" src="../ext.headerfilter.js"></script>
-    <script type="text/javascript" src="../ext.overlays.js"></script>
+
+
+<script src="../plugins/slick.cellexternalcopymanager.js"></script>
+<script src="../plugins/ext.headerfilter.js"></script>
+<script src="../plugins/ext.overlays.js"></script>
+<script src="../plugins/slick.checkboxSelectColumn.js"></script>
+<script src="../plugins/slick.rowSelectionModel.js"></script>
+<script src="../plugins/slick.cellselectionmodel.js"></script>
+
+
+
+
+
 
 <script>
   var grid;
@@ -134,7 +139,7 @@
     enableAddRow: true,
     enableCellNavigation: true,
     asyncEditorLoading: false,
-    autoEdit: false
+    autoEdit: true
   };
 
  var editor =   "Slick.Editors.Text";
@@ -144,9 +149,9 @@ var gridData = {
 
                "ColumnHeadings": 
               [
-                {'name' :"MsgID", 'editor' :dog },
-                {'name' :"Last Name", 'editor' :dog},
-                {'name' :"First Name",'editor' : dog},
+                {'name' :"MsgID",  editor: Slick.Editors.Text},
+                {'name' :"Last Name",  editor: Slick.Editors.Text},
+                {'name' :"First Name", editor: Slick.Editors.Text},
                
 
               ],
@@ -198,7 +203,7 @@ var gridData = {
                 gridQMsgsDataView.setItems(gridQMsgsData, 0);
 
     grid = new Slick.Grid("#myGrid", gridQMsgsDataView, gridQMsgsColumns, options);
-    grid.setSelectionModel(new Slick.CellSelectionModel());
+    grid.setSelectionModel(new Slick.RowSelectionModel());
  
   
  
