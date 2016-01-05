@@ -1,17 +1,4 @@
-/*!
- * jQuery UI CSS Framework 1.8.24
- *
- * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Theming/API
- */
-
-@import (less) "slick.config.less";
-
-@import (less) "slick.less.macros.less";
-
+//@import (less) 'variables.less';
 // Color variables (appears count calculates by raw css)
 @color0: #cd0a0a; // Appears 12 times
 @color1: #212121; // Appears 9 times
@@ -27,17 +14,17 @@
 @color11: #d3d3d3; // Appears 3 times
 
 // Width variables (appears count calculates by raw css)
-@width7: 1.8em; // Appears 2 times
-@width15: 100%; // Appears 10 times
-@width16: 7px; // Appears 2 times
-@width19: 49%; // Appears 2 times
-@width21: 9px; // Appears 3 times
+@width1: 1.8em; // Appears 2 times
+@width4: 100%; // Appears 8 times
+@width10: 7px; // Appears 2 times
+@width12: 49%; // Appears 2 times
+@width13: 9px; // Appears 3 times
 
 // Height variables (appears count calculates by raw css)
 @height2: 1.8em; // Appears 2 times
-@height5: 100%; // Appears 6 times
-@height11: 9px; // Appears 3 times
-@height12: 7px; // Appears 2 times
+@height6: 100%; // Appears 5 times
+@height8: 7px; // Appears 2 times
+@height9: 9px; // Appears 3 times
 
 .ui-helper-hidden {
 	display: none;
@@ -58,25 +45,31 @@
 	text-decoration: none;
 }
 .ui-helper-clearfix {
-	zoom: 1;
-	&:before {
-		content: "";
-		display: table;
-	}
+	display: inline-block;
+	display:block;
 	&:after {
 		clear: both;
-		content: "";
-		display: table;
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+	}
+}
+* {
+	html {
+		.ui-helper-clearfix {
+			height:1%;
+		}
 	}
 }
 .ui-helper-zfix {
 	filter:Alpha(Opacity=0);
-	height: @height5;
+	height: @height6;
 	left: 0;
 	opacity: 0;
 	position: absolute;
 	top: 0;
-	width: @width15;
+	width: @width4;
 }
 .ui-state-disabled {
 	background-image: none;
@@ -96,15 +89,15 @@
 .ui-widget-overlay {
 	background: @color2 url('@{images}/ui-bg_flat_0_aaaaaa_40x100.png') 50% 50% repeat-x;
 	filter:Alpha(Opacity=30);
-	height: @height5;
+	height: @height6;
 	left: 0;
 	opacity: .30;
 	position: absolute;
 	top: 0;
-	width: @width15;
+	width: @width4;
 }
 .ui-widget {
-	font-family: '@{font-family}';
+	font-family: @font-family;
 	font-size: @font-size-small;
 	.ui-widget {
 		font-size: @font-size-small;
@@ -114,30 +107,30 @@
 	}
 }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button  {
-	font-family:'@{font-family}';
+	font-family:@font-family;
 	font-size: @font-size-small;
 }
-.ui-widget-content {
-	background: @color6 url('@{images}/ui-bg_flat_75_ffffff_40x100.png') 50% 50% repeat-x;
+/*.ui-widget-content {
+	background: @color6 url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
 	border: 1px solid @color2;
 	color: @color5;
 	a {
 		color: @color5;
 	}
 	.ui-state-default {
-		background: @color10 url('@{images}/ui-bg_glass_75_e6e6e6_1x400.png') 50% 50% repeat-x;
+		background: @color10 url(images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
 		border: 1px solid @color11;
 		color: @color3;
 		font-weight: normal;
 	}
 	.ui-state-active {
-		background: @color6 url('@{images}/ui-bg_glass_65_ffffff_1x400.png') 50% 50% repeat-x;
+		background: @color6 url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
 		border: 1px solid @color2;
 		color: @color1;
 		font-weight: normal;
 	}
 	.ui-state-highlight {
-		background: @color8 url('@{images}/ui-bg_glass_55_fbf9ee_1x400.png') 50% 50% repeat-x;
+		background: @color8 url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;
 		border: 1px solid @color9;
 		color: @color4;
 		a {
@@ -171,7 +164,7 @@
 	.ui-icon {
 		background-image: url('@{images}/ui-icons_222222_256x240.png');
 	}
-}
+}*/
 .ui-widget-header {
 	background: #cccccc url('@{images}/ui-bg_highlight-soft_75_cccccc_1x100.png') 50% 50% repeat-x;
 	border: 1px solid @color2;
@@ -894,6 +887,7 @@
 	display: block;
 	font-size: 0.1px;
 	position: absolute;
+	z-index: 99999;
 }
 .ui-resizable-disabled {
 	.ui-resizable-handle {
@@ -907,31 +901,31 @@
 }
 .ui-resizable-n {
 	cursor: n-resize;
-	height: @height12;
+	height: @height8;
 	left: 0;
 	top: -5px;
-	width: @width15;
+	width: @width4;
 }
 .ui-resizable-s {
 	bottom: -5px;
 	cursor: s-resize;
-	height: @height12;
+	height: @height8;
 	left: 0;
-	width: @width15;
+	width: @width4;
 }
 .ui-resizable-e {
 	cursor: e-resize;
-	height: @height5;
+	height: @height6;
 	right: -5px;
 	top: 0;
-	width: @width16;
+	width: @width10;
 }
 .ui-resizable-w {
 	cursor: w-resize;
-	height: @height5;
+	height: @height6;
 	left: -5px;
 	top: 0;
-	width: @width16;
+	width: @width10;
 }
 .ui-resizable-se {
 	bottom: 1px;
@@ -943,288 +937,28 @@
 .ui-resizable-sw {
 	bottom: -5px;
 	cursor: sw-resize;
-	height: @height11;
+	height: @height9;
 	left: -5px;
-	width: @width21;
+	width: @width13;
 }
 .ui-resizable-nw {
 	cursor: nw-resize;
-	height: @height11;
+	height: @height9;
 	left: -5px;
 	top: -5px;
-	width: @width21;
+	width: @width13;
 }
 .ui-resizable-ne {
 	cursor: ne-resize;
-	height: @height11;
+	height: @height9;
 	right: -5px;
 	top: -5px;
-	width: @width21;
+	width: @width13;
 }
 .ui-selectable-helper {
 	border:1px dotted black;
 	position: absolute;
 	z-index: 100;
-}
-.ui-accordion {
-	width: @width15;
-	.ui-accordion-header {
-		cursor: pointer;
-		margin-top: 1px;
-		position: relative;
-		zoom: 1;
-		a {
-			display: block;
-			font-size:  @font-size-small;
-			padding: .5em .5em .5em .7em;
-		}
-		.ui-icon {
-			left: .5em;
-			margin-top: -8px;
-			position: absolute;
-			top: 50%;
-		}
-	}
-	.ui-accordion-li-fix {
-		display: inline;
-	}
-	.ui-accordion-header-active {
-		border-bottom: 0 !important;
-	}
-	.ui-accordion-content {
-		border-top: 0;
-		display: none;
-		margin-bottom: 2px;
-		margin-top: -2px;
-		overflow: auto;
-		padding: 1em 2.2em;
-		position: relative;
-		top: 1px;
-		zoom: 1;
-	}
-	.ui-accordion-content-active {
-		display: block;
-	}
-}
-.ui-accordion-icons {
-	.ui-accordion-header {
-		a {
-			padding-left: 2.2em;
-		}
-	}
-}
-.ui-autocomplete {
-	cursor: default;
-	position: absolute;
-}
-* {
-	html {
-		.ui-autocomplete {
-			width:1px;
-		}
-	}
-}
-.ui-menu {
-	display:block;
-	float: left;
-	list-style:none;
-	margin: 0;
-	padding: 2px;
-	.ui-menu {
-		margin-top: -3px;
-	}
-	.ui-menu-item {
-		clear: left;
-		float: left;
-		margin:0;
-		padding: 0;
-		width: @width15;
-		zoom: 1;
-		a {
-			display:block;
-			line-height:1.5;
-			padding:.2em .4em;
-			text-decoration:none;
-			zoom:1;
-		}
-		a.ui-state-hover {
-			font-weight: normal;
-			margin: -1px;
-		}
-		a.ui-state-active {
-			font-weight: normal;
-			margin: -1px;
-		}
-	}
-}
-.ui-button {
-	cursor: pointer;
-	display: inline-block;
-	margin-right: .1em;
-	overflow: visible;
-	padding: 0;
-	position: relative;
-	text-align: center;
-	text-decoration: none !important;
-	zoom: 1;
-	.ui-button-text {
-		display: block;
-		line-height: 1.4;
-	}
-}
-.ui-button-icon-only {
-	width: 2.2em;
-	.ui-button-text {
-		padding: .4em;
-		text-indent: -9999999px;
-	}
-	.ui-icon {
-		left: 50%;
-		margin-left: -8px;
-	}
-}
-button.ui-button-icon-only {
-	width: 2.4em;
-}
-.ui-button-icons-only {
-	width: 3.4em;
-	.ui-button-text {
-		padding: .4em;
-		text-indent: -9999999px;
-	}
-	.ui-button-icon-primary {
-		left: .5em;
-	}
-	.ui-button-icon-secondary {
-		right: .5em;
-		right: .5em;
-	}
-}
-button.ui-button-icons-only {
-	width: 3.7em;
-}
-.ui-button-text-only {
-	.ui-button-text {
-		padding: .4em 1em;
-	}
-}
-.ui-button-text-icon-primary {
-	.ui-button-text {
-		padding: .4em 1em .4em 2.1em;
-	}
-	.ui-button-icon-primary {
-		left: .5em;
-	}
-}
-.ui-button-text-icons {
-	.ui-button-text {
-		padding-left: 2.1em;
-		padding-right: 2.1em;
-		padding: .4em 1em .4em 2.1em;
-		padding: .4em 2.1em .4em 1em;
-	}
-	.ui-button-icon-primary {
-		left: .5em;
-	}
-	.ui-button-icon-secondary {
-		right: .5em;
-		right: .5em;
-	}
-}
-.ui-button-text-icon-secondary {
-	.ui-button-text {
-		padding: .4em 2.1em .4em 1em;
-	}
-	.ui-button-icon-secondary {
-		right: .5em;
-	}
-}
-input.ui-button {
-	padding: .4em 1em;
-}
-.ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon  {
-	margin-top: -8px;
-	position: absolute;
-	top: 50%;
-}
-.ui-buttonset {
-	margin-right: 7px;
-	.ui-button {
-		margin-left: 0;
-		margin-right: -.3em;
-	}
-}
-button.ui-button {
-	&::-moz-focus-inner {
-		border: 0;
-		padding: 0;
-	}
-}
-.ui-dialog {
-	overflow: hidden;
-	padding: .2em;
-	position: absolute;
-	width: 300px;
-	.ui-dialog-titlebar {
-		padding: .4em 1em;
-		position: relative;
-	}
-	.ui-dialog-title {
-		float: left;
-		margin: .1em 16px .1em 0;
-	}
-	.ui-dialog-titlebar-close {
-		height: 18px;
-		margin: -10px 0 0 0;
-		padding: 1px;
-		position: absolute;
-		right: .3em;
-		top: 50%;
-		width: 1@width21;
-		span {
-			display: block;
-			margin: 1px;
-		}
-		&:hover {
-			padding: 0;
-		}
-		&:focus {
-			padding: 0;
-		}
-	}
-	.ui-dialog-content {
-		background: none;
-		border: 0;
-		overflow: auto;
-		padding: .5em 1em;
-		position: relative;
-		zoom: 1;
-	}
-	.ui-dialog-buttonpane {
-		background-image: none;
-		border-width: 1px 0 0 0;
-		margin: .5em 0 0 0;
-		padding: .3em 1em .5em .4em;
-		text-align: left;
-		.ui-dialog-buttonset {
-			float: right;
-		}
-		button {
-			cursor: pointer;
-			margin: .5em .4em .5em 0;
-		}
-	}
-	.ui-resizable-se {
-		bottom: 3px;
-		height: 14px;
-		right: 3px;
-		width: 14px;
-	}
-}
-.ui-draggable {
-	.ui-dialog-titlebar {
-		cursor: move;
-	}
 }
 .ui-slider {
 	position: relative;
@@ -1252,7 +986,7 @@ button.ui-button {
 		top: -.3em;
 	}
 	.ui-slider-range {
-		height: @height5;
+		height: @height6;
 		top: 0;
 	}
 	.ui-slider-range-min {
@@ -1272,73 +1006,13 @@ button.ui-button {
 	}
 	.ui-slider-range {
 		left: 0;
-		width: @width15;
+		width: @width4;
 	}
 	.ui-slider-range-min {
 		bottom: 0;
 	}
 	.ui-slider-range-max {
 		top: 0;
-	}
-}
-.ui-tabs {
-	padding: .2em;
-	position: relative;
-	zoom: 1;
-	.ui-tabs-nav {
-		margin: 0;
-		padding: .2em .2em 0;
-		li {
-			border-bottom: 0 !important;
-			float: left;
-			list-style: none;
-			margin: 0 .2em 1px 0;
-			padding: 0;
-			position: relative;
-			top: 1px;
-			white-space: nowrap;
-			a {
-				cursor: pointer;
-				float: left;
-				padding: .5em 1em;
-				text-decoration: none;
-			}
-		}
-		li.ui-tabs-selected {
-			margin-bottom: 0;
-			padding-bottom: 1px;
-			a {
-				cursor: text;
-			}
-		}
-		li.ui-state-disabled {
-			a {
-				cursor: text;
-			}
-		}
-		li.ui-state-processing {
-			a {
-				cursor: text;
-			}
-		}
-	}
-	.ui-tabs-panel {
-		background: none;
-		border-width: 0;
-		display: block;
-		padding: 1em 1.4em;
-	}
-	.ui-tabs-hide {
-		display: none !important;
-	}
-}
-.ui-tabs.ui-tabs-collapsible {
-	.ui-tabs-nav {
-		li.ui-tabs-selected {
-			a {
-				cursor: pointer;
-			}
-		}
 	}
 }
 .ui-datepicker {
@@ -1354,7 +1028,7 @@ button.ui-button {
 		left:2px;
 		position:absolute;
 		top: 2px;
-		width: @width7;
+		width: @width1;
 		span {
 			display: block;
 			left: 50%;
@@ -1369,7 +1043,7 @@ button.ui-button {
 		position:absolute;
 		right:2px;
 		top: 2px;
-		width: @width7;
+		width: @width1;
 		span {
 			display: block;
 			left: 50%;
@@ -1397,19 +1071,19 @@ button.ui-button {
 		}
 	}
 	select.ui-datepicker-month-year {
-		width: @width15;
+		width: @width4;
 	}
 	select.ui-datepicker-month {
-		width: @width19;
+		width: @width12;
 	}
 	select.ui-datepicker-year {
-		width: @width19;
+		width: @width12;
 	}
 	table {
 		border-collapse: collapse;
 		font-size: @font-size-small;
 		margin:0 0 .4em;
-		width: @width15;
+		width: @width4;
 	}
 	th {
 		border: 0;
@@ -1496,7 +1170,7 @@ button.ui-button {
 .ui-datepicker-row-break {
 	clear:both;
 	font-size:0em;
-	width:@width15;
+	width:@width4;
 }
 .ui-datepicker-rtl {
 	direction: rtl;
@@ -1542,6 +1216,8 @@ button.ui-button {
 	}
 }
 .ui-datepicker-cover {
+	display: block;
+	display: none;
 	filter: mask();
 	height: 200px;
 	left: -4px;
@@ -1549,13 +1225,4 @@ button.ui-button {
 	top: -4px;
 	width: 200px;
 	z-index: -1;
-}
-.ui-progressbar {
-	height:2em;
-	overflow: hidden;
-	text-align: left;
-	.ui-progressbar-value {
-		height:@height5;
-		margin: -1px;
-	}
 }

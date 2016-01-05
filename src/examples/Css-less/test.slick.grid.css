@@ -1,3 +1,10 @@
+/**
+ * These are the variables used throughout the application. This is where
+ * overwrites that are not specific to components should be maintained.
+ */
+/**
+ * Typography-related.
+ */
 .slick-header.ui-state-default {
   border-left: 0px;
   overflow: hidden;
@@ -1533,11 +1540,3 @@ input.editor-text {
   font-family: 'Roboto', 'Open Sans', sans-serif;
   font-size: 10px;
 }
-/**
- * These are the variables used throughout the application. This is where
- * overwrites that are not specific to components should be maintained.
- */
-/**
- * Typography-related.
- */
-/*overide the bootstrap font path*/

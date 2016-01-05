@@ -1,4 +1,6 @@
-﻿// Color variables (appears count calculates by raw css)
+﻿//@import (less) 'variables.less';
+
+// Color variables (appears count calculates by raw css)
 @color0: #bfbdbd; // Appears 4 times
 
 
@@ -25,7 +27,9 @@
     padding: 4px;
     position: absolute;
     z-index: 100000;
+ 
     button {
+       
         background-color: White;
         border: 1px solid @color0;
         margin: 4px 4px 4px 0;
@@ -34,7 +38,7 @@
     }
     .filter {
         border: 1px solid @color0;
-        font-size: @font-size-xsmall;
+      
         height: 400px;
         margin-top: 6px;
         overflow: scroll;

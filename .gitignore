@@ -6,3 +6,18 @@ bower_components
 dist
 /src/plugins/*.map
 jquery-ui-1.11.4.custom
+/src/less/not used/plugins-excel-style.less
+/src/less/not used/plugins-gdoc-style.less
+/src/less/not used/slick-checkboxselectcolumn.less
+/src/less/not used/slick-default-theme.less
+/src/less/not used/slick-editors.less
+/src/less/not used/slick-formatter.less
+/src/less/not used/slick-headerbuttons.less
+/src/less/not used/slick-headermenu.less
+/src/less/not used/slick-validationtooltips.less
+/src/less/not used/slick.config.default-theme.less
+/src/less/not used/slick.config.less
+/src/less/not used/slick.grid.less
+/src/less/not used/slick.headerbutton.less
+/src/less/not used/slick.headerbuttons.less
+/src/less/not used/slick.headermenu.less

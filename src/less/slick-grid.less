@@ -1,35 +1,18 @@
-
+//@import (less) 'variables.less';
 // Width variables (appears count calculates by raw css)
+@width0: 100%; // Appears 4 times
 
-@import (less) "slick.less.macros.less";
-@import (less) "jqueryuiOverrides.less";
-@import (less) "slick-checkboxselectcolumn.less";
-@import (less) "slick-editors.less";
-@import (less) "slick-formatter.less";
-
-@import (less) "slick-headerbuttons.less";
-@import (less) "slick-headermenu.less";
-@import (less) "slick-validationtooltips.less";
-@import (less) "plugins-common.less";
-@import (less) "plugins-excel-style.less";
-@import (less) "slick.columnpicker.less";
-@import (less) "slick.pager.less";
-
-@import (less) "slick.config.less";
-/*overide the bootstrap font path*/
-
-@width1: 100%; // Appears 6 times
 
 
 .slick-header.ui-state-default {
 	border-left: 0px;
 	overflow: hidden;
-	width: @width1;
+	width: @width0;
 }
 .slick-headerrow.ui-state-default {
 	border-left: 0px;
 	overflow: hidden;
-	width: @width1;
+	width: @width0;
 }
 .slick-header-columns {
 	cursor: default;
@@ -89,26 +72,22 @@
 	top: 0;
 	width: 4px;
 }
-.slick-resizable-handle-hover {
-	background-color: #cccccc;
-}
 .slick-sortable-placeholder {
 	background: silver;
 }
 .grid-canvas {
 	outline: 0;
-	overflow: hidden;
 	position: relative;
 }
 .slick-row.ui-widget-content {
 	border: 0px;
 	position: absolute;
-	width: @width1;
+	width: @width0;
 }
 .slick-row.ui-state-active {
 	border: 0px;
 	position: absolute;
-	width: @width1;
+	width: @width0;
 }
 .slick-cell {
 	-o-text-overflow: ellipsis;
@@ -170,13 +149,13 @@
 	background: blue;
 	cursor: move;
 	display: inline-block;
-
+	filter:Alpha(Opacity=15);
 	opacity: 0.15;
 }
 .slick-reorder-guide {
 	background: blue;
 	display: inline-block;
-
+	filter:alpha(opacity=70);
 	height: 2px;
 	opacity: 0.7;
 }
@@ -184,33 +163,4 @@
 	border: 2px dashed black;
 	position: absolute;
 	z-index: 10;
-}
-.slick-pane {
-	outline: 0;
-	overflow: hidden;
-	position: absolute;
-	width: @width1;
-}
-.slick-pane-header {
-	display: block;
-}
-.slick-header {
-	overflow: hidden;
-	position: relative;
-}
-.slick-headerrow {
-	overflow: hidden;
-	position: relative;
-}
-.slick-top-panel-scroller {
-	overflow: hidden;
-	position: relative;
-}
-.slick-top-panel {
-	width:10000px;
-}
-.slick-viewport {
-	outline: 0;
-	position: relative;
-	width: @width1;
 }
