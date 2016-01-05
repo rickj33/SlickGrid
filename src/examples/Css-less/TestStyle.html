@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Test Styles</title>
+  <link rel="stylesheet" href="./test.slick.grid.css" type="text/css"/>
+
+</head>
+<body>
+<table width="100%">
+  <tr>
+    <td valign="top" width="50%">
+      <div id="myGrid" style="width:600px;height:500px;"></div>
+    </td>
+    <td valign="top">
+      <h2>Demonstrates:</h2>
+      <ul>
+        <li>basic grid with minimal configuration</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/jquery.event.drag.js"></script>
+
+<script src="../slick.core.js"></script>
+<script src="../slick.grid.js"></script>
+<script src="../slick.dataview.js"></script>
+<script src="../plugins/slick.checkboxSelectColumn.js"></script>
+<script src="../plugins/slick.rowSelectionModel.js"></script>
+<script src="../plugins/slick.cellexternalcopymanager.js"></script>
+<script src="./mockCountyWorkspaceSelectionData.js"></script>
+
+<script>
+  var grid;
+
+    var columns = [{
+    'propertyId': 14,
+    'name': 'State',
+    'field': '14'
+  }, {
+    'propertyId': 8,
+    'name': 'County',
+    'field': '8'
+  }, {
+    'propertyId': 9,
+    'name': 'Value',
+    'field': '9'
+  }, {
+    'propertyId': 1,
+    'name': 'Key',
+    'field': '1'
+  }];
+
+  var options = {
+    enableCellNavigation: true,
+    enableColumnReorder: false
+  };
+
+
+var createFakeGridControl = function(gridCreateData)  {
+  var gridData = gridCreateData.data;
+  var columns = gridCreateData.columns;
+  var options = gridCreateData.options;
+  var grid = new Slick.Grid(gridCreateData.container, gridData, columns, options);
+  grid.setSelectionModel(new Slick.RowSelectionModel({selectActiveRow: false}));
+  return grid;
+};
+
+  $(function () {
+
+ 	var dataView = new Slick.Data.DataView();
+    dataView.setItems(mockCountyWorkspaceSelectionData.data);
+
+  gridCreateOptions = {
+      data: dataView,
+      columns: columns,
+      options: {},
+      container: document.createElement('div')
+    };
+
+
+     grid = createFakeGridControl(gridCreateOptions);
+
+    
+  })
+</script>
+</body>
+</html>
