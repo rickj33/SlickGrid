@@ -12,6 +12,7 @@
         var _canvas;
         var _ranges = [];
         var _self = this;
+         var _destroyed = false;
         var _handler = new Slick.EventHandler();
         var _inHandler;
         var _selector = new Slick.CellRangeSelector({
@@ -41,8 +42,11 @@
         }
 
         function destroy() {
+              if (!_destroyed){
+            _destroyed = true;
             _handler.unsubscribeAll();
             _grid.unregisterPlugin(_selector);
+        }
         }
 
         function wrapHandler(handler) {

@@ -16,6 +16,7 @@
     function HeaderFilter(options) {
         var grid;
         var self = this;
+        var _destroyed =false;
         var handler = new Slick.EventHandler();
         var defaults = {
             buttonImage: "../images/down.png",
@@ -53,8 +54,18 @@
         }
 
         function destroy() {
+            if(!_destroyed){
+            _destroyed = true;
             handler.unsubscribeAll();
+            handler = null;
+            grid = null;
+            self.onCommand.unsubscribeAll();
+            self.onFilterApplied.unsubscribeAll();
+
+            self.onCommand = null;
+            self.onFilterApplied = null;
             $(document.body).unbind("mousedown", handleBodyMouseDown);
+        }
         }
 
         function isValue(val) {

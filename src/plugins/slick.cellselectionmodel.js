@@ -12,6 +12,7 @@
     var _canvas;
     var _ranges = [];
     var _self = this;
+      var _destroyed = false;
     var _selector = new Slick.CellRangeSelector({
       "selectionCss": {
         "border": "2px solid black"
@@ -35,11 +36,14 @@
     }
 
     function destroy() {
+        if (!_destroyed){
+            _destroyed = true;
       _grid.onActiveCellChanged.unsubscribe(handleActiveCellChange);
       _grid.onKeyDown.unsubscribe(handleKeyDown);
       _selector.onCellRangeSelected.unsubscribe(handleCellRangeSelected);
       _selector.onBeforeCellRangeSelected.unsubscribe(handleBeforeCellRangeSelected);
       _grid.unregisterPlugin(_selector);
+    }
     }
 
     function removeInvalidRanges(ranges) {

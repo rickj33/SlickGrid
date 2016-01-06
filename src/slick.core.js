@@ -91,6 +91,10 @@
       handlers.push(fn);
     };
 
+    this.unsubscribeAll = function () {
+      handlers.length = 0;
+    };
+
     /***
      * Removes an event handler added with <code>subscribe(fn)</code>.
      * @method unsubscribe
@@ -99,6 +103,7 @@
     this.unsubscribe = function (fn) {
       for (var i = handlers.length - 1; i >= 0; i--) {
         if (handlers[i] === fn) {
+          //The splice() method adds/removes items to/from an array
           handlers.splice(i, 1);
         }
       }

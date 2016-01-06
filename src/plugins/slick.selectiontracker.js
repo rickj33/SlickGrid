@@ -7,6 +7,7 @@
 
   function SelectionTracker(options) {
     //noinspection JSUnusedLocalSymbols
+      var _destroyed = false;
     var
       self = this,
       _grid,
@@ -16,6 +17,7 @@
       _handler = new Slick.EventHandler(),
       _selectionChanged = new Slick.Event(),
       _selection = [],
+
       _identities = null,
       _defaults = {
         idMember: "id",
@@ -40,7 +42,10 @@
     }
 
     function destroy() {
+        if (!_destroyed){
+            _destroyed = true;
       _handler.unsubscribeAll();
+    }
     }
 
     //noinspection JSUnusedLocalSymbols

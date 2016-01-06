@@ -13,6 +13,7 @@
     var _$activeCanvas;
     var _dragging;
     var _decorator;
+       var _destroyed = false;
     var _self = this;
     var _handler = new Slick.EventHandler();
     var _defaults = {
@@ -40,7 +41,10 @@
     }
 
     function destroy() {
+        if (!_destroyed){
+            _destroyed = true;
       _handler.unsubscribeAll();
+    }
     }
 
     function handleDragInit(e, dd) {

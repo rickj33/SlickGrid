@@ -13,6 +13,7 @@
     var _handler = new Slick.EventHandler();
     var _inHandler;
     var _options;
+     var _destroyed = false;
     var _defaults = {
       selectActiveRow: true
     };
@@ -29,7 +30,10 @@
     }
 
     function destroy() {
+        if (!_destroyed){
+            _destroyed = true;
       _handler.unsubscribeAll();
+    }
     }
 
     function wrapHandler(handler) {

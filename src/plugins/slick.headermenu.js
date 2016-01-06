@@ -85,6 +85,7 @@
       buttonCssClass: null,
       buttonImage: null
     };
+      var _destroyed = false;
     var $menu;
     var $activeHeaderColumn;
 
@@ -105,8 +106,11 @@
 
 
     function destroy() {
+        if (!_destroyed){
+            _destroyed = true;
       _handler.unsubscribeAll();
       $(document.body).unbind("mousedown", handleBodyMouseDown);
+    }
     }
 
 

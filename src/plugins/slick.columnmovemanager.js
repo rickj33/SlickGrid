@@ -11,6 +11,7 @@
     var _canvas;
     var _dragging;
     var _self = this;
+      var _destroyed = false;
     var _handler = new Slick.EventHandler();
     var _defaults = {
       cancelEditOnDrag: false
@@ -28,7 +29,10 @@
     }
 
     function destroy() {
+       if (!_destroyed){
+            _destroyed = true;
       _handler.unsubscribeAll();
+    }
     }
 
     function handleDragInit(e, dd) {

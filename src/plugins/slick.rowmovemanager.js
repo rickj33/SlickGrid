@@ -14,6 +14,7 @@
         var _viewport;
         var _viewportTop;
         var _viewportBottom;
+         var _destroyed = false;
     var _self = this;
     var _handler = new Slick.EventHandler();
     var _defaults = {
@@ -36,7 +37,10 @@
     }
 
     function destroy() {
+        if (!_destroyed){
+            _destroyed = true;
       _handler.unsubscribeAll();
+    }
     }
 
     function handleDragInit(e, dd) {

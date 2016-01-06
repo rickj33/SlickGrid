@@ -13,9 +13,10 @@
    * @param {boolean} [options.enableForHeaderCells=false] - Enable tooltip for header cells
    * @param {number}  [options.maxToolTipLength=null]      - The maximum length for a tooltip
    */
-  function AutoTooltips(options) {
+   function AutoTooltips(options) {
     var _grid;
     var _self = this;
+    var _destroyed = false;
     var _defaults = {
       enableForCells: true,
       enableForHeaderCells: false,
@@ -25,7 +26,7 @@
     /**
      * Initialize plugin.
      */
-    function init(grid) {
+     function init(grid) {
       options = $.extend(true, {}, _defaults, options);
       _grid = grid;
       if (options.enableForCells) _grid.onMouseEnter.subscribe(handleMouseEnter);
@@ -35,16 +36,19 @@
     /**
      * Destroy plugin.
      */
-    function destroy() {
-      if (options.enableForCells) _grid.onMouseEnter.unsubscribe(handleMouseEnter);
-      if (options.enableForHeaderCells) _grid.onHeaderMouseEnter.unsubscribe(handleHeaderMouseEnter);
+     function destroy() {
+       if (!_destroyed){
+        _destroyed = true;
+        if (options.enableForCells) _grid.onMouseEnter.unsubscribe(handleMouseEnter);
+        if (options.enableForHeaderCells) _grid.onHeaderMouseEnter.unsubscribe(handleHeaderMouseEnter);
+      }
     }
     
     /**
      * Handle mouse entering grid cell to add/remove tooltip.
      * @param {jQuery.Event} e - The event
      */
-    function handleMouseEnter(e) {
+     function handleMouseEnter(e) {
       var cell = _grid.getCellFromEvent(e);
       if (cell) {
         var $node = $(_grid.getCellNode(cell.row, cell.cell));
@@ -66,9 +70,9 @@
      * @param {jQuery.Event} e     - The event
      * @param {object} args.column - The column definition
      */
-    function handleHeaderMouseEnter(e, args) {
+     function handleHeaderMouseEnter(e, args) {
       var column = args.column,
-          $node = $(e.target).closest(".slick-header-column");
+      $node = $(e.target).closest(".slick-header-column");
       if (!column.toolTip) {
         $node.attr("title", ($node.innerWidth() < $node[0].scrollWidth) ? column.name : "");
       }

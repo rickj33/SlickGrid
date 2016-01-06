@@ -12,6 +12,7 @@
     var _self = this;
     var _handler = new Slick.EventHandler();
     var _selectedRowsLookup = {};
+      var _destroyed = false;
     var _defaults = {
       columnId: "_checkbox_selector",
       cssClass: null,
@@ -31,7 +32,10 @@
     }
 
     function destroy() {
+       if (!_destroyed){
+            _destroyed = true;
       _handler.unsubscribeAll();
+    }
     }
 
     function handleSelectedRowsChanged(e, args) {

@@ -18,7 +18,7 @@
         var self = this;
         var handler = new Slick.EventHandler();
         var dragDecorator;
-
+        var _destroyed = false;
         var defaults = {
             buttonCssClass: null,
             buttonImage: "../images/down.gif",
@@ -42,10 +42,13 @@
         }
 
         function destroy() {
+             if (!_destroyed){
+            _destroyed = true;
             handler.unsubscribeAll();
             selectionOverlay.$handle.unbind("dragstart", handleOverlayDragStart)
                                     .unbind("drag", handleOverlayDrag)
                                     .unbind("dragend", handleOverlayDragEnd);
+                                }
         }
 
         function createRowHeaderOverlay(zIndex) {
