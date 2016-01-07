@@ -11,20 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/ext.headerfilter.js" afterPath="$PROJECT_DIR$/src/plugins/ext.headerfilter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/ext.overlays.js" afterPath="$PROJECT_DIR$/src/plugins/ext.overlays.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.autotooltips.js" afterPath="$PROJECT_DIR$/src/plugins/slick.autotooltips.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.cellrangeselector.js" afterPath="$PROJECT_DIR$/src/plugins/slick.cellrangeselector.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.cellrowcolselectionmodel.js" afterPath="$PROJECT_DIR$/src/plugins/slick.cellrowcolselectionmodel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.cellselectionmodel.js" afterPath="$PROJECT_DIR$/src/plugins/slick.cellselectionmodel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.checkboxselectcolumn.js" afterPath="$PROJECT_DIR$/src/plugins/slick.checkboxselectcolumn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.columnmovemanager.js" afterPath="$PROJECT_DIR$/src/plugins/slick.columnmovemanager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.headermenu.js" afterPath="$PROJECT_DIR$/src/plugins/slick.headermenu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.rowmovemanager.js" afterPath="$PROJECT_DIR$/src/plugins/slick.rowmovemanager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.rowselectionmodel.js" afterPath="$PROJECT_DIR$/src/plugins/slick.rowselectionmodel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.selectiontracker.js" afterPath="$PROJECT_DIR$/src/plugins/slick.selectiontracker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.core.js" afterPath="$PROJECT_DIR$/src/slick.core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.dataview.js" afterPath="$PROJECT_DIR$/src/slick.dataview.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/slick-editors.less" afterPath="$PROJECT_DIR$/src/less/slick-editors.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/slick-grid.less" afterPath="$PROJECT_DIR$/src/less/slick-grid.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.grid.js" afterPath="$PROJECT_DIR$/src/slick.grid.js" />
     </list>
     <ignored path="SlickGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,28 +34,7 @@
     <favorites_list name="SlickGrid" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ext.headerfilter.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/plugins/ext.headerfilter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18922019">
-              <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="slick.core.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/slick.core.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="93" column="23" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -80,7 +49,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/examples/example-excel-clipboard-paste.html" />
         <option value="$PROJECT_DIR$/plugins/slick.cellexternalcopymanager.js" />
         <option value="$PROJECT_DIR$/src/plugins/slick.formulacalculator.js" />
         <option value="$PROJECT_DIR$/src/css/jquery-ui-1.8.16.custom.css" />
@@ -125,12 +93,13 @@
         <option value="$PROJECT_DIR$/src/examples/Css-less/slick-grid.less" />
         <option value="$PROJECT_DIR$/src/examples/Css-less/main.less" />
         <option value="$PROJECT_DIR$/src/examples/Css-less/factlookstyle.less" />
-        <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/src/slick.dataview.js" />
-        <option value="$PROJECT_DIR$/src/slick.grid.js" />
         <option value="$PROJECT_DIR$/src/examples/Css-less/TestStyle.html" />
         <option value="$PROJECT_DIR$/src/slick.core.js" />
         <option value="$PROJECT_DIR$/src/plugins/ext.headerfilter.js" />
+        <option value="$PROJECT_DIR$/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/src/less/slick-grid.less" />
+        <option value="$PROJECT_DIR$/src/slick.grid.js" />
       </list>
     </option>
   </component>
@@ -204,8 +173,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -270,12 +237,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
+              <option name="myItemId" value="less" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -337,10 +306,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="1154" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="1154" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -380,6 +349,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/plugins/ext.headerfilter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="93" column="23" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugins/ext.headerfilter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -607,13 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="215" column="41" selection-start-line="215" selection-start-column="41" selection-end-line="215" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/examples/Css-less/TestStyle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -621,40 +599,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16055046">
-          <caret line="3603" column="26" selection-start-line="3603" selection-start-column="13" selection-end-line="3603" selection-end-column="26" />
-          <folding>
-            <marker date="1452020480978" expanded="true" signature="18880:18935" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="20342:20354" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="20481:20493" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="20965:21021" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="21198:21254" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="22156:22169" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="22268:22281" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="29171:29262" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="34009:34021" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="58794:58811" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="59470:59487" placeholder="..." />
-            <marker date="1452020480978" expanded="true" signature="76959:77010" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/slick.dataview.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.017201835">
           <caret line="954" column="17" selection-start-line="954" selection-start-column="17" selection-end-line="954" selection-end-column="17" />
-          <folding>
-            <marker date="1452019125000" expanded="true" signature="9877:9947" placeholder="/** @deprecated Please use {@link setGrouping}. ...*/" />
-            <marker date="1452019125000" expanded="true" signature="10337:10407" placeholder="/** @deprecated Please use {@link setGrouping}. ...*/" />
-            <marker date="1452019125000" expanded="true" signature="14746:14864" placeholder="/** @param level {Number} Optional level to collapse.  If not specified, applies to all levels. ...*/" />
-            <marker date="1452019125000" expanded="true" signature="14986:15102" placeholder="/** @param level {Number} Optional level to expand.  If not specified, applies to all levels. ...*/" />
-            <marker date="1452019125000" expanded="true" signature="15432:15758" placeholder="/** @param varArgs Either a Slick.Group's &quot;groupingKey&quot; property, or a ...*/" />
-            <marker date="1452019125000" expanded="true" signature="16241:16563" placeholder="/** @param varArgs Either a Slick.Group's &quot;groupingKey&quot; property, or a ...*/" />
-            <marker date="1452019125000" expanded="true" signature="32668:33803" placeholder="/**function syncGridSelection(grid, preserveHidden) { ...*/" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -680,9 +628,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/slick-grid.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5625">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/slick.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4045077">
+          <caret line="1025" column="63" selection-start-line="1025" selection-start-column="63" selection-end-line="1025" selection-end-column="63" />
+          <folding>
+            <marker date="1452130103692" expanded="true" signature="18913:18968" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="20375:20387" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="20514:20526" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="20998:21054" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="21231:21287" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="22189:22202" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="22301:22314" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="29204:29295" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="34042:34054" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="59166:59183" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="59842:59859" placeholder="..." />
+            <marker date="1452130103692" expanded="true" signature="77331:77382" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35231316">
+          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+          <folding>
+            <element signature="e#1721#2928#0" expanded="false" />
+            <element signature="e#2949#3128#0" expanded="false" />
+            <element signature="e#3146#3390#0" expanded="false" />
+            <element signature="e#3406#3635#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugins/ext.headerfilter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18922019">
+        <state vertical-scroll-proportion="0.22133027">
           <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
           <folding />
         </state>
