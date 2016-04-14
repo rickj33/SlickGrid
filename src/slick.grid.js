@@ -563,7 +563,7 @@ if ( typeof Slick === "undefined" )
         }
         $headerScroller
             .bind( "contextmenu", handleHeaderContextMenu )
-            .fixClick( handleHeaderClick )
+            .bind("click", handleHeaderClick)
             .delegate( ".slick-header-column", "mouseenter", handleHeaderMouseEnter )
             .delegate( ".slick-header-column", "mouseleave", handleHeaderMouseLeave );
         $headerRowScroller
@@ -572,7 +572,7 @@ if ( typeof Slick === "undefined" )
                   .bind( "keydown", handleKeyDown );
         $canvas
             .bind( "keydown", handleKeyDown )
-            .fixClick( handleClick, handleDblClick )
+            .bind("click", handleClick)
             .bind( "contextmenu", handleContextMenu )
             .bind( "draginit", handleDragInit )
             .bind( "dragstart", {distance: 3}, handleDragStart )

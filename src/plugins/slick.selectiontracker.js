@@ -37,7 +37,7 @@
 
       if (_loader) {
         _handler.subscribe(_loader.onDataLoaded, handleLoaderDataLoaded);
-        setSelection(_.pluck(_loader.data, _options.idMember));
+        setSelection(_.map(_loader.data, _options.idMember));
       }
     }
 
@@ -60,7 +60,7 @@
       if (args.deletes && args.deletes.length) {
         if (_options.useIdentities){
           idents = _loader.getIdentities();
-          _.each(args.deletes, function(row) {
+          _.forEach(args.deletes, function(row) {
             id = idents[row];
             idx = _selection.indexOf(id);
             if (idx > -1) {
@@ -73,7 +73,7 @@
           if (args.deletes.length >= PAGE_SIZE) {
             deletedIDs = 'page';
           } else {
-            _.each(args.deletes, function(row) {
+            _.forEach(args.deletes, function(row) {
               id = gridData[row][_options.idMember];
               idx = _selection.indexOf(id);
               if (idx > -1) {
@@ -87,7 +87,7 @@
       else if (args.selection && args.selection.length) {
         if (_options.useIdentities) {
           idents = _loader.getIdentities();
-          _.each(args.selection, function(row) {
+          _.forEach(args.selection, function(row) {
             id = idents[row];
             addedIDs.push(idents[row]);
             idx = _selection.indexOf(id);
@@ -101,7 +101,7 @@
           if (args.selection.length >= PAGE_SIZE) {
             addedIDs = 'page';
           } else {
-            _.each(args.selection, function(row) {
+            _.forEach(args.selection, function(row) {
               id = gridData[row][_options.idMember];
               idx = _selection.indexOf(id);
               if (idx == -1) {
@@ -138,7 +138,7 @@
         d = _grid.getData(), id,
         selectedRows = [];
 
-      _.each(d, function(v, k) {
+      _.forEach(d, function(v, k) {
         if (!v) return;
         id = v[options.idMember];
         if (id && _selection.indexOf(id) > -1) {

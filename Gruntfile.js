@@ -173,7 +173,6 @@ module.exports = function (grunt) {
               'controls/*.js',
               'controls/*.css',
               'plugins/*.js',
-              'plugins/*.css',
               'less/*.less',
               'images/**'
             ],
@@ -245,9 +244,14 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,       // `mkdir -p` equivalent
-            cwd: 'src/',
+            cwd: '.',
             src: [
-              'lib/*.js'
+              'node_modules/jquery/dist/jquery.min.js',
+              'node_modules/jquery.event.drag/event.drag.js',
+              'node_modules/jquery-mousewheel/jquery.mousewheel.js',
+              'bower_components/jquery-ui/jquery-ui.min.js',
+              'node_modules/spectrum/lib/spectrum.js',
+              'node_modules/lodash/lodash.min.js',
             ],
 
             flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
@@ -256,7 +260,7 @@ module.exports = function (grunt) {
           }
         ]
       },
-       bowerlibPlugins: {
+      /* bowerlibPlugins: {
         files: [
           {
             expand: true,       // `mkdir -p` equivalent
@@ -270,8 +274,8 @@ module.exports = function (grunt) {
             filter: 'isFile'
           }
         ]
-      },
-      bowerlib: {
+      },*/
+   /*   bowerlib: {
         files: [
           {
             expand: true,       // `mkdir -p` equivalent
@@ -296,7 +300,7 @@ module.exports = function (grunt) {
             filter: 'isFile'
           }
         ]
-      },
+      },*/
 
       images: {
         files: [
@@ -351,7 +355,7 @@ module.exports = function (grunt) {
   // Preparation task: synchronize the libraries (lib/*) from the submodules.
   grunt.registerTask('deploy', ['compile','copy:app_files', 'copy:cssFiles', 'copy:images']);
 
-  grunt.registerTask('libsync', ['copy:libsync','copy:bowerlib','copy:bowerlibPlugins']);
+  grunt.registerTask('libsync', ['copy:libsync']);
 
   // Preparation (compile) task.
   grunt.registerTask('compile', ['clean', 'libsync', 'less']);

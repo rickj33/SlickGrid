@@ -184,7 +184,7 @@
             var filterOptions = "<label><input type='checkbox' value='-1' />(" + options.messages.selectAll + ")</label>";
 
             for (var i = 0; i < filterItems.length; i++) {
-                var filtered = _.contains(workingFilters, filterItems[i].value);
+                var filtered = _.includes(workingFilters, filterItems[i].value);
 
                 filterOptions += "<label><input type='checkbox' value='" + i + "'" +
                                 (filtered ? " checked='checked'" : "") +
@@ -240,7 +240,7 @@
                 // Select All
                 if ($checkbox.prop("checked")) {
                     $(":checkbox", $filter).prop("checked", true);
-                    workingFilters = _.pluck(filterItems.slice(0), "value");
+                    workingFilters = _.map(filterItems.slice(0), "value");
                 } else {
                     $(":checkbox", $filter).prop("checked", false);
                     workingFilters.length = 0;
@@ -311,7 +311,7 @@
             for (var i = 0; i < dataView.getLength() ; i++) {
                 var v = sanitizeFilterValue(dataView.getItem(i)[columnDef.field], columnDef);
 
-                if (!_.contains(seen, v.value)) {
+                if (!_.includes(seen, v.value)) {
                     seen.push(v.value);
                     items.push(v);
                 }
@@ -327,7 +327,7 @@
             for (var i = 0; i < data.length; i++) {
                 var v = sanitizeFilterValue(data[i][columnDef.field], columnDef);
 
-                if (!_.contains(seen, v.value)) {
+                if (!_.includes(seen, v.value)) {
                     seen.push(v.value);
                     items.push(v);
                 }
