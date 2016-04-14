@@ -1,0 +1,37 @@
+// Width variables (appears count calculates by raw css)
+@width0: 15px; // Appears 2 times
+
+
+.slick-column-name {
+  display: inline-block;
+  float: left;
+  margin-bottom: 100px;
+}
+.slick-sort-indicator {
+  display: inline-block;
+  float: left;
+  margin-bottom: 100px;
+}
+.slick-header-button {
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  height: 15px;
+  margin-bottom: 100px;
+  margin: 1px;
+  vertical-align: top;
+  width: @width0;
+}
+.slick-header-button-hidden {
+  -ms-transition: 0.2s width;
+  -webkit-transition: 0.2s width;
+  transition: 0.2s width;
+  width: 0;
+}
+.slick-header-column {
+  &:hover>.slick-header-button {
+    width: @width0;
+  }
+}
