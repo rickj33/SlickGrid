@@ -16,7 +16,7 @@
  *     and do proper cleanup.
  */
 
-// make sure required JavaScript modules are loaded
+// make sure required JavaScript modules are loade
 if ( typeof jQuery === "undefined" )
 {
   throw "SlickGrid requires jquery module to be loaded";
@@ -3725,7 +3725,7 @@ if ( typeof Slick === "undefined" )
         return;
       }
 
-      if ( (activeCell != cell.cell || activeRow != cell.row) && canCellBeActive( cell.row, cell.cell ) )
+      if ( (activeCell != cell.cell || activeRow != cell.row) || canCellBeActive( cell.row, cell.cell ) )
       {
         if ( !getEditorLock().isActive() || getEditorLock().commitCurrentEdit() )
         {
