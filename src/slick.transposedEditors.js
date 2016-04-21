@@ -192,6 +192,7 @@
                 if (!scope.isOpen)
                 {
                     scope.$input.spectrum({
+                        ignoreClickOutEvent : true,
                         color                : scope.defaultValue,
                         clickoutFiresChange  : true,
                         togglePaletteOnly    : true,
