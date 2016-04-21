@@ -132,7 +132,7 @@
             scope.args = args;
             scope.$input = null;
 
-            scope.defaultValue = '';
+            scope.defaultValue = scope.args.item[scope.args.column.field];
             scope.isOpen = false;
             scope.$container = $(scope.args.container);
 
