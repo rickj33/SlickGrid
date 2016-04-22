@@ -2663,7 +2663,9 @@ if ( typeof Slick === "undefined" )
       }
 
       $paneTopL.css( {
-        'top': $paneHeaderL.height(),
+        //since the $panelTopL posistion is relative, then set the top to 0
+        //'top': $paneHeaderL.height(),
+            'top': 0,
         'height': paneTopH
       } );
 
@@ -3237,7 +3239,7 @@ if ( typeof Slick === "undefined" )
         cleanUpAndRenderCells( rendered );
       }
 
-      // render missing rows
+      // render missing row
       renderRows( rendered );
 
       // Render frozen bottom rows
