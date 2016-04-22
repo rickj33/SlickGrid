@@ -3727,6 +3727,7 @@ if ( typeof Slick === "undefined" )
         return;
       }
 
+  //if ( (activeCell != cell.cell || activeRow != cell.row) && canCellBeActive( cell.row, cell.cell ) )
       if ( (activeCell != cell.cell || activeRow != cell.row) || canCellBeActive( cell.row, cell.cell ) )
       {
         if ( !getEditorLock().isActive() || getEditorLock().commitCurrentEdit() )
@@ -4045,7 +4046,7 @@ if ( typeof Slick === "undefined" )
 
         if ( opt_editMode == null )
         {
-          opt_editMode = (activeRow == getDataLength()) || options.autoEdit;
+          opt_editMode = (activeRow == getDataLength())  || options.autoEdit;
         }
 
         if ( options.editable && opt_editMode && isCellPotentiallyEditable( activeRow, activeCell ) )
