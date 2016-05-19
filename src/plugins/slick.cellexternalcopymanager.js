@@ -197,6 +197,12 @@
 
             for ( var i = 0; i < newColumnArray.length; i++ )
             {
+
+            	if(_.trim(newColumnArray[newColumnIndex]) !== "")
+            	{
+
+
+
                 var existingColumnIndex = selectedCell.cell + i;
                 var column = null;
                 if (existingColumnIndex < columns.length)
@@ -229,6 +235,7 @@
                 newColumnIndex++;
                 fieldNameStartValue++
             }
+            }
 
             grid.setColumns( columns );
 
@@ -246,11 +253,15 @@
             for ( var i = 0, len = valueArray.length; i !== len; i++ )
             {
                 var column   = columnArray[i];
+
                 if(skipFirstColumn){
                     column   = columnArray[i + 1];
                 }
 
-                dataObject[column.field] = valueArray[i];
+				if(column) //if we have a valid column.
+				{
+                	dataObject[column.field] = valueArray[i];
+                }
             }
             return dataObject;
         }
@@ -264,11 +275,14 @@
 
             _bodyElement.removeChild( ta );
 
+            var validRowNumber = 0;
             for ( var i = 0; i < clipRows.length; i++ )
             {
-                if (clipRows[i] != "")
+                if (_.trim(clipRows[i]) != "")
                 {
-                    clippedRange[i] = clipRows[i].split( "\t" );
+                	//if the row is blank, then we do not want to the clippedrange[index] to equal i;
+                    clippedRange[validRowNumber] = clipRows[i].split( "\t" );
+                    validRowNumber ++;
                 }
             }
 
