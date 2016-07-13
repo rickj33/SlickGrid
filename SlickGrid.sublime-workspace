@@ -303,6 +303,35 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+			"settings":
+			{
+				"buffer_size": 7333,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "discovery/externalCopyPaste/app.js",
+			"settings":
+			{
+				"buffer_size": 3413,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "{\n\t// exposed jsbeautifier options\n\t\"indent_with_tabs\": false,\n\t\"preserve_newlines\": true,\n\t\"max_preserve_newlines\": 4,\n\t\"space_in_paren\": false,\n\t\"jslint_happy\": false,\n\t\"brace_style\": \"collapse\",\n\t\"keep_array_indentation\": false,\n\t\"keep_function_indentation\": false,\n\t\"eval_code\": false,\n\t\"unescape_strings\": false,\n\t\"break_chained_methods\": false,\n\t\"e4x\": false,\n\t\"wrap_line_length\": 0,\n\n\t// jsformat options\n\t\"format_on_save\": false,\n\t\"format_selection\": true,\n\t\"jsbeautifyrc_files\": false,\n\t\"ignore_sublime_settings\": true,\n\t\"format_on_save_extensions\": [\"js\", \"json\"]\n}\n",
+			"file": "/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 576,
+				"line_ending": "Windows",
+				"read_only": true,
+				"scratch": true
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -317,7 +346,7 @@
 		[
 			[
 				"Package Control: ",
-				"Package Control: List Packages"
+				"Package Control: Install Package"
 			],
 			[
 				"Package Control",
@@ -365,14 +394,21 @@
 	],
 	"file_history":
 	[
+		"/E/code/Factlook/RevampUI/Iteration3/client/package.json",
+		"/E/code/Factlook/RevampUI/Iteration3/client/bower.json",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JSCS-Formatter.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/Default (Windows).sublime-keymap",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JSCS-Formatter/Default (Windows).sublime-keymap",
+		"/D/Users/Rick/GlobalLinitingConfigs/jscs/jscsSettings.json",
+		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JSCS-Formatter/JSCS-Formatter.sublime-settings",
+		"/E/code/Factlook/RevampUI/Iteration3/client/jscsrc.json",
 		"/E/code/Factlook/SlickGrid/package.json",
 		"/E/code/Factlook/SlickGrid/discovery/MetricConfigurationEditior - Copy/example-transpose-providerV2 - Copy.html",
-		"/E/code/Factlook/RevampUI/Iteration3/client/bower.json",
 		"/E/code/Factlook/RevampUI/Iteration3/client/.bowerrc",
 		"/E/code/Factlook/SlickGrid/Gruntfile.js",
 		"/E/code/Factlook/SlickGrid/.bowerrc",
 		"/E/code/Factlook/SlickGrid/bower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/package.json",
 		"/E/code/Factlook/SlickGrid/src/plugins/slick.cellexternalcopymanager.js",
 		"/E/code/Factlook/RevampUI/Iteration3/Bugs-Issues/158/springs-doc from windows excel.txt",
 		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/example-transpose-providerV2 - Copy.html",
@@ -485,14 +521,7 @@
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/slick.grid.js",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/examples/examples.datasource.js",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.grid.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.dataview.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.core.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/mapWizardModel/mapWizardModel.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.dataview.js",
-		"/E/code/Factlook/SlickGrid/dist/slick.dataview.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/dataset/datasetEditor/datasetEditor.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/map.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/map.tpl.html"
+		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.dataview.js"
 	],
 	"find":
 	{
@@ -911,8 +940,100 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2821,
+								2821
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1035.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "discovery/externalCopyPaste/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								593,
+								593
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 576,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								187,
+								195
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
