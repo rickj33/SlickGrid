@@ -11,10 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2a4a0e60-e936-475e-aa0b-cedd594d0b84" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/slick-editors.less" afterPath="$PROJECT_DIR$/src/less/slick-editors.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/less/slick-grid.less" afterPath="$PROJECT_DIR$/src/less/slick-grid.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/slick.grid.js" afterPath="$PROJECT_DIR$/src/slick.grid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discovery/MetricConfigurationEditior - Copy/slickGrid/plugins/slick.cellexternalcopymanager.js" afterPath="$PROJECT_DIR$/Discovery/MetricConfigurationEditior - Copy/slickGrid/plugins/slick.cellexternalcopymanager.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SlickGrid.sublime-workspace" afterPath="$PROJECT_DIR$/SlickGrid.sublime-workspace" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" afterPath="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" />
     </list>
     <ignored path="SlickGrid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +35,20 @@
     <favorites_list name="SlickGrid" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="slick.cellexternalcopymanager.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6458333">
+              <caret line="280" column="55" selection-start-line="280" selection-start-column="55" selection-end-line="280" selection-end-column="55" />
+              <folding>
+                <element signature="e#9449#9939#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -82,7 +96,6 @@
         <option value="$PROJECT_DIR$/src/less/slick.config.less" />
         <option value="$PROJECT_DIR$/src/less/jqueryuiOverrides.less" />
         <option value="$PROJECT_DIR$/dist/plugins/slick.cellexternalcopymanager.js" />
-        <option value="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" />
         <option value="$PROJECT_DIR$/bower_components/jquery.dragdrop/bower.json" />
         <option value="$PROJECT_DIR$/bower_components/jquery.dragdrop/event.drag/jquery.event.drag.js" />
         <option value="$PROJECT_DIR$/src/tests/dog.js" />
@@ -100,6 +113,7 @@
         <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/src/less/slick-grid.less" />
         <option value="$PROJECT_DIR$/src/slick.grid.js" />
+        <option value="$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js" />
       </list>
     </option>
   </component>
@@ -173,6 +187,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,14 +253,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="less" />
+              <option name="myItemId" value="plugins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -306,14 +320,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="1154" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1616" height="1154" extended-state="1" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.225" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13875598" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13793103" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -353,7 +367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -361,7 +374,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="93" column="23" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -369,7 +381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -377,7 +388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="93" column="23" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -392,7 +402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="350" column="28" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -536,27 +545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88495576">
-          <caret line="336" column="0" selection-start-line="336" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/jquery.dragdrop/bower.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/jquery.dragdrop/event.drag/jquery.event.drag.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/slick.extensions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -624,7 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="93" column="23" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -632,7 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.5625">
           <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -640,20 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4045077">
           <caret line="1025" column="63" selection-start-line="1025" selection-start-column="63" selection-end-line="1025" selection-end-column="63" />
-          <folding>
-            <marker date="1452130103692" expanded="true" signature="18913:18968" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="20375:20387" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="20514:20526" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="20998:21054" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="21231:21287" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="22189:22202" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="22301:22314" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="29204:29295" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="34042:34054" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="59166:59183" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="59842:59859" placeholder="..." />
-            <marker date="1452130103692" expanded="true" signature="77331:77382" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -661,12 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35231316">
           <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding>
-            <element signature="e#1721#2928#0" expanded="false" />
-            <element signature="e#2949#3128#0" expanded="false" />
-            <element signature="e#3146#3390#0" expanded="false" />
-            <element signature="e#3406#3635#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -674,7 +640,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22133027">
           <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/slick.cellexternalcopymanager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6458333">
+          <caret line="280" column="55" selection-start-line="280" selection-start-column="55" selection-end-line="280" selection-end-column="55" />
+          <folding>
+            <element signature="e#9449#9939#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

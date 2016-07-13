@@ -29,6 +29,10 @@
   </div>
 
  <!--<script src="../lib/firebugx.js"></script>-->
+<xsl:variable name="Path" select="/root/folder/"></xsl:variable> <!-- Global path variable. -->
+<xsl:variable name="libpath" select="concat($Path, 'myScript.js')"></xsl:variable> <!-- Relative script path variable. -->
+
+<script src="{$myScriptPath}"/> <!-- Attach script. -->
 
   <script src="slickgrid/lib/jquery.js"></script>
   <script src="slickgrid/lib/lodash.js"></script>

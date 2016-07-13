@@ -6,6 +6,19 @@
 module.exports = function (grunt) {
   'use strict';
 
+ var _ = require('lodash');
+  //require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    //  grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('assemble-less');
+
   // Force use of Unix newlines
   grunt.util.linefeed = '\n';
 
@@ -342,9 +355,7 @@ module.exports = function (grunt) {
 
 
   // Load all files starting with `grunt-`
-  require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
-  grunt.loadNpmTasks('assemble-less');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+
 
   grunt.registerTask('updateFactlook', ['deploy','copy:dist_files']);
 
