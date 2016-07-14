@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"error",
+				"errorMessages"
+			],
+			[
+				"parsin",
+				"parsingError"
+			],
+			[
+				"descr",
+				"descriptionElement"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"de",
+				"description"
+			],
+			[
+				"tot",
+				"totalTime"
+			],
+			[
+				"getd",
+				"getDataFromClipboard"
+			],
+			[
+				"handlep",
+				"handlePasteStart"
+			],
+			[
+				"per",
+				"performanceTimes"
+			],
+			[
+				"clip",
+				"clipboardContents"
+			],
+			[
+				"fast",
+				"fastSort\t(datasetEditorModel.js)"
+			],
+			[
+				"parse",
+				"parseResults"
+			],
+			[
+				"test",
+				"testApp"
+			],
+			[
 				"_",
 				"_columns"
 			],
@@ -196,10 +248,6 @@
 				"currentFilter"
 			],
 			[
-				"tot",
-				"totalClipRows"
-			],
-			[
 				"clipp",
 				"clippedRowAdjusted"
 			],
@@ -222,10 +270,6 @@
 			[
 				"write",
 				"writeInGrid"
-			],
-			[
-				"app",
-				"applyValue"
 			],
 			[
 				"rea",
@@ -288,10 +332,6 @@
 				"factlookFeatureSets"
 			],
 			[
-				"test",
-				"testFactlookFeatureSet"
-			],
-			[
 				"a",
 				"addData"
 			],
@@ -303,6 +343,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "discovery/externalCopyPaste/zipFileList.txt",
+			"settings":
+			{
+				"buffer_size": 1018,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -317,7 +365,7 @@
 		[
 			[
 				"Package Control: ",
-				"Package Control: List Packages"
+				"Package Control: Remove Package"
 			],
 			[
 				"Package Control",
@@ -332,9 +380,16 @@
 	},
 	"console":
 	{
-		"height": 321.0,
+		"height": 178.0,
 		"history":
 		[
+			"clear",
+			"cls",
+			"grep -R --include=\"*.sublime-menu\" \"\\\"mnemonic\\\": \\\"w\\\"\"",
+			"Package Control: install package",
+			"PackageResourceViewer: ",
+			"PackageResourceViewer: Open Resource",
+			"PackageResourceViewer: Open Resource:",
 			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
 			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
 			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
@@ -353,10 +408,89 @@
 	"expanded_folders":
 	[
 		"/E/code/Factlook/SlickGrid",
-		"/E/code/Factlook/SlickGrid/src"
+		"/E/code/Factlook/SlickGrid/discovery",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste",
+		"/E/code/Factlook/SlickGrid/src",
+		"/E/code/Factlook/SlickGrid/src/less"
 	],
 	"file_history":
 	[
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.externalPasteManager.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/fastPasteExample.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipFileList.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example/missingColumn.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/malformed.tsv",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/embededLineFeed.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/bootstrap.css",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/app.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/missingColumn.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/sampleParseResult.json",
+		"/E/code/cernySmith/DataExtractionProject/InitalScopeDiscussionNotes-7.14.2016",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/pasteExampleForZipFile.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example/pasteExampleForZipFile.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example/embededLineFeed.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid.css",
+		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/leafletDVF/css/dvf.css",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/HTMLBeautify/HTMLBeautify.sublime-settings",
+		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
+		"/D/Code/ExternalSourceRepo/SlickGridVersions/FactlookSlickGrid/slick.grid.css",
+		"/E/code/Factlook/SlickGrid/src/less/slickgrid_test.less",
+		"/E/code/Factlook/SlickGrid/dist/slick.grid.css",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid - Copy.css",
+		"/D/Temp/example/embededLineFeed.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipExample.bat",
+		"/D/Temp/example/pasteExampleForZipFile.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/geo-lat-longValid.txt",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/app.js",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/Alignment/Default (Windows).sublime-keymap",
+		"/E/code/Factlook/SlickGrid/src/slick.dataview.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/dataset/datasetEditor/datasetEditorModel.js",
+		"/E/code/Factlook/RevampUI/Iteration3/Server/src/CreateClientSideTestMockData/RawDbCollectionJson/ZipCodeGeographiesConfig.json",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/Map/domainMap.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/datasetConfiguration/datasetConfiguration.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/utils/utilities.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/plugins/styleFormatters/barchartStyleFormatter.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/pluginBaseModules/styleFormatters/baseStyleFormatter.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.externalcopymanagerTest.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.cellexternalcopymanagerWithParser.js",
+		"/E/code/Factlook/SlickGrid/src/plugins/slick.cellexternalcopymanager.js",
+		"/E/code/Factlook/SlickGrid/Gruntfile.js",
+		"/E/code/Factlook/SlickGrid/src/ExcelPasteTextEditor.js",
+		"/E/code/Factlook/SlickGrid/EfficientGridJsonResponse.js",
+		"/E/code/Factlook/SlickGrid/output.txt",
+		"/E/code/Factlook/SlickGrid/src/extendedSlickGrid/extendendedSlickGrid.js",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JsFormat.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
+		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JSHint/Main.sublime-menu",
+		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Installed Packages/Automatic Backups.sublime-package",
+		"/E/code/Factlook/RevampUI/Iteration3/client/package.json",
+		"/E/code/Factlook/RevampUI/Iteration3/client/bower.json",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JSCS-Formatter.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/Default (Windows).sublime-keymap",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JSCS-Formatter/Default (Windows).sublime-keymap",
+		"/D/Users/Rick/GlobalLinitingConfigs/jscs/jscsSettings.json",
+		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JSCS-Formatter/JSCS-Formatter.sublime-settings",
+		"/E/code/Factlook/RevampUI/Iteration3/client/jscsrc.json",
+		"/E/code/Factlook/SlickGrid/package.json",
+		"/E/code/Factlook/SlickGrid/discovery/MetricConfigurationEditior - Copy/example-transpose-providerV2 - Copy.html",
+		"/E/code/Factlook/RevampUI/Iteration3/client/.bowerrc",
+		"/E/code/Factlook/SlickGrid/.bowerrc",
+		"/E/code/Factlook/SlickGrid/bower.json",
+		"/E/code/Factlook/RevampUI/Iteration3/Bugs-Issues/158/springs-doc from windows excel.txt",
+		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/example-transpose-providerV2 - Copy.html",
+		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/example-excel-clipboard-paste.html",
+		"/E/code/Factlook/SlickGrid/discovery/MetricConfigurationEditior - Copy/slickGrid/plugins/slick.cellexternalcopymanager.js",
+		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/index.html",
+		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/Color Scheme - Default/MonokaiBlack.tmTheme",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/HighlightWhitespaces/README.md",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/HighlightWhitespaces/highlight_whitespaces.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/highlight_whitespaces.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/Gremlins/Example.sublime-keymap",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/slickgrid-spreadsheet-plugins/examples/example-2-everything.htm",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.grid.js",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/services/apiService/apiService.js",
@@ -377,15 +511,12 @@
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/map/mapSidebar/mapSidebarModel.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/dataset/dataset.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/domain/dataPointCollection/dataPointCollection.js",
-		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
-		"/E/code/Factlook/SlickGrid/src/slick.dataview.js",
 		"/E/code/Factlook/SlickGrid/src/slick.extensions.js",
 		"/E/code/Factlook/SlickGrid/src/slick.editors.js",
 		"/E/code/Factlook/SlickGrid/src/slick.formatters.js",
 		"/E/code/Factlook/SlickGrid/src/slick.core.js",
 		"/E/code/Factlook/SlickGrid/src/less/slick-editors.less",
 		"/E/code/Factlook/SlickGrid/src/less/slick-formatters.less",
-		"/E/code/Factlook/SlickGrid/bower.json",
 		"/E/code/Factlook/SlickGrid/src/less/slick-headermenu.less",
 		"/E/code/Factlook/SlickGrid/src/controls/slick.columnpicker.less",
 		"/E/code/Factlook/SlickGrid/src/controls/slick.pager.less",
@@ -398,7 +529,6 @@
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/slick.formatters.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/less/slick.grid.less",
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/slick.editors.js",
-		"/E/code/Factlook/SlickGrid/Gruntfile.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/slick.grid.js",
 		"/E/code/Factlook/SlickGrid/src/plugins/slick.cellselectionmodel.js",
 		"/E/code/Factlook/RevampUI/Iteration3/Testing/metricConfigScreen - Copy/localhost.html",
@@ -412,79 +542,7 @@
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.grid.css",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/examples/example-0066-plugin-complete.html",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/examples/examples.css",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapStylePropertySet/mapStylePropertySet.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/bower.json",
-		"/E/code/Factlook/SlickGrid/oldbower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/jquery.event.drag-drop/bower.json",
-		"/E/code/Factlook/SlickGrid/src/jquery-ui-slickgrid.custom.css",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/less/variables_override.less",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.spreadsheet-plugins/plugins-excel-style.css",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.spreadsheet-plugins/plugins-common.css",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/less/main.less",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/bootstrap/less/variables.less",
-		"/E/code/Factlook/RevampUI/Iteration3/client/Gruntfile.js",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.CheckboxSelectAllColumn/slick.checkboxselectallcolumn.js",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.CheckboxSelectAllColumn/README.md",
-		"/E/code/Factlook/SlickGrid/bower_components/spectrum/bower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/spectrum/.bower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/Gruntfile.js",
-		"/E/code/Factlook/SlickGrid/bower_components/spectrum/.bower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/spectrum/bower.json",
-		"/E/code/Factlook/SlickGrid/.bower.json",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/bookmarks.xml",
-		"/E/code/Factlook/SlickGrid/.git/sourcetreeconfig",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/hgrc_sourcetree",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree.exe_Url_mwukqjl2rmdcdiy0ommct5pky2juzynq/1.6.22.0/user.config",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/opentabs.xml",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/gitflow_local/gitflow/gitflow-common",
-		"/E/code/Factlook/SlickGrid/src/slick.grid.less",
-		"/E/code/Factlook/SlickGrid/src/less/slick-default-theme.less",
-		"/E/code/Factlook/SlickGrid/src/less/slick.config.less",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/menu/menu.tpl.html",
-		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.grid.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/index.html",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/example-transpose-providerV2 - Copy.html",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/configurationData/dynamicPropertiesConfig.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/domain/metricConfiguration/metricConfiguration.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationDataView/metricConfigurationDataView.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/test/mock/mockConfigurationData.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/services/configurationService/configurationService.js",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/metricConfigurationDataView.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/domain/metricBreak/metricBreak.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/transposeBreakDataV2.js",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/StylingServicePropertyMock.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/node_modules/grunt-contrib-cssmin/node_modules/clean-css/lib/source-maps/track.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/slick.dataview.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/slick.remotemodel.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/slick.grid.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/examples/examples.datasource.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.grid.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.dataview.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.core.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/mapWizardModel/mapWizardModel.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.dataview.js",
-		"/E/code/Factlook/SlickGrid/dist/slick.dataview.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/dataset/datasetEditor/datasetEditor.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/map.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/map.tpl.html",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/main/main.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapContent/mapContent.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/ui/factlookMap/factlookMap.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapContent/mapContent.tpl.html",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/services/mapEditingService/mapEditingService.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/services/mapEditingService/mapEditingService.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/app.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/StylePropertySet/DomainStylePropertySet.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/Layer/DomainLayer.js",
-		"/D/downloads/Software/JetBrains/_License.txt",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationEditors/metricConfigurationBaseEditor.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/ui/factlookMap/factlookMap.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationDataView/metricConfigurationDataView.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/map/mapMetricConfiguration/mapMetricConfigurationModel.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/gridControl/gridControl.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/providers/metricConfigurationFactory/metricConfigurationFactory.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/map/mapLayer/mapLayerModel.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationEditors/metricBaseEditor.spec.js"
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapStylePropertySet/mapStylePropertySet.js"
 	],
 	"find":
 	{
@@ -495,6 +553,14 @@
 		"height": 99.0,
 		"where_history":
 		[
+			"E:\\code\\Factlook\\SlickGrid",
+			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src, *.js",
+			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src *.js",
+			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src",
+			"E:\\code\\Factlook\\SlickGrid",
+			"D:\\Users\\Rick\\AppData\\Roaming\\Sublime Text 3, *.sublime-menu",
+			"D:\\Users\\Rick\\AppData\\Roaming\\Sublime Text 3",
+			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client",
 			"D:\\Code\\ExternalSourceRepo\\SlickGridVersions\\slickgrid-spreadsheet-plugins",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\custom_vendor\\factlook-slickgrid",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\custom_vendor\\factlook-slickgridOrg",
@@ -614,15 +680,7 @@
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\custom_vendor,*.js",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\custom_vendor\\leaflet,*.js",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\test\\mock,*.js,"
+			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,"
 		]
 	},
 	"find_state":
@@ -630,6 +688,72 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"count",
+			"resize",
+			"_timingKeyContainer",
+			"container",
+			"_validateParsingResults",
+			"console.log",
+			"view",
+			"slick-viewport",
+			"viewport",
+			"view",
+			"scroll",
+			"getDataTime",
+			"performance",
+			"perform",
+			"handlePaste",
+			"_parseData",
+			"_createTextBox",
+			"sort",
+			"auto",
+			"dataView",
+			"scope",
+			"renderRows",
+			"render",
+			"invalidateAllRows",
+			"refresh",
+			"endupdate",
+			"grid",
+			"setItems",
+			"setdata",
+			"refresh",
+			"data",
+			"getData",
+			"_parseData",
+			"_pasteParsedData",
+			"onCopyCells",
+			"onPasteCells",
+			"_bodyElement",
+			"_createTextBox",
+			"handlePaste",
+			"timeout",
+			"delay",
+			"validationResult",
+			"validateFeature",
+			"validationResult",
+			"_.find",
+			"_.foreach",
+			"each",
+			"every",
+			"error",
+			"cellExternalCopyManager",
+			"CellExternalCopyManager",
+			"getDataItemValueForColumn",
+			"_parseData",
+			"_decodeTabularData",
+			"autoprefixer",
+			"jquery-fixclick",
+			"getColumns",
+			"columns",
+			"SelectedGeographiesModel",
+			"mnemonic",
+			"grep -R --include=\"*.sublime-menu\" \"\\\"mnemonic\\\": \\\"w\\\"\"",
+			"dist",
+			"vendor",
+			"../",
+			"../lib",
+			"columns",
 			"style",
 			"cell-overlay",
 			"updateColumnHeader",
@@ -691,73 +815,7 @@
 			"range",
 			"viewport",
 			"canvas",
-			"break-grid",
-			"selectedNodeChanged",
-			"maxHeight",
-			"height",
-			"active",
-			"less",
-			"grid",
-			"images",
-			"assets/",
-			"img",
-			"DataPointTextEditor",
-			"CheckmarkFormatter",
-			"getViewportHeight",
-			"autoHeight",
-			"height",
-			"getPropertyValue",
-			"_.find",
-			"setPropertyValue",
-			"commonBreakFieldNames",
-			"legendText",
-			"legend text",
-			"legend",
-			"Metadata",
-			"getItemMetadata",
-			"asyncRenderSlice",
-			"forcedRender",
-			"PerformanceTimer",
-			"fastsort",
-			"sort",
-			"getDefaultSortComparator",
-			"sort",
-			"fastsort",
-			"safeApply",
-			"onHideMap",
-			"hideMap",
-			"selectedNodeChanged",
-			"showMap",
-			"mapvisible",
-			"selectedNodeChanged",
-			"metricConfigurationEditor",
-			"_markerClientKey",
-			"_breakCalculationClientKey",
-			"colorSchemeClientKey",
-			"_colorSchemeClientKey",
-			".data.propertySet",
-			" $state.curr",
-			"fdes",
-			"fit",
-			"disableField",
-			"disableAllStyleProperties",
-			"enabled",
-			".bind(",
-			"propertySetChanged",
-			"propertyChanged",
-			"tohave",
-			"spyOn",
-			"onCellChange",
-			"trigger",
-			"onCellChange",
-			"updateItem",
-			"onRowsChanged",
-			"onPropertyChanged",
-			"getDefaultStyleProperties",
-			"getMarkerStylingOptions",
-			"propertySetTabs",
-			"goToMetricConfigurationTab",
-			".go"
+			"break-grid"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -765,6 +823,16 @@
 		"regex": false,
 		"replace_history":
 		[
+			"_legendContentArea",
+			"addTimingResultToLegend",
+			"getDataFromClipboard",
+			"_dataview",
+			"this",
+			"cellExternalPasteManager",
+			"CellExternalPasteManager",
+			"TestPastParsingModel",
+			"../../../dist/",
+			" ../../../dist/lib",
 			"markerClientKey",
 			"breakCalculationClientKey",
 			"metricConfigurationBaseEditor",
@@ -882,17 +950,7 @@
 			"MetricPropertyName",
 			"metricPropertyName",
 			"keyCol",
-			"MockGenerateEqualSizeDataRangeBreaksResponse",
-			"\\\"",
-			"addNewMetricConfigurationToLayer",
-			"metricBreak",
-			"MetricBreak",
-			"metricBreak",
-			"MetricBreak",
-			"metricBreak",
-			"MetricBreaks",
-			"metricBreaks",
-			"metricBreak"
+			"MockGenerateEqualSizeDataRangeBreaksResponse"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -903,8 +961,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "discovery/externalCopyPaste/zipFileList.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1018,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1017,
+								1017
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -993,7 +1080,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 313.0,
+	"side_bar_width": 235.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
