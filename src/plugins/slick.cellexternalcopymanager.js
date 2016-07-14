@@ -149,23 +149,17 @@
         }
 
 
-        //creates a new text area to paste the clipboard data.
         function _createTextBox( innerText )
         {
-            var textArea = document.createElement( 'textarea' );
-            textArea.style.position = 'absolute';
-            textArea.style.left = '-1000px';
-            textArea.style.top = document.body.scrollTop + 'px';
-            textArea.value = innerText;
-            _bodyElement.appendChild( textArea );
-            textArea.select();
+            var ta = document.createElement( 'textarea' );
+            ta.style.position = 'absolute';
+            ta.style.left = '-1000px';
+            ta.style.top = document.body.scrollTop + 'px';
+            ta.value = innerText;
+            _bodyElement.appendChild( ta );
+            ta.select();
 
-            return textArea;
-        }
-
-
-        function getNewColumnsFromData(){
-
+            return ta;
         }
 
         function updateColumnsForGrid( grid, newColumnArray )
@@ -278,15 +272,8 @@
                 }
             }
 
-            //change method to return the column index.
-            if(_options.includeHeaderWhenCopying)
-            {
-                var newColumns = getNewColumns( _grid, clippedRange[0] );
                 updateColumnsForGrid( _grid, clippedRange[0] );
-            }
 
-
-            //
             var columns = _grid.getColumns();
             var selectedCell = _grid.getActiveCell();
             var ranges = _grid.getSelectionModel().getSelectedRanges();
@@ -312,10 +299,7 @@
 
 
             var clippedRows = _options.includeHeaderWhenCopying ? clippedRange.length - 1 : clippedRange.length;
-
-            //need to get the colums extracted from the data.
             var clippedColumns = clippedRange.length ? clippedRange[0].length : 0;
-
             if (clippedRange.length == 1 && clippedRange[0].length == 1 && selectedRange)
             {
                 oneCellToMultiple = true;

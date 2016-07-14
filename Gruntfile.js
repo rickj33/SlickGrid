@@ -93,30 +93,7 @@ module.exports = function (grunt) {
       
     },
 
-    autoprefixer: {
-        options: {
-            browsers: ['last 2 versions']
-        },
-        dist: {
-            files: {
-                '*.css': ['tmp/*.css']
-            }
-        }
-    },
-
    
-
-   /* csscomb: {
-      sort: {
-        options: {
-          config: '.csscomb.json'
-        },
-        files: {
-          'slick.grid.css': 'slick.grid.css',
-          'slick-default-theme.css': 'slick-default-theme.css'
-        }
-      }
-    },*/
 
     copy: {
       dist_files:{
@@ -196,22 +173,7 @@ module.exports = function (grunt) {
           }]
 
       },
-      // synchronize library files in submodules to lib/_/
-      libsync: {
-        files: [
-          {
-            expand: true,       // `mkdir -p` equivalent
-            cwd: 'src/',
-            src: [
-              'lib/*.js'
-            ],
-
-            flatten: true,      // ensures tinycolor.js, etc. all land in lib/_/ *sans subdirectory*
-            dest: 'dist/lib/',
-            filter: 'isFile'
-          }
-        ]
-      },
+     
        bowerlibPlugins: {
         files: [
           {

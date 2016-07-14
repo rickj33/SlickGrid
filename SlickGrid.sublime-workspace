@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"test",
+				"testApp"
+			],
+			[
 				"_",
 				"_columns"
 			],
@@ -288,10 +292,6 @@
 				"factlookFeatureSets"
 			],
 			[
-				"test",
-				"testFactlookFeatureSet"
-			],
-			[
 				"a",
 				"addData"
 			],
@@ -303,35 +303,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
-			"settings":
-			{
-				"buffer_size": 7333,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "discovery/externalCopyPaste/app.js",
-			"settings":
-			{
-				"buffer_size": 3413,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "{\n\t// exposed jsbeautifier options\n\t\"indent_with_tabs\": false,\n\t\"preserve_newlines\": true,\n\t\"max_preserve_newlines\": 4,\n\t\"space_in_paren\": false,\n\t\"jslint_happy\": false,\n\t\"brace_style\": \"collapse\",\n\t\"keep_array_indentation\": false,\n\t\"keep_function_indentation\": false,\n\t\"eval_code\": false,\n\t\"unescape_strings\": false,\n\t\"break_chained_methods\": false,\n\t\"e4x\": false,\n\t\"wrap_line_length\": 0,\n\n\t// jsformat options\n\t\"format_on_save\": false,\n\t\"format_selection\": true,\n\t\"jsbeautifyrc_files\": false,\n\t\"ignore_sublime_settings\": true,\n\t\"format_on_save_extensions\": [\"js\", \"json\"]\n}\n",
-			"file": "/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
-			"file_size": -1,
-			"file_write_time": -1,
-			"settings":
-			{
-				"buffer_size": 576,
-				"line_ending": "Windows",
-				"read_only": true,
-				"scratch": true
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -346,7 +317,7 @@
 		[
 			[
 				"Package Control: ",
-				"Package Control: Install Package"
+				"Package Control: List Packages"
 			],
 			[
 				"Package Control",
@@ -361,9 +332,13 @@
 	},
 	"console":
 	{
-		"height": 321.0,
+		"height": 178.0,
 		"history":
 		[
+			"clear",
+			"cls",
+			"grep -R --include=\"*.sublime-menu\" \"\\\"mnemonic\\\": \\\"w\\\"\"",
+			"Package Control: install package",
 			"PackageResourceViewer: ",
 			"PackageResourceViewer: Open Resource",
 			"PackageResourceViewer: Open Resource:",
@@ -387,13 +362,31 @@
 		"/E/code/Factlook/SlickGrid",
 		"/E/code/Factlook/SlickGrid/discovery",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste",
-		"/E/code/Factlook/SlickGrid/discovery/MetricConfigurationEditior - Copy",
 		"/E/code/Factlook/SlickGrid/src",
-		"/E/code/Factlook/SlickGrid/src/plugins",
-		"/E/code/Factlook/SlickGrid/src/tests"
+		"/E/code/Factlook/SlickGrid/src/plugins"
 	],
 	"file_history":
 	[
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/Map/domainMap.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/datasetConfiguration/datasetConfiguration.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/utils/utilities.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/plugins/styleFormatters/barchartStyleFormatter.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/pluginBaseModules/styleFormatters/baseStyleFormatter.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.externalcopymanagerTest.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.cellexternalcopymanagerWithParser.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+		"/E/code/Factlook/SlickGrid/src/plugins/slick.cellexternalcopymanager.js",
+		"/E/code/Factlook/SlickGrid/Gruntfile.js",
+		"/E/code/Factlook/SlickGrid/src/ExcelPasteTextEditor.js",
+		"/E/code/Factlook/SlickGrid/EfficientGridJsonResponse.js",
+		"/E/code/Factlook/SlickGrid/output.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/app.js",
+		"/E/code/Factlook/SlickGrid/src/extendedSlickGrid/extendendedSlickGrid.js",
+		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JsFormat.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
+		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JSHint/Main.sublime-menu",
+		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Installed Packages/Automatic Backups.sublime-package",
 		"/E/code/Factlook/RevampUI/Iteration3/client/package.json",
 		"/E/code/Factlook/RevampUI/Iteration3/client/bower.json",
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JSCS-Formatter.sublime-settings",
@@ -406,10 +399,8 @@
 		"/E/code/Factlook/SlickGrid/package.json",
 		"/E/code/Factlook/SlickGrid/discovery/MetricConfigurationEditior - Copy/example-transpose-providerV2 - Copy.html",
 		"/E/code/Factlook/RevampUI/Iteration3/client/.bowerrc",
-		"/E/code/Factlook/SlickGrid/Gruntfile.js",
 		"/E/code/Factlook/SlickGrid/.bowerrc",
 		"/E/code/Factlook/SlickGrid/bower.json",
-		"/E/code/Factlook/SlickGrid/src/plugins/slick.cellexternalcopymanager.js",
 		"/E/code/Factlook/RevampUI/Iteration3/Bugs-Issues/158/springs-doc from windows excel.txt",
 		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/example-transpose-providerV2 - Copy.html",
 		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/example-excel-clipboard-paste.html",
@@ -442,7 +433,6 @@
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/map/mapSidebar/mapSidebarModel.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/dataset/dataset.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/domain/dataPointCollection/dataPointCollection.js",
-		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
 		"/E/code/Factlook/SlickGrid/src/slick.dataview.js",
 		"/E/code/Factlook/SlickGrid/src/slick.extensions.js",
 		"/E/code/Factlook/SlickGrid/src/slick.editors.js",
@@ -504,24 +494,7 @@
 		"/E/code/Factlook/SlickGrid/src/less/slick.config.less",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/menu/menu.tpl.html",
 		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.grid.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/index.html",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/example-transpose-providerV2 - Copy.html",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/configurationData/dynamicPropertiesConfig.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/domain/metricConfiguration/metricConfiguration.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationDataView/metricConfigurationDataView.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/test/mock/mockConfigurationData.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/services/configurationService/configurationService.js",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/metricConfigurationDataView.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/domain/metricBreak/metricBreak.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/transposeBreakDataV2.js",
-		"/E/code/Factlook/RevampUI/Iteration3/Research/MetricConfigurationEditior - Copy/StylingServicePropertyMock.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/node_modules/grunt-contrib-cssmin/node_modules/clean-css/lib/source-maps/track.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/slick.dataview.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/slick.remotemodel.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/slick.grid.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbeltSlickGrid/examples/examples.datasource.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.grid.js",
-		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.dataview.js"
+		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/index.html"
 	],
 	"find":
 	{
@@ -532,6 +505,10 @@
 		"height": 99.0,
 		"where_history":
 		[
+			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src",
+			"E:\\code\\Factlook\\SlickGrid",
+			"D:\\Users\\Rick\\AppData\\Roaming\\Sublime Text 3, *.sublime-menu",
+			"D:\\Users\\Rick\\AppData\\Roaming\\Sublime Text 3",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client",
 			"D:\\Code\\ExternalSourceRepo\\SlickGridVersions\\slickgrid-spreadsheet-plugins",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\custom_vendor\\factlook-slickgrid",
@@ -655,10 +632,6 @@
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\custom_vendor\\leaflet,*.js",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,"
 		]
 	},
@@ -667,6 +640,26 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"validationResult",
+			"validateFeature",
+			"validationResult",
+			"_.find",
+			"_.foreach",
+			"each",
+			"every",
+			"error",
+			"cellExternalCopyManager",
+			"CellExternalCopyManager",
+			"getDataItemValueForColumn",
+			"_parseData",
+			"_decodeTabularData",
+			"autoprefixer",
+			"jquery-fixclick",
+			"getColumns",
+			"columns",
+			"SelectedGeographiesModel",
+			"mnemonic",
+			"grep -R --include=\"*.sublime-menu\" \"\\\"mnemonic\\\": \\\"w\\\"\"",
 			"dist",
 			"vendor",
 			"../",
@@ -774,27 +767,7 @@
 			"selectedNodeChanged",
 			"metricConfigurationEditor",
 			"_markerClientKey",
-			"_breakCalculationClientKey",
-			"colorSchemeClientKey",
-			"_colorSchemeClientKey",
-			".data.propertySet",
-			" $state.curr",
-			"fdes",
-			"fit",
-			"disableField",
-			"disableAllStyleProperties",
-			"enabled",
-			".bind(",
-			"propertySetChanged",
-			"propertyChanged",
-			"tohave",
-			"spyOn",
-			"onCellChange",
-			"trigger",
-			"onCellChange",
-			"updateItem",
-			"onRowsChanged",
-			"onPropertyChanged"
+			"_breakCalculationClientKey"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -802,6 +775,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"cellExternalPasteManager",
+			"CellExternalPasteManager",
+			"TestPastParsingModel",
 			"../../../dist/",
 			" ../../../dist/lib",
 			"markerClientKey",
@@ -926,10 +902,7 @@
 			"addNewMetricConfigurationToLayer",
 			"metricBreak",
 			"MetricBreak",
-			"metricBreak",
-			"MetricBreak",
-			"metricBreak",
-			"MetricBreaks"
+			"metricBreak"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -940,100 +913,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7333,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2821,
-								2821
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1035.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "discovery/externalCopyPaste/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3413,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								593,
-								593
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 576,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								187,
-								195
-							]
-						],
-						"settings":
-						{
-							"auto_complete": true,
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
