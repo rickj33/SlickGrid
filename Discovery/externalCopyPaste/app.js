@@ -37,6 +37,7 @@ var TestApp = function()
   this.handleOnPasteCells = TestApp.prototype.handleOnPasteCells.bind(this);
   this.handleRowCountChanged = TestApp.prototype.handleRowCountChanged.bind(this);
   this.handleRowsChanged = TestApp.prototype.handleRowsChanged.bind(this);
+  this.handleSort = TestApp.prototype.handleSort.bind(this);
 };
 
 TestApp.prototype.init = function()
@@ -59,14 +60,14 @@ TestApp.prototype.init = function()
   {
     selectActiveRow: false
   }));
-  
+
   this.grid.registerPlugin(this.pasteManager);
   this.grid.registerPlugin(this.checkboxSelector);
 
   this.handler.subscribe(this.pasteManager.onPasteCells, this.handleOnPasteCells);
 
   this.handler.subscribe(this.pasteManager.onValidationError, this.handleOnValidationError);
-
+  this.handler.subscribe(this.grid.onSort, this.handleSort);
 
   if (this._dataview.onRowCountChanged !== undefined)
   {
@@ -123,6 +124,7 @@ TestApp.prototype.handleOnPasteCells = function(e, args)
 
   this.grid.setColumns(updatedColumns);
   //clear the selection set.
+    this.grid.autosizeColumns();
   this.grid.getSelectionModel().setSelectedRanges([]);
   this.grid.resizeCanvas();
 };
@@ -153,6 +155,15 @@ TestApp.prototype._buildGridColumns = function(columns)
     result.push(column);
   }
   return result;
+};
+
+
+TestApp.prototype.handleSort = function(e, args)
+{
+  // This will fire the change events and update the grid.
+  if(args.sortCol){
+  this._dataview.fastSort(args.sortCol.field, args.command === 'sort-asc');
+}
 };
 
 TestApp.prototype._getCopyManagerPluginOptions = function()
