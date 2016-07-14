@@ -7,40 +7,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>SlickGrid example 3: Editing</title>
     <link rel="stylesheet" href="spectrum.css" type="text/css"/>
+    <link rel="stylesheet" href="dvf.css" type="text/css"/>
+           <link rel="stylesheet" href="bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="slick.grid.css" type="text/css"/>
 
     <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: White;
-      overflow: auto;
-  }
-  #myGrid {
-      
-    margin: auto;
-    width:1000px;
-    height:800px;
-}
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: White;
+            overflow: auto;
+        }
 
-#timings {
-  
-    margin: auto;
-    width:1000px;
-    height:800px;
-}
-</style>
+        #myGrid {
+
+            margin: auto;
+            width: 1000px;
+            height: 800px;
+        }
+
+        #timingContainer {
+            margin: auto;
+            position: relative;
+            width : 400px;
+            margin-bottom: 40px;
+
+        }
+
+    </style>
 
 
-<script type="text/javascript">
-var rootPath = "../../";
-var nodeModulesPath = rootPath + 'node_modules/';
-var sourcePath = rootPath + 'src/';
-var head = document.getElementsByTagName( 'head' )[0];
+    <script type="text/javascript">
+        var rootPath = "../../";
+        var nodeModulesPath = rootPath + 'node_modules/';
+        var sourcePath = rootPath + 'src/';
+        var head = document.getElementsByTagName( 'head' )[0];
 
-var addScript = function( path, jsFileName )
-{
-    var JSLink = path + jsFileName;
+        var addScript = function( path, jsFileName )
+        {
+
+            var JSLink = path + jsFileName;
+            console.log(JSLink);
             //  var script = document.createElement('script');
 
             $.ajax( {
@@ -60,8 +67,6 @@ var addScript = function( path, jsFileName )
             addScript( nodeModulesPath, "spectrum/lib/spectrum.js" );
             addScript( nodeModulesPath, "papaparse/papaparse.js" );
             addScript( nodeModulesPath, "perfnow/perfnow.min.js" );
-
-            
 
             addScript( rootPath, "custom_vendor/fixclick/jquery-fixclick.js" );
             addScript( sourcePath, "slick.core.js" );
@@ -93,22 +98,36 @@ var addScript = function( path, jsFileName )
     <script src="app.js" type="text/javascript"></script>
 
 
-
-
 </head>
 <body>
 
 
-    <div id="container">
-        
-        <!-- <div id="myGrid" style="position:absolute;width:1000px;height:800px;"></div> -->
-        <div id="timings" >Timings</div>
-        <div id="myGrid" ></div>
-        
+<div id="container" class="container-fluid" >
 
+  
+    <div id="timingContainer" class="row">
+    <div class="legend" id="legend">
+        <div>
+            <div class="legend well">
+                <div class="legend">
+                    <div class="legend-title">Timing Results</div>
+                    <div id="legendContentArea" class="data-layer-legend">
+                     <div class="col-md-6">Description</div>
+                     <div class="col-md-3">Description</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    </div>
+      <div id="timingContainer" class="row">
+    <div id="myGrid"></div>
+</div>
 
-    <script>
+
+
+<script>
     var testApp = new TestApp();
     testApp.init();
 </script>

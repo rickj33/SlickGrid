@@ -6,7 +6,7 @@
 ../../node_modules/spectrum/lib/spectrum.js 
 ../../node_modules/papaparse/papaparse.js 
 ../../node_modules/perfnow/perfnow.min.js 
-
+../../node_modules/perfnow/perfnow.min.js 
 
 
 ../../custom_vendor/fixclick/jquery-fixclick.js 

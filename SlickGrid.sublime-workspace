@@ -328,18 +328,34 @@
 	"buffers":
 	[
 		{
-			"file": "discovery/externalCopyPaste/slick.grid.css",
-			"settings":
-			{
-				"buffer_size": 35110,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "discovery/externalCopyPaste/embededLineFeed.txt",
 			"settings":
 			{
 				"buffer_size": 2051,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "discovery/externalCopyPaste/example/pasteExampleForZipFile.html",
+			"settings":
+			{
+				"buffer_size": 4325,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "discovery/externalCopyPaste/example/missingColumn.txt",
+			"settings":
+			{
+				"buffer_size": 2046,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "discovery/externalCopyPaste/app.js",
+			"settings":
+			{
+				"buffer_size": 4427,
 				"line_ending": "Windows"
 			}
 		}
@@ -403,26 +419,28 @@
 		"/E/code/Factlook/SlickGrid/discovery",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste",
 		"/E/code/Factlook/SlickGrid/src",
-		"/E/code/Factlook/SlickGrid/src/examples",
 		"/E/code/Factlook/SlickGrid/src/less"
 	],
 	"file_history":
 	[
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/pasteExampleForZipFile.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example/embededLineFeed.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.externalPasteManager.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid.css",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipFileList.txt",
+		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/leafletDVF/css/dvf.css",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/HTMLBeautify/HTMLBeautify.sublime-settings",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/embededLineFeed.txt",
 		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/app.js",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/embededLineFeed.txt",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/FactlookSlickGrid/slick.grid.css",
 		"/E/code/Factlook/SlickGrid/src/less/slickgrid_test.less",
 		"/E/code/Factlook/SlickGrid/dist/slick.grid.css",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid - Copy.css",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid.css",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipFileList.txt",
 		"/D/Temp/example/embededLineFeed.txt",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/pasteExampleForZipFile.html",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipExample.bat",
 		"/D/Temp/example/pasteExampleForZipFile.html",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.externalPasteManager.js",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/geo-lat-longValid.txt",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/app.js",
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
@@ -532,10 +550,7 @@
 		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.spreadsheet-plugins/plugins-excel-style.css",
 		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.spreadsheet-plugins/plugins-common.css",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/less/main.less",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/bootstrap/less/variables.less",
-		"/E/code/Factlook/RevampUI/Iteration3/client/Gruntfile.js",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.CheckboxSelectAllColumn/slick.checkboxselectallcolumn.js",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.CheckboxSelectAllColumn/README.md"
+		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/bootstrap/less/variables.less"
 	],
 	"find":
 	{
@@ -681,6 +696,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"console.log",
 			"view",
 			"slick-viewport",
 			"viewport",
@@ -807,15 +823,15 @@
 			"maxHeight",
 			"height",
 			"active",
-			"less",
-			"grid"
+			"less"
 		],
 		"highlight": true,
-		"in_selection": false,
+		"in_selection": true,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
 		[
+			"addTimingResultToLegend",
 			"getDataFromClipboard",
 			"_dataview",
 			"this",
@@ -942,8 +958,7 @@
 			"metricPropertyName",
 			"keyCol",
 			"MockGenerateEqualSizeDataRangeBreaksResponse",
-			"\\\"",
-			"addNewMetricConfigurationToLayer"
+			"\\\""
 		],
 		"reverse": false,
 		"show_context": true,
@@ -954,41 +969,11 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "discovery/externalCopyPaste/slick.grid.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 35110,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								35110,
-								35110
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 24732.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "discovery/externalCopyPaste/embededLineFeed.txt",
 					"semi_transient": false,
 					"settings":
@@ -1007,6 +992,94 @@
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "discovery/externalCopyPaste/example/pasteExampleForZipFile.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4325,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "discovery/externalCopyPaste/example/missingColumn.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2046,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								2046
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "discovery/externalCopyPaste/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4427,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1103,7 +1176,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 363.0,
+	"side_bar_width": 434.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

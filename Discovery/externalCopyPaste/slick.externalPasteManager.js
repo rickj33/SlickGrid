@@ -45,6 +45,7 @@
     var _ignoreFormatting = _options.ignoreFormatting || [];
     var _textBox;
     var _startTime;
+    var _timingKeyContainer = $("#legendContentArea");
     //   var _endTime;
 
 
@@ -152,6 +153,7 @@
         {
           validationResult: validationResult
         });
+          // displayErrors(validationResult);
         return;
       }
 
@@ -160,6 +162,7 @@
       performanceTimes.stopTime = performanceTimes.updateGridDataTime;
 
       displayTimings(performanceTimes);
+
       _self.onPasteCells.notify(
       {
         parseResults: parseResults
@@ -170,25 +173,61 @@
 
     function displayTimings(performanceTimes)
     {
+
+
       timingsCalc = calculateTimings(performanceTimes);
-      logTiming('Total processing time', timingsCalc.totalTime);
-      logTiming('Time to paste data', timingsCalc.pasteTime);
-      logTiming('Get Data from Clipboard', timingsCalc.getDataFromClipboard);
-      logTiming('Time to parse data', timingsCalc.parseResultsTime);
-      logTiming('Time to validate parsed data', timingsCalc.validateParsingResultsTime);
-       logTiming('Time to update grid', timingsCalc.updateGridDataTime);
+
+      var totalTimeDisp = createTimingMessage('Total processing time', timingsCalc.totalTime);
+      var pasteDataDisp = createTimingMessage('Time to paste data', timingsCalc.pasteTime);
+      var getDataFromClipboardDisp = createTimingMessage('Get Data from Clipboard', timingsCalc.getDataFromClipboard);
+      var parseDataDisp = createTimingMessage('Time to parse data', timingsCalc.parseResultsTime);
+      var validateDataDisp = createTimingMessage('Time to validate parsed data', timingsCalc.validateParsingResultsTime);
+      var updateGridDisp = createTimingMessage('Time to update grid', timingsCalc.updateGridDataTime);
+      console.log(totalTimeDisp);
+      console.log(pasteDataDisp);
+      console.log(getDataFromClipboardDisp);
+      console.log(parseDataDisp);
+      console.log(validateDataDisp);
+      console.log(updateGridDisp);
+
+      addTimingResultToLegend(totalTimeDisp);
+      addTimingResultToLegend(pasteDataDisp);
+      addTimingResultToLegend(getDataFromClipboardDisp);
+      addTimingResultToLegend(parseDataDisp);
+      addTimingResultToLegend(validateDataDisp);
+      addTimingResultToLegend(updateGridDisp);
+
+
+    function addTimingResultToLegend(displayText)
+    {
+
+      var el = document.createElement('div');
+      el.innerHTML = displayText;
+      el.className = 'key';
+
+      if (_timingKeyContainer)
+      {
+        _timingKeyContainer.append(el);
+      }
 
     }
 
+
     function logTiming(timingDescription, totalTime)
     {
-      console.log(timingDescription + ' took ' + totalTime + ' milliseconds.');
+      var message = CreateTimingMessage(timingDescription, totalTime);
+      console.log(message);
+    }
+
+    function createTimingMessage(timingDescription, totalTime)
+    {
+      var secs = (totalTime/1000) % 60;
+      var timeString = parseFloat(secs).toFixed(4);
+      return timingDescription + ' took \t\t' + timeString + ' seconds.';
     }
 
     function calculateTimings(performanceTimes)
     {
-
-
       var result = {}
       result.totalTime = performanceTimes.stopTime - performanceTimes.startTime;
       result.pasteTime = performanceTimes.handlePaste - performanceTimes.startTime;
