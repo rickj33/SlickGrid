@@ -44,10 +44,10 @@ TestApp.prototype.init = function()
 {
 
   var options = {
-    enableCellNavigation: true,
-    editable: true,
+     editable: true,
     autoEdit: true,
     enableAddRow: true,
+    enableCellNavigation: true,
     asyncEditorLoading: false,
     forceFitColumns: true
   };
@@ -89,14 +89,14 @@ TestApp.prototype.init = function()
 
 TestApp.prototype.handleRowCountChanged = function()
 {
-  this.grid.updateRowCount();
-  this.grid.render();
+ /* this.grid.updateRowCount();
+  this.grid.render();*/
 };
 
 
 TestApp.prototype.handleRowsChanged = function(e, args)
 {
-  if (args && args.rows)
+  /*if (args && args.rows)
   {
     this.grid.invalidateRows(args.rows);
   }
@@ -104,7 +104,7 @@ TestApp.prototype.handleRowsChanged = function(e, args)
   {
     this.grid.invalidateAllRows();
   }
-  this.grid.render();
+  this.grid.render();*/
 };
 
 
@@ -124,9 +124,9 @@ TestApp.prototype.handleOnPasteCells = function(e, args)
 
   this.grid.setColumns(updatedColumns);
   //clear the selection set.
-    this.grid.autosizeColumns();
+ //   this.grid.autosizeColumns();
   this.grid.getSelectionModel().setSelectedRanges([]);
-  this.grid.resizeCanvas();
+//  this.grid.resizeCanvas();
 };
 
 TestApp.prototype.handleOnValidationError = function(e, args) {

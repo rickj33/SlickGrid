@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,38 +9,16 @@
     <link rel="stylesheet" href="spectrum.css" type="text/css"/>
     <link rel="stylesheet" href="slick.grid.css" type="text/css"/>
 
-    <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: White;
-      overflow: auto;
-  }
-  #myGrid {
-      
-    margin: auto;
-    width:1000px;
-    height:800px;
-}
 
-#timings {
-  
-    margin: auto;
-    width:1000px;
-    height:800px;
-}
-</style>
+    <script type="text/javascript">
+        var rootPath = "./";
+        var nodeModulesPath = rootPath + 'node_modules/';
+        var sourcePath = rootPath + 'src/';
+        var head = document.getElementsByTagName( 'head' )[0];
 
-
-<script type="text/javascript">
-var rootPath = "../../";
-var nodeModulesPath = rootPath + 'node_modules/';
-var sourcePath = rootPath + 'src/';
-var head = document.getElementsByTagName( 'head' )[0];
-
-var addScript = function( path, jsFileName )
-{
-    var JSLink = path + jsFileName;
+        var addScript = function( path, jsFileName )
+        {
+            var JSLink = path + jsFileName;
             //  var script = document.createElement('script');
 
             $.ajax( {
@@ -61,7 +39,7 @@ var addScript = function( path, jsFileName )
             addScript( nodeModulesPath, "papaparse/papaparse.js" );
             addScript( nodeModulesPath, "perfnow/perfnow.min.js" );
 
-            
+           
 
             addScript( rootPath, "custom_vendor/fixclick/jquery-fixclick.js" );
             addScript( sourcePath, "slick.core.js" );
@@ -91,24 +69,18 @@ var addScript = function( path, jsFileName )
     </script>
     <script src="slick.externalPasteManager.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>
-
-
-
-
 </head>
 <body>
 
 
-    <div id="container">
-        
-        <!-- <div id="myGrid" style="position:absolute;width:1000px;height:800px;"></div> -->
-        <div id="timings" >Timings</div>
-        <div id="myGrid" ></div>
-        
+<div style="position:relative">
+    
+        <div id="myGrid" style="width:1000px;height:800px;"></div>
+    
 
-    </div>
+</div>
 
-    <script>
+<script>
     var testApp = new TestApp();
     testApp.init();
 </script>

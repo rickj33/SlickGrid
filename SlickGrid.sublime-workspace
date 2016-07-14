@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"tot",
+				"totalTime"
+			],
+			[
+				"getd",
+				"getDataFromClipboard"
+			],
+			[
+				"handlep",
+				"handlePasteStart"
+			],
+			[
+				"per",
+				"performanceTimes"
+			],
+			[
+				"clip",
+				"clipboardContents"
+			],
+			[
 				"fast",
 				"fastSort\t(datasetEditorModel.js)"
 			],
@@ -208,10 +228,6 @@
 				"currentFilter"
 			],
 			[
-				"tot",
-				"totalClipRows"
-			],
-			[
 				"clipp",
 				"clippedRowAdjusted"
 			],
@@ -312,52 +328,18 @@
 	"buffers":
 	[
 		{
-			"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+			"file": "discovery/externalCopyPaste/slick.grid.css",
 			"settings":
 			{
-				"buffer_size": 2983,
-				"line_ending": "Windows"
+				"buffer_size": 35110,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "discovery/externalCopyPaste/app.js",
+			"file": "discovery/externalCopyPaste/embededLineFeed.txt",
 			"settings":
 			{
-				"buffer_size": 4414,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "Searching 474 files for \"auto\" (case sensitive, whole word)\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\app.less:\n   33    position: relative;\n   34  \n   35:   //height: auto !important;\n   36    height: 100%;\n   37    min-height: 100%;\n   38    /* Negative indent footer by its height */\n   39:   margin: 0 auto -@footer-height;\n   40    padding: 0 40px @footer-height;\n   41  \n   ..\n   74    margin-top: -50px;\n   75    z-index: 2;\n   76:   overflow: auto;\n   77  }\n   78  \n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\directives\\gridControl\\gridControl.less:\n   43      display: inline-block;\n   44  \n   45:     margin: 4px auto auto 6px;\n   46  }\n   47  \n   48  .grid-header .ui-icon\n   49  {\n   50:     margin: 4px 4px auto 6px;\n   51  \n   52      border-color: transparent;\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\dashboard\\dashboard.less:\n    2  \n    3  .dashboard-content{\n    4:         overflow: auto;\n    5  }\n    6  \n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\dataset\\datasetEditor.less:\n   32  .dataset-content-display{\n   33    height: inherit;\n   34:   overflow: auto;\n   35  }\n   36  \n   ..\n   46  }\n   47  .datasetediting-grid .slick-viewport {\n   48:   overflow-y: auto;\n   49  }\n   50  \n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\map\\dataContent\\dataContent.less:\n   31  \n   32  .datacontent-grid .slick-viewport {\n   33:     overflow-y: auto;\n   34  }\n   35  \n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\map\\mapEditor\\mapEditor.less:\n   31  .settings-content-display{\n   32      height: inherit;\n   33:     overflow: auto;\n   34  }\n   35  \n   ..\n   64  {\n   65      height: 95%;\n   66:     overflow: auto;\n   67  }\n   68  \n   ..\n  147  \n  148      width: 100%;\n  149:     margin: auto;\n  150  \n  151      text-align: center;\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\mapWizard.less:\n  134  \n  135  .selectionGrid .slick-viewport {\n  136:     overflow-y: auto;\n  137  }\n  138  \n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\openDialog\\openDialog.less:\n   31      // min-height : inherit;\n   32      // max-height: inherit;\n   33:     //  overflow: auto;\n   34      //  background: white;\n   35      //  outline: 0;\n\n15 matches across 8 files\n\n\nSearching 1 file for \"auto\" (case sensitive, whole word)\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src *.js:\n    ERROR: Unable to open file\n\n0 matches\n\nSearching 340 files for \"auto\" (case sensitive, whole word)\n\n0 matches\n\nSearching 340 files for \"auto\"\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\models\\selectionWorkspace\\selectionWorkspaceModel.spec.js:\n  233        enableAddRow: false,\n  234        asyncEditorLoading: false,\n  235:       autoEdit: false,\n  236        forceFitColumns: true,\n  237        explicitInitialization: false\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\models\\ui\\factlookMap\\factlookMap.js:\n  531                  if (!this._layerControl)\n  532                  {\n  533:                     this._layerControl = new L.flLayerControl([], [], {hideSingleBase : false,autoZIndex : false});\n  534                  }\n  535                  return this._layerControl;\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\models\\ui\\factlookMap\\factlookMap.spec.js:\n  478      {\n  479  \n  480:       var fakeLayerControl = new L.flLayerControl([], [], {autoZIndex: false});\n  481        var flMap = new FactlookMap(domainMap, domContainer);\n  482        var testLayer = testVars.testLayer;\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\dataset\\datasetEditor\\datasetEditor.js:\n  234                asyncEditorLoading: false,\n  235                forceFitColumns: true,\n  236:               autoEdit: true,\n  237                dataItemColumnValueExtractor: $scope.getItemColumnValue\n  238              };\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\dataset\\datasetEditor\\datasetEditorModel.js:\n  382                  dataView.setItems(this._dataset.getDatapoints(), idColumnName);\n  383                  grid.setData(dataView);\n  384:                 grid.autosizeColumns();\n  385                  dataView.endUpdate();\n  386  \n  ...\n  438                  this.subscribeToEvents();\n  439  \n  440:                 this._grid.autosizeColumns();\n  441  \n  442  \n  ...\n  453                      asyncEditorLoading     : false,\n  454                      forceFitColumns        : false,\n  455:                     autoEdit               : true,\n  456                      explicitInitialization : true, //  rowHeight              : 20,\n  457  \n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\map\\dataContent\\dataContentModel.js:\n  375              this.subscribeToEvents();\n  376  \n  377:             this._grid.autosizeColumns();\n  378  \n  379  \n  ...\n  390                  asyncEditorLoading     : false,\n  391                  forceFitColumns        : false,\n  392:                 autoEdit               : true,\n  393                  explicitInitialization : true, //  rowHeight              : 20,\n  394  \n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\map\\mapMetricConfiguration\\mapMetricConfigurationModel.js:\n  429                      editable             : true,\n  430                      enableColumnReorder  : false,\n  431:                     autoHeight           : true //maxHeight            : 450\n  432                  };\n  433              };\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\map\\mapSidebar\\mapSidebarModel.js:\n  588  \n  589                      this.subscribe(this.grid);\n  590:                     this.grid.autosizeColumns();\n  591                      this._selectAndFocusNode(this.mapNode);\n  592                  };\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\areaValidation\\areaValidationModel.js:\n   48          enableAddRow: false,\n   49          asyncEditorLoading: false,\n   50:         autoEdit: false,\n   51          forceFitColumns: true,\n   52          explicitInitialization: false,\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\areaValidation\\areaValidationModel.spec.js:\n  113        enableAddRow: false,\n  114        asyncEditorLoading: false,\n  115:       autoEdit: false,\n  116        forceFitColumns: true,\n  117        explicitInitialization: false,\n  ...\n  124      expect(gridOptions.enableAddRow).toEqual(expectedGridOptions.enableAddRow);\n  125      expect(gridOptions.asyncEditorLoading).toEqual(expectedGridOptions.asyncEditorLoading);\n  126:     expect(gridOptions.autoEdit).toEqual(expectedGridOptions.autoEdit);\n  127      expect(gridOptions.forceFitColumns).toEqual(expectedGridOptions.forceFitColumns);\n  128      expect(gridOptions.explicitInitialization).toEqual(expectedGridOptions.explicitInitialization);\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\locationValidation\\locationValidationModel.js:\n   48          enableAddRow: false,\n   49          asyncEditorLoading: false,\n   50:         autoEdit: false,\n   51          forceFitColumns: true,\n   52          explicitInitialization: false,\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\locationValidation\\locationValidationModel.spec.js:\n  115        enableAddRow: false,\n  116        asyncEditorLoading: false,\n  117:       autoEdit: false,\n  118        forceFitColumns: true,\n  119        explicitInitialization: false,\n  ...\n  126      expect(gridOptions.enableAddRow).toEqual(expectedGridOptions.enableAddRow);\n  127      expect(gridOptions.asyncEditorLoading).toEqual(expectedGridOptions.asyncEditorLoading);\n  128:     expect(gridOptions.autoEdit).toEqual(expectedGridOptions.autoEdit);\n  129      expect(gridOptions.forceFitColumns).toEqual(expectedGridOptions.forceFitColumns);\n  130      expect(gridOptions.explicitInitialization).toEqual(expectedGridOptions.explicitInitialization);\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\selectedGeographies\\selectedGeographiesModel.js:\n  116          enableCellNavigation: true,\n  117          editable: true,\n  118:         autoEdit : true,\n  119          enableAddRow: true,\n  120          asyncEditorLoading: false,\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\selectedGeographies\\selectedGeographiesModel.spec.js:\n  113        enableCellNavigation: true,\n  114        editable: true,\n  115:       autoEdit : true,\n  116        enableAddRow: true,\n  117        asyncEditorLoading: false,\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\mapWizard\\selectGeographies\\selectGeographiesModel.js:\n   26                enableAddRow: false,\n   27                asyncEditorLoading: false,\n   28:               autoEdit: false,\n   29                forceFitColumns: true,\n   30                explicitInitialization: false\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app\\modules\\openDialog\\openDialog.js:\n   82                  enableAddRow           : false,\n   83                  asyncEditorLoading     : false,\n   84:                 autoEdit               : true,\n   85                  forceFitColumns        : true,\n   86                  explicitInitialization : false,\n\nE:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\test\\karma.conf.js:\n   48  \n   49      // enable / disable watching file and executing tests whenever any file changes\n   50:     autoWatch: true,\n   51  \n   52      // start these browsers\n\n24 matches across 17 files\n",
-			"settings":
-			{
-				"buffer_size": 9551,
-				"line_ending": "Windows",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/dataset/datasetEditor/datasetEditorModel.js",
-			"settings":
-			{
-				"buffer_size": 18139,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/slick.dataview.js",
-			"settings":
-			{
-				"buffer_size": 43525,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/slick.grid.js",
-			"settings":
-			{
-				"buffer_size": 152591,
+				"buffer_size": 2051,
 				"line_ending": "Windows"
 			}
 		}
@@ -375,7 +357,7 @@
 		[
 			[
 				"Package Control: ",
-				"Package Control: Disable Package"
+				"Package Control: Remove Package"
 			],
 			[
 				"Package Control",
@@ -420,16 +402,36 @@
 		"/E/code/Factlook/SlickGrid",
 		"/E/code/Factlook/SlickGrid/discovery",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste",
-		"/E/code/Factlook/SlickGrid/src"
+		"/E/code/Factlook/SlickGrid/src",
+		"/E/code/Factlook/SlickGrid/src/examples",
+		"/E/code/Factlook/SlickGrid/src/less"
 	],
 	"file_history":
 	[
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/geo-lat-longValid.txt",
-		"/E/code/Factlook/RevampUI/Iteration3/Server/src/CreateClientSideTestMockData/RawDbCollectionJson/ZipCodeGeographiesConfig.json",
-		"/E/code/Factlook/SlickGrid/src/slick.dataview.js",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
 		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/app.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/embededLineFeed.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+		"/D/Code/ExternalSourceRepo/SlickGridVersions/FactlookSlickGrid/slick.grid.css",
+		"/E/code/Factlook/SlickGrid/src/less/slickgrid_test.less",
+		"/E/code/Factlook/SlickGrid/dist/slick.grid.css",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid - Copy.css",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid.css",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipFileList.txt",
+		"/D/Temp/example/embededLineFeed.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/pasteExampleForZipFile.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipExample.bat",
+		"/D/Temp/example/pasteExampleForZipFile.html",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.externalPasteManager.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/geo-lat-longValid.txt",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/app.js",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/Alignment/Default (Windows).sublime-keymap",
+		"/E/code/Factlook/SlickGrid/src/slick.dataview.js",
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/dataset/datasetEditor/datasetEditorModel.js",
+		"/E/code/Factlook/RevampUI/Iteration3/Server/src/CreateClientSideTestMockData/RawDbCollectionJson/ZipCodeGeographiesConfig.json",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/Map/domainMap.js",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/datasetConfiguration/datasetConfiguration.js",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/utils/utilities.js",
@@ -442,7 +444,6 @@
 		"/E/code/Factlook/SlickGrid/src/ExcelPasteTextEditor.js",
 		"/E/code/Factlook/SlickGrid/EfficientGridJsonResponse.js",
 		"/E/code/Factlook/SlickGrid/output.txt",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/app.js",
 		"/E/code/Factlook/SlickGrid/src/extendedSlickGrid/extendendedSlickGrid.js",
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/JsFormat.sublime-settings",
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/JsFormat/JsFormat.sublime-settings",
@@ -465,7 +466,6 @@
 		"/E/code/Factlook/RevampUI/Iteration3/Bugs-Issues/158/springs-doc from windows excel.txt",
 		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/example-transpose-providerV2 - Copy.html",
 		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/example-excel-clipboard-paste.html",
-		"/E/code/Factlook/SlickGrid/dist/slick.grid.css",
 		"/E/code/Factlook/SlickGrid/discovery/MetricConfigurationEditior - Copy/slickGrid/plugins/slick.cellexternalcopymanager.js",
 		"/E/code/Factlook/SlickGrid/src/tests/externalCopyPaste/index.html",
 		"/D/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/Color Scheme - Default/MonokaiBlack.tmTheme",
@@ -473,7 +473,6 @@
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/HighlightWhitespaces/highlight_whitespaces.sublime-settings",
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/highlight_whitespaces.sublime-settings",
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/Gremlins/Example.sublime-keymap",
-		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/slickgrid-spreadsheet-plugins/examples/example-2-everything.htm",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.grid.js",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/services/apiService/apiService.js",
@@ -536,22 +535,7 @@
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/bootstrap/less/variables.less",
 		"/E/code/Factlook/RevampUI/Iteration3/client/Gruntfile.js",
 		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.CheckboxSelectAllColumn/slick.checkboxselectallcolumn.js",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.CheckboxSelectAllColumn/README.md",
-		"/E/code/Factlook/SlickGrid/bower_components/spectrum/bower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/spectrum/.bower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/Gruntfile.js",
-		"/E/code/Factlook/SlickGrid/bower_components/spectrum/.bower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/spectrum/bower.json",
-		"/E/code/Factlook/SlickGrid/.bower.json",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/bookmarks.xml",
-		"/E/code/Factlook/SlickGrid/.git/sourcetreeconfig",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/hgrc_sourcetree",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree.exe_Url_mwukqjl2rmdcdiy0ommct5pky2juzynq/1.6.22.0/user.config",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/opentabs.xml",
-		"/D/Users/Rick/AppData/Local/Atlassian/SourceTree/gitflow_local/gitflow/gitflow-common",
-		"/E/code/Factlook/SlickGrid/src/slick.grid.less",
-		"/E/code/Factlook/SlickGrid/src/less/slick-default-theme.less",
-		"/E/code/Factlook/SlickGrid/src/less/slick.config.less"
+		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.CheckboxSelectAllColumn/README.md"
 	],
 	"find":
 	{
@@ -562,6 +546,7 @@
 		"height": 99.0,
 		"where_history":
 		[
+			"E:\\code\\Factlook\\SlickGrid",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src, *.js",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src *.js",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src",
@@ -688,8 +673,7 @@
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\custom_vendor,*.js",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,"
+			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,"
 		]
 	},
 	"find_state":
@@ -697,6 +681,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"view",
+			"slick-viewport",
+			"viewport",
+			"view",
+			"scroll",
+			"getDataTime",
+			"performance",
+			"perform",
+			"handlePaste",
+			"_parseData",
+			"_createTextBox",
 			"sort",
 			"auto",
 			"dataView",
@@ -813,18 +808,7 @@
 			"height",
 			"active",
 			"less",
-			"grid",
-			"images",
-			"assets/",
-			"img",
-			"DataPointTextEditor",
-			"CheckmarkFormatter",
-			"getViewportHeight",
-			"autoHeight",
-			"height",
-			"getPropertyValue",
-			"_.find",
-			"setPropertyValue"
+			"grid"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -832,6 +816,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"getDataFromClipboard",
 			"_dataview",
 			"this",
 			"cellExternalPasteManager",
@@ -958,8 +943,7 @@
 			"keyCol",
 			"MockGenerateEqualSizeDataRangeBreaksResponse",
 			"\\\"",
-			"addNewMetricConfigurationToLayer",
-			"metricBreak"
+			"addNewMetricConfigurationToLayer"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -970,354 +954,62 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+					"file": "discovery/externalCopyPaste/slick.grid.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2983,
+						"buffer_size": 35110,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2885,
-								2885
+								35110,
+								35110
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 585.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "discovery/externalCopyPaste/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4414,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4045,
-								4045
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"syntax": "Packages/LESS/LESS.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1845.0,
+						"translation.y": 24732.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
+					"file": "discovery/externalCopyPaste/embededLineFeed.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9551,
+						"buffer_size": 2051,
 						"regions":
 						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										181,
-										185
-									],
-									[
-										319,
-										323
-									],
-									[
-										464,
-										468
-									],
-									[
-										648,
-										652
-									],
-									[
-										653,
-										657
-									],
-									[
-										745,
-										749
-									],
-									[
-										950,
-										954
-									],
-									[
-										1142,
-										1146
-									],
-									[
-										1247,
-										1251
-									],
-									[
-										1441,
-										1445
-									],
-									[
-										1640,
-										1644
-									],
-									[
-										1723,
-										1727
-									],
-									[
-										1803,
-										1807
-									],
-									[
-										2008,
-										2012
-									],
-									[
-										2218,
-										2222
-									],
-									[
-										2775,
-										2779
-									],
-									[
-										3138,
-										3142
-									],
-									[
-										3420,
-										3424
-									],
-									[
-										3773,
-										3777
-									],
-									[
-										4158,
-										4162
-									],
-									[
-										4327,
-										4331
-									],
-									[
-										4513,
-										4517
-									],
-									[
-										4826,
-										4830
-									],
-									[
-										5000,
-										5004
-									],
-									[
-										5388,
-										5392
-									],
-									[
-										5690,
-										5694
-									],
-									[
-										6007,
-										6011
-									],
-									[
-										6312,
-										6316
-									],
-									[
-										6631,
-										6635
-									],
-									[
-										6669,
-										6673
-									],
-									[
-										7093,
-										7097
-									],
-									[
-										7406,
-										7410
-									],
-									[
-										7725,
-										7729
-									],
-									[
-										7763,
-										7767
-									],
-									[
-										8185,
-										8189
-									],
-									[
-										8489,
-										8493
-									],
-									[
-										8808,
-										8812
-									],
-									[
-										9142,
-										9146
-									],
-									[
-										9463,
-										9467
-									]
-								],
-								"scope": ""
-							}
 						},
 						"selection":
 						[
 							[
-								4165,
-								4165
+								0,
+								2051
 							]
 						],
 						"settings":
 						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 4,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1560.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/dataset/datasetEditor/datasetEditorModel.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18139,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15226,
-								15226
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5284.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/slick.dataview.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 43525,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								31257,
-								31264
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 31.0,
-						"translation.y": 14691.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/slick.grid.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 152591,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								39635,
-								39635
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 15336.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1411,7 +1103,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 313.0,
+	"side_bar_width": 363.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
