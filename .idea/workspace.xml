@@ -33,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0625">
-              <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+              <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
               <folding>
                 <element signature="n#script#1;n#head#0;n#html#0;n#!!top" expanded="false" />
               </folding>
@@ -700,7 +700,7 @@
     <entry file="file://$PROJECT_DIR$/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0625">
-          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
+          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
           <folding>
             <element signature="n#script#1;n#head#0;n#html#0;n#!!top" expanded="false" />
           </folding>
