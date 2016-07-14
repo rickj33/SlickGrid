@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"error",
+				"errorMessages"
+			],
+			[
+				"parsin",
+				"parsingError"
+			],
+			[
+				"descr",
+				"descriptionElement"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"de",
+				"description"
+			],
+			[
 				"tot",
 				"totalTime"
 			],
@@ -252,10 +272,6 @@
 				"writeInGrid"
 			],
 			[
-				"app",
-				"applyValue"
-			],
-			[
 				"rea",
 				"realEditor"
 			],
@@ -328,18 +344,10 @@
 	"buffers":
 	[
 		{
-			"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+			"file": "discovery/externalCopyPaste/zipFileList.txt",
 			"settings":
 			{
-				"buffer_size": 4212,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "discovery/externalCopyPaste/slick.externalPasteManager.js",
-			"settings":
-			{
-				"buffer_size": 13817,
+				"buffer_size": 1018,
 				"line_ending": "Windows"
 			}
 		}
@@ -407,20 +415,25 @@
 	],
 	"file_history":
 	[
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/bootstrap.css",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/embededLineFeed.txt",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.externalPasteManager.js",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/pasteExampleForZipFile.html",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/app.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/fastPasteExample.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipFileList.txt",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example/missingColumn.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/malformed.tsv",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/embededLineFeed.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/bootstrap.css",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/app.js",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/missingColumn.txt",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/sampleParseResult.json",
+		"/E/code/cernySmith/DataExtractionProject/InitalScopeDiscussionNotes-7.14.2016",
+		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/pasteExampleForZipFile.html",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example/pasteExampleForZipFile.html",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example/embededLineFeed.txt",
 		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/slick.grid.css",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/zipFileList.txt",
 		"/E/code/Factlook/RevampUI/Iteration3/client/custom_vendor/leafletDVF/css/dvf.css",
 		"/d/Users/Rick/AppData/Roaming/Sublime Text 3/Packages/HTMLBeautify/HTMLBeautify.sublime-settings",
 		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
-		"/E/code/Factlook/SlickGrid/discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/FactlookSlickGrid/slick.grid.css",
 		"/E/code/Factlook/SlickGrid/src/less/slickgrid_test.less",
 		"/E/code/Factlook/SlickGrid/dist/slick.grid.css",
@@ -529,12 +542,7 @@
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/slick.grid.css",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/examples/example-0066-plugin-complete.html",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/GerHobbelt/examples/examples.css",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapStylePropertySet/mapStylePropertySet.js",
-		"/E/code/Factlook/SlickGrid/oldbower.json",
-		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/jquery.event.drag-drop/bower.json",
-		"/E/code/Factlook/SlickGrid/src/jquery-ui-slickgrid.custom.css",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/less/variables_override.less",
-		"/E/code/Factlook/SlickGrid/bower_components/SlickGrid.spreadsheet-plugins/plugins-excel-style.css"
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapStylePropertySet/mapStylePropertySet.js"
 	],
 	"find":
 	{
@@ -680,6 +688,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"count",
+			"resize",
+			"_timingKeyContainer",
 			"container",
 			"_validateParsingResults",
 			"console.log",
@@ -804,10 +815,7 @@
 			"range",
 			"viewport",
 			"canvas",
-			"break-grid",
-			"selectedNodeChanged",
-			"maxHeight",
-			"height"
+			"break-grid"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -815,6 +823,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"_legendContentArea",
 			"addTimingResultToLegend",
 			"getDataFromClipboard",
 			"_dataview",
@@ -941,8 +950,7 @@
 			"MetricPropertyName",
 			"metricPropertyName",
 			"keyCol",
-			"MockGenerateEqualSizeDataRangeBreaksResponse",
-			"\\\""
+			"MockGenerateEqualSizeDataRangeBreaksResponse"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -953,66 +961,32 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "discovery/externalCopyPaste/example-excel-clipboard-paste-dataview.html",
+					"file": "discovery/externalCopyPaste/zipFileList.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4212,
+						"buffer_size": 1018,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4122,
-								4122
+								1017,
+								1017
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1305.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "discovery/externalCopyPaste/slick.externalPasteManager.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13817,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5356,
-								5356
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2115.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1106,7 +1080,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 434.0,
+	"side_bar_width": 235.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>SlickGrid example 3: Editing</title>
     <link rel="stylesheet" href="spectrum.css" type="text/css"/>
     <link rel="stylesheet" href="dvf.css" type="text/css"/>
-    <link rel="stylesheet" href="bootstrap.css" type="text/css"/>
+       <link rel="stylesheet" href="bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="slick.grid.css" type="text/css"/>
 
     <style>
@@ -39,7 +39,7 @@
 
                   margin-bottom: 10px;
 
-              }
+        }
         #legendContentArea {
             padding: 0px;
 
@@ -47,7 +47,7 @@
 
         }
     </style>
-           <!--  <script src="node_modules/jquery/dist/jquery.js"></script>
+            <script src="node_modules/jquery/dist/jquery.js"></script>
             <script src="node_modules/lodash/lodash.js"></script>
             <script src="node_modules/jquery-ui/jquery-ui.min.js"></script>
             <script src="node_modules/jquery.event.drag/event.drag/jquery.event.drag.js"></script>
@@ -74,65 +74,8 @@
             <script src= "src/Plugins/slick.cellselectionmodel.js"></script>
             <script src= "src/Plugins/slick.cellrangedecorator.js"></script>
             <script src= "src/Plugins/ext.headerfilter.js"></script>
-            <script src= "src/Plugins/ext.overlays.js"></script> -->
-
-    <script type="text/javascript">
-        var rootPath = "../../";
-        var nodeModulesPath = rootPath + 'node_modules/';
-        var sourcePath = rootPath + 'src/';
-        var head = document.getElementsByTagName( 'head' )[0];
-
-        var addScript = function( path, jsFileName )
-        {
-
-            var JSLink = path + jsFileName;
-            console.log( JSLink );
-            //  var script = document.createElement('script');
-
-            $.ajax( {
-                async: false,
-                url: JSLink,
-                dataType: "script"
-            } );
-
-        };
-
-        function AddScripts()
-        {
-            addScript( nodeModulesPath, "jquery/dist/jquery.js" );
-            addScript( nodeModulesPath, "lodash/lodash.js" );
-            addScript( nodeModulesPath, "jquery-ui/jquery-ui.min.js" );
-            addScript( nodeModulesPath, "jquery.event.drag/event.drag/jquery.event.drag.js" );
-            addScript( nodeModulesPath, "spectrum/lib/spectrum.js" );
-            addScript( nodeModulesPath, "papaparse/papaparse.js" );
-            addScript( nodeModulesPath, "perfnow/perfnow.min.js" );
-
-            addScript( rootPath, "custom_vendor/fixclick/jquery-fixclick.js" );
-            addScript( sourcePath, "slick.core.js" );
-            addScript( sourcePath, "slick.grid.js" );
-            addScript( sourcePath, "slick.dataview.js" );
-            addScript( sourcePath, "slick.editors.js" );
-
-            addScript( sourcePath, "slick.formatters.js" );
-
-            addScript( sourcePath, "plugins/slick.checkboxselectcolumn.js" );
-            addScript( sourcePath, "plugins/slick.rowselectionmodel.js" );
-
-            addScript( sourcePath, "plugins/slick.cellrangedecorator.js" );
-            addScript( sourcePath, "plugins/slick.cellrangeselector.js" );
-            /*  addScript(sourcePath, "plugins/slick.cellexternalcopymanager.js");*/
-            addScript( sourcePath, "plugins/slick.cellselectionmodel.js" );
-
-            addScript( sourcePath, "Plugins/slick.cellrangeselector.js" );
-            addScript( sourcePath, "Plugins/slick.cellselectionmodel.js" );
-            addScript( sourcePath, "Plugins/slick.cellrangedecorator.js" );
-            addScript( sourcePath, "Plugins/ext.headerfilter.js" );
-            addScript( sourcePath, "Plugins/ext.overlays.js" );
-
-        }
-
-        AddScripts();
-    </script>
+            <script src= "src/Plugins/ext.overlays.js"></script>
+  
     <script src="slick.externalPasteManager.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>
 
@@ -166,22 +109,3 @@
 </script>
 </body>
 </html>
-
-
-<!--
-<div id="timingContainer" class="row">
-    <div class="legend" id="legend">
-
-        <div class="legend well">
-            <div class="legend  col-md-12">
-                <div class="legend-title">Timing Results</div>
-                <div id="legendContentArea" class="data-layer-legend">
-                    <div class="col-md-6">Description</div>
-                    <div class="col-md-3">times</div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>-->

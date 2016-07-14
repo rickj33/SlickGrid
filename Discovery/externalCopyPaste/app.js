@@ -126,7 +126,7 @@ TestApp.prototype.handleOnPasteCells = function(e, args)
   //clear the selection set.
  //   this.grid.autosizeColumns();
   this.grid.getSelectionModel().setSelectedRanges([]);
-//  this.grid.resizeCanvas();
+  this.grid.resizeCanvas();
 };
 
 TestApp.prototype.handleOnValidationError = function(e, args) {

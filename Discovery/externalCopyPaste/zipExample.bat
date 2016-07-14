@@ -1,2 +1,2 @@
 del example.zip
-"C:\Program Files\WinRAR"\rar a -r example.zip @zipFileList.txt
+"C:\Program Files\WinRAR"\winrar  a -r -afzip example.zip @zipFileList.txt

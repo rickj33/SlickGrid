@@ -11,26 +11,7 @@
 
   function ExternalPasteManager(options)
   {
-    /*
-     This manager enables users to copy/paste data from/to an external Spreadsheet application
-     such as MS-Excel® or OpenOffice-Spreadsheet.
 
-     Since it is not possible to access directly the clipboard in javascript, the plugin uses
-     a trick to do it's job. After detecting the keystroke, we dynamically create a textarea
-     where the browser copies/pastes the serialized data.
-
-     options:
-     copiedCellStyle : sets the css className used for copied cells. default : "copied"
-     copiedCellStyleLayerKey : sets the layer key for setting css values of copied cells. default : "copy-manager"
-     dataItemColumnValueExtractor : option to specify a custom column value extractor function
-     dataItemColumnValueSetter : option to specify a custom column value setter function
-     clipboardCommandHandler : option to specify a custom handler for paste actions
-     includeHeaderWhenCopying : set to true and the plugin will take the name property from each column (which is usually what appears in your header) and put that as the first row of the text that's copied to the clipboard
-     bodyElement: option to specify a custom DOM element which to will be added the hidden textbox. It's useful if the grid is inside a modal dialog.
-     onCopyInit: optional handler to run when copy action initializes
-     onCopySuccess: optional handler to run when copy action is complete
-     ingoreFormatting: optional array to specify fields of columns that ignore all formatters on paste
-     */
     var _grid;
     var _self = this;
     var _copiedRanges;
@@ -45,7 +26,8 @@
     var _ignoreFormatting = _options.ignoreFormatting || [];
     var _textBox;
     var _startTime;
-    var _timingKeyContainer = $("#legendContentArea");
+    var _legendContentArea = $("#legendContentArea");
+
     //   var _endTime;
 
 
@@ -66,9 +48,7 @@
       {
         throw new Error("Selection model is mandatory for this plugin. Please set a selection model on the grid before adding this plugin: grid.setSelectionModel(new Slick.CellSelectionModel())");
       }
-      // we give focus on the grid when a selection is done on it.
-      // without this, if the user selects a range of cell without giving focus on a particular cell, the grid doesn't get the focus and key stroke handles (ctrl+c) don't work
-      //noinspection JSUnusedLocalSymbols,JSUnusedLocalSymbols
+
       cellSelectionModel.onSelectedRangesChanged.subscribe(function(e, args)
       {
         _grid.focus();
@@ -85,13 +65,7 @@
       // textArea.value = innerText;
       _bodyElement.appendChild(_textBox);
       _textBox.onpaste = handlePaste
-        /*function(event){
-            var   clipboardContents = event.clipboardData.getData("Text");
-            console.log(clipboardContents);
-        };*/
-        //  _textBox.select();
 
-      // return textArea;
     }
 
     function destroy()
@@ -153,7 +127,7 @@
         {
           validationResult: validationResult
         });
-          // displayErrors(validationResult);
+        displayErrors(validationResult);
         return;
       }
 
@@ -170,6 +144,93 @@
 
     }
 
+    function displayErrors(validationResult)
+    {
+      var errorMessages = [];
+      if (validationResult.success)
+      {
+        return;
+      }
+      _.forEach(validationResult.columnErrors, function(colError)
+      {
+        errorMessages.push(colError);
+
+      });
+
+      _.forEach(validationResult.parsingErrors, function(parsingError)
+      {
+        var errorArray = [];
+        errorArray.push('Error code: ' + parsingError.code);
+        errorArray.push('Message: ' + parsingError.message);
+        errorArray.push('Type: ' + parsingError.code.toString());
+        errorArray.push('Row: ' + parsingError.row);
+        errorArray.push('Col: ' + parsingError.index);
+
+        var errorString = errorArray.join('; ')
+        errorMessages.push(errorString)
+      });
+
+      $('#legend').addClass('error');
+      $('#legendTitle').innerHTML = 'Errors'
+
+
+      _.forEach(errorMessages, function(message)
+      {
+         var _lineFeed =  document.createElement('br');
+        var errorItem = document.createElement('div');
+        //errorItem.className = 'col-md-4';
+           errorItem.className = 'row';
+        errorItem.innerHTML = message
+        _legendContentArea.append(errorItem);
+  _legendContentArea.append(_lineFeed);
+
+      });
+
+
+    }
+
+
+    function _validateParsingResults(parseResults)
+    {
+
+      var validationResult = {
+        success: true,
+        columnErrors: [],
+        parsingErrors: []
+      };
+
+      var columns = parseResults.meta.fields;
+
+      var i = 0;
+
+      //check to ensure all columnNames have a value.
+      var colNumber = 0;
+      _.forEach(columns, function(column)
+      {
+        colNumber++;
+        var columnName = _.trim(column);
+        if (!columnName)
+        {
+          validationResult.success = false;
+
+          validationResult.columnErrors.push('Column : ' + colNumber.toString() + ' does not have a valid name');
+        }
+      });
+
+
+      if (parseResults.errors.length > 0)
+      {
+        _.forEach(parseResults.errors, function(error)
+        {
+          validationResult.parsingErrors.push(error);
+          validationResult.success = false;
+        });
+      }
+
+      //check to ensure there were not any parsing errors in the result.
+
+      return validationResult;
+    }
 
     function displayTimings(performanceTimes)
     {
@@ -183,12 +244,12 @@
       var parseDataDisp = createTimingMessage('Time to parse data', timingsCalc.parseResultsTime);
       var validateDataDisp = createTimingMessage('Time to validate parsed data', timingsCalc.validateParsingResultsTime);
       var updateGridDisp = createTimingMessage('Time to update grid', timingsCalc.updateGridDataTime);
-      console.log(totalTimeDisp);
-      console.log(pasteDataDisp);
-      console.log(getDataFromClipboardDisp);
-      console.log(parseDataDisp);
-      console.log(validateDataDisp);
-      console.log(updateGridDisp);
+      console.log(totalTimeDisp.toString());
+      console.log(pasteDataDisp.toString());
+      console.log(getDataFromClipboardDisp.toString());
+      console.log(parseDataDisp.toString());
+      console.log(validateDataDisp.toString());
+      console.log(updateGridDisp.toString());
 
       addTimingResultToLegend(totalTimeDisp);
       addTimingResultToLegend(pasteDataDisp);
@@ -196,19 +257,40 @@
       addTimingResultToLegend(parseDataDisp);
       addTimingResultToLegend(validateDataDisp);
       addTimingResultToLegend(updateGridDisp);
+    }
 
 
-    function addTimingResultToLegend(displayText)
+
+    function addTimingResultToLegend(timingResult)
     {
 
-      var el = document.createElement('div');
-      el.innerHTML = displayText;
-      el.className = 'key';
+      var el = createTimingResultElement(timingResult);
 
-      if (_timingKeyContainer)
+      if (_legendContentArea)
       {
-        _timingKeyContainer.append(el);
+        _legendContentArea.append(el);
       }
+
+    }
+
+    function createTimingResultElement(timingResult)
+    {
+
+      var timingElement = document.createElement('div');
+      timingElement.className = 'key';
+
+      var descriptionElement = document.createElement('div');
+      descriptionElement.className = 'col-md-4';
+      descriptionElement.innerHTML = timingResult.description
+
+      var timeElement = document.createElement('div');
+      timeElement.className = 'col-md-2"';
+      timeElement.innerHTML = timingResult.time
+
+      timingElement.appendChild(descriptionElement);
+      timingElement.appendChild(timeElement);
+
+      return timingElement;
 
     }
 
@@ -221,9 +303,22 @@
 
     function createTimingMessage(timingDescription, totalTime)
     {
-      var secs = (totalTime/1000) % 60;
+      var result = {
+        description: '',
+        time: '',
+
+        toString: function()
+        {
+          return this.description + this.time;
+        }
+      };
+      var secs = (totalTime / 1000) % 60;
       var timeString = parseFloat(secs).toFixed(4);
-      return timingDescription + ' took \t\t' + timeString + ' seconds.';
+      result.description = timingDescription + ' took ';
+      result.time = timeString + ' seconds.'
+
+      //return timingDescription + ' took ' + timeString + ' seconds.';
+      return result
     }
 
     function calculateTimings(performanceTimes)
@@ -267,50 +362,6 @@
       console.log(parseResults);
       return parseResults;
 
-    }
-
-
-
-    function _validateParsingResults(parseResults)
-    {
-
-      var validationResult = {
-        success: true,
-        columnErrors: [],
-        parsingErrors: []
-      };
-
-      var columns = parseResults.meta.fields;
-
-      var i = 0;
-
-      //check to ensure all columnNames have a value.
-      var colNumber = 0;
-      _.forEach(columns, function(column)
-      {
-        colNumber++;
-        var columnName = _.trim(column);
-        if (!columnName)
-        {
-          validationResult.success = false;
-
-          validationResult.columnErrors.push('Column : ' + colNumber.toString() + ' does not have a valid name');
-        }
-      });
-
-
-      if (parseResults.errors.count > 0)
-      {
-        _.forEach(parseResults.errors, function(error)
-        {
-          validationResult.parsingErrors.push(error);
-          validationResult.success = false;
-        });
-      }
-
-      //check to ensure there were not any parsing errors in the result.
-
-      return validationResult;
     }
 
 

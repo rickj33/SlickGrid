@@ -6,7 +6,7 @@
 ../../node_modules/spectrum/lib/spectrum.js 
 ../../node_modules/papaparse/papaparse.js 
 ../../node_modules/perfnow/perfnow.min.js 
-../../node_modules/perfnow/perfnow.min.js 
+
 
 
 ../../custom_vendor/fixclick/jquery-fixclick.js 
@@ -24,16 +24,17 @@
 ../../src/plugins/slick.cellrangeselector.js 
 ../../src/plugins/slick.cellselectionmodel.js 
 
-../../src/Plugins/slick.cellrangeselector.js 
-../../src/Plugins/slick.cellselectionmodel.js 
-../../src/Plugins/slick.cellrangedecorator.js 
+
 ../../src/Plugins/ext.headerfilter.js 
 ../../src/Plugins/ext.overlays.js 
 
-./pasteExampleForZipFile.html
+./fastPasteExample.html
 ./app.js
 ./slick.externalPasteManager.js
 ./slick.grid.css
 ./spectrum.css
+./dvf.css
+./bootstrap.css
 ./missingColumn.txt
 ./embededLineFeed.txt
+./malformedData.txt
