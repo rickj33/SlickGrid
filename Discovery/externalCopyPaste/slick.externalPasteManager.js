@@ -43,6 +43,10 @@
     var _onCopyInit = _options.onCopyInit || null;
     var _onCopySuccess = _options.onCopySuccess || null;
     var _ignoreFormatting = _options.ignoreFormatting || [];
+    var _textBox;
+    var _startTime;
+    //   var _endTime;
+
 
     var keyCodes = {
       'C': 67,
@@ -68,6 +72,25 @@
       {
         _grid.focus();
       });
+      _createTextBox();
+    }
+
+    function _createTextBox(innerText)
+    {
+      _textBox = document.createElement('textarea');
+      _textBox.style.position = 'absolute';
+      _textBox.style.left = '-1000px';
+      _textBox.style.top = document.body.scrollTop + 'px';
+      // textArea.value = innerText;
+      _bodyElement.appendChild(_textBox);
+      _textBox.onpaste = handlePaste
+        /*function(event){
+            var   clipboardContents = event.clipboardData.getData("Text");
+            console.log(clipboardContents);
+        };*/
+        //  _textBox.select();
+
+      // return textArea;
     }
 
     function destroy()
@@ -78,6 +101,7 @@
       }
       _grid = null;
       _self = null;
+      _bodyElement.removeChild(_textBox);
     }
 
 
@@ -86,7 +110,7 @@
       return {
         "delimiter": "",
         "header": true,
-        "dynamicTyping": true,
+        "dynamicTyping": false,
         "skipEmptyLines": true,
         "preview": 0,
         "encoding": "",
@@ -97,11 +121,30 @@
     }
 
 
-    function handlePaste(grid, texboxElement)
+    function handlePaste(event)
+    //function handlePaste(grid, texboxElement)
     {
 
-      var parseResults = _parseData(texboxElement);
+      var performanceTimes = {
+        startTime: _startTime,
+        handlePaste: performance.now(),
+        getDataFromClipboard: null,
+        parseResultsTime: null,
+        validateParsingResultsTime: null,
+        updateGridDataTime: null,
+        stopTime: null
+
+      }
+
+      // var handlePasteStart = performance.now();
+      var data = event.clipboardData.getData("Text");
+      performanceTimes.getDataFromClipboard = performance.now();
+
+      var parseResults = _parseData(data);
+      performanceTimes.parseResultsTime = performance.now();
+
       var validationResult = _validateParsingResults(parseResults);
+      performanceTimes.validateParsingResultsTime = performance.now();
 
       if (!validationResult.success)
       {
@@ -112,14 +155,50 @@
         return;
       }
 
-      updateGridData(grid, parseResults)
+      updateGridData(_grid, parseResults)
+      performanceTimes.updateGridDataTime = performance.now();
+      performanceTimes.stopTime = performanceTimes.updateGridDataTime;
 
+      displayTimings(performanceTimes);
       _self.onPasteCells.notify(
       {
         parseResults: parseResults
       });
 
     }
+
+
+    function displayTimings(performanceTimes)
+    {
+      timingsCalc = calculateTimings(performanceTimes);
+      logTiming('Total processing time', timingsCalc.totalTime);
+      logTiming('Time to paste data', timingsCalc.pasteTime);
+      logTiming('Get Data from Clipboard', timingsCalc.getDataFromClipboard);
+      logTiming('Time to parse data', timingsCalc.parseResultsTime);
+      logTiming('Time to validate parsed data', timingsCalc.validateParsingResultsTime);
+       logTiming('Time to update grid', timingsCalc.updateGridDataTime);
+
+    }
+
+    function logTiming(timingDescription, totalTime)
+    {
+      console.log(timingDescription + ' took ' + totalTime + ' milliseconds.');
+    }
+
+    function calculateTimings(performanceTimes)
+    {
+
+
+      var result = {}
+      result.totalTime = performanceTimes.stopTime - performanceTimes.startTime;
+      result.pasteTime = performanceTimes.handlePaste - performanceTimes.startTime;
+      result.getDataFromClipboard = performanceTimes.getDataFromClipboard - performanceTimes.handlePaste;
+      result.parseResultsTime = performanceTimes.parseResultsTime - performanceTimes.getDataFromClipboard;
+      result.validateParsingResultsTime = performanceTimes.validateParsingResultsTime - performanceTimes.parseResultsTime;
+      result.updateGridDataTime = performanceTimes.updateGridDataTime - performanceTimes.validateParsingResultsTime;
+      return result;
+    }
+
 
     function updateGridData(grid, parseResults)
     {
@@ -141,18 +220,11 @@
       }
     }
 
-    function _parseData(texboxElement)
+    function _parseData(textData)
     {
 
-      var clipText = texboxElement.value;
-
-      _bodyElement.removeChild(texboxElement);
-
       var parsingOptions = _getParseOptions();
-      var parseResults = Papa.parse(clipText, parsingOptions);
-
-
-
+      var parseResults = Papa.parse(textData, parsingOptions);
       console.log(parseResults);
       return parseResults;
 
@@ -228,14 +300,17 @@
         if (e.which == keyCodes.V && (e.ctrlKey || e.metaKey))
         { // CTRL + V
 
-          var ta = _createTextBox('');
-          var parseResults = null;
-          setTimeout(function()
-          {
-            parseResults = handlePaste(_grid, ta);
-          }, 200);
+          _startTime = performance.now();
+          _textBox.select();
+          //  handlePaste();
+          //  var ta = _createTextBox('');
+          /*   var parseResults = null;
+            setTimeout(function()
+            {
+              parseResults = handlePaste(_grid, ta);
+            }, 200);
 
-          return false;
+            return false;*/
         }
       }
     }
@@ -318,18 +393,7 @@
     }
 
     //creates a new text area to paste the clipboard data.
-    function _createTextBox(innerText)
-    {
-      var textArea = document.createElement('textarea');
-      textArea.style.position = 'absolute';
-      textArea.style.left = '-1000px';
-      textArea.style.top = document.body.scrollTop + 'px';
-      textArea.value = innerText;
-      _bodyElement.appendChild(textArea);
-      textArea.select();
 
-      return textArea;
-    }
 
     function ParsingException(validationResult)
     {

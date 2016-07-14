@@ -12,7 +12,8 @@
     "jquery-ui": "github:components/jqueryui#1.11.4",
     "jquery.event.drag": "github:rickj33/jquery.threedubmedia",
     "lodash": "^3.10.1",
-    "papaparse": "^4.1.2"
+    "papaparse": "^4.1.2",
+    "perfnow": "^0.2.0"
   },
   "devDependencies": {
     "assemble-less": ">=0.7.0",
