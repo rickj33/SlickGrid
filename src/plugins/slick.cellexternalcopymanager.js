@@ -272,7 +272,7 @@
                 }
             }
 
-                updateColumnsForGrid( _grid, clippedRange[0] );
+            updateColumnsForGrid( _grid, clippedRange[0] );
 
             var columns = _grid.getColumns();
             var selectedCell = _grid.getActiveCell();

@@ -185,7 +185,6 @@
                 return;
             }
 
-
             var newColumnIndex = 0;
             var fieldNameStartValue = 0;
             if (_options.fieldNameStartValue)
@@ -203,8 +202,6 @@
                 } else
                 {
                     //create a new column.
-                    //need to track empty or null columns.
-
                     column = {};
                     columns.push( column );
                 }
@@ -272,9 +269,7 @@
                 }
             }
 
-            if( _options.includeHeaderWhenCopying){
             updateColumnsForGrid( _grid, clippedRange[0] );
-        }
 
             var columns = _grid.getColumns();
             var selectedCell = _grid.getActiveCell();
