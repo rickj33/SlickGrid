@@ -16,7 +16,7 @@
  *     and do proper cleanup.
  */
 
-// make sure required JavaScript modules are loaded
+// make sure required JavaScript modules are loade
 if ( typeof jQuery === "undefined" )
 {
   throw "SlickGrid requires jquery module to be loaded";
@@ -563,7 +563,7 @@ if ( typeof Slick === "undefined" )
         }
         $headerScroller
             .bind( "contextmenu", handleHeaderContextMenu )
-            .fixClick( handleHeaderClick )
+            .bind("click", handleHeaderClick)
             .delegate( ".slick-header-column", "mouseenter", handleHeaderMouseEnter )
             .delegate( ".slick-header-column", "mouseleave", handleHeaderMouseLeave );
         $headerRowScroller
@@ -572,7 +572,7 @@ if ( typeof Slick === "undefined" )
                   .bind( "keydown", handleKeyDown );
         $canvas
             .bind( "keydown", handleKeyDown )
-            .fixClick( handleClick, handleDblClick )
+            .bind("click", handleClick)
             .bind( "contextmenu", handleContextMenu )
             .bind( "draginit", handleDragInit )
             .bind( "dragstart", {distance: 3}, handleDragStart )
@@ -2663,7 +2663,9 @@ if ( typeof Slick === "undefined" )
       }
 
       $paneTopL.css( {
-        'top': $paneHeaderL.height(),
+        //since the $panelTopL posistion is relative, then set the top to 0
+        //'top': $paneHeaderL.height(),
+            'top': 0,
         'height': paneTopH
       } );
 
@@ -3237,7 +3239,7 @@ if ( typeof Slick === "undefined" )
         cleanUpAndRenderCells( rendered );
       }
 
-      // render missing rows
+      // render missing row
       renderRows( rendered );
 
       // Render frozen bottom rows
@@ -3725,7 +3727,8 @@ if ( typeof Slick === "undefined" )
         return;
       }
 
-      if ( (activeCell != cell.cell || activeRow != cell.row) && canCellBeActive( cell.row, cell.cell ) )
+  //if ( (activeCell != cell.cell || activeRow != cell.row) && canCellBeActive( cell.row, cell.cell ) )
+      if ( (activeCell != cell.cell || activeRow != cell.row) || canCellBeActive( cell.row, cell.cell ) )
       {
         if ( !getEditorLock().isActive() || getEditorLock().commitCurrentEdit() )
         {
@@ -4043,7 +4046,7 @@ if ( typeof Slick === "undefined" )
 
         if ( opt_editMode == null )
         {
-          opt_editMode = (activeRow == getDataLength()) || options.autoEdit;
+          opt_editMode = (activeRow == getDataLength())  || options.autoEdit;
         }
 
         if ( options.editable && opt_editMode && isCellPotentiallyEditable( activeRow, activeCell ) )

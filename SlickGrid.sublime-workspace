@@ -303,6 +303,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 1060,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -353,10 +361,27 @@
 	"expanded_folders":
 	[
 		"/E/code/Factlook/SlickGrid",
+		"/E/code/Factlook/SlickGrid/dist",
 		"/E/code/Factlook/SlickGrid/src"
 	],
 	"file_history":
 	[
+		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/slickgrid.src.js",
+		"/E/code/Factlook/SlickGrid/dist/slickgrid.min.js",
+		"/E/code/Factlook/SlickGrid/Gruntfile.js",
+		"/E/code/Factlook/SlickGrid/package.json",
+		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/dist/app/app.js",
+		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/dist/index.html",
+		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/dist/app/Factlook-2.0.1-Alpha.519.js",
+		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/compile/app/app.js",
+		"/E/code/Factlook/RevampUI/Iteration3/client/build/dev/compile/app/services/authenticationService/authenticationService.js",
+		"/E/code/Factlook/RevampUI/Iteration3/CommonGruntTasks.js",
+		"/E/code/Factlook/RevampUI/Iteration3/client/build/stage/index.html",
+		"/E/code/Factlook/SlickGrid/src/plugins/slick.cellexternalcopymanager.js",
+		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
+		"/D/Code/ExternalSourceRepo/SlickGridVersions/SlickGridOrginalCopyPaste/examples/example-excel-compatible-spreadsheet.html",
+		"/E/code/Factlook/RevampUI/Iteration3/client/package.json",
+		"/E/code/Factlook/SlickGrid/src/slick.core.js",
 		"/D/Code/ExternalSourceRepo/SlickGridVersions/slickgrid-spreadsheet-plugins/examples/example-2-everything.htm",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/custom_vendor/factlook-slickgrid/slick.grid.js",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/services/apiService/apiService.js",
@@ -377,12 +402,10 @@
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/map/mapSidebar/mapSidebarModel.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/dataset/dataset.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/domain/dataPointCollection/dataPointCollection.js",
-		"/E/code/Factlook/SlickGrid/src/slick.grid.js",
 		"/E/code/Factlook/SlickGrid/src/slick.dataview.js",
 		"/E/code/Factlook/SlickGrid/src/slick.extensions.js",
 		"/E/code/Factlook/SlickGrid/src/slick.editors.js",
 		"/E/code/Factlook/SlickGrid/src/slick.formatters.js",
-		"/E/code/Factlook/SlickGrid/src/slick.core.js",
 		"/E/code/Factlook/SlickGrid/src/less/slick-editors.less",
 		"/E/code/Factlook/SlickGrid/src/less/slick-formatters.less",
 		"/E/code/Factlook/SlickGrid/bower.json",
@@ -398,7 +421,6 @@
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/slick.formatters.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/less/slick.grid.less",
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/slick.editors.js",
-		"/E/code/Factlook/SlickGrid/Gruntfile.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/vendor/factlook_slickGrid/src/slick.grid.js",
 		"/E/code/Factlook/SlickGrid/src/plugins/slick.cellselectionmodel.js",
 		"/E/code/Factlook/RevampUI/Iteration3/Testing/metricConfigScreen - Copy/localhost.html",
@@ -471,20 +493,7 @@
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapContent/mapContent.js",
 		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/ui/factlookMap/factlookMap.js",
 		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/modules/map/mapContent/mapContent.tpl.html",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/services/mapEditingService/mapEditingService.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/services/mapEditingService/mapEditingService.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/app.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/StylePropertySet/DomainStylePropertySet.js",
-		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/models/domain/Layer/DomainLayer.js",
-		"/D/downloads/Software/JetBrains/_License.txt",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationEditors/metricConfigurationBaseEditor.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/ui/factlookMap/factlookMap.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationDataView/metricConfigurationDataView.spec.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/map/mapMetricConfiguration/mapMetricConfigurationModel.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/gridControl/gridControl.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/providers/metricConfigurationFactory/metricConfigurationFactory.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/modules/map/mapLayer/mapLayerModel.js",
-		"/E/code/Factlook/RevampUI/Iteration3/client/src/app/models/metricConfigurationEditors/metricBaseEditor.spec.js"
+		"/E/code/GitTestBed/RevampUI/Iteration3/client/src/app/services/mapEditingService/mapEditingService.js"
 	],
 	"find":
 	{
@@ -495,6 +504,10 @@
 		"height": 99.0,
 		"where_history":
 		[
+			"E:\\code\\Factlook\\SlickGrid\\src, -*.min.js",
+			"E:\\code\\Factlook\\SlickGrid\\src",
+			"<open files>",
+			"E:\\code\\Factlook\\SlickGrid\\src",
 			"D:\\Code\\ExternalSourceRepo\\SlickGridVersions\\slickgrid-spreadsheet-plugins",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\custom_vendor\\factlook-slickgrid",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\custom_vendor\\factlook-slickgridOrg",
@@ -618,11 +631,7 @@
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
 			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
 			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\custom_vendor\\leaflet,*.js",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\app\\,*.js,",
-			"E:\\code\\Factlook\\RevampUI\\Iteration3\\client\\src\\test\\mock,*.js,"
+			"E:\\code\\GitTestBed\\RevampUI\\Iteration3\\client\\src\\app,*.js,"
 		]
 	},
 	"find_state":
@@ -630,6 +639,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"less",
+			"dist_files",
+			"https",
+			"filter = function",
+			"return!1;return!0",
+			"91",
+			"updateColumnsForGrid",
+			"_decodeTabularData",
+			"editor",
+			"handleKeyDown",
+			"keyCodes",
+			"keydown.nav",
+			"autoEditAddRow",
+			"setOptions",
+			"options",
+			"autoEdit",
+			"options",
+			"selectionModel",
+			"destroy",
+			"selectionModel",
+			"top:",
+			"top:26",
+			"top: 26px",
+			"style",
+			"slick-pane-top",
+			"slick-pane-left",
 			"style",
 			"cell-overlay",
 			"updateColumnHeader",
@@ -731,33 +766,7 @@
 			"mapvisible",
 			"selectedNodeChanged",
 			"metricConfigurationEditor",
-			"_markerClientKey",
-			"_breakCalculationClientKey",
-			"colorSchemeClientKey",
-			"_colorSchemeClientKey",
-			".data.propertySet",
-			" $state.curr",
-			"fdes",
-			"fit",
-			"disableField",
-			"disableAllStyleProperties",
-			"enabled",
-			".bind(",
-			"propertySetChanged",
-			"propertyChanged",
-			"tohave",
-			"spyOn",
-			"onCellChange",
-			"trigger",
-			"onCellChange",
-			"updateItem",
-			"onRowsChanged",
-			"onPropertyChanged",
-			"getDefaultStyleProperties",
-			"getMarkerStylingOptions",
-			"propertySetTabs",
-			"goToMetricConfigurationTab",
-			".go"
+			"_markerClientKey"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -903,8 +912,40 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1060,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1053,
+								1053
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -993,7 +1034,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 313.0,
+	"side_bar_width": 352.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
