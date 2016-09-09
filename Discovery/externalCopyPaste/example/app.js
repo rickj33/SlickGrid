@@ -121,14 +121,14 @@ TestApp.prototype.handleOnPasteCells = function(e, args)
 
   this.overrideEdit = true;
   if(columns){
-  var updatedColumns = this._buildGridColumns(columns);
+    var updatedColumns = this._buildGridColumns(columns);
 
-  this.grid.setColumns(updatedColumns);
+    this.grid.setColumns(updatedColumns);
   //clear the selection set.
  //   this.grid.autosizeColumns();
 }
-  this.grid.getSelectionModel().setSelectedRanges([]);
-  this.grid.resizeCanvas();
+this.grid.getSelectionModel().setSelectedRanges([]);
+this.grid.resizeCanvas();
 };
 
 TestApp.prototype.handleOnValidationError = function(e, args) {

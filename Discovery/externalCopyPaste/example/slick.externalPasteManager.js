@@ -91,9 +91,10 @@
     	//if header == true, merge == false and vice versa
 
 	    return {
+           "leadingZeroAsString" : true,
 	        "delimiter": "",
 	        "header": header,
-	        "dynamicTyping": false,
+	        "dynamicTyping": true,
 	        "skipEmptyLines": true,
 	        "preview": 0,
 	        "encoding": "",
