@@ -3,6 +3,7 @@ var TestApp = function()
   //  this.removeText = 'Remove selected from dataset';
   this._columns = [];
   this.grid = null;
+    this._legendContentArea = $( "#legendContentArea" );
 
   this.copyManagerOptions = {
     startPasteColumn: 1,
@@ -133,7 +134,23 @@ this.grid.resizeCanvas();
 
 TestApp.prototype.handleOnValidationError = function(e, args) {
 
+   var validationResult = args.validationResult;
+    
+    $( '#legend' ).addClass( 'error' );
+      $( '#legendTitle' ).innerHTML = 'Errors'
+             var _lineFeed = document.createElement( 'br' );
+        var errorItem = document.createElement( 'div' );
+    errorItem.className = 'row';
+        errorItem.innerHTML = validationResult.errorMessage;
 
+var _legendContentArea = $( "#legendContentArea" );
+
+    _legendContentArea.append( errorItem );
+        _legendContentArea.append( _lineFeed );
+
+
+
+    
 
 };
 

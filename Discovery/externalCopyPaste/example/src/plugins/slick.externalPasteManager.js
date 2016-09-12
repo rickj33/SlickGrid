@@ -277,11 +277,7 @@
     function updateGridColumns( grid, newColumnArray )
     {
 
-      //handle instance where we are not adding any new columns.
-      if(newColumnArray && newColumnArray.length > 0)
-      {
-        grid.setColumns( newColumnArray );
-      }
+      grid.setColumns( newColumnArray );
 
     }
 
@@ -293,7 +289,7 @@
         success: true,
         columnErrors: [],
         parsingErrors: [],
-        errorMessages : []
+        errorMessage : ''
       };
 
       var columns = parseResults.meta.fields;
@@ -328,7 +324,7 @@
         } );
       }
 
-      validationResult.errorMessages = buildErrorMessage(validationResult);
+      validationResult.errorMessage = buildErrorMessage(validationResult);
 
       return validationResult;
     }
@@ -360,9 +356,8 @@
         errorMessages.push( errorString )
       } );
 
-   //  var result =  _.join(errorMessages,'\\n');
-     // return result;
-      return errorMessages;
+     var result =  _.join(errorMessages,'\\n');
+      return result;
 
     }
 
@@ -405,11 +400,11 @@
               var dataValues = grid.getDataItem( currentDataRow );
 
               var updatedValues = parseResults.dataItems[currentDataRow - startRow];
-              var rowIds = gridData.mapRowsToIds( [currentDataRow] );
+              var rowIds = gridData.mapIdsToRows( [currentDataRow] );
               var dataValueId = rowIds[0];
 
               //determine the actual number of columns to update
-              var maxPastedColumns = _.keys(updatedValues).length;
+              var maxPastedColumns = updatedValues.length;
               var maxColumnCount = maxColumns > maxPastedColumns ? maxPastedColumns + startColumn : maxColumns;
 
               for ( var currentColumn = startColumn; currentColumn < maxColumnCount; currentColumn++ )
