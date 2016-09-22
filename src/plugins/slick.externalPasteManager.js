@@ -436,7 +436,7 @@
 
       // var parsingOptions = _getDefaultParseOptions();
       var parseResults = Papa.parse( textData, parsingOptions );
-      console.log( parseResults );
+      //console.log( parseResults );
       return parseResults;
 
     }
