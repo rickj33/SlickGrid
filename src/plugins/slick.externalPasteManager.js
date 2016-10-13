@@ -111,6 +111,11 @@
       };
     }
 
+
+    function getEditor(){
+        return PasteDataInputEditor;
+    };
+
     function handlePaste( event )
     {
 
@@ -276,13 +281,11 @@
 
     function updateGridColumns( grid, newColumnArray )
     {
-
       //handle instance where we are not adding any new columns.
       if(newColumnArray && newColumnArray.length > 0)
       {
         grid.setColumns( newColumnArray );
       }
-
     }
 
 
@@ -360,13 +363,8 @@
         errorMessages.push( errorString )
       } );
 
-   //  var result =  _.join(errorMessages,'\\n');
-     // return result;
       return errorMessages;
-
     }
-
-
 
 
     function updateGridData( grid, parseResults, merge )
@@ -441,6 +439,9 @@
 
     }
 
+
+
+
     function handleKeyDown( e, args )
     {
 
@@ -464,15 +465,7 @@
 
           _startTime = performance.now();
           _textBox.select();
-          //  handlePaste();
-          //  var ta = _createTextBox('');
-          /*   var parseResults = null;
-           setTimeout(function()
-           {
-           parseResults = handlePaste(_grid, ta);
-           }, 200);
-
-           return false;*/
+        
         }
       }
     }
@@ -580,97 +573,133 @@
       addTimingResultToLegend( updateGridDisp );
     }
 
-    /*  function getDataItemValueForColumn( item, columnDef )
-      {
-        // If we initialized this with an ignoreFormatting option, don't do fancy formatting
-        // on the specified fields (just return the plain JS value)
-        for ( var i = 0; i < _ignoreFormatting.length; i++ )
-        {
-          if ( _ignoreFormatting[i] === columnDef.field )
-          {
-            return item[columnDef.field];
-          }
-        }
-        if ( _options.dataItemColumnValueExtractor )
-        {
-          return _options.dataItemColumnValueExtractor( item, columnDef );
-        }
+    function PasteDataInputEditor( args )
+  {
 
-        var retVal = '';
+    //noinspection LocalVariableNamingConventionJS
+    var scope = this;
+    scope.args = args;
+    scope.$input = null;
 
-        // use formatter if available; much faster than editor
-        if ( columnDef.formatter )
-        {
-          return columnDef.formatter( 0, 0, item[columnDef.field], columnDef, item );
-        }
+    scope.defaultValue = '';
+    scope.isOpen = false;
+    scope.pastedData = null;
+    // scope.$container = $(scope.args.container);
 
-        // if a custom getter is not defined, we call serializeValue of the editor to serialize
-        if ( columnDef.editor )
-        {
-          var editorArgs = {
-            'container': $( "<p>" ), // a dummy container
-            'column': columnDef,
-            'position': {
-              'top': 0,
-              'left': 0
-            } // a dummy position required by some editors
-          };
-          var editor = new columnDef.editor( editorArgs );
-          editor.loadValue( item );
-          retVal = editor.serializeValue();
-          editor.destroy();
-        } else
-        {
-          retVal = item[columnDef.field];
-        }
-
-        return retVal;
-      }
-
-      function setDataItemValueForColumn( item, columnDef, value )
-      {
-        if ( _options.dataItemColumnValueSetter )
-        {
-          return _options.dataItemColumnValueSetter( item, columnDef, value );
-        }
-
-        // if a custom setter is not defined, we call applyValue of the editor to unserialize
-        if ( columnDef.editor )
-        {
-          var editorArgs = {
-            'container': $( "body" ), // a dummy container
-            'column': columnDef,
-            'position': {
-              'top': 0,
-              'left': 0
-            } // a dummy position required by some editors
-          };
-          var editor = new columnDef.editor( editorArgs );
-          editor.loadValue( item );
-          editor.applyValue( item, value );
-          editor.destroy();
-        }
-      }*/
-
-    //creates a new text area to paste the clipboard data.
-
-   /* function ParsingException( validationResult )
+    scope.init = function()
     {
-      this.validationResult = validationResult;
-      this.message = "Error parssing the data";
-      this.toString = function()
+      scope.$input = $( "<INPUT type=text class='editor-text' />" )
+          .appendTo( scope.args.container )
+          .on( "paste",  scope.handlePaste)
+          .focus()
+          .select();
+      scope.defaultValue = '';
+    };
+
+    scope.handlePaste = function(event)
+    {
+        event.preventDefault();
+      var clipboardEvent = event.originalEvent;
+      _self.handlePaste(clipboardEvent);
+      /*  scope.pastedData = clipboardEvent.clipboardData.getData( "Text" );
+        scope.setDirectValue('processing the data from the clipboard.');*/
+       
+    };
+
+    scope.destroy = function()
+    {
+      scope.$input.unbind( "paste");
+      scope.$input.remove();
+    };
+
+    scope.save = function()
+    {
+      scope.args.commitChanges();
+    };
+
+    scope.cancel = function()
+    {
+      scope.setDirectValue( defaultValue );
+      scope.args.cancelChanges();
+    };
+
+    scope.hide = function()
+    {
+      scope.$input.hide();
+    };
+
+    scope.show = function()
+    {
+      scope.$input.show();
+    };
+
+    scope.position = function( position )
+    {
+      // nada
+    };
+
+    scope.focus = function()
+    {
+      scope.$input.focus();
+    };
+
+    scope.setDirectValue = function( val )
+    {
+      if ( val == null )
       {
-        return this.message;
+        val = "";
+      }
+      scope.defaultValue = val;
+      scope.$input.val( val );
+      scope.$input[0].defaultValue = val;
+    };
+
+    scope.loadValue = function( item )
+    {
+     // scope.setDirectValue( item[scope.args.column.field] );
+      scope.$input.select();
+
+    };
+
+    scope.serializeValue = function()
+    {
+
+      return scope.$input.val();
+    };
+
+    scope.applyValue = function( item, state )
+    {
+      //item[scope.args.column.field] = state;
+    };
+
+    scope.isValueChanged = function()
+    {
+      return (scope.$input.val() != scope.defaultValue);
+      //return (!($input.val() == "" && defaultValue == null)) && (scope.$input.val() != scope.defaultValue);
+    };
+
+    scope.validate = function()
+    {
+      
+
+      return {
+        valid: true,
+        msg: null
       };
-    }*/
+    };
+
+    scope.init();
+  }
+
 
 
     $.extend( this, {
       "init": init,
       "destroy": destroy,
       "clearCopySelection": clearCopySelection,
+      "getEditor": getEditor,
       "handleKeyDown": handleKeyDown,
-
+     "handlePaste": handlePaste,
       "onCopyCells": new Slick.Event(),
       "onCopyCancelled": new Slick.Event(),
       "onPasteCells": new Slick.Event(),

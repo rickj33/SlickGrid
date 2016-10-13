@@ -117,7 +117,7 @@ TestApp.prototype.handleOnPasteCells = function(e, args)
   //var columns = _.tail(this.grid.getColumns());
 
   var parseResults = args.parseResults;
-  var columns = parseResults.meta.fields;
+  var columns = parseResults.columns;
   // var columns = this.grid.getColumns();
 
   this.overrideEdit = true;
@@ -169,7 +169,7 @@ TestApp.prototype._buildGridColumns = function(columns)
       minWidth: 160,
       sortable: true,
       resizable: true,
-      editor: Slick.Editors.Text
+      editor: this.pasteManager.getEditor()
     };
     result.push(column);
   }

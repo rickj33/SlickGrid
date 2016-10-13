@@ -154,6 +154,9 @@
     scope.init();
   }
 
+
+
+
   //noinspection FunctionNamingConventionJS
   function IntegerEditor( args )
   {
