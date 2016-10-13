@@ -519,7 +519,7 @@
     function logTiming( timingDescription, totalTime )
     {
       var message = CreateTimingMessage( timingDescription, totalTime );
-      console.log( message );
+    //  console.log( message );
     }
 
     function createTimingMessage( timingDescription, totalTime )
@@ -565,12 +565,12 @@
       var parseDataDisp = createTimingMessage( 'Time to parse data', timingsCalc.parseResultsTime );
       var validateDataDisp = createTimingMessage( 'Time to validate parsed data', timingsCalc.validateParsingResultsTime );
       var updateGridDisp = createTimingMessage( 'Time to update grid', timingsCalc.updateGridDataTime );
-      console.log( totalTimeDisp.toString() );
+ /*     console.log( totalTimeDisp.toString() );
       console.log( pasteDataDisp.toString() );
       console.log( getDataFromClipboardDisp.toString() );
       console.log( parseDataDisp.toString() );
       console.log( validateDataDisp.toString() );
-      console.log( updateGridDisp.toString() );
+      console.log( updateGridDisp.toString() );*/
 
       addTimingResultToLegend( totalTimeDisp );
       addTimingResultToLegend( pasteDataDisp );
